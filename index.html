@@ -473,7 +473,7 @@
         <p class="kicker">01</p>
         <h3>Overview &amp; winning</h3>
         <p>Arcworld is a competitive strategy game for two to four players. Each player runs one corporation, commands a small squad of Operatives across a hex map, claims sectors, constructs Structures, and fights both rival corporations and the planet's native Creatures.</p>
-        <p>Play runs in rounds. Each round every player takes a full turn of their own, and once everyone has passed, the planet takes its turn &mdash; Creatures move and attack.</p>
+        <p>Play runs in rounds. Each round every player takes a full turn of their own, and once everyone has had theirs, the planet takes its turn &mdash; Creatures move and attack.</p>
         <h4>Two ways to win</h4>
         <ul>
           <li><strong>Military victory.</strong> Destroy the Headquarters of every opposing corporation.</li>
@@ -578,7 +578,7 @@
         </table></div>
         <div class="tip"><b>Eruptions hit you</b><p>Volcanic Eruption damages your own forces, not anyone else's &mdash; you simply choose how to spread it across your Operatives and Control Points.</p></div>
         <h4>Intermission Phase</h4>
-        <p>Once every player has passed, the planet acts. Roll the Intermission Die and resolve the Creatures &mdash; see <em>Creatures</em>.</p>
+        <p>Once every player has taken their turn, the planet acts: each Creature in turn attacks or moves &mdash; see <em>Creatures</em>.</p>
       </section>
 
       <section id="s-action">
@@ -614,10 +614,10 @@
             <tr><td class="k">Arc Cubes</td><td>Gain 1 extra Arc Cube each Income Phase.</td></tr>
             <tr><td class="k">Operatives</td><td>When you draw an Operative Card, draw 2 instead and assign or discard either or both.</td></tr>
             <tr><td class="k">A Resource</td><td>Whenever you gain that Resource type, gain 2 instead.</td></tr>
+            <tr><td class="k">Xeno Eggs</td><td>Whenever you gain Xeno Eggs, gain 1 extra.</td></tr>
           </tbody>
         </table></div>
-        <p>You may move Workers freely between assignments during your Cleanup Phase &mdash; <em>except</em> to or from a Structure. A Worker only enters a Structure when you construct it during your Action Phase, and only leaves when that Structure is destroyed.</p>
-        <p>When a Structure is destroyed because you lost the sector, its Worker is removed from the game entirely. When a Structure is destroyed any other way, the Worker returns to your available pool.</p>
+        <p>You may move Workers freely between assignments during your Cleanup Phase &mdash; <em>except</em> to or from a Structure. A Worker only enters a Structure when you construct it during your Action Phase, and never leaves it: if that Structure is destroyed, its Worker is removed from the game.</p>
       </section>
 
       <section id="s-combat">
@@ -654,7 +654,7 @@
         </table></div>
         <h4>Rerolls</h4>
         <p>A Reroll lets you pick one die from a roll you just made and roll it again, replacing the old result. A single die can never be rerolled twice, however many Rerolls you hold, and you always choose after seeing the original results.</p>
-        <div class="tip"><b>Xeno Eggs</b><p>Spend at any time. Each Egg gives you either <strong>+2 Combat Dice before a Bio Roll</strong> or <strong>restores 4 Energy</strong> to one of your Operatives. Spend as many as you like at once, choosing independently for each.</p></div>
+        <div class="tip"><b>Xeno Eggs</b><p>Spend at any time. Each Egg gives you either <strong>+2 Combat Dice before a Bio Roll</strong> or <strong>restores one of your Operatives to its maximum Energy</strong>. Spend as many as you like at once, choosing independently for each.</p></div>
       </section>
 
       <section id="s-control">
@@ -673,14 +673,14 @@
           <li>Reduce your Sectors tracker by 1.</li>
           <li>Destroy one of your Structures if you have one &mdash; your choice which. Its Worker is removed from the game.</li>
         </ol>
-        <div class="tip"><b>Destroyed by a Creature</b><p>If a Creature reduces a Control Point to 0, the loss resolves normally, but there is no attacker to take the sector. Place a neutral Control Die set to 3 instead.</p></div>
+        <div class="tip"><b>Destroyed by a Creature</b><p>If a Creature reduces a Control Point to 0, the loss resolves normally, and the sector is rendered permanently uninhabitable &mdash; no one can ever claim it again.</p></div>
         <h4>Suppression</h4>
         <p>A sector you control is <strong>suppressed</strong> for as long as an enemy Operative or Creature stands in it. Holding the Control Point is not enough &mdash; while anything hostile is present:</p>
         <ul>
           <li>The sector generates <strong>no Arc Cubes</strong> during your Income Phase.</li>
           <li>Operatives you deploy into it arrive at <strong>half their maximum Energy, rounded up</strong>.</li>
         </ul>
-        <p>Suppression lifts the moment the intruder leaves or dies. A single Creature wandering into your best sector is often worth more to an opponent than an attack would be.</p>
+        <p>Suppression lifts the moment the intruder leaves or dies.</p>
       </section>
 
       <section id="s-operatives">
@@ -706,14 +706,17 @@
         <h3>Creatures</h3>
         <p>Up to four Creatures may be on the board at once, each marked with a numbered Creature Die from 1 to 4. That die is only an identifier for movement order &mdash; it is never rolled. If a fifth Creature would deploy while four are out, the deployment simply fails; nothing already on the board is removed.</p>
         <h4>The Intermission Phase</h4>
-        <p>Roll the Intermission Die, then resolve every Creature <em>not on the Volcano tile</em> in Creature Die order, lowest to highest:</p>
+        <p>Creatures act one at a time, in Creature Die order from lowest to highest. For each Creature:</p>
+        <ol class="steps">
+          <li><b>Roll the Intermission Die</b>The result sets which way this Creature moves, using the arrows on its Encounter Card.</li>
+          <li><b>Attack if it can</b>If one or more enemies are within its attack range, it attacks them and does not move. A Creature on the Volcano tile can never attack from there, so it always goes straight to step 3.</li>
+          <li><b>Otherwise, move and check again</b>It moves its full Movement in the direction rolled. If an enemy is now within range, it attacks as in step 2.</li>
+        </ol>
         <ul>
-          <li>If it already has an Operative within attack range, it attacks instead of moving.</li>
-          <li>Otherwise it moves its full Movement in the direction its Encounter Card shows for the Intermission Die result. After moving, it checks for a target in range and attacks if it finds one.</li>
           <li>Movement cannot be split. A Creature that cannot complete its full move goes as far as it can and stops.</li>
           <li>A Creature that leaves the edge of the map is redeployed on the Volcano tile and its movement ends.</li>
         </ul>
-        <p>A Creature's target is always an enemy Operative, or an enemy Control Point if that Creature has a Siege value.</p>
+        <p>A Creature's target is always an enemy Operative, or an enemy Control Point if that Creature can perform a Siege attack.</p>
         <h4>Blocked tiles</h4>
         <p>Creatures never <em>end</em> movement on a tile holding another Creature, an Operative, a Structure or a Control Point. They may move <em>through</em> friendly Creatures and neutral Control Points if they have the Movement to spare &mdash; which takes at least 2, one to enter and one to leave.</p>
         <h4>Killing and subjugating Creatures</h4>
@@ -745,7 +748,7 @@
             <tr><td class="k">Arc Cubes</td><td>1 per sector you control each Income Phase, +1 with a Worker assigned; the Progression tracker; card effects.</td><td>Playing Ability Cards, recruiting Operatives, trading.</td></tr>
             <tr><td class="k">Resources</td><td>The Event Die, and various card effects. Metal, Biofuel, Silica and Cryofluid.</td><td>Constructing Structures, trading.</td></tr>
             <tr><td class="k">Ability Cards</td><td>1 per turn in your Income Phase; the Progression tracker; card effects.</td><td>Playing them. Hand limit 5, enforced at Cleanup.</td></tr>
-            <tr><td class="k">Xeno Eggs</td><td>Eliminating Creatures, and various card effects.</td><td>+2 Combat Dice before a Bio Roll, or restore 4 Energy.</td></tr>
+            <tr><td class="k">Xeno Eggs</td><td>Eliminating Creatures, and various card effects &mdash; +1 each time with a Worker assigned.</td><td>+2 Combat Dice before a Bio Roll, or restore an Operative to its maximum Energy.</td></tr>
           </tbody>
         </table></div>
         <p>You may exceed your hand limit freely during your own turn &mdash; chaining draws is fine. You only discard back down to 5 in your Cleanup Phase.</p>
