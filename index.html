@@ -647,7 +647,7 @@
           </tbody>
         </table></div>
         <h4>A successful Attack</h4>
-      <p>An Attack is <strong>successful</strong> when it deals 1 or more Damage after the defender's roll is subtracted. Card text that reads <em>&ldquo;on a successful Bio Attack&rdquo;</em> or <em>&ldquo;on a successful Siege Attack&rdquo;</em> only triggers when Damage got through; text that says <em>&ldquo;on a successful hit&rdquo;</em> triggers off either kind.</p>
+      <p>An Attack is <strong>successful</strong> when it deals 1 or more Damage after the defender's roll is subtracted. Card text names which kind it wants: <em>&ldquo;on a successful Bio Attack&rdquo;</em> and <em>&ldquo;on a successful Siege Attack&rdquo;</em> each trigger off that one kind only, while <em>&ldquo;on a successful Attack&rdquo;</em> triggers off either.</p>
 
       <h4>Rerolls</h4>
         <p>A Reroll lets you pick one die from a roll you just made and roll it again, replacing the old result. A single die can never be rerolled twice, however many Rerolls you hold, and you always choose after seeing the original results.</p>
@@ -2024,7 +2024,7 @@
           <li><b>Ravager</b>'s low-Health bonus now gives a Reroll while defending.</li>
           <li><b>Gorepod</b>'s death blast hits Operatives only, no longer other Creatures.</li>
           <li><b>Carapoid</b> dies to a fixed 3 Critical Hits.</li>
-          <li>Card text reads <b>&ldquo;on a successful Bio Attack&rdquo;</b> and <b>&ldquo;Siege Attack&rdquo;</b> again, matching the printed cards. <b>&ldquo;On a successful hit&rdquo;</b> still means either kind.</li>
+          <li>Trigger wording settled on three forms, matching the printed cards: <b>&ldquo;on a successful Bio Attack&rdquo;</b>, <b>&ldquo;on a successful Siege Attack&rdquo;</b>, and <b>&ldquo;on a successful Attack&rdquo;</b> for either kind. &ldquo;Hit&rdquo; is no longer a trigger word &mdash; it only names a die face.</li>
           <li>An Attack is <b>successful</b> when it deals 1 or more Damage &mdash; now stated in Combat.</li>
         </ul></div>
       </article>
@@ -2701,7 +2701,7 @@ const ACARDS = [
 
  [{n:"Ambush",t:"counter",g:["combat"],x:"When an enemy enters a controlled Sector, perform a Bio Attack with 6 Combat Dice against it."},
   {n:"Lockdown",t:"contract",g:["mobility"],x:"For 3 rounds, enemy Operatives and Creatures cannot move within or into your controlled Sectors."},
-  {n:"Siege Protocol",t:"order",g:["combat"],x:"Until the end of your turn, on a successful hit, your Operatives add 3 to their Siege Roll."}],
+  {n:"Siege Protocol",t:"order",g:["combat"],x:"Until the end of your turn, on a successful Attack, your Operatives add 3 to their Siege Roll."}],
 
  [{n:"Contract Breach",t:"counter",g:["cards"],x:"When another corporation plays a Contract Card, cancel its effect. It is discarded and the Arc Cubes spent are lost."},
   {n:"Barrage",t:"order",g:["combat"],x:"Perform a Bio Attack with 2 of your Operatives against an enemy within their Range."},
@@ -2712,7 +2712,7 @@ const ACARDS = [
   {n:"Work Complete",t:"order",g:["economy"],x:"Gain 5 Workers."}],
 
  [{n:"Critical Strike",t:"order",g:["combat"],x:"Change all Hits from one of your Operative's Bio Roll into Critical Hits."},
-  {n:"Arc Infusion",t:"order",g:["combat"],x:"Until the end of your turn, on a successful hit, your Operatives add 4 to their Bio Roll."},
+  {n:"Arc Infusion",t:"order",g:["combat"],x:"Until the end of your turn, on a successful Attack, your Operatives add 4 to their Bio Roll."},
   {n:"Biohazard",t:"order",g:["combat"],x:"All enemy Operatives in one of your controlled Sectors take 1 Bio Damage during your Income Phase for the remainder of the game."}],
 
  [{n:"Decrypt",t:"order",g:["cards"],x:"Look at the top 3 Ability Cards. Keep 1 in your hand. Return the rest in any order to the top of the deck."},
@@ -2910,10 +2910,10 @@ const OPS = [
    ["p","Take 1 less Bio Damage from Creature attacks."]]},
  {n:"Berserker",e:[4,6,8],m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["p","If you lost Energy during this turn or your previous turn, gain 1 Reroll while attacking."],
-   ["p","While attacking, spend 3 Energy. On a successful hit, deal 2 extra Bio Damage."]]},
+   ["p","While attacking, spend 3 Energy. On a successful Attack, deal 2 extra Bio Damage."]]},
  {n:"Marksman",e:[4,5,6],m:3,r:3,a:3,d:2,g:["combat"],ab:[
    ["p","Gain 1 Range while on a Hill or Mountain tile."],
-   ["p","On a successful hit, if you dealt 3 or more Bio Damage, your target is eliminated."]]},
+   ["p","On a successful Attack, if you dealt 3 or more Bio Damage, your target is eliminated."]]},
  {n:"Engineer",e:[5,7,9],m:3,r:2,a:3,d:3,g:["support","territory"],ab:[
    ["a","All Bio Damage dealt restores an equal amount of Energy to an Operative within Range 3."],
    ["p","Spend 3 Energy to Fortify 2."]]},
@@ -2922,7 +2922,7 @@ const OPS = [
    ["p","Enemy Control Points cannot be saved by a Shield Generator."]]},
  {n:"Demolitionist",e:[5,6,7],m:3,r:2,a:3,d:2,g:["combat","territory"],ab:[
    ["a","On a successful Siege Attack, deal 1 extra Siege Damage."],
-   ["p","On a successful hit, all enemies within Range 1 of the target take 2 Bio Damage."]]},
+   ["p","On a successful Attack, all enemies within Range 1 of the target take 2 Bio Damage."]]},
  {n:"Specter",e:[5,7,9],m:0,r:2,a:3,d:3,g:["mobility"],ab:[
    ["a","Teleport to a passable tile within Range 3."],
    ["p","On a successful Bio Attack, you may teleport to a passable tile within Range 2."]]},
@@ -2943,7 +2943,7 @@ const OPS = [
    ["p","Operatives within Range 3 are not affected by the Hostile Movement Penalty."]]},
  {n:"Juggernaut",e:[6,8,10],m:2,r:2,a:3,d:2,g:["defense"],ab:[
    ["a","While defending, Critical Hits deal 1 Bio Damage instead of 2."],
-   ["p","On a successful hit, your target cannot move on its next turn."]]},
+   ["p","On a successful Attack, your target cannot move on its next turn."]]},
  {n:"Scientist",e:[4,5,6],m:3,r:2,a:3,d:2,g:["combat","support"],ab:[
    ["a","Enemies within Range 3 cannot restore Health or Energy."],
    ["p","On a successful Bio Attack, your target takes 2 Bio Damage during your next Income Phase."]]},
