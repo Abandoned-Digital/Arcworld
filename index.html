@@ -15,6 +15,11 @@
     /* when you may play it: quiet on your turn, warm while it sits out, cold as a reaction */
     --ty-order:#6b5f57; --ty-contract:#e05a25; --ty-counter:#7fc7d4;
     --warn:#c9722f;
+    /* printed card faces, in real units. 1:1 on a display where 96 CSS px = 1 inch;
+       the calibration strip on the Encounters tab lets the reader correct for their
+       own screen with browser zoom, which scales card and text together. */
+    --mini-w:44mm;  --mini-h:68mm;     /* Mini-Euro  — Corporations */
+    --poker-w:63.5mm; --poker-h:89mm;  /* Poker      — Abilities, Encounters */
     --display:"Chakra Petch","Trebuchet MS",sans-serif;
     --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
@@ -214,8 +219,8 @@
     color:var(--tc);border:1px solid currentColor;padding:2px 5px;line-height:1.4;opacity:.85}
   .card .tradeoff{position:absolute;top:9px;right:10px;width:7px;height:7px;background:var(--warn);
     clip-path:polygon(50% 0,100% 100%,0 100%)}
-  body.truesize .deck{grid-template-columns:repeat(auto-fill,208px);justify-content:start}
-  body.truesize .card{width:208px;aspect-ratio:44/68;overflow:hidden}
+  body.truesize .deck{grid-template-columns:repeat(auto-fill,var(--mini-w));justify-content:start}
+  body.truesize .card{width:var(--mini-w);height:var(--mini-h);overflow:hidden}
   body.truesize .card > *{flex-shrink:0}
   body.truesize .card.spill{border-color:var(--warn)}
   body.truesize .card.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
@@ -254,8 +259,8 @@
     font-family:var(--mono);font-size:8px;font-style:normal;display:flex;
     align-items:center;justify-content:center;opacity:.75}
   .acard .foot{margin-top:auto;padding:10px 14px 0;display:flex;gap:5px;flex-wrap:wrap;align-items:center}
-  body.atruesize .adeck{grid-template-columns:repeat(auto-fill,300px);justify-content:start}
-  body.atruesize .acard{width:300px;aspect-ratio:63.5/89;overflow:hidden}
+  body.atruesize .adeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start}
+  body.atruesize .acard{width:var(--poker-w);height:var(--poker-h);overflow:hidden}
   body.atruesize .acard > *{flex-shrink:0}
   body.atruesize .acard.spill{border-color:var(--warn)}
   body.atruesize .acard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
@@ -310,6 +315,30 @@
   .tri .c,td .eb .c{color:var(--tier3)}
   td.no{color:var(--ink-faint)}
   td.yes{color:var(--g-combat)}
+
+  /* ---- true card size: Encounters ---- */
+  body.etruesize #edeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start}
+  body.etruesize #edeck .pcard{width:var(--poker-w);height:var(--poker-h);
+    overflow:hidden;position:relative}
+  body.etruesize #edeck .pcard > *{flex-shrink:0}
+  body.etruesize #edeck .pcard.spill{border-color:var(--warn)}
+  body.etruesize #edeck .pcard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
+    background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
+    letter-spacing:.12em;padding:2px 5px}
+
+  .cal{display:flex;flex-wrap:wrap;gap:22px;align-items:center;
+    border:1px solid var(--line);background:var(--panel);padding:20px;margin-top:14px}
+  .calcard{width:85.6mm;height:53.98mm;flex:none;border:1px dashed var(--accent);
+    display:flex;align-items:flex-end;justify-content:center;padding-bottom:9px;
+    font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint)}
+  .calx{flex:1 1 280px;min-width:0}
+  .calx h4{font-family:var(--display);font-weight:600;font-size:15px;margin:0 0 7px;color:var(--ink)}
+  .calx p{margin:0 0 9px;color:var(--ink-dim);font-size:13.5px;line-height:1.6}
+  .calx p:last-child{margin-bottom:0}
+  .calx b{color:var(--ink);font-weight:600}
+  .calx kbd{font-family:var(--mono);font-size:11.5px;color:var(--ink);
+    border:1px solid var(--line);background:#00000030;padding:1px 5px}
 
   /* ---- objectives ---- */
   .odeck{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:14px}
@@ -2125,6 +2154,18 @@
     <p class="sub">Laid out like an Operative Card, with two differences: the boxes count <em>Health</em> rather than Energy and never change with Tier, and Creatures have no active abilities &mdash; everything they do is passive, resolved for them during the Intermission Phase.</p>
     <div class="key" id="enckey"></div>
     <div class="tip"><b>Siege</b><p>A Creature only threatens a Control Point if it can perform a Siege Attack. The ones that cannot say so in plain text on the card, and they can still make life miserable by suppressing the Sector they stand in.</p></div>
+
+    <h2 style="margin-top:38px">Check the scale</h2>
+    <p class="sub">Encounter Cards print at <strong>Poker size, 63.5 &times; 89 mm</strong>. Turn on <em>True card size</em> below and each one is laid out at exactly that &mdash; hold a real card against the screen and it should match.</p>
+    <div class="cal">
+      <div class="calcard">Bank card &middot; 85.6 &times; 54 mm</div>
+      <div class="calx">
+        <h4>If it does not match</h4>
+        <p>Every screen reports its own size differently, so the page cannot know yours. Hold any <b>bank or credit card</b> against the dashed outline &mdash; they are all the same 85.6 &times; 54 mm.</p>
+        <p>If the outline is the wrong size, change your browser zoom with <kbd>Ctrl</kbd> <kbd>+</kbd> and <kbd>Ctrl</kbd> <kbd>&minus;</kbd> (<kbd>Cmd</kbd> on a Mac) until it lines up. Every card on every tab is then true size, and the text scales with it.</p>
+        <p>The <b>OVER</b> flag measures the text at <em>this page's</em> type sizes, which run around 8&nbsp;pt. Print can set smaller, so a flagged card is a card to look at, not a card that is necessarily broken.</p>
+      </div>
+    </div>
   </section>
 
   <section>
@@ -2132,6 +2173,7 @@
     <p class="sub">Filter by what a Creature is built to do. Roles are an index for this page and appear nowhere in the rules.</p>
     <div class="filters" id="etagbar"></div>
     <div class="controls" style="margin:0 0 18px">
+      <button class="toggle" id="eSize" aria-pressed="false">True card size</button>
       <button class="toggle" id="eSiege" aria-pressed="false">Siege-capable only</button>
       <button class="toggle" id="eReset" aria-pressed="false">Clear filters</button>
       <input class="srch" id="esrch" type="search" placeholder="Search name or ability&hellip;" aria-label="Search creatures">
@@ -2139,6 +2181,7 @@
     </div>
     <div class="pdeck" id="edeck"></div>
     <div class="empty" id="eempty" hidden>No Creature matches those filters</div>
+    <p class="legendkey"><i></i> In true card size, marks a Creature whose text overruns the printed 63.5 &times; 89 mm face.</p>
   </section>
 
   <section>
@@ -2207,6 +2250,7 @@ function show(v){
   /* aspect-ratio cards measure as zero while their panel is hidden */
   if (v === "corp") sizeCheck();
   if (v === "ability") aSizeCheck();
+  if (v === "encounter") eSizeCheck();
 }
 VIEWS.forEach(k => document.getElementById("t-" + k).addEventListener("click", () => show(k)));
 
@@ -3229,7 +3273,28 @@ function eRender(){
   }).join("");
   eEmpty.hidden = list.length > 0;
   eCount.innerHTML = '<b>' + list.length + '</b> of ' + ENC.length + ' shown';
+  eSizeCheck();
 }
+
+/* flag any Creature whose text overruns the printed Poker face */
+function eSizeCheck(){
+  if (!document.body.classList.contains("etruesize")) {
+    edeck.querySelectorAll(".pcard.spill").forEach(el => el.classList.remove("spill"));
+    return;
+  }
+  edeck.querySelectorAll(".pcard").forEach(el => {
+    el.classList.remove("spill");
+    if (el.scrollHeight > el.clientHeight + 1) el.classList.add("spill");
+  });
+}
+
+document.getElementById("eSize").addEventListener("click", e => {
+  const on = e.currentTarget.getAttribute("aria-pressed") === "true";
+  e.currentTarget.setAttribute("aria-pressed", String(!on));
+  document.body.classList.toggle("etruesize", !on);
+  eSizeCheck();
+});
+window.addEventListener("resize", eSizeCheck);
 
 document.getElementById("eSiege").addEventListener("click", e => {
   const on = e.currentTarget.getAttribute("aria-pressed") === "true";
