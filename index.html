@@ -334,15 +334,15 @@
   #edeck .pn, #pdeck .pn{font-weight:700;font-size:calc(13 * var(--pt));letter-spacing:.17em;
     text-transform:uppercase;color:var(--faceink);margin:0 0 6px;line-height:1.2}
   #edeck .edash, #pdeck .edash{border-top:1px dashed var(--facedash);margin:0 0 15px}
-  #edeck .etrack, #pdeck .etrack{display:flex;justify-content:center;gap:9px;margin:0 0 10px}
+  #edeck .etrack, #pdeck .etrack{display:flex;justify-content:center;gap:9px;margin:0 0 8px}
   #edeck .etrack i, #pdeck .etrack i{width:6.9mm;height:6.9mm;aspect-ratio:auto;border:1px solid var(--faceink);
     background:none;color:var(--faceink);font-size:calc(10 * var(--pt));font-weight:400;
     line-height:1}
   #edeck .pl, #pdeck .pl{font-weight:700;font-size:calc(10 * var(--pt));letter-spacing:.08em;line-height:1.2;
-    color:var(--faceink);margin:0 0 3px}
-  #edeck .px, #pdeck .px{font-weight:400;font-size:calc(10 * var(--pt));line-height:1.29;margin:0 auto 9px;
-    max-width:21ch;color:var(--faceink)}
-  #edeck .ostats, #pdeck .ostats{padding-top:8px;border-top:1px dashed var(--facedash)}
+    color:var(--faceink);margin:0 0 2px}
+  #edeck .px, #pdeck .px{font-weight:400;font-size:calc(10 * var(--pt));line-height:1.26;margin:0 auto 6px;
+    max-width:24ch;color:var(--faceink)}
+  #edeck .ostats, #pdeck .ostats{padding-top:6px;border-top:1px dashed var(--facedash)}
   #edeck .ostats div, #pdeck .ostats div{gap:5px;font-size:calc(18 * var(--pt));font-weight:700;line-height:1;
     color:var(--faceink)}
   #edeck .ostats svg, #pdeck .ostats svg{width:22px;height:22px;stroke-width:1.4;color:var(--faceink)}
@@ -350,12 +350,6 @@
   #edeck .pcard.spill::after, #pdeck .pcard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
     letter-spacing:.12em;padding:2px 5px}
-
-  #pdeck .px{max-width:24ch;line-height:1.26;margin-bottom:7px}
-  #pdeck .edash{margin-bottom:12px}
-  #pdeck .etrack{margin-bottom:8px}
-  #pdeck .pl{margin-bottom:2px}
-  #pdeck .ostats{padding-top:7px}
 
   /* ---- objectives ---- */
   .odeck{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:14px}
@@ -2066,7 +2060,7 @@
           <li><b>Demolitionist</b> deals 1 Siege Damage to a Control Point within Range 1 outright, in place of its bonus on a Siege Attack.</li>
           <li><b>Deflector</b> triggers on a successful Defense rather than on rolling two Blocks.</li>
           <li><b>Scout</b> grants its Movement to all friendly Operatives, with no Range limit.</li>
-          <li><b>Juggernaut</b> adds to its roll while defending in place of blunting Critical Hits.</li>
+          <li><b>Juggernaut</b> adds 1 to its Defense Roll while defending, in place of blunting Critical Hits.</li>
           <li><b>Survivor</b> comes back on 2 Energy rather than 3, and <b>Berserker</b> spends 2 Energy rather than 3.</li>
           <li>Energy now runs 3&ndash;5 across the roster, and Movement 0&ndash;4.</li>
         </ul></div>
@@ -3007,7 +3001,7 @@ const OPS = [
    ["a","Friendly Operatives gain 1 Movement."],
    ["p","Friendly Operatives are not affected by the Hostile Movement Penalty."]]},
  {n:"Juggernaut",e:5,m:2,r:2,a:3,d:2,g:["defense"],ab:[
-   ["a","While defending, add 1 to your Bio Roll."],
+   ["a","While defending, add 1 to your Defense Roll."],
    ["p","On a successful Bio Attack, your target cannot move on its next turn."]]},
  {n:"Scientist",e:3,m:3,r:2,a:3,d:2,g:["combat","support"],ab:[
    ["p","Enemy Operatives cannot restore Energy."],
