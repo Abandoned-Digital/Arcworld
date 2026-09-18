@@ -321,11 +321,12 @@
   /* ---- Encounters: the printed Poker face, 1:1. Everything here mirrors the card
          itself — centered monospace, a dashed rule under the name, Health as a row of
          boxes with the maximum underlined, and no color but the band along the top. ---- */
-  #edeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start}
+  #edeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;
+    background:var(--face);border:1px solid var(--line);padding:20px;gap:18px}
   #edeck .pcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
     padding:11px 10px 8px;text-align:center;
     background:var(--face);color:var(--faceink);
-    border:3px solid var(--facerule);border-radius:11px}
+    border:4px solid var(--facerule);border-radius:11px}
   #edeck .pcard:hover{background:var(--face)}
   #edeck .pcard > *{flex-shrink:0}
   #edeck .pn{font-family:var(--mono);font-weight:500;font-size:15px;letter-spacing:.17em;
