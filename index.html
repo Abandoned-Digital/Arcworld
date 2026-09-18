@@ -770,14 +770,14 @@
         <p class="kicker">10</p>
         <h3>Structures</h3>
         <p>Structures are built onto your Player Board, not placed on the map. Construct one during your Action Phase by paying its Resource cost and assigning one free Worker. The number beside it is the <strong>Fortify</strong> value you gain the moment it is built.</p>
-        <div class="tip"><b>Fortify</b><p>Fortify X means add X Sector Strength, divided between your Control Points however you like &mdash; all of it on one Control Die, or spread around. No Control Die may pass its maximum of 6, or 12 for a Headquarters; anything over that is lost.</p></div>
+        <div class="tip"><b>Fortify</b><p><em>Fortify your Sectors by X</em> means add X Sector Strength in total, divided between your Control Points however you like &mdash; all of it on one Control Die, or spread around. No Control Die may pass its maximum of 6, or 12 for a Headquarters; anything over that is lost.</p></div>
         <div class="tw"><table>
           <thead><tr><th>Structure</th><th>Cost</th><th>Fortify</th><th>Type</th><th>Effect</th></tr></thead>
           <tbody>
             <tr><td class="k">Headquarters</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td>Never constructed. Its Control Die starts at Sector Strength 10, and your corporation is eliminated when it is destroyed.</td></tr>
             <tr><td class="k">Barracks</td><td>1 Metal &middot; 2 Cryofluid</td><td class="n">2</td><td class="n">Active</td><td>Recruit an Operative.</td></tr>
             <tr><td class="k">Base Turret</td><td>2 Metal &middot; 1 Biofuel</td><td class="n">3</td><td class="n">Active</td><td>Perform a Bio Attack with 3 | 4 | 5 Combat Dice on an enemy in a Sector you control.</td></tr>
-            <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td class="n">Active</td><td>Fortify 2. The Sector you strengthen must not be suppressed.</td></tr>
+            <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td class="n">Active</td><td>Fortify your Sectors by 2. The Sector you strengthen must not be suppressed.</td></tr>
             <tr><td class="k">Shield Generator</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Cryofluid</td><td class="n">3</td><td class="n">Passive</td><td>When a friendly Control Point takes damage, roll 1 Combat Die. On a Block, ignore the damage.</td></tr>
             <tr><td class="k">Radar Station</td><td>1 Biofuel &middot; 2 Silica</td><td class="n">2</td><td class="n">Passive</td><td>You ignore the Hostile Movement Penalty.</td></tr>
             <tr><td class="k">Refinery</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Silica</td><td class="n">1</td><td class="n">Active</td><td>Gain 2 Arc Cubes.</td></tr>
@@ -2084,7 +2084,7 @@
         <div><p class="v">3.6</p><p class="vt">Keywords &amp; Structures</p></div>
         <div><ul>
           <li><b>Recruit</b> defined: spend 3 Arc Cubes, draw an Operative Card, assign or discard at once.</li>
-          <li><b>Fortify</b> defined: add X Sector Strength, split across your Control Points as you like.</li>
+          <li><b>Fortify your Sectors by X</b> defined: add X Sector Strength in total, split across your Control Points as you like.</li>
           <li>Structures are built onto your <b>Player Board, not the map</b>, and constructing one grants its Fortify value.</li>
           <li>Structures marked <b>Active or Passive</b>; only an Active ability spends your one use per turn.</li>
           <li>Structure Resource costs published.</li>
@@ -2424,7 +2424,7 @@ const CORPS = [
   {n:"Blacksun",cubes:10,res:"5 Resources of your choice",rt:"5 &times; Choice",tags:["territory","economy"],
    p:["During Game Setup, you may immediately claim a second Sector, set its Control Die to 3."]},
   {n:"Frontier",cubes:8,res:"1 Silica",rt:"Silica",tags:["construction","territory"],
-   p:["When you construct a Structure, Fortify 3 extra."]},
+   p:["When you construct a Structure, Fortify your Sectors by an extra 3."]},
   {n:"Terralift",cubes:10,res:null,rt:"—",tags:["economy"],
    p:["During your Income Phase, you may spend 6 Arc Cubes to gain 1 Resource of your choice."]},
   {n:"Nexus Dynamics",cubes:8,res:null,rt:"—",tags:["economy"],
@@ -2750,7 +2750,7 @@ const ACARDS = [
   {n:"Xeno Surge",t:"order",g:["creatures"],x:"Draw 2 cards from the Encounter Deck. For each, if a Creature slot is available, assign it to that slot and move its Creature Die to the Volcano tile. Otherwise, discard it."},
   {n:"Legion",t:"order",g:["operatives"],x:"Draw 5 Operative Cards and add them to the same Operative slot in any order. When your Operative is eliminated, you may deploy the next one sequentially."}],
 
- [{n:"Assembly Line",t:"contract",g:["construction","territory"],x:"For 3 rounds, when you construct a Structure, Fortify 4 extra."},
+ [{n:"Assembly Line",t:"contract",g:["construction","territory"],x:"For 3 rounds, when you construct a Structure, Fortify your Sectors by an extra 4."},
   {n:"Counter Seizure",t:"counter",g:["cards"],x:"When another corporation plays a Counter Card, cancel its effect. You gain the Ability Card instead of it being discarded."},
   {n:"Power Drain",t:"order",g:["operatives"],x:"Set all enemy Operatives' Energy to 1."}],
 
@@ -2975,7 +2975,7 @@ const OPS = [
    ["p","You cannot perform a Siege Attack."]]},
  {n:"Engineer",e:3,m:3,r:2,a:3,d:3,g:["support","territory"],ab:[
    ["a","All Bio Damage dealt restores an equal amount of Energy to an Operative within Range 3."],
-   ["a","Spend 2 Energy to Fortify 2."]]},
+   ["a","Spend 2 Energy to Fortify your Sectors by 2."]]},
  {n:"Saboteur",e:4,m:4,r:2,a:3,d:2,g:["territory"],ab:[
    ["a","When within Range 1 of an enemy Control Point, unassign one assigned Worker of that corporation."],
    ["p","Enemy Control Points cannot be saved by a Shield Generator."]]},
@@ -3303,7 +3303,7 @@ const OBJECTIVES = [
   {n:"First Contact", lead:true,
    how:"When all criteria are met, 1st place gains 1 Progression.",
    crit:[
-     {t:"Claim a Control Point", r:"Fortify 3"},
+     {t:"Claim a Control Point", r:"Fortify your Sectors by 3"},
      {t:"Construct a Structure", r:"1 Worker"},
      {t:"Eliminate a Creature",  r:"1 Xeno Egg"},
      {t:"Eliminate an Operative", r:"3 Arc Cubes"}
@@ -3313,7 +3313,7 @@ const OBJECTIVES = [
   {n:"Blood in the Sand", goal:"Eliminate 3 Operatives",
    places:[["1 Progression","6 Arc Cubes","1 Ability Card"],["6 Arc Cubes","1 Ability Card"],["1 Ability Card"]]},
   {n:"Grand Expansion", goal:"Claim 3 Control Points",
-   places:[["1 Progression","Fortify 6","1 Ability Card"],["Fortify 6","1 Ability Card"],["1 Ability Card"]]},
+   places:[["1 Progression","Fortify your Sectors by 6","1 Ability Card"],["Fortify your Sectors by 6","1 Ability Card"],["1 Ability Card"]]},
   {n:"Arms Race", goal:"Construct 3 Structures",
    places:[["1 Progression","2 Workers","1 Ability Card"],["2 Workers","1 Ability Card"],["1 Ability Card"]]}
 ];
