@@ -1,5 +1,5 @@
 <title>Arcworld Field Manual</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Mono:wght@400;700&display=swap">
 <style>
   :root{
     --ground:#141110; --panel:#1d1917; --panel-2:#252019;
@@ -17,6 +17,7 @@
     --warn:#c9722f;
     /* the Encounter card face, as the print program draws it */
     --face:#fff; --faceink:#14110f; --facerule:var(--accent); --facedash:#8b8b8b;
+    --cardface:"Space Mono",ui-monospace,Menlo,monospace;  /* the printed card's own face */
     /* printed card faces, in real units. 1:1 on a display where 96 CSS px = 1 inch;
        the calibration strip on the Encounters tab lets the reader correct for their
        own screen with browser zoom, which scales card and text together. */
@@ -327,18 +328,20 @@
     background:var(--face);color:var(--faceink);
     border:4px solid var(--facerule);border-radius:11px}
   #edeck .pcard:hover{background:var(--face)}
+  #edeck .pcard, #edeck .pcard *{font-family:var(--cardface)}
   #edeck .pcard > *{flex-shrink:0}
-  #edeck .pn{font-family:var(--mono);font-weight:500;font-size:15px;letter-spacing:.17em;
+  #edeck .pn{font-weight:700;font-size:15px;letter-spacing:.17em;
     text-transform:uppercase;color:var(--faceink);margin:0 0 8px;line-height:1.25}
   #edeck .edash{border-top:1px dashed var(--facedash);margin:0 0 15px}
   #edeck .etrack{display:flex;justify-content:center;gap:9px;margin:0 0 13px}
   #edeck .etrack i{width:24px;height:24px;aspect-ratio:auto;border:1px solid var(--faceink);
-    background:none;color:var(--faceink);font-size:12px}
-  #edeck .pl{font-weight:600;font-size:10.5px;letter-spacing:.11em;color:var(--faceink);margin:0 0 3px}
-  #edeck .px{font-size:12.5px;line-height:1.32;margin:0 auto 11px;max-width:80%;color:var(--faceink)}
+    background:none;color:var(--faceink);font-size:12px;font-weight:400}
+  #edeck .pl{font-weight:700;font-size:10.5px;letter-spacing:.11em;color:var(--faceink);margin:0 0 3px}
+  #edeck .px{font-weight:400;font-size:12.5px;line-height:1.32;margin:0 auto 11px;
+    max-width:80%;color:var(--faceink)}
   #edeck .ostats{padding-top:9px;border-top:1px dashed var(--facedash)}
-  #edeck .ostats div{gap:4px;font-size:13px;color:var(--faceink)}
-  #edeck .ostats svg{width:14px;height:14px;color:var(--faceink)}
+  #edeck .ostats div{gap:5px;font-size:16px;font-weight:700;color:var(--faceink)}
+  #edeck .ostats svg{width:19px;height:19px;stroke-width:1.5;color:var(--faceink)}
   #edeck .pcard.spill{border-color:var(--warn)}
   #edeck .pcard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
