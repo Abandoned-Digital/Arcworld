@@ -15,6 +15,8 @@
     /* when you may play it: quiet on your turn, warm while it sits out, cold as a reaction */
     --ty-order:#6b5f57; --ty-contract:#e05a25; --ty-counter:#7fc7d4;
     --warn:#c9722f;
+    /* the Encounter card face, as the print program draws it */
+    --face:#fff; --faceink:#14110f; --facerule:#0d0b0a; --facedash:#8b8b8b;
     /* printed card faces, in real units. 1:1 on a display where 96 CSS px = 1 inch;
        the calibration strip on the Encounters tab lets the reader correct for their
        own screen with browser zoom, which scales card and text together. */
@@ -321,19 +323,22 @@
          boxes with the maximum underlined, and no color but the band along the top. ---- */
   #edeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start}
   #edeck .pcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
-    padding:11px 10px 8px;text-align:center}
+    padding:11px 10px 8px;text-align:center;
+    background:var(--face);color:var(--faceink);
+    border:3px solid var(--facerule);border-radius:11px}
+  #edeck .pcard:hover{background:var(--face)}
   #edeck .pcard > *{flex-shrink:0}
   #edeck .pn{font-family:var(--mono);font-weight:500;font-size:15px;letter-spacing:.17em;
-    text-transform:uppercase;color:var(--ink);margin:0 0 8px;line-height:1.25}
-  #edeck .edash{border-top:1px dashed var(--ink-faint);margin:0 0 11px}
+    text-transform:uppercase;color:var(--faceink);margin:0 0 8px;line-height:1.25}
+  #edeck .edash{border-top:1px dashed var(--facedash);margin:0 0 15px}
   #edeck .etrack{display:flex;justify-content:center;gap:9px;margin:0 0 13px}
-  #edeck .etrack i{width:24px;height:24px;aspect-ratio:auto;border:1px solid var(--ink-dim);
-    background:none;color:var(--ink);font-size:12px}
-  #edeck .pl{font-weight:600;font-size:10.5px;letter-spacing:.11em;color:var(--ink);margin:0 0 3px}
-  #edeck .px{font-size:12.5px;line-height:1.32;margin:0 auto 11px;max-width:80%}
-  #edeck .ostats{padding-top:9px;border-top:1px dashed var(--ink-faint)}
-  #edeck .ostats div{gap:4px;font-size:13px}
-  #edeck .ostats svg{width:14px;height:14px;color:var(--ink)}
+  #edeck .etrack i{width:24px;height:24px;aspect-ratio:auto;border:1px solid var(--faceink);
+    background:none;color:var(--faceink);font-size:12px}
+  #edeck .pl{font-weight:600;font-size:10.5px;letter-spacing:.11em;color:var(--faceink);margin:0 0 3px}
+  #edeck .px{font-size:12.5px;line-height:1.32;margin:0 auto 11px;max-width:80%;color:var(--faceink)}
+  #edeck .ostats{padding-top:9px;border-top:1px dashed var(--facedash)}
+  #edeck .ostats div{gap:4px;font-size:13px;color:var(--faceink)}
+  #edeck .ostats svg{width:14px;height:14px;color:var(--faceink)}
   #edeck .pcard.spill{border-color:var(--warn)}
   #edeck .pcard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
@@ -2158,8 +2163,7 @@
 
   <section>
     <h2>The bestiary</h2>
-    <p class="sub">Every card below is the printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>. Filter by what a Creature is built to do &mdash; roles are an index for this page, so they live in the filters and the band along the top of each card rather than on the card itself.</p>
-    <div class="filters" id="etagbar"></div>
+    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>, drawn as it comes off the print program. Search by name or ability text, or narrow to the Creatures that can threaten a Control Point.</p>
     <div class="controls" style="margin:0 0 18px">
       <button class="toggle" id="eSiege" aria-pressed="false">Siege-capable only</button>
       <button class="toggle" id="eReset" aria-pressed="false">Clear filters</button>
@@ -3211,24 +3215,7 @@ document.getElementById("enckey").innerHTML =
    ["a","Attack &mdash; Combat Dice"],["d","Defense &mdash; Combat Dice"]]
   .map(([k, t]) => '<div>' + svg(k) + '<span>' + t + '</span></div>').join("");
 
-const eActive = new Set();
 let eSiegeOnly = false;
-const etagbar = document.getElementById("etagbar");
-ETAGS.forEach(t => {
-  const count = ENC.filter(c => c.g.includes(t.k)).length;
-  const b = document.createElement("button");
-  b.className = "tg";
-  b.style.setProperty("--tc", ETC[t.k]);
-  b.dataset.k = t.k; b.title = t.d;
-  b.setAttribute("aria-pressed", "false");
-  b.innerHTML = t.n + ' <b>' + count + '</b>';
-  b.addEventListener("click", () => {
-    eActive.has(t.k) ? eActive.delete(t.k) : eActive.add(t.k);
-    b.setAttribute("aria-pressed", String(eActive.has(t.k)));
-    eRender();
-  });
-  etagbar.appendChild(b);
-});
 
 const edeck = document.getElementById("edeck");
 const eEmpty = document.getElementById("eempty");
@@ -3237,7 +3224,6 @@ const esrch = document.getElementById("esrch");
 
 function eMatches(c){
   if (eSiegeOnly && !canSiege(c)) return false;
-  if (eActive.size && !c.g.some(t => eActive.has(t))) return false;
   const q = esrch.value.trim().toLowerCase();
   return !q || (c.n + " " + c.ab.join(" ")).toLowerCase().includes(q);
 }
@@ -3245,10 +3231,9 @@ function eMatches(c){
 function eRender(){
   const list = ENC.filter(eMatches);
   edeck.innerHTML = list.map(c => {
-    const tc = ETC[c.g[0]];
     const track = Array.from({length:c.h}, (_, i) =>
       '<i class="' + (i + 1 === c.h ? "max" : "") + '">' + (i + 1) + '</i>').join("");
-    return '<article class="pcard" style="--tc:' + tc + '">' +
+    return '<article class="pcard">' +
       '<h3 class="pn">' + esc(c.n) + '</h3>' +
       '<div class="edash"></div>' +
       '<div class="etrack">' + track + '</div>' +
@@ -3277,8 +3262,7 @@ document.getElementById("eSiege").addEventListener("click", e => {
   eRender();
 });
 document.getElementById("eReset").addEventListener("click", () => {
-  eActive.clear(); eSiegeOnly = false;
-  etagbar.querySelectorAll(".tg").forEach(b => b.setAttribute("aria-pressed", "false"));
+  eSiegeOnly = false;
   document.getElementById("eSiege").setAttribute("aria-pressed", "false");
   esrch.value = "";
   eRender();
