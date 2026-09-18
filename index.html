@@ -320,36 +320,42 @@
   td.no{color:var(--ink-faint)}
   td.yes{color:var(--g-combat)}
 
-  /* ---- Encounters: the printed Poker face, 1:1. Everything here mirrors the card
+  /* ---- Encounter and Operative cards: the printed Poker face, 1:1. Everything here mirrors the card
          itself — centered monospace, a dashed rule under the name, Health as a row of
          boxes with the maximum underlined, and no color but the band along the top. ---- */
-  #edeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;gap:18px}
-  #edeck .pcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
+  #edeck, #pdeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;gap:18px}
+  #edeck .pcard, #pdeck .pcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
     padding:9px 10px 7px;text-align:center;
     background:var(--face);color:var(--faceink);
     border:4px solid var(--facerule);border-radius:11px}
-  #edeck .pcard:hover{background:var(--face)}
-  #edeck .pcard, #edeck .pcard *{font-family:var(--cardface)}
-  #edeck .pcard > *{flex-shrink:0}
-  #edeck .pn{font-weight:700;font-size:calc(13 * var(--pt));letter-spacing:.17em;
+  #edeck .pcard:hover, #pdeck .pcard:hover{background:var(--face)}
+  #edeck .pcard, #pdeck .pcard, #edeck .pcard *, #pdeck .pcard *{font-family:var(--cardface)}
+  #edeck .pcard > *, #pdeck .pcard > *{flex-shrink:0}
+  #edeck .pn, #pdeck .pn{font-weight:700;font-size:calc(13 * var(--pt));letter-spacing:.17em;
     text-transform:uppercase;color:var(--faceink);margin:0 0 6px;line-height:1.2}
-  #edeck .edash{border-top:1px dashed var(--facedash);margin:0 0 15px}
-  #edeck .etrack{display:flex;justify-content:center;gap:9px;margin:0 0 10px}
-  #edeck .etrack i{width:6.9mm;height:6.9mm;aspect-ratio:auto;border:1px solid var(--faceink);
+  #edeck .edash, #pdeck .edash{border-top:1px dashed var(--facedash);margin:0 0 15px}
+  #edeck .etrack, #pdeck .etrack{display:flex;justify-content:center;gap:9px;margin:0 0 10px}
+  #edeck .etrack i, #pdeck .etrack i{width:6.9mm;height:6.9mm;aspect-ratio:auto;border:1px solid var(--faceink);
     background:none;color:var(--faceink);font-size:calc(10 * var(--pt));font-weight:400;
     line-height:1}
-  #edeck .pl{font-weight:700;font-size:calc(10 * var(--pt));letter-spacing:.08em;line-height:1.2;
+  #edeck .pl, #pdeck .pl{font-weight:700;font-size:calc(10 * var(--pt));letter-spacing:.08em;line-height:1.2;
     color:var(--faceink);margin:0 0 3px}
-  #edeck .px{font-weight:400;font-size:calc(10 * var(--pt));line-height:1.29;margin:0 auto 9px;
+  #edeck .px, #pdeck .px{font-weight:400;font-size:calc(10 * var(--pt));line-height:1.29;margin:0 auto 9px;
     max-width:21ch;color:var(--faceink)}
-  #edeck .ostats{padding-top:8px;border-top:1px dashed var(--facedash)}
-  #edeck .ostats div{gap:5px;font-size:calc(18 * var(--pt));font-weight:700;line-height:1;
+  #edeck .ostats, #pdeck .ostats{padding-top:8px;border-top:1px dashed var(--facedash)}
+  #edeck .ostats div, #pdeck .ostats div{gap:5px;font-size:calc(18 * var(--pt));font-weight:700;line-height:1;
     color:var(--faceink)}
-  #edeck .ostats svg{width:22px;height:22px;stroke-width:1.4;color:var(--faceink)}
-  #edeck .pcard.spill{border-color:var(--warn)}
-  #edeck .pcard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
+  #edeck .ostats svg, #pdeck .ostats svg{width:22px;height:22px;stroke-width:1.4;color:var(--faceink)}
+  #edeck .pcard.spill, #pdeck .pcard.spill{border-color:var(--warn)}
+  #edeck .pcard.spill::after, #pdeck .pcard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
     letter-spacing:.12em;padding:2px 5px}
+
+  #pdeck .px{max-width:24ch;line-height:1.26;margin-bottom:7px}
+  #pdeck .edash{margin-bottom:12px}
+  #pdeck .etrack{margin-bottom:8px}
+  #pdeck .pl{margin-bottom:2px}
+  #pdeck .ostats{padding-top:7px}
 
   /* ---- objectives ---- */
   .odeck{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:14px}
@@ -835,10 +841,7 @@
         <p>Move forward 1 square each time you destroy a Control Point, whether neutral or enemy-held; eliminate an enemy Operative or a Creature; or gain Progression from any other effect.</p>
         <p>Landing on a reward square immediately grants either <strong>1 Ability Card</strong> or <strong>3 Arc Cubes</strong>, depending on the icon. Landing on the Tier 2 or Tier 3 square advances you immediately &mdash; there is no cost, no action, and no way to delay it. Reaching the final black square ends the game and wins it.</p>
         <h4>What advancing changes</h4>
-        <ul>
-          <li><strong>Operative Energy.</strong> Your Operatives keep their current Energy, but their maximum rises, so anything that restores Energy can now fill them higher.</li>
-          <li><strong>Ability Cards.</strong> You unlock that Tier's abilities and keep access to every lower Tier.</li>
-        </ul>
+        <p>Only one thing: <strong>you unlock that Tier's Ability Cards</strong>, and keep access to every lower Tier. Nothing on an Operative or Encounter Card changes, and neither does anything on the board.</p>
       </section>
       <section id="s-objectives">
         <p class="kicker">14</p>
@@ -865,7 +868,7 @@
         <p class="kicker">16</p>
         <h3>The cards</h3>
         <p><strong>Corporation Cards</strong> give you a starting supply and one or more permanent passive abilities. You keep one for the whole game.</p>
-        <p><strong>Operative Cards</strong> carry the figures you put on the board &mdash; Movement, Energy, Defense, Range, Attack values, and passive or active abilities.</p>
+        <p><strong>Operative Cards</strong> carry the figures you put on the board &mdash; Movement, Range, Attack and Defense along the bottom, an Energy track, and passive or active abilities. Every value is fixed for the whole game.</p>
         <p><strong>Encounter Cards</strong> are the planet's Creatures: Movement, Health, Defense, Range and Attack values, plus their passive abilities.</p>
         <p><strong>Ability Cards</strong> hold three abilities each &mdash; one per Tier. You may play any single ability at or below your current Tier, paying 3, 6 or 9 Arc Cubes for Tier I, II or III. An ability is an <em>Order</em> (your turn), a <em>Counter</em> (someone else's turn, on a condition), a <em>Contract</em> (stays in play three rounds) or a <em>Discovery</em> (resolves free the moment it is drawn).</p>
         <p><strong>Objective Cards</strong> are revealed one at a time and give everyone a shared side goal to race for &mdash; see <em>Objectives</em>.</p>
@@ -2054,6 +2057,21 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
+        <div><p class="v">3.8</p><p class="vt">Operatives</p></div>
+        <div><ul>
+          <li><b>Operative Energy is a single fixed value.</b> It no longer rises with your Tier, so nothing on an Operative Card changes over the course of a game.</li>
+          <li>With that and the Creature change, <b>advancing a Tier now does exactly one thing</b> &mdash; it unlocks that Tier's Ability Cards.</li>
+          <li>Roster reworked. <b>Marksman becomes Reaper</b>, gaining Attack 4 and losing the ability to Siege.</li>
+          <li><b>Engineer</b> Fortifies for 2 Energy instead of 3, and both of its abilities are Active.</li>
+          <li><b>Demolitionist</b> deals 1 Siege Damage to a Control Point within Range 1 outright, in place of its bonus on a Siege Attack.</li>
+          <li><b>Deflector</b> triggers on a successful Defense rather than on rolling two Blocks.</li>
+          <li><b>Scout</b> grants its Movement to all friendly Operatives, with no Range limit.</li>
+          <li><b>Juggernaut</b> adds to its roll while defending in place of blunting Critical Hits.</li>
+          <li><b>Survivor</b> comes back on 2 Energy rather than 3, and <b>Berserker</b> spends 2 Energy rather than 3.</li>
+          <li>Energy now runs 3&ndash;5 across the roster, and Movement 0&ndash;4.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
         <div><p class="v">3.7</p><p class="vt">Creatures</p></div>
         <div><ul>
           <li>Creature <b>Health is a single fixed value</b>. The Tier columns are gone from every Encounter Card.</li>
@@ -2162,7 +2180,7 @@
 
   <section>
     <h2>Reading a card</h2>
-    <p class="sub">Laid out like an Operative Card, with two differences: the boxes count <em>Health</em> rather than Energy and never change with Tier, and Creatures have no active abilities &mdash; everything they do is passive, resolved for them during the Intermission Phase.</p>
+    <p class="sub">Laid out like an Operative Card, with one difference: the boxes count <em>Health</em> rather than Energy, and Creatures have no active abilities &mdash; everything they do is passive, resolved for them during the Intermission Phase.</p>
     <div class="key" id="enckey"></div>
     <div class="tip"><b>Siege</b><p>A Creature only threatens a Control Point if it can perform a Siege Attack. The ones that cannot say so in plain text on the card, and they can still make life miserable by suppressing the Sector they stand in.</p></div>
 
@@ -2193,27 +2211,26 @@
 
 <div class="view" id="v-operative" role="tabpanel" aria-labelledby="t-operative" hidden>
   <header>
-    <p class="eyebrow">Operative deck &middot; 26 cards &middot; recruited through the game</p>
+    <p class="eyebrow">Operative deck &middot; recruited through the game</p>
     <h1>Operatives</h1>
-    <p class="lede">The figures you actually push around the board. Every one carries the same four stats and a pair of abilities, and <strong>its Energy ceiling climbs with your Tier</strong> &mdash; the same card is a different figure at Tier III than it was at Tier I.</p>
+    <p class="lede">The figures you actually push around the board. Every one carries the same four stats and a pair of abilities &mdash; and <strong>nothing on the card changes as you advance a Tier</strong>. What you read is what it is, all game.</p>
     <div class="stats">
-      <div class="stat"><b>26</b><span>Operatives</span></div>
-      <div class="stat"><b>4&ndash;10</b><span>Energy range</span></div>
-      <div class="stat"><b>0&ndash;5</b><span>Movement</span></div>
-      <div class="stat"><b>7</b><span>Roles</span></div>
+      <div class="stat"><b id="op-count">&mdash;</b><span>Operatives</span></div>
+      <div class="stat"><b id="op-energy">&mdash;</b><span>Energy range</span></div>
+      <div class="stat"><b id="op-move">&mdash;</b><span>Movement</span></div>
+      <div class="stat"><b id="op-roles">&mdash;</b><span>Roles</span></div>
     </div>
   </header>
 
   <section>
     <h2>Reading a card</h2>
-    <p class="sub">The strip of ten boxes is the Energy track. Three of them are lit &mdash; those are the maximum Energy this Operative has at Tier I, II and III, in the tier colors. Everything along the bottom is a Combat Dice count except Movement and Range, which are measured in tiles.</p>
+    <p class="sub">The row of boxes is the Energy track, one box per point, with the maximum underlined. Everything along the bottom is a Combat Dice count except Movement and Range, which are measured in tiles.</p>
     <div class="key" id="statkey"></div>
   </section>
 
   <section>
     <h2>The roster</h2>
-    <p class="sub">Filter by the job an Operative is built for. Roles are an index for this page &mdash; nothing on the card refers to them.</p>
-    <div class="filters" id="ptagbar"></div>
+    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>, drawn as it comes off the print program. Search by name or ability text.</p>
     <div class="controls" style="margin:0 0 18px">
       <button class="toggle" id="pReset" aria-pressed="false">Clear filters</button>
       <input class="srch" id="psrch" type="search" placeholder="Search name or ability&hellip;" aria-label="Search operatives">
@@ -2221,15 +2238,16 @@
     </div>
     <div class="pdeck" id="pdeck"></div>
     <div class="empty" id="pempty" hidden>No Operative matches those filters</div>
+    <p class="legendkey"><i></i> Would mark an Operative whose text overruns the printed face. Nothing does.</p>
   </section>
 
   <section>
     <h2>Stat ledger</h2>
-    <p class="sub">The whole roster as numbers, for comparing rather than reading. Click a heading to sort &mdash; Energy sorts on the Tier&nbsp;I value.</p>
+    <p class="sub">The whole roster as numbers, for comparing rather than reading. Click a heading to sort.</p>
     <div class="tablewrap"><table id="ptbl"></table></div>
   </section>
 
-  <footer>Card text as printed, with the copy pass applied. Attack is a single value &mdash; the same dice count is rolled for Bio and Siege attacks alike.</footer>
+  <footer>Card text as printed, with the copy pass applied. Attack is a single value &mdash; the same dice count is rolled for Bio and Siege Attacks alike. An Operative's stats are fixed; nothing about the card changes as corporations advance their Tier.</footer>
 </div>
 
 </div>
@@ -2249,6 +2267,7 @@ function show(v){
   if (v === "corp") sizeCheck();
   if (v === "ability") aSizeCheck();
   if (v === "encounter") eSizeCheck();
+  if (v === "operative") pSizeCheck();
 }
 VIEWS.forEach(k => document.getElementById("t-" + k).addEventListener("click", () => show(k)));
 
@@ -2948,86 +2967,63 @@ const PTAGS = [
 const PTN = {}, PTC = {};
 PTAGS.forEach(t => { PTN[t.k] = t.n; PTC[t.k] = "var(--g-" + t.c + ")"; });
 
-/* e = maximum Energy at Tier I | II | III.  m/r/a/d = Movement, Range, Attack, Defense */
+/* e = maximum Energy.  m/r/a/d = Movement, Range, Attack, Defense */
 const OPS = [
- {n:"Hunter",e:[4,5,6],m:3,r:3,a:3,d:2,g:["creatures"],ab:[
+ {n:"Hunter",e:4,m:3,r:3,a:3,d:2,g:["creatures"],ab:[
    ["a","Spend 1 Xeno Egg to draw an Encounter Card."],
    ["p","While attacking a Creature, gain 1 Reroll."],
    ["p","Take 1 less Bio Damage from Creature attacks."]]},
- {n:"Berserker",e:[4,6,8],m:3,r:2,a:3,d:2,g:["combat"],ab:[
+ {n:"Berserker",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["p","If you lost Energy during this turn or your previous turn, gain 1 Reroll while attacking."],
-   ["p","While attacking, spend 3 Energy. On a successful Attack, deal 2 extra Bio Damage."]]},
- {n:"Marksman",e:[4,5,6],m:3,r:3,a:3,d:2,g:["combat"],ab:[
-   ["p","Gain 1 Range while on a Hill or Mountain tile."],
-   ["p","On a successful Attack, if you dealt 3 or more Bio Damage, your target is eliminated."]]},
- {n:"Engineer",e:[5,7,9],m:3,r:2,a:3,d:3,g:["support","territory"],ab:[
+   ["p","While attacking, spend 2 Energy. On a successful Bio Attack, deal 2 extra Bio Damage."]]},
+ {n:"Reaper",e:4,m:3,r:3,a:4,d:2,g:["combat"],ab:[
+   ["p","On a successful Bio Attack, if you dealt 3 or more Bio Damage, your target is eliminated."],
+   ["p","You cannot perform a Siege Attack."]]},
+ {n:"Engineer",e:3,m:3,r:2,a:3,d:3,g:["support","territory"],ab:[
    ["a","All Bio Damage dealt restores an equal amount of Energy to an Operative within Range 3."],
-   ["p","Spend 3 Energy to Fortify 2."]]},
- {n:"Saboteur",e:[4,6,8],m:3,r:2,a:3,d:2,g:["territory"],ab:[
+   ["a","Spend 2 Energy to Fortify 2."]]},
+ {n:"Saboteur",e:4,m:4,r:2,a:3,d:2,g:["territory"],ab:[
    ["a","When within Range 1 of an enemy Control Point, unassign one assigned Worker of that corporation."],
    ["p","Enemy Control Points cannot be saved by a Shield Generator."]]},
- {n:"Demolitionist",e:[5,6,7],m:3,r:2,a:3,d:2,g:["combat","territory"],ab:[
-   ["a","On a successful Siege Attack, deal 1 extra Siege Damage."],
+ {n:"Demolitionist",e:4,m:3,r:2,a:3,d:2,g:["combat","territory"],ab:[
+   ["a","A Control Point within Range 1 takes 1 Siege Damage."],
    ["p","On a successful Attack, all enemies within Range 1 of the target take 2 Bio Damage."]]},
- {n:"Specter",e:[5,7,9],m:0,r:2,a:3,d:3,g:["mobility"],ab:[
+ {n:"Specter",e:4,m:0,r:2,a:3,d:3,g:["mobility"],ab:[
    ["a","Teleport to a passable tile within Range 3."],
    ["p","On a successful Bio Attack, you may teleport to a passable tile within Range 2."]]},
- {n:"Deflector",e:[5,7,9],m:3,r:2,a:3,d:3,g:["defense","combat"],ab:[
-   ["a","While defending, if you roll at least two Shields, the attacker takes 3 Bio Damage."],
-   ["p","Perform an attack whenever an enemy within Range misses you with an attack."]]},
- {n:"Xenobiologist",e:[4,5,6],m:3,r:2,a:3,d:2,g:["creatures"],ab:[
-   ["p","When you subjugate a Creature, you gain 1 Progression and 1 Xeno Egg."],
+ {n:"Deflector",e:4,m:3,r:2,a:3,d:3,g:["defense","combat"],ab:[
+   ["a","On a successful Defense, the attacker takes 2 Bio Damage."],
+   ["p","Perform a Bio Attack whenever an enemy within Range misses you with an Attack."]]},
+ {n:"Xenobiologist",e:3,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
+   ["p","When one of your Operatives subjugates a Creature, you gain 1 Progression and 1 Xeno Egg."],
    ["p","While defending against a Creature, gain 1 Combat Die."]]},
- {n:"Shock Trooper",e:[4,6,8],m:3,r:2,a:3,d:2,g:["mobility","combat"],ab:[
+ {n:"Shock Trooper",e:4,m:3,r:2,a:3,d:2,g:["mobility","combat"],ab:[
    ["a","Gain 2 Movement. Cannot be performed if you already attacked."],
    ["p","If you did not move this turn, roll 1 extra Combat Die while attacking."]]},
- {n:"Psychic",e:[4,5,6],m:3,r:2,a:3,d:2,g:["mobility","defense"],ab:[
+ {n:"Psychic",e:3,m:3,r:2,a:3,d:2,g:["mobility","defense"],ab:[
    ["p","Move an enemy Operative or Creature within Range 2 up to 2 tiles across passable terrain."],
    ["p","You can only be targeted by enemies within Range 1."]]},
- {n:"Scout",e:[4,5,6],m:5,r:2,a:3,d:2,g:["mobility","support"],ab:[
-   ["a","Other friendly Operatives within Range 3 gain 1 Movement."],
-   ["p","Operatives within Range 3 are not affected by the Hostile Movement Penalty."]]},
- {n:"Juggernaut",e:[6,8,10],m:2,r:2,a:3,d:2,g:["defense"],ab:[
-   ["a","While defending, Critical Hits deal 1 Bio Damage instead of 2."],
-   ["p","On a successful Attack, your target cannot move on its next turn."]]},
- {n:"Scientist",e:[4,5,6],m:3,r:2,a:3,d:2,g:["combat","support"],ab:[
-   ["a","Enemies within Range 3 cannot restore Health or Energy."],
-   ["p","On a successful Bio Attack, your target takes 2 Bio Damage during your next Income Phase."]]},
- {n:"Survivor",e:[4,6,8],m:3,r:2,a:3,d:2,g:["defense"],ab:[
+ {n:"Scout",e:3,m:4,r:2,a:3,d:2,g:["mobility","support"],ab:[
+   ["a","Friendly Operatives gain 1 Movement."],
+   ["p","Friendly Operatives are not affected by the Hostile Movement Penalty."]]},
+ {n:"Juggernaut",e:5,m:2,r:2,a:3,d:2,g:["defense"],ab:[
+   ["a","While defending, add 1 to your Bio Roll."],
+   ["p","On a successful Bio Attack, your target cannot move on its next turn."]]},
+ {n:"Scientist",e:3,m:3,r:2,a:3,d:2,g:["combat","support"],ab:[
+   ["p","Enemy Operatives cannot restore Energy."],
+   ["p","On a successful Bio Attack, your target takes 1 Bio Damage during your next Income Phase."]]},
+ {n:"Survivor",e:4,m:3,r:2,a:3,d:2,g:["defense"],ab:[
    ["p","During your Income Phase, restore 1 Energy to this Operative."],
-   ["p","When eliminated, roll 2 Combat Dice. On a Critical, set your Energy to 3 instead."]]},
- {n:"Pyromancer",e:[4,6,8],m:3,r:2,a:3,d:2,g:["combat"],ab:[
-   ["p","On a successful Bio Attack, the target rolls 1 fewer Combat Die until its next turn."],
+   ["p","When eliminated, roll 2 Combat Dice. On a Critical, set your Energy to 2 instead."]]},
+ {n:"Pyromancer",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
+   ["p","On a successful Bio Attack, the target rolls 1 fewer Combat Die until the end of its next turn."],
    ["p","On a successful Bio Attack, your target takes 1 extra Bio Damage."]]},
- {n:"Assassin",e:[4,6,8],m:3,r:2,a:3,d:2,g:["combat"],ab:[
-   ["p","An enemy within Range 1 takes 2 Bio Damage."],
+ {n:"Assassin",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
+   ["a","An enemy within Range 1 takes 2 Bio Damage."],
    ["p","On a successful Bio Attack, if your target has 2 Energy or Health remaining, it is eliminated."]]},
- {n:"Spotter",e:[4,5,6],m:4,r:2,a:3,d:2,g:["support"],ab:[
+ {n:"Spotter",e:4,m:4,r:2,a:3,d:2,g:["support"],ab:[
    ["a","Friendly Operatives within Range 2 gain 1 Reroll."],
-   ["p","Friendly Operatives within Range 2 gain 1 Range."]]},
- {n:"Prospector",e:[4,5,6],m:3,r:2,a:3,d:2,g:["economy"],ab:[
-   ["a","Spend 6 Arc Cubes to gain 1 Resource of your choice."],
-   ["p","Once during your turn, whenever you gain a Resource from any source, gain 2 Arc Cubes."]]},
- {n:"Tactician",e:[4,6,8],m:3,r:2,a:3,d:2,g:["support"],ab:[
-   ["a","Move a friendly Operative within Range 2 up to 2 tiles across passable terrain."],
-   ["p","Friendly Operatives within Range 2 gain 1 Combat Die while attacking."]]},
- {n:"Reclaimer",e:[4,5,6],m:3,r:2,a:3,d:2,g:["economy"],ab:[
-   ["a","While adjacent to an enemy Control Point, steal 1 Resource."],
-   ["p","On a successful Bio Attack, if your target is eliminated, steal its Operative or Encounter Card."]]},
- {n:"Entropist",e:[5,7,9],m:3,r:2,a:3,d:2,g:["combat"],ab:[
-   ["a","At the end of your turn, enemies within Range 2 take 2 Bio Damage."],
-   ["p","When eliminated, enemies within Range 2 take 5 Bio Damage."]]},
- {n:"Mercenary",e:[5,7,9],m:3,r:3,a:4,d:3,g:["economy","combat"],ab:[
-   ["p","Any corporation may spend 12 Arc Cubes to assign this Operative to its Player Board."],
-   ["p","When you eliminate an enemy, gain 2 Energy."]]},
- {n:"Infiltrator",e:[4,6,8],m:3,r:2,a:3,d:2,g:["economy"],ab:[
-   ["a","While adjacent to an enemy Control Point, steal 2 Arc Cubes."],
-   ["p","On a successful Bio Attack, the target discards 1 Ability Card at random from their hand."]]},
- {n:"Warden",e:[5,7,9],m:3,r:2,a:3,d:2,g:["defense","territory"],ab:[
-   ["p","Friendly Operatives in your Sector or an adjacent Sector take 1 less Bio Damage."],
-   ["p","Friendly Control Points in your Sector or an adjacent Sector take 1 less Siege Damage."]]},
- {n:"Bounty Hunter",e:[4,5,6],m:4,r:3,a:3,d:2,g:["economy","combat"],ab:[
-   ["p","When you deploy this Operative, designate one enemy as your Bounty. When your corporation eliminates the Bounty, gain 3 Arc Cubes and immediately designate a new one. If you eliminated the Bounty, gain 8 instead."]]}
+   ["p","Friendly Operatives within Range 2 gain 1 Range."]]}
 ];
 
 const SICON = {
@@ -3043,31 +3039,12 @@ document.getElementById("statkey").innerHTML =
    ["a","Attack &mdash; Combat Dice"],["d","Defense &mdash; Combat Dice"]]
   .map(([k, t]) => '<div>' + svg(k) + '<span>' + t + '</span></div>').join("");
 
-const pActive = new Set();
-const ptagbar = document.getElementById("ptagbar");
-PTAGS.forEach(t => {
-  const count = OPS.filter(o => o.g.includes(t.k)).length;
-  const b = document.createElement("button");
-  b.className = "tg";
-  b.style.setProperty("--tc", PTC[t.k]);
-  b.dataset.k = t.k; b.title = t.d;
-  b.setAttribute("aria-pressed", "false");
-  b.innerHTML = t.n + ' <b>' + count + '</b>';
-  b.addEventListener("click", () => {
-    pActive.has(t.k) ? pActive.delete(t.k) : pActive.add(t.k);
-    b.setAttribute("aria-pressed", String(pActive.has(t.k)));
-    pRender();
-  });
-  ptagbar.appendChild(b);
-});
-
 const pdeck = document.getElementById("pdeck");
 const pEmpty = document.getElementById("pempty");
 const pCount = document.getElementById("pcount");
 const psrch = document.getElementById("psrch");
 
 function pMatches(o){
-  if (pActive.size && !o.g.some(t => pActive.has(t))) return false;
   const q = psrch.value.trim().toLowerCase();
   return !q || (o.n + " " + o.ab.map(x => x[1]).join(" ")).toLowerCase().includes(q);
 }
@@ -3075,32 +3052,33 @@ function pMatches(o){
 function pRender(){
   const list = OPS.filter(pMatches);
   pdeck.innerHTML = list.map(o => {
-    const tc = PTC[o.g[0]];
-    const track = Array.from({length:10}, (_, i) => {
-      const v = i + 1;
-      const cls = v === o.e[0] ? "t1" : v === o.e[1] ? "t2" : v === o.e[2] ? "t3" : "";
-      return '<i class="' + cls + '">' + v + '</i>';
-    }).join("");
-    return '<article class="pcard" style="--tc:' + tc + '">' +
+    const track = Array.from({length:o.e}, (_, i) =>
+      '<i class="' + (i + 1 === o.e ? "max" : "") + '">' + (i + 1) + '</i>').join("");
+    return '<article class="pcard">' +
       '<h3 class="pn">' + esc(o.n) + '</h3>' +
+      '<div class="edash"></div>' +
       '<div class="etrack">' + track + '</div>' +
       o.ab.map(([t, x]) =>
-        '<p class="pl ' + (t === "a" ? "act" : "pas") + '">' +
-        (t === "a" ? "Active ability" : "Passive ability") + '</p>' +
+        '<p class="pl">' + (t === "a" ? "Active ability" : "Passive ability") + '</p>' +
         '<p class="px">' + esc(x) + '</p>').join("") +
-      '<div class="pchips">' + o.g.map(k =>
-        '<span class="chip" style="--tc:' + PTC[k] + '">' + PTN[k] + '</span>').join("") + '</div>' +
       '<div class="ostats">' +
         ['m','r','a','d'].map(k => '<div>' + svg(k) + o[k] + '</div>').join("") +
       '</div></article>';
   }).join("");
   pEmpty.hidden = list.length > 0;
   pCount.innerHTML = '<b>' + list.length + '</b> of ' + OPS.length + ' shown';
+  pSizeCheck();
+}
+
+/* flag any Operative whose text overruns the printed Poker face */
+function pSizeCheck(){
+  pdeck.querySelectorAll(".pcard").forEach(el => {
+    el.classList.remove("spill");
+    if (el.scrollHeight > el.clientHeight + 1) el.classList.add("spill");
+  });
 }
 
 document.getElementById("pReset").addEventListener("click", () => {
-  pActive.clear();
-  ptagbar.querySelectorAll(".tg").forEach(b => b.setAttribute("aria-pressed", "false"));
   psrch.value = "";
   pRender();
 });
@@ -3109,27 +3087,26 @@ psrch.addEventListener("input", pRender);
 let pKey = "n", pDir = "asc";
 function pLedger(){
   const rows = OPS.slice().sort((x, y) => {
-    const pick = o => pKey === "e" ? o.e[0] : pKey === "n" ? o.n : o[pKey];
+    const pick = o => pKey === "e" ? o.e : pKey === "n" ? o.n : o[pKey];
     const a = pick(x), b = pick(y);
     const r = a < b ? -1 : a > b ? 1 : 0;
     return pDir === "asc" ? r : -r;
   });
   const th = (k, label, cls) => '<th class="' + (cls || "") + ' sortable" data-s="' + k + '"' +
     (pKey === k ? ' data-dir="' + pDir + '"' : '') + '>' + label + '</th>';
-  const head = '<thead><tr>' + th("n", "Operative", "l") + th("e", "Energy I / II / III") +
+  const head = '<thead><tr>' + th("n", "Operative", "l") + th("e", "Energy") +
     th("m", "Mov") + th("r", "Rng") + th("a", "Atk") + th("d", "Def") +
     '<th class="l">Focus</th></tr></thead>';
   const body = '<tbody>' + rows.map(o =>
     '<tr><td class="l sec">' + esc(o.n) + '</td>' +
-    '<td><span class="eb"><b class="a">' + o.e[0] + '</b> / <b class="b">' + o.e[1] +
-      '</b> / <b class="c">' + o.e[2] + '</b></span></td>' +
+    '<td>' + o.e + '</td>' +
     '<td>' + o.m + '</td><td>' + o.r + '</td><td>' + o.a + '</td><td>' + o.d + '</td>' +
     '<td class="l pairnote">' + o.g.map(k =>
       '<span class="dot" style="--tc:' + PTC[k] + '"></span>' + PTN[k]).join(" ") + '</td></tr>').join("") +
     '</tbody>';
   const avg = f => (OPS.reduce((s, o) => s + f(o), 0) / OPS.length).toFixed(1);
-  const foot = '<tfoot><tr><td class="l">26 operatives</td>' +
-    '<td><span class="eb">' + avg(o => o.e[0]) + ' / ' + avg(o => o.e[1]) + ' / ' + avg(o => o.e[2]) + '</span></td>' +
+  const foot = '<tfoot><tr><td class="l">' + OPS.length + ' operatives</td>' +
+    '<td>' + avg(o => o.e) + '</td>' +
     '<td>' + avg(o => o.m) + '</td><td>' + avg(o => o.r) + '</td><td>' + avg(o => o.a) + '</td>' +
     '<td>' + avg(o => o.d) + '</td><td class="l">average</td></tr></tfoot>';
   const t = document.getElementById("ptbl");
@@ -3145,6 +3122,15 @@ function pLedger(){
 pRender();
 pLedger();
 document.getElementById("t-operative").innerHTML = 'Operatives <u>' + OPS.length + '</u>';
+
+/* headline counts come from the roster, so page 2 cannot leave them stale */
+(function(){
+  const span = (f) => { const v = OPS.map(f); return Math.min(...v) + "\u2013" + Math.max(...v); };
+  document.getElementById("op-count").textContent  = OPS.length;
+  document.getElementById("op-energy").textContent = span(o => o.e);
+  document.getElementById("op-move").textContent   = span(o => o.m);
+  document.getElementById("op-roles").textContent  = new Set(OPS.flatMap(o => o.g)).size;
+})();
 
 /* ============ ENCOUNTERS ============ */
 const ETAGS = [
