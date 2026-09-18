@@ -284,6 +284,7 @@
   .etrack i.t1{background:var(--tier1);border-color:var(--tier1);color:var(--ground)}
   .etrack i.t2{background:var(--tier2);border-color:var(--tier2);color:var(--ground)}
   .etrack i.t3{background:var(--tier3);border-color:var(--tier3);color:var(--ground)}
+  .etrack i.max{background:var(--accent);border-color:var(--accent);color:var(--ground)}
   .pcard .pl{font-family:var(--mono);font-size:8.5px;letter-spacing:.17em;text-transform:uppercase;
     margin:0 0 4px}
   .pcard .pl.act{color:var(--accent)}
@@ -341,6 +342,18 @@
   .ofoot{margin-top:auto;padding-top:11px;border-top:1px solid var(--line-soft);
     font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
     color:var(--ink-faint)}
+
+  /* ---- changelog ---- */
+  .log{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line)}
+  .rel{background:var(--panel);padding:18px 20px;display:grid;grid-template-columns:104px minmax(0,1fr);gap:22px}
+  .rel .v{font-family:var(--display);font-weight:700;font-size:21px;color:var(--accent);margin:0;line-height:1}
+  .rel .vt{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-faint);margin:6px 0 0}
+  .rel ul{margin:0;padding-left:18px;color:var(--ink-dim);font-size:13.5px;line-height:1.6}
+  .rel li{margin:5px 0}
+  .rel li::marker{color:var(--ink-faint)}
+  .rel b{color:var(--ink);font-weight:600}
+  @media (max-width:640px){.rel{grid-template-columns:1fr;gap:10px}}
 
   /* ---- manual ---- */
   .manual{display:grid;grid-template-columns:196px minmax(0,1fr);gap:44px;align-items:start;margin-top:6px}
@@ -444,6 +457,7 @@
       <button class="vtab" role="tab" id="t-objective" aria-controls="v-objective" aria-selected="false">Objectives <u>5</u></button>
       <button class="vtab" role="tab" id="t-encounter" aria-controls="v-encounter" aria-selected="false">Encounters</button>
       <button class="vtab" role="tab" id="t-operative" aria-controls="v-operative" aria-selected="false">Operatives</button>
+      <button class="vtab" role="tab" id="t-changelog" aria-controls="v-changelog" aria-selected="false">Changelog</button>
     </nav>
   </div>
 </div>
@@ -632,7 +646,10 @@
             <tr><td class="k">Sludge</td><td>&minus;1 Combat Die while attacking and while defending.</td></tr>
           </tbody>
         </table></div>
-        <h4>Rerolls</h4>
+        <h4>A successful Attack</h4>
+      <p>An Attack is <strong>successful</strong> when it deals 1 or more Damage after the defender's roll is subtracted. Card text that reads <em>&ldquo;on a successful Bio Attack&rdquo;</em> or <em>&ldquo;on a successful Siege Attack&rdquo;</em> only triggers when Damage got through; text that says <em>&ldquo;on a successful hit&rdquo;</em> triggers off either kind.</p>
+
+      <h4>Rerolls</h4>
         <p>A Reroll lets you pick one die from a roll you just made and roll it again, replacing the old result. A single die can never be rerolled twice, however many Rerolls you hold, and you always choose after seeing the original results.</p>
         <div class="tip"><b>Xeno Eggs</b><p>Spend at any time. Each Egg gives you either <strong>+2 Combat Dice before a Bio Roll</strong> or <strong>restores one of your Operatives to its maximum Energy</strong>. Spend as many as you like at once, choosing independently for each.</p></div>
       </section>
@@ -781,7 +798,6 @@
         <ul>
           <li><strong>Operative Energy.</strong> Your Operatives keep their current Energy, but their maximum rises, so anything that restores Energy can now fill them higher.</li>
           <li><strong>Ability Cards.</strong> You unlock that Tier's abilities and keep access to every lower Tier.</li>
-          <li><strong>Creatures.</strong> All Creatures use the stats of the <em>highest</em> Tier any player has reached. They keep their current Health but their maximum rises with it.</li>
         </ul>
       </section>
       <section id="s-objectives">
@@ -1987,6 +2003,105 @@
   <footer>Card text as printed. First place on every card past First Contact carries 1 Progression, which also nudges you along the Tier track &mdash; the objectives are worth chasing for that alone.</footer>
 </div>
 
+<div class="view" id="v-changelog" role="tabpanel" aria-labelledby="t-changelog" hidden>
+  <header>
+    <p class="eyebrow">Change history &middot; 3.0 to 3.7</p>
+    <h1>Changelog</h1>
+    <p class="lede">What changed in the rules, newest first. The manual always describes the game <strong>as it stands today</strong> &mdash; this is the only page that remembers what it used to be.</p>
+  </header>
+
+  <section>
+    <h2>Releases</h2>
+    <div class="log">
+      <article class="rel">
+        <div><p class="v">3.7</p><p class="vt">Creatures</p></div>
+        <div><ul>
+          <li>Creature <b>Health is a single fixed value</b>. The Tier columns are gone from every Encounter Card.</li>
+          <li>Creatures <b>no longer change when a corporation advances a Tier</b>, and that scaling rule is removed from the manual.</li>
+          <li>Health cut across the roster &mdash; Sylth Titan and the three Overminds sit at 5, Snaprunner at 2.</li>
+          <li><b>Sylth Grunt</b> grants a Reroll on Bio Attacks instead of blunting Critical Hits.</li>
+          <li><b>Spitter</b> no longer rolls at all: it deals a flat 2 Bio Damage.</li>
+          <li><b>Ravager</b>'s low-Health bonus now gives a Reroll while defending.</li>
+          <li><b>Gorepod</b>'s death blast hits Operatives only, no longer other Creatures.</li>
+          <li><b>Carapoid</b> dies to a fixed 3 Critical Hits.</li>
+          <li>Card text reads <b>&ldquo;on a successful Bio Attack&rdquo;</b> and <b>&ldquo;Siege Attack&rdquo;</b> again, matching the printed cards. <b>&ldquo;On a successful hit&rdquo;</b> still means either kind.</li>
+          <li>An Attack is <b>successful</b> when it deals 1 or more Damage &mdash; now stated in Combat.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
+        <div><p class="v">3.6</p><p class="vt">Keywords & Structures</p></div>
+        <div><ul>
+          <li><b>Recruit</b> defined: spend 3 Arc Cubes, draw an Operative Card, assign or discard at once.</li>
+          <li><b>Fortify</b> defined: add X Sector Strength, split across your Control Points as you like.</li>
+          <li>Structures are built onto your <b>Player Board, not the map</b>, and constructing one grants its Fortify value.</li>
+          <li>Structures marked <b>Active or Passive</b>; only an Active ability spends your one use per turn.</li>
+          <li>Structure Resource costs published.</li>
+          <li>Sector Strength <b>capped at 6</b>, or 12 for a Headquarters.</li>
+          <li><b>Hostile Movement Penalty</b> defined: +1 Movement per tile inside an enemy-controlled Sector.</li>
+          <li>Bio Attacks are limited by the attacker's <b>Range</b>.</li>
+          <li>Three Operative slots, the third reserved for a subjugated Creature.</li>
+          <li>Nothing ever shares a tile; you may pass through anything that is not hostile.</li>
+          <li>A Creature attacks <b>every</b> enemy in Range, Bio Attacks first, in Operative Die order.</li>
+          <li>The Initiative Marker never passes &mdash; it marks where a round ends.</li>
+          <li>Frontier, Assembly Line, Undermine, the Engineer and two Objective rewards reworded onto Fortify.</li>
+          <li>Troopers are printed on the Player Board and are not part of the Operative deck.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
+        <div><p class="v">3.5</p><p class="vt">Economy & the planet</p></div>
+        <div><ul>
+          <li>Workers may be assigned to <b>Xeno Eggs</b>, granting 1 extra whenever you gain them.</li>
+          <li>A Worker inside a destroyed Structure is <b>removed from the game</b>.</li>
+          <li>A Xeno Egg restores an Operative to <b>full Energy</b>.</li>
+          <li>A Creature that destroys a Control Point renders that Sector <b>permanently uninhabitable</b>.</li>
+          <li>The Intermission Phase runs <b>per Creature</b>: roll the Intermission Die, attack if able, otherwise move and check again.</li>
+          <li>Creature movement direction is read from the <b>Volcano tile</b>, not the Encounter Card.</li>
+          <li>Volcanic Eruption damages only the rolling player's own forces.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
+        <div><p class="v">3.4</p><p class="vt">Structures & deployment</p></div>
+        <div><ul>
+          <li><b>Outpost removed.</b> Deploying adjacent to any Control Point you control is now the base rule.</li>
+          <li><b>Medlab</b> added.</li>
+          <li>Starport keeps only its reposition ability.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
+        <div><p class="v">3.3</p><p class="vt">Objectives</p></div>
+        <div><ul>
+          <li>A five-card <b>Objective deck</b> added, with First Contact always on top.</li>
+          <li>Tracker tokens mark contributions, rewards pay by place, and tied players all slide down one place.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
+        <div><p class="v">3.2</p><p class="vt">Abilities</p></div>
+        <div><ul>
+          <li>Duplicate ability names resolved &mdash; <b>Second Wind, Sentinel Grid, Silica Heist, Decommissioned</b> and <b>Terminal Decline</b> replace the repeats.</li>
+          <li><b>Slipstream</b> and <b>Spoil</b> became Counters.</li>
+          <li><b>Order Seizure</b> and <b>Counter Seizure</b> rewritten to mirror each other.</li>
+          <li><b>Discovery</b> added as a fourth ability type, resolving free the moment it is drawn.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
+        <div><p class="v">3.1</p><p class="vt">Corporations</p></div>
+        <div><ul>
+          <li><b>Chronos</b> reworked: a Sector whose Control Point sits at 6 yields an extra Arc Cube.</li>
+          <li>Copy pass across the deck for spelling, capitalization and consistent wording.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
+        <div><p class="v">3.0</p><p class="vt">Baseline</p></div>
+        <div><ul>
+          <li>The first recorded version. Anything changed before this point was not kept.</li>
+        </ul></div>
+      </article>
+    </div>
+  </section>
+
+  <footer>Versions group changes by the batch they were made in. Only rules that affect play are listed.</footer>
+</div>
+
 <div class="view" id="v-encounter" role="tabpanel" aria-labelledby="t-encounter" hidden>
   <header>
     <p class="eyebrow">Encounter deck &middot; 18 cards &middot; the planet's own side</p>
@@ -1996,14 +2111,14 @@
       <div class="stat"><b>18</b><span>Creatures</span></div>
       <div class="stat"><b>4</b><span>On the board at once</span></div>
       <div class="stat"><b id="en-siege">&mdash;</b><span>Can Siege</span></div>
-      <div class="stat"><b>1&ndash;10</b><span>Health range</span></div>
+      <div class="stat"><b>2&ndash;5</b><span>Health range</span></div>
       <div class="stat"><b>6</b><span>Roles</span></div>
     </div>
   </header>
 
   <section>
     <h2>Reading a card</h2>
-    <p class="sub">Laid out like an Operative Card, with two differences: the ten-box strip is <em>Health</em> rather than Energy, and Creatures have no active abilities &mdash; everything they do is passive, resolved for them during the Intermission Phase.</p>
+    <p class="sub">Laid out like an Operative Card, with two differences: the boxes count <em>Health</em> rather than Energy and never change with Tier, and Creatures have no active abilities &mdash; everything they do is passive, resolved for them during the Intermission Phase.</p>
     <div class="key" id="enckey"></div>
     <div class="tip"><b>Siege</b><p>A Creature only threatens a Control Point if it can perform a Siege Attack. The ones that cannot say so in plain text on the card, and they can still make life miserable by suppressing the Sector they stand in.</p></div>
   </section>
@@ -2028,7 +2143,7 @@
     <div class="tablewrap"><table id="etbl"></table></div>
   </section>
 
-  <footer>Card text as printed, with the copy pass applied. Creature stats always follow the highest Tier any corporation has reached, so the bestiary sharpens for everyone the moment one player advances.</footer>
+  <footer>Card text as printed, with the copy pass applied. A Creature's stats are fixed &mdash; nothing about it changes as corporations advance their Tier.</footer>
 </div>
 
 <div class="view" id="v-operative" role="tabpanel" aria-labelledby="t-operative" hidden>
@@ -2076,7 +2191,7 @@
 
 <script>
 /* ============ view switching ============ */
-const VIEWS = ["manual","atlas","corp","ability","objective","encounter","operative"];
+const VIEWS = ["manual","atlas","corp","ability","objective","encounter","operative","changelog"];
 function show(v){
   VIEWS.forEach(k => {
     const tab = document.getElementById("t-" + k), panel = document.getElementById("v-" + k);
@@ -2236,7 +2351,7 @@ const CORPS = [
   {n:"Apex",cubes:9,res:"2 Xeno Eggs",rt:"2 Xeno Eggs",tags:["economy"],
    p:["When you spend a Xeno Egg, you gain both of its effects."]},
   {n:"Ferrox",cubes:7,res:"1 Metal",rt:"Metal",tags:["combat"],
-   p:["On a successful Siege hit, add 1 to the Siege Roll.","On a successful Bio hit, subtract 1 from the Bio Roll."]},
+   p:["On a successful Siege Attack, add 1 to the Siege Roll.","On a successful Bio Attack, subtract 1 from the Bio Roll."]},
   {n:"Core Industries",cubes:5,res:"1 Metal",rt:"Metal",tags:["construction","combat"],
    p:["Whenever you destroy an enemy Structure, you may construct an identical Structure at no cost."]},
   {n:"Hyperion",cubes:9,res:"1 Metal or 1 Biofuel",rt:"Metal / Biofuel",tags:["economy"],
@@ -2246,7 +2361,7 @@ const CORPS = [
   {n:"Paragon",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives","cards"],
    p:["Whenever you recruit an Operative, draw and discard 1 additional Operative Card."]},
   {n:"Onyx",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["combat","operatives"],w:true,
-   p:["On a successful Bio hit, add 1 to the Bio Roll.","Your Operatives have their maximum Energy capacity reduced by 1."]},
+   p:["On a successful Bio Attack, add 1 to the Bio Roll.","Your Operatives have their maximum Energy capacity reduced by 1."]},
   {n:"Blacksun",cubes:10,res:"5 Resources of your choice",rt:"5 &times; Choice",tags:["territory","economy"],
    p:["During Game Setup, you may immediately claim a second Sector, set its Control Die to 3."]},
   {n:"Frontier",cubes:8,res:"1 Silica",rt:"Silica",tags:["construction","territory"],
@@ -2561,7 +2676,7 @@ const ACARDS = [
   {n:"Global Tariffs",t:"contract",g:["economy"],x:"For 3 rounds, when another corporation gains a Resource, you also gain 1 of the same Resource type."}],
 
  [{n:"Inflation",t:"contract",g:["economy","cards"],x:"For 3 rounds, all Ability Cards cost 2 extra Arc Cubes for each other corporation."},
-  {n:"Second Wind",t:"order",g:["combat"],x:"On a successful Bio hit, your Operatives may perform another Bio Attack against a target within their Range. This continues until an attack misses."},
+  {n:"Second Wind",t:"order",g:["combat"],x:"On a successful Bio Attack, your Operatives may perform another Bio Attack against a target within their Range. This continues until an attack misses."},
   {n:"Scorched Earth",t:"order",g:["territory"],x:"Reduce all enemy Control Points by 2."}],
 
  [{n:"Redact",t:"counter",g:["events"],x:"When another corporation rolls the Event Die, cancel that roll."},
@@ -2806,11 +2921,11 @@ const OPS = [
    ["a","When within Range 1 of an enemy Control Point, unassign one assigned Worker of that corporation."],
    ["p","Enemy Control Points cannot be saved by a Shield Generator."]]},
  {n:"Demolitionist",e:[5,6,7],m:3,r:2,a:3,d:2,g:["combat","territory"],ab:[
-   ["a","On a successful Siege hit, deal 1 extra Siege Damage."],
+   ["a","On a successful Siege Attack, deal 1 extra Siege Damage."],
    ["p","On a successful hit, all enemies within Range 1 of the target take 2 Bio Damage."]]},
  {n:"Specter",e:[5,7,9],m:0,r:2,a:3,d:3,g:["mobility"],ab:[
    ["a","Teleport to a passable tile within Range 3."],
-   ["p","On a successful Bio hit, you may teleport to a passable tile within Range 2."]]},
+   ["p","On a successful Bio Attack, you may teleport to a passable tile within Range 2."]]},
  {n:"Deflector",e:[5,7,9],m:3,r:2,a:3,d:3,g:["defense","combat"],ab:[
    ["a","While defending, if you roll at least two Shields, the attacker takes 3 Bio Damage."],
    ["p","Perform an attack whenever an enemy within Range misses you with an attack."]]},
@@ -2831,16 +2946,16 @@ const OPS = [
    ["p","On a successful hit, your target cannot move on its next turn."]]},
  {n:"Scientist",e:[4,5,6],m:3,r:2,a:3,d:2,g:["combat","support"],ab:[
    ["a","Enemies within Range 3 cannot restore Health or Energy."],
-   ["p","On a successful Bio hit, your target takes 2 Bio Damage during your next Income Phase."]]},
+   ["p","On a successful Bio Attack, your target takes 2 Bio Damage during your next Income Phase."]]},
  {n:"Survivor",e:[4,6,8],m:3,r:2,a:3,d:2,g:["defense"],ab:[
    ["p","During your Income Phase, restore 1 Energy to this Operative."],
    ["p","When eliminated, roll 2 Combat Dice. On a Critical, set your Energy to 3 instead."]]},
  {n:"Pyromancer",e:[4,6,8],m:3,r:2,a:3,d:2,g:["combat"],ab:[
-   ["p","On a successful Bio hit, the target rolls 1 fewer Combat Die until its next turn."],
-   ["p","On a successful Bio hit, your target takes 1 extra Bio Damage."]]},
+   ["p","On a successful Bio Attack, the target rolls 1 fewer Combat Die until its next turn."],
+   ["p","On a successful Bio Attack, your target takes 1 extra Bio Damage."]]},
  {n:"Assassin",e:[4,6,8],m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["p","An enemy within Range 1 takes 2 Bio Damage."],
-   ["p","On a successful Bio hit, if your target has 2 Energy or Health remaining, it is eliminated."]]},
+   ["p","On a successful Bio Attack, if your target has 2 Energy or Health remaining, it is eliminated."]]},
  {n:"Spotter",e:[4,5,6],m:4,r:2,a:3,d:2,g:["support"],ab:[
    ["a","Friendly Operatives within Range 2 gain 1 Reroll."],
    ["p","Friendly Operatives within Range 2 gain 1 Range."]]},
@@ -2852,7 +2967,7 @@ const OPS = [
    ["p","Friendly Operatives within Range 2 gain 1 Combat Die while attacking."]]},
  {n:"Reclaimer",e:[4,5,6],m:3,r:2,a:3,d:2,g:["economy"],ab:[
    ["a","While adjacent to an enemy Control Point, steal 1 Resource."],
-   ["p","On a successful Bio hit, if your target is eliminated, steal its Operative or Encounter Card."]]},
+   ["p","On a successful Bio Attack, if your target is eliminated, steal its Operative or Encounter Card."]]},
  {n:"Entropist",e:[5,7,9],m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["a","At the end of your turn, enemies within Range 2 take 2 Bio Damage."],
    ["p","When eliminated, enemies within Range 2 take 5 Bio Damage."]]},
@@ -2861,7 +2976,7 @@ const OPS = [
    ["p","When you eliminate an enemy, gain 2 Energy."]]},
  {n:"Infiltrator",e:[4,6,8],m:3,r:2,a:3,d:2,g:["economy"],ab:[
    ["a","While adjacent to an enemy Control Point, steal 2 Arc Cubes."],
-   ["p","On a successful Bio hit, the target discards 1 Ability Card at random from their hand."]]},
+   ["p","On a successful Bio Attack, the target discards 1 Ability Card at random from their hand."]]},
  {n:"Warden",e:[5,7,9],m:3,r:2,a:3,d:2,g:["defense","territory"],ab:[
    ["p","Friendly Operatives in your Sector or an adjacent Sector take 1 less Bio Damage."],
    ["p","Friendly Control Points in your Sector or an adjacent Sector take 1 less Siege Damage."]]},
@@ -2999,52 +3114,52 @@ ETAGS.forEach(t => { ETN[t.k] = t.n; ETC[t.k] = "var(--g-" + t.c + ")"; });
 
 /* h = maximum Health at Tier I | II | III.  {a|b|c} in text renders in the tier colors */
 const ENC = [
- {n:"Sylth Grunt",h:[4,5,6],m:2,r:2,a:2,d:2,g:["durable"],ab:[
-   "While defending, Critical Hits deal 1 Bio Damage instead of 2.",
+ {n:"Sylth Grunt",h:3,m:2,r:2,a:2,d:2,g:["brawler"],ab:[
+   "Gain 1 Reroll while performing a Bio Attack.",
    "You cannot perform a Siege Attack."]},
- {n:"Sylth Brute",h:[4,5,6],m:2,r:2,a:3,d:2,g:["brawler"],ab:[
-   "On a successful Bio hit, add 1 to your Bio Roll.",
+ {n:"Sylth Brute",h:4,m:2,r:2,a:3,d:2,g:["brawler"],ab:[
+   "On a successful Bio Attack, add 1 to your Bio Roll.",
    "You cannot perform a Siege Attack."]},
- {n:"Sylth Guard",h:[5,6,7],m:2,r:2,a:2,d:3,g:["durable"],ab:[
+ {n:"Sylth Guard",h:4,m:2,r:2,a:2,d:3,g:["durable"],ab:[
    "You gain 1 Reroll while defending.",
    "You cannot perform a Siege Attack."]},
- {n:"Sylth Titan",h:[6,8,10],m:1,r:2,a:4,d:3,g:["brawler"],ab:[
-   "On a successful Bio hit, if you dealt 4 or more Bio Damage, your target is eliminated."]},
- {n:"Carapoid",h:[2,3,4],m:2,r:2,a:2,d:0,g:["durable"],ab:[
-   "You are immune to all Bio Damage, but are eliminated when dealt {2|3|4} successful Critical Hits while defending."]},
- {n:"Glintmaw",h:[5,6,7],m:2,r:2,a:2,d:2,g:["durable"],ab:[
+ {n:"Sylth Titan",h:5,m:1,r:2,a:4,d:3,g:["brawler"],ab:[
+   "On a successful Bio Attack, if you dealt 4 or more Bio Damage, your target is eliminated."]},
+ {n:"Carapoid",h:3,m:2,r:2,a:2,d:0,g:["durable"],ab:[
+   "You are immune to all Bio Damage, but are eliminated when dealt 3 successful Critical Hits while defending."]},
+ {n:"Glintmaw",h:4,m:2,r:2,a:2,d:2,g:["durable"],ab:[
    "While defending, if you roll at least one Block, the attacker takes 2 Bio Damage.",
    "You cannot perform a Siege Attack."]},
- {n:"Gorepod",h:[4,5,6],m:2,r:2,a:3,d:2,g:["volatile"],ab:[
-   "When eliminated, deal 4 Bio Damage to all Operatives and Creatures within Range 3.",
+ {n:"Gorepod",h:3,m:2,r:2,a:3,d:2,g:["volatile"],ab:[
+   "When eliminated, deal 4 Bio Damage to Operatives within Range 3.",
    "When eliminated, deal 2 Siege Damage to Control Points within Range 3."]},
- {n:"Arclith",h:[5,6,7],m:2,r:2,a:2,d:2,g:["raider"],ab:[
-   "On a successful Bio hit, you steal up to 3 Arc Cubes.",
-   "On a successful Siege hit, you steal 1 Resource of the defender's choice."]},
- {n:"Bloat",h:[4,5,6],m:2,r:2,a:1,d:2,g:["brawler","durable"],ab:[
+ {n:"Arclith",h:4,m:2,r:2,a:2,d:2,g:["raider"],ab:[
+   "On a successful Bio Attack, you steal up to 3 Arc Cubes.",
+   "On a successful Siege Attack, you steal 1 Resource of the defender's choice."]},
+ {n:"Bloat",h:4,m:2,r:2,a:1,d:2,g:["brawler","durable"],ab:[
    "While performing a Bio Attack, roll Combat Dice equal to your Health.",
    "Restore 1 Health at the end of the Intermission Phase."]},
- {n:"Spitter",h:[4,5,6],m:2,r:3,a:2,d:2,g:["ranged"],ab:[
-   "You always deal at least 1 Bio Damage while performing a Bio Attack.",
+ {n:"Spitter",h:3,m:2,r:3,a:0,d:2,g:["ranged"],ab:[
+   "You always deal 2 Bio Damage while performing a Bio Attack.",
    "You cannot perform a Siege Attack."]},
- {n:"Ravager",h:[4,5,6],m:3,r:2,a:3,d:2,g:["brawler"],ab:[
-   "While below 3 Health, gain 1 Reroll while performing a Bio Attack.",
-   "While below 3 Health, gain 1 Combat Die while performing a Bio Attack."]},
- {n:"Brood Leech",h:[4,5,6],m:2,r:2,a:4,d:1,g:["brawler","durable"],ab:[
+ {n:"Ravager",h:4,m:3,r:2,a:3,d:2,g:["brawler"],ab:[
+   "While below 3 Health, gain 1 Combat Die while performing a Bio Attack.",
+   "While below 3 Health, gain 1 Reroll while defending."]},
+ {n:"Brood Leech",h:3,m:2,r:2,a:4,d:1,g:["brawler","durable"],ab:[
    "You restore Health equal to the Bio Damage you deal.",
    "You cannot perform a Siege Attack."]},
- {n:"Shimmer",h:[4,5,6],m:2,r:2,a:2,d:2,g:["durable"],ab:[
+ {n:"Shimmer",h:4,m:2,r:2,a:2,d:2,g:["durable"],ab:[
    "After you take Bio Damage, you are immune to Bio Damage for the remainder of the turn."]},
- {n:"Swarmer",h:[5,6,7],m:3,r:3,a:2,d:2,g:["ranged"],ab:[
+ {n:"Swarmer",h:4,m:3,r:3,a:2,d:2,g:["ranged"],ab:[
    "You roll 1 extra Combat Die for each other Creature within Range 3."]},
- {n:"Snaprunner",h:[1,2,3],m:4,r:3,a:5,d:1,g:["volatile","ranged"],ab:[
+ {n:"Snaprunner",h:2,m:4,r:3,a:5,d:1,g:["volatile","ranged"],ab:[
    "When this Creature performs a Bio Attack, if it deals any Bio Damage, it is eliminated.",
    "You cannot perform a Siege Attack."]},
- {n:"Overmind",h:[4,5,6],m:2,r:2,a:2,d:2,g:["alpha"],ab:[
+ {n:"Overmind",h:5,m:2,r:2,a:2,d:2,g:["alpha"],ab:[
    "All other Creatures on Arcworld roll 1 extra Combat Die while performing a Siege Attack. This ability is inactive while you are subjugated."]},
- {n:"Overlord",h:[5,6,7],m:2,r:3,a:1,d:3,g:["alpha"],ab:[
+ {n:"Overlord",h:5,m:2,r:3,a:1,d:3,g:["alpha"],ab:[
    "All other Creatures on Arcworld roll 1 extra Combat Die while performing a Bio Attack. This ability is inactive while you are subjugated."]},
- {n:"Overseer",h:[5,6,7],m:2,r:3,a:1,d:3,g:["alpha"],ab:[
+ {n:"Overseer",h:5,m:2,r:3,a:1,d:3,g:["alpha"],ab:[
    "All other Creatures on Arcworld restore 1 Health at the end of the Intermission Phase. This ability is inactive while you are subjugated."]}
 ];
 
@@ -3096,11 +3211,8 @@ function eRender(){
   const list = ENC.filter(eMatches);
   edeck.innerHTML = list.map(c => {
     const tc = ETC[c.g[0]];
-    const track = Array.from({length:10}, (_, i) => {
-      const v = i + 1;
-      const cls = v === c.h[0] ? "t1" : v === c.h[1] ? "t2" : v === c.h[2] ? "t3" : "";
-      return '<i class="' + cls + '">' + v + '</i>';
-    }).join("");
+    const track = Array.from({length:c.h}, (_, i) =>
+      '<i class="' + (i + 1 === c.h ? "max" : "") + '">' + (i + 1) + '</i>').join("");
     return '<article class="pcard" style="--tc:' + tc + '">' +
       '<h3 class="pn">' + esc(c.n) + '</h3>' +
       '<div class="etrack">' + track + '</div>' +
@@ -3133,7 +3245,7 @@ esrch.addEventListener("input", eRender);
 let eKey = "n", eDir = "asc";
 function eLedger(){
   const rows = ENC.slice().sort((x, y) => {
-    const pick = o => eKey === "h" ? o.h[0] : eKey === "s" ? (canSiege(o) ? 1 : 0) :
+    const pick = o => eKey === "h" ? o.h : eKey === "s" ? (canSiege(o) ? 1 : 0) :
                       eKey === "n" ? o.n : o[eKey];
     const a = pick(x), b = pick(y);
     const r = a < b ? -1 : a > b ? 1 : 0;
@@ -3141,13 +3253,12 @@ function eLedger(){
   });
   const th = (k, label, cls) => '<th class="' + (cls || "") + ' sortable" data-s="' + k + '"' +
     (eKey === k ? ' data-dir="' + eDir + '"' : '') + '>' + label + '</th>';
-  const head = '<thead><tr>' + th("n", "Creature", "l") + th("h", "Health I / II / III") +
+  const head = '<thead><tr>' + th("n", "Creature", "l") + th("h", "Health") +
     th("m", "Mov") + th("r", "Rng") + th("a", "Atk") + th("d", "Def") + th("s", "Siege") +
     '<th class="l">Role</th></tr></thead>';
   const body = '<tbody>' + rows.map(c =>
     '<tr><td class="l sec">' + esc(c.n) + '</td>' +
-    '<td><span class="eb"><b class="a">' + c.h[0] + '</b> / <b class="b">' + c.h[1] +
-      '</b> / <b class="c">' + c.h[2] + '</b></span></td>' +
+    '<td>' + c.h + '</td>' +
     '<td>' + c.m + '</td><td>' + c.r + '</td><td>' + c.a + '</td><td>' + c.d + '</td>' +
     '<td class="' + (canSiege(c) ? "yes" : "no") + '">' + (canSiege(c) ? "Yes" : "No") + '</td>' +
     '<td class="l pairnote">' + c.g.map(k =>
@@ -3155,7 +3266,7 @@ function eLedger(){
     '</tbody>';
   const avg = f => (ENC.reduce((s, o) => s + f(o), 0) / ENC.length).toFixed(1);
   const foot = '<tfoot><tr><td class="l">18 creatures</td>' +
-    '<td><span class="eb">' + avg(o => o.h[0]) + ' / ' + avg(o => o.h[1]) + ' / ' + avg(o => o.h[2]) + '</span></td>' +
+    '<td>' + avg(o => o.h) + '</td>' +
     '<td>' + avg(o => o.m) + '</td><td>' + avg(o => o.r) + '</td><td>' + avg(o => o.a) + '</td>' +
     '<td>' + avg(o => o.d) + '</td><td>' + ENC.filter(canSiege).length + '</td>' +
     '<td class="l">average</td></tr></tfoot>';
