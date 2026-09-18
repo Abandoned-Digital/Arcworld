@@ -16,7 +16,7 @@
     --ty-order:#6b5f57; --ty-contract:#e05a25; --ty-counter:#7fc7d4;
     --warn:#c9722f;
     /* the Encounter card face, as the print program draws it */
-    --face:#fff; --faceink:#14110f; --facerule:#0d0b0a; --facedash:#8b8b8b;
+    --face:#fff; --faceink:#14110f; --facerule:var(--accent); --facedash:#8b8b8b;
     /* printed card faces, in real units. 1:1 on a display where 96 CSS px = 1 inch;
        the calibration strip on the Encounters tab lets the reader correct for their
        own screen with browser zoom, which scales card and text together. */
@@ -321,8 +321,7 @@
   /* ---- Encounters: the printed Poker face, 1:1. Everything here mirrors the card
          itself — centered monospace, a dashed rule under the name, Health as a row of
          boxes with the maximum underlined, and no color but the band along the top. ---- */
-  #edeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;
-    background:var(--face);border:1px solid var(--line);padding:20px;gap:18px}
+  #edeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;gap:18px}
   #edeck .pcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
     padding:11px 10px 8px;text-align:center;
     background:var(--face);color:var(--faceink);
