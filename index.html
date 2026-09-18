@@ -289,7 +289,7 @@
   .etrack i.t1{background:var(--tier1);border-color:var(--tier1);color:var(--ground)}
   .etrack i.t2{background:var(--tier2);border-color:var(--tier2);color:var(--ground)}
   .etrack i.t3{background:var(--tier3);border-color:var(--tier3);color:var(--ground)}
-  .etrack i.max{background:var(--accent);border-color:var(--accent);color:var(--ground)}
+  .etrack i.max{text-decoration:underline;text-underline-offset:2px}
   .pcard .pl{font-family:var(--mono);font-size:8.5px;letter-spacing:.17em;text-transform:uppercase;
     margin:0 0 4px}
   .pcard .pl.act{color:var(--accent)}
@@ -316,10 +316,24 @@
   td.no{color:var(--ink-faint)}
   td.yes{color:var(--g-combat)}
 
-  /* ---- Encounters print at true Poker size, always ---- */
+  /* ---- Encounters: the printed Poker face, 1:1. Everything here mirrors the card
+         itself — centered monospace, a dashed rule under the name, Health as a row of
+         boxes with the maximum underlined, and no color but the band along the top. ---- */
   #edeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start}
-  #edeck .pcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative}
+  #edeck .pcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
+    padding:11px 10px 8px;text-align:center}
   #edeck .pcard > *{flex-shrink:0}
+  #edeck .pn{font-family:var(--mono);font-weight:500;font-size:15px;letter-spacing:.17em;
+    text-transform:uppercase;color:var(--ink);margin:0 0 8px;line-height:1.25}
+  #edeck .edash{border-top:1px dashed var(--ink-faint);margin:0 0 11px}
+  #edeck .etrack{display:flex;justify-content:center;gap:9px;margin:0 0 13px}
+  #edeck .etrack i{width:24px;height:24px;aspect-ratio:auto;border:1px solid var(--ink-dim);
+    background:none;color:var(--ink);font-size:12px}
+  #edeck .pl{font-weight:600;font-size:10.5px;letter-spacing:.11em;color:var(--ink);margin:0 0 3px}
+  #edeck .px{font-size:12.5px;line-height:1.32;margin:0 auto 11px;max-width:80%}
+  #edeck .ostats{padding-top:9px;border-top:1px solid var(--ink-faint)}
+  #edeck .ostats div{gap:4px;font-size:13px}
+  #edeck .ostats svg{width:14px;height:14px;color:var(--ink)}
   #edeck .pcard.spill{border-color:var(--warn)}
   #edeck .pcard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
@@ -2144,7 +2158,7 @@
 
   <section>
     <h2>The bestiary</h2>
-    <p class="sub">Every card below is laid out at its printed <strong>Poker size, 63.5 &times; 89 mm</strong>. Filter by what a Creature is built to do &mdash; roles are an index for this page and appear nowhere in the rules.</p>
+    <p class="sub">Every card below is the printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>. Filter by what a Creature is built to do &mdash; roles are an index for this page, so they live in the filters and the band along the top of each card rather than on the card itself.</p>
     <div class="filters" id="etagbar"></div>
     <div class="controls" style="margin:0 0 18px">
       <button class="toggle" id="eSiege" aria-pressed="false">Siege-capable only</button>
@@ -3236,10 +3250,9 @@ function eRender(){
       '<i class="' + (i + 1 === c.h ? "max" : "") + '">' + (i + 1) + '</i>').join("");
     return '<article class="pcard" style="--tc:' + tc + '">' +
       '<h3 class="pn">' + esc(c.n) + '</h3>' +
+      '<div class="edash"></div>' +
       '<div class="etrack">' + track + '</div>' +
-      c.ab.map(x => '<p class="pl pas">Passive ability</p><p class="px">' + tierText(x) + '</p>').join("") +
-      '<div class="pchips">' + c.g.map(k =>
-        '<span class="chip" style="--tc:' + ETC[k] + '">' + ETN[k] + '</span>').join("") + '</div>' +
+      c.ab.map(x => '<p class="pl">Passive ability</p><p class="px">' + tierText(x) + '</p>').join("") +
       '<div class="ostats">' +
         ['m','r','a','d'].map(k => '<div>' + svg(k) + c[k] + '</div>').join("") +
       '</div></article>';
