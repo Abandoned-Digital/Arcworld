@@ -765,7 +765,7 @@
       <section id="s-workers">
         <p class="kicker">09</p>
         <h3>Workers</h3>
-        <p>Workers are your labor pool, tracked on your Player Board. Each one sits in an assignment, and each assignment pays differently:</p>
+        <p>Workers are your labor pool, tracked on your Player Board. You begin the game with <strong>1 available Worker</strong>. Each one sits in an assignment, and each assignment pays differently:</p>
         <div class="tw"><table>
           <thead><tr><th>Assignment</th><th>Effect</th></tr></thead>
           <tbody>
@@ -776,7 +776,7 @@
             <tr><td class="k">Xeno Eggs</td><td>Whenever you gain Xeno Eggs, gain 1 extra.</td></tr>
           </tbody>
         </table></div>
-        <p>You may move Workers freely between assignments during your Cleanup Phase &mdash; <em>except</em> to or from a Structure. A Worker only enters a Structure when you construct it during your Action Phase, and never leaves it: if that Structure is destroyed, its Worker is removed from the game.</p>
+        <p>You may move Workers freely between assignments during your Cleanup Phase &mdash; <em>except</em> to or from a Structure. A Worker only enters a Structure when you construct it during your Action Phase, and never leaves it: if that Structure is destroyed, its Worker is removed from the game. If a Structure is <em>replaced</em> rather than destroyed, its Worker moves across to the replacement.</p>
       </section>
       <section id="s-structures">
         <p class="kicker">10</p>
@@ -869,6 +869,17 @@
           </tbody>
         </table></div>
         <p>You may exceed your hand limit freely during your own turn &mdash; chaining draws is fine. You only discard back down to 5 in your Cleanup Phase.</p>
+        <h4>Storage limits</h4>
+        <p>Your Player Board holds only so much of each thing. Anything you would gain past a limit is simply lost.</p>
+        <div class="tw"><table>
+          <thead><tr><th>Currency</th><th>Limit</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Arc Cubes</td><td class="n">12</td></tr>
+            <tr><td class="k">Each Resource</td><td class="n">3</td></tr>
+            <tr><td class="k">Xeno Eggs</td><td class="n">4</td></tr>
+            <tr><td class="k">Ability Cards</td><td class="n">5 at Cleanup</td></tr>
+          </tbody>
+        </table></div>
       </section>
       <section id="s-cards">
         <p class="kicker">16</p>
@@ -878,6 +889,7 @@
         <p><strong>Encounter Cards</strong> are the planet's Creatures: Movement, Health, Defense, Range and Attack values, plus their passive abilities.</p>
         <p><strong>Ability Cards</strong> hold three abilities each &mdash; one per Tier. You may play any single ability at or below your current Tier, paying 3, 6 or 9 Arc Cubes for Tier I, II or III. An ability is an <em>Order</em> (your turn), a <em>Counter</em> (someone else's turn, on a condition), a <em>Contract</em> (stays in play three rounds) or a <em>Discovery</em> (resolves free the moment it is drawn).</p>
         <p><strong>Objective Cards</strong> are revealed one at a time and give everyone a shared side goal to race for &mdash; see <em>Objectives</em>.</p>
+        <div class="tip"><b>A card beats this manual</b><p>Where a card's text contradicts a rule written here, <strong>the card wins</strong>. Cards are written as deliberate exceptions: Sentinel Sieges from Range&nbsp;2 where the rule says Range&nbsp;1, Cinderworks walks onto Lava Fields where the rule says impassable. If the card says it, it happens.</p></div>
         <div class="tip"><b>One Contract at a time</b><p>Only one Contract may sit in front of you. Discard it whenever you like, and playing a new Contract replaces it.</p></div>
       </section>
 
@@ -2062,6 +2074,21 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
+        <div><p class="v">3.10</p><p class="vt">Corporations</p></div>
+        <div><ul>
+          <li><b>Storage limits published.</b> 12 Arc Cubes, 3 of each Resource, 4 Xeno Eggs. Anything gained past a limit is lost. Atlas Inc. and Maximum Yield both referred to limits the manual never stated.</li>
+          <li>You begin the game with <b>1 available Worker</b>, which was never written down either. <b>Axiom</b> grants 2 extra rather than setting a total of 3.</li>
+          <li><b>A card beats the manual.</b> Where card text contradicts a rule, the card wins &mdash; Sentinel Sieges from Range 2, Cinderworks crosses Lava Fields.</li>
+          <li><b>Frontier</b> moves onto the Fortify keyword and drops from 3 to 2.</li>
+          <li><b>Helios Global</b> Fortifies instead of raising a Control Die directly, so it now obeys the 6/12 cap and cannot shore up a Suppressed Sector.</li>
+          <li><b>Core Industries</b> and <b>Citadel Systems</b> name the cost they waive: Resource, or Resource and Worker.</li>
+          <li><b>Hyperion</b> reads &ldquo;Arc Cube rewards&rdquo; and <b>Genesys</b> reads &ldquo;Movement Detected&rdquo; &mdash; both previously named things that do not exist.</li>
+          <li><b>Resodyne</b> chooses its Resource type at setup, on a second Start of the game line.</li>
+          <li>A Structure that is <b>replaced</b> rather than destroyed passes its Worker to the replacement.</li>
+          <li>Corporation cards are laid out at their printed <b>Mini-Euro size, 44 &times; 68 mm</b>, in the order of the two print sheets.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
         <div><p class="v">3.9</p><p class="vt">Suppression &amp; Structures</p></div>
         <div><ul>
           <li><b>A Suppressed Sector cannot be Fortified</b>, from any source. An enemy standing in your Sector now stops you shoring up its Control Point as well as stopping its income.</li>
@@ -2438,9 +2465,9 @@ const CORPS = [
   {n:"Ferrox",cubes:7,res:"1 Metal",rt:"Metal",tags:["combat"],
    p:["On a successful Siege Attack, add 1 to the Siege Roll.","On a successful Bio Attack, subtract 1 from the Bio Roll."]},
   {n:"Core Industries",cubes:5,res:"1 Metal",rt:"Metal",tags:["construction","combat"],
-   p:["Whenever you destroy an enemy Structure, you may construct an identical Structure at no cost."]},
+   p:["Whenever you destroy an enemy Structure, you may construct an identical Structure at no Resource cost."]},
   {n:"Hyperion",cubes:9,res:"1 Metal or 1 Biofuel",rt:"Metal / Biofuel",tags:["economy"],
-   p:["Arc Crystal rewards on the Progression Tracker yield 3 extra Arc Cubes."]},
+   p:["Arc Cube rewards on the Progression Tracker yield 3 extra Arc Cubes."]},
   {n:"The Ashborn",cubes:5,res:"2 Xeno Eggs",rt:"2 Xeno Eggs",tags:["operatives"],
    p:["Your Operatives are immune to Bio Damage from Volcanic Eruptions."]},
   {n:"Paragon",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives","cards"],
@@ -2450,7 +2477,7 @@ const CORPS = [
   {n:"Blacksun",cubes:10,res:"5 Resources of your choice",rt:"5 &times; Choice",tags:["territory","economy"],
    p:["During Game Setup, you may immediately claim a second Sector, set its Control Die to 3."]},
   {n:"Frontier",cubes:8,res:"1 Silica",rt:"Silica",tags:["construction","territory"],
-   p:["When you construct a Structure, Fortify your Sectors by an extra 3."]},
+   p:["When you construct a Structure, Fortify your Sectors by an extra 2."]},
   {n:"Terralift",cubes:10,res:null,rt:"—",tags:["economy"],
    p:["During your Income Phase, you may spend 6 Arc Cubes to gain 1 Resource of your choice."]},
   {n:"Nexus Dynamics",cubes:8,res:null,rt:"—",tags:["economy"],
@@ -2472,7 +2499,8 @@ const CORPS = [
   {n:"Vanguard",cubes:7,res:"1 Resource of your choice",rt:"Choice",tags:["construction"],
    p:["During your turn, you may spend 1 Resource of your choice to replace a Structure you control with a different Structure."]},
   {n:"Resodyne",cubes:5,res:null,rt:"—",tags:["economy"],
-   p:["During your Landing Phase, choose 1 Resource type. Whenever you gain Resources of that type, gain 1 extra for each."]},
+   s2:"Choose 1 Resource type. Whenever you gain Resources of that type, gain 1 extra for each.",
+   p:[]},
   {n:"Aurex Systems",cubes:8,res:"1 Cryofluid",rt:"Cryofluid",tags:["territory","construction"],
    p:["Your Headquarters cannot be destroyed as long as you have any other Control Point under your control."]},
   {n:"Panopticon",cubes:8,res:null,rt:"—",tags:["economy"],
@@ -2482,7 +2510,7 @@ const CORPS = [
   {n:"Atlas Inc.",cubes:8,res:"1 Metal",rt:"Metal",tags:["economy"],
    p:["If you gain a Resource that exceeds your storage capacity, you gain 3 Arc Cubes."]},
   {n:"Genesys",cubes:7,res:"1 Resource of your choice",rt:"Choice",tags:["events","economy"],
-   p:["During your turn, whenever the Event Die shows a Creature Spawn result, also gain 1 Resource of your choice."]},
+   p:["During your turn, whenever the Event Die shows a Movement Detected result, also gain 1 Resource of your choice."]},
   {n:"Phalanx",cubes:6,res:null,rt:"—",tags:["operatives"],
    p:["During your Income Phase, restore 1 Energy to one of your Operatives."]},
   {n:"Chronos",cubes:10,res:"1 Silica",rt:"Silica",tags:["economy","territory"],
@@ -2490,7 +2518,7 @@ const CORPS = [
   {n:"Paxion",cubes:6,res:"1 Silica",rt:"Silica",tags:["economy"],
    p:["Once during your turn, when you perform a Resource trade, you gain 4 Arc Cubes and the other player gains 2 Arc Cubes."]},
   {n:"Citadel Systems",cubes:9,res:null,rt:"—",tags:["construction"],
-   p:["Whenever you advance a Tier, you may immediately construct up to 2 Structures of your choice at no cost."]},
+   p:["Whenever you advance a Tier, you may immediately construct up to 2 Structures of your choice at no Resource or Worker cost."]},
   {n:"Catalyst Group",cubes:7,res:"1 Resource of your choice",rt:"Choice",tags:["cards","economy"],
    p:["During your Income Phase, you may spend 2 Arc Cubes to draw 1 extra Ability Card."]},
   {n:"Valkyrie",cubes:8,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives","cards"],
@@ -2502,7 +2530,7 @@ const CORPS = [
   {n:"Sentinel",cubes:5,res:"1 Metal",rt:"Metal",tags:["combat"],
    p:["Your Operatives gain 1 extra Range while performing a Siege Attack."]},
   {n:"Helios Global",cubes:5,res:"1 Xeno Egg",rt:"Xeno Egg",tags:["territory"],
-   p:["Once during your Action Phase, you may reduce a friendly Control Die to 1 and increase another Control Die by the same amount."]},
+   p:["Once during your Action Phase, you may reduce a friendly Control Die to 1 and Fortify your Sectors by the same amount."]},
   {n:"Meridian",cubes:6,res:"roll the Event Die once",rt:"—",tags:["events"],
    p:["While performing an Event Die roll during your turn, you may reroll the die. You must keep the second result."]},
   {n:"Obsidian",cubes:10,res:"1 Resource of your choice",rt:"Choice",tags:["cards"],w:true,
@@ -2557,7 +2585,7 @@ function matches(c){
   if (active.size && !c.tags.some(t => active.has(t))) return false;
   const q = srch.value.trim().toLowerCase();
   if (!q) return true;
-  return (c.n + " " + startLine(c) + " " + c.p.join(" ")).toLowerCase().includes(q);
+  return (c.n + " " + startLine(c) + " " + (c.s2 || "") + " " + c.p.join(" ")).toLowerCase().includes(q);
 }
 
 function render(){
@@ -2566,6 +2594,7 @@ function render(){
     '<article class="card">' +
       '<h3 class="cn">' + esc(c.n) + '</h3><div class="rule"></div>' +
       '<p class="lb">Start of the game</p><p class="tx">' + esc(startLine(c)) + '</p>' +
+      (c.s2 ? '<p class="lb">Start of the game</p><p class="tx">' + esc(c.s2) + '</p>' : '') +
       c.p.map(t => '<p class="lb">Passive ability</p><p class="tx">' + esc(t) + '</p>').join("") +
     '</article>').join("");
   emptyMsg.hidden = list.length > 0;
