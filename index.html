@@ -17,6 +17,10 @@
     --warn:#c9722f;
     /* the Encounter card face, as the print program draws it */
     --face:#fff; --faceink:#14110f; --facerule:var(--accent); --facedash:#8b8b8b;
+    /* the keyline says which deck a card belongs to. All three sit in the same
+       luminance band so they carry equal weight, and each has to read against the
+       dark page outside the card and the white face inside it. */
+    --rule-enc:#e05a25;  --rule-op:#3f86c4;  --rule-corp:#c08a2e;
     --cardface:"Space Mono",ui-monospace,Menlo,monospace;  /* the printed card's own face */
     --pt:1.33333px;  /* one typographic point, at the 96 px/inch the mm sizes resolve to */
     /* printed card faces, in real units. 1:1 on a display where 96 CSS px = 1 inch;
@@ -222,7 +226,8 @@
   .chip{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
     color:var(--tc);border:1px solid currentColor;padding:2px 5px;line-height:1.4;opacity:.85}
   /* ---- Corporations: the printed Mini-Euro face, 1:1, same rules as the Poker decks ---- */
-  #deck{grid-template-columns:repeat(auto-fill,var(--mini-w));justify-content:start;gap:16px}
+  #deck{grid-template-columns:repeat(auto-fill,var(--mini-w));justify-content:start;gap:16px;
+    --facerule:var(--rule-corp)}
   #deck .card{width:var(--mini-w);height:var(--mini-h);overflow:hidden;position:relative;
     padding:7px 8px 6px;text-align:center;
     background:var(--face);color:var(--faceink);
@@ -335,6 +340,8 @@
          itself — centered monospace, a dashed rule under the name, Health as a row of
          boxes with the maximum underlined, and no color but the band along the top. ---- */
   #edeck, #pdeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;gap:18px}
+  #edeck{--facerule:var(--rule-enc)}
+  #pdeck{--facerule:var(--rule-op)}
   #edeck .pcard, #pdeck .pcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
     padding:9px 10px 7px;text-align:center;
     background:var(--face);color:var(--faceink);
@@ -582,7 +589,7 @@
         <div class="tw"><table class="fixed"><colgroup><col style="width:75%"><col style="width:25%"></colgroup>
           <thead><tr><th>Deck</th><th>Cards</th></tr></thead>
           <tbody>
-            <tr><td class="k">Corporation</td><td class="n">45</td></tr>
+            <tr><td class="k">Corporation</td><td class="n">48</td></tr>
             <tr><td class="k">Ability</td><td class="n">36</td></tr>
             <tr><td class="k">Operative</td><td class="n">36</td></tr>
             <tr><td class="k">Encounter</td><td class="n">18</td></tr>
@@ -1934,15 +1941,15 @@
 <!-- ============ CORPORATIONS ============ -->
 <div class="view" id="v-corp" role="tabpanel" aria-labelledby="t-corp" hidden>
   <header>
-    <p class="eyebrow">Corporation deck &middot; 45 cards &middot; Mini-Euro 44 &times; 68 mm</p>
+    <p class="eyebrow">Corporation deck &middot; Mini-Euro 44 &times; 68 mm</p>
     <h1>Corporations</h1>
     <p class="lede">Draw three at setup, keep one. The card you keep sets your opening bank and your <strong>one permanent edge</strong> for the whole game &mdash; and on four of them, the price you pay for it.</p>
     <div class="stats">
-      <div class="stat"><b>45</b><span>Corporations</span></div>
+      <div class="stat"><b id="co-count">&mdash;</b><span>Corporations</span></div>
       <div class="stat"><b>3</b><span>Drawn at setup</span></div>
-      <div class="stat"><b>5&ndash;10</b><span>Opening Arc Cubes</span></div>
-      <div class="stat"><b>31</b><span>Start with a Resource</span></div>
-      <div class="stat"><b>4</b><span>Carry a trade-off</span></div>
+      <div class="stat"><b id="co-cubes">&mdash;</b><span>Opening Arc Cubes</span></div>
+      <div class="stat"><b id="co-res">&mdash;</b><span>Start with a Resource</span></div>
+      <div class="stat"><b id="co-trade">&mdash;</b><span>Carry a trade-off</span></div>
     </div>
   </header>
 
@@ -2085,7 +2092,9 @@
           <li><b>Hyperion</b> reads &ldquo;Arc Cube rewards&rdquo; and <b>Genesys</b> reads &ldquo;Movement Detected&rdquo; &mdash; both previously named things that do not exist.</li>
           <li><b>Resodyne</b> chooses its Resource type at setup, on a second Start of the game line.</li>
           <li>A Structure that is <b>replaced</b> rather than destroyed passes its Worker to the replacement.</li>
+          <li><b>Aurex Systems</b> sets a floor of 1 on its Headquarters Control Die rather than preventing destruction, which left a Control Die sitting at 0 in a state the rules did not describe.</li>
           <li>Corporation cards are laid out at their printed <b>Mini-Euro size, 44 &times; 68 mm</b>, in the order of the two print sheets.</li>
+          <li>Three corporations added, each for a system no other card touched: <b>Quorum</b> (Objectives), <b>Perigee</b> (deployment) and <b>Fallow</b> (Sectors rendered uninhabitable).</li>
         </ul></div>
       </article>
       <article class="rel">
@@ -2469,7 +2478,7 @@ const CORPS = [
   {n:"Hyperion",cubes:9,res:"1 Metal or 1 Biofuel",rt:"Metal / Biofuel",tags:["economy"],
    p:["Arc Cube rewards on the Progression Tracker yield 3 extra Arc Cubes."]},
   {n:"The Ashborn",cubes:5,res:"2 Xeno Eggs",rt:"2 Xeno Eggs",tags:["operatives"],
-   p:["Your Operatives are immune to Bio Damage from Volcanic Eruptions."]},
+   p:["Your Operatives and Control Points are immune to Volcanic Eruptions."]},
   {n:"Paragon",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives","cards"],
    p:["Whenever you recruit an Operative, draw and discard 1 additional Operative Card."]},
   {n:"Onyx",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["combat","operatives"],w:true,
@@ -2502,7 +2511,7 @@ const CORPS = [
    s2:"Choose 1 Resource type. Whenever you gain Resources of that type, gain 1 extra for each.",
    p:[]},
   {n:"Aurex Systems",cubes:8,res:"1 Cryofluid",rt:"Cryofluid",tags:["territory","construction"],
-   p:["Your Headquarters cannot be destroyed as long as you have any other Control Point under your control."]},
+   p:["Your Headquarters Control Die cannot be reduced below 1 as long as you have any other Control Point under your control."]},
   {n:"Panopticon",cubes:8,res:null,rt:"—",tags:["economy"],
    p:["During your Income Phase, gain 1 extra Arc Cube."]},
   {n:"Axiom",cubes:5,res:"1 Biofuel",rt:"Biofuel",tags:["economy"],
@@ -2548,7 +2557,13 @@ const CORPS = [
   {n:"Paradox",cubes:9,res:null,rt:"—",tags:["cards"],
    p:["During your turn, you may pay 3 Arc Cubes to play 1 Order Ability Card from the discard pile. It is removed from the game."]},
   {n:"Cinderworks",cubes:8,res:null,rt:"—",tags:["mobility","combat"],
-   p:["Your Operatives may move onto Lava Field tiles, at a cost of 2 Movement per tile.","Your Operatives roll 1 extra Combat Die on Lava Fields."]}
+   p:["Your Operatives may move onto Lava Field tiles, at a cost of 2 Movement per tile.","Your Operatives roll 1 extra Combat Die on Lava Fields."]},
+  {n:"Quorum",cubes:6,res:"1 Resource of your choice",rt:"Choice",tags:["economy"],
+   p:["Whenever you place a tracker token on an Objective, gain 3 Arc Cubes."]},
+  {n:"Perigee",cubes:7,res:"1 Silica",rt:"Silica",tags:["operatives"],
+   p:["Operatives you deploy into a Suppressed Sector arrive at full Energy."]},
+  {n:"Fallow",cubes:8,res:null,rt:"—",tags:["economy","territory"],
+   p:["Whenever you render a Sector permanently uninhabitable, gain 6 Arc Cubes and 1 Resource of your choice."]}
 ];
 
 function startLine(c){
@@ -2656,6 +2671,16 @@ function ledger(){
 
 render();
 ledger();
+
+/* headline counts come from the deck, so adding a card cannot leave them stale */
+(function(){
+  const cubes = CORPS.map(c => c.cubes);
+  document.getElementById("co-count").textContent = CORPS.length;
+  document.getElementById("co-cubes").textContent = Math.min(...cubes) + "\u2013" + Math.max(...cubes);
+  document.getElementById("co-res").textContent   = CORPS.filter(c => c.res).length;
+  document.getElementById("co-trade").textContent = CORPS.filter(c => c.w).length;
+  document.getElementById("t-corp").innerHTML = 'Corporations <u>' + CORPS.length + '</u>';
+})();
 
 /* ============ ABILITY CARDS ============ */
 const ATAGS = [
