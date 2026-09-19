@@ -573,7 +573,7 @@
           <tbody>
             <tr><td class="k">Corporation</td><td class="n">45</td></tr>
             <tr><td class="k">Ability</td><td class="n">36</td></tr>
-            <tr><td class="k">Operative</td><td class="n">28</td></tr>
+            <tr><td class="k">Operative</td><td class="n">34</td></tr>
             <tr><td class="k">Encounter</td><td class="n">18</td></tr>
             <tr><td class="k">Objective</td><td class="n">5</td></tr>
           </tbody>
@@ -2055,11 +2055,12 @@
         <div><ul>
           <li><b>Operative Energy is a single fixed value.</b> It no longer rises with your Tier, so nothing on an Operative Card changes over the course of a game.</li>
           <li>With that and the Creature change, <b>advancing a Tier now does exactly one thing</b> &mdash; it unlocks that Tier's Ability Cards.</li>
-          <li>Roster reworked across two sheets, 28 cards. The old <b>Marksman becomes Reaper</b>, gaining Attack 4 and losing the ability to Siege; a different Marksman arrives on the second sheet.</li>
+          <li>Roster reworked across two sheets, 34 cards. The old <b>Marksman becomes Reaper</b>, gaining Attack 4 and losing the ability to Siege; a different Marksman arrives on the second sheet.</li>
           <li><b>Guardian</b> added: every enemy within Range 3 may only target it, and it Rerolls while defending.</li>
           <li>The new <b>Marksman</b> is a long-range specialist &mdash; 1 extra Bio Damage at Range 4 or more, and it cannot attack anything within Range 2.</li>
           <li><b>Saboteur</b> shuts off an adjacent corporation's Structure ability in place of unassigning a Worker.</li>
           <li><b>Mercenary</b> is bought for 9 Arc Cubes rather than 12. <b>Bounty Hunter</b> pays 5 and 10 rather than 3 and 8.</li>
+          <li>Six Operatives added, each opening a system the roster did not touch: <b>Occupier</b> (Suppression), <b>Pathfinder</b> (terrain), <b>Foreman</b> (Structures), <b>Seer</b> (the Event Die), <b>Archivist</b> (Ability Cards) and <b>Beastmaster</b> (the subjugated Creature slot).</li>
           <li><b>Engineer</b> Fortifies for 2 Energy instead of 3, and both of its abilities are Active.</li>
           <li><b>Demolitionist</b> deals 1 Siege Damage to a Control Point within Range 1 outright, in place of its bonus on a Siege Attack.</li>
           <li><b>Deflector</b> triggers on a successful Defense rather than on rolling two Blocks.</li>
@@ -3050,7 +3051,24 @@ const OPS = [
    ["p","Gain 1 Reroll while defending."]]},
  {n:"Marksman",e:4,m:3,r:4,a:3,d:2,g:["combat"],ab:[
    ["p","On a successful Bio Attack at Range 4 or more, deal 1 extra Bio Damage."],
-   ["p","You cannot attack a target within Range 2."]]}
+   ["p","You cannot attack a target within Range 2."]]},
+ {n:"Occupier",e:4,m:4,r:2,a:3,d:2,g:["territory","economy"],ab:[
+   ["p","During your Income Phase, gain 2 Arc Cubes if you Suppress a Sector."],
+   ["p","Your Sectors cannot be Suppressed."]]},
+ {n:"Pathfinder",e:3,m:4,r:2,a:3,d:2,g:["mobility"],ab:[
+   ["p","Mountain tiles cost 1 Movement for your Operatives."],
+   ["p","Sludge tiles do not reduce your Operatives' Combat Dice."]]},
+ {n:"Foreman",e:3,m:3,r:2,a:3,d:2,g:["territory","economy"],ab:[
+   ["p","Structures cost you 1 less Resource of your choice."],
+   ["p","Structures you construct Fortify your Sectors by an extra 1."]]},
+ {n:"Seer",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
+   ["p","During your Income Phase, roll the Event Die one extra time."]]},
+ {n:"Archivist",e:3,m:3,r:2,a:3,d:2,g:["support"],ab:[
+   ["a","Discard 1 Ability Card to draw 2."],
+   ["p","Your maximum hand size is increased by 2."]]},
+ {n:"Beastmaster",e:4,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
+   ["a","Restore 2 Health to your subjugated Creature."],
+   ["p","Your subjugated Creature gains 1 Combat Die while attacking."]]}
 ];
 
 const SICON = {
