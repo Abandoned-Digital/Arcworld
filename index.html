@@ -221,13 +221,24 @@
     border-top:1px solid var(--line-soft)}
   .chip{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
     color:var(--tc);border:1px solid currentColor;padding:2px 5px;line-height:1.4;opacity:.85}
-  .card .tradeoff{position:absolute;top:9px;right:10px;width:7px;height:7px;background:var(--warn);
-    clip-path:polygon(50% 0,100% 100%,0 100%)}
-  body.truesize .deck{grid-template-columns:repeat(auto-fill,var(--mini-w));justify-content:start}
-  body.truesize .card{width:var(--mini-w);height:var(--mini-h);overflow:hidden}
-  body.truesize .card > *{flex-shrink:0}
-  body.truesize .card.spill{border-color:var(--warn)}
-  body.truesize .card.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
+  /* ---- Corporations: the printed Mini-Euro face, 1:1, same rules as the Poker decks ---- */
+  #deck{grid-template-columns:repeat(auto-fill,var(--mini-w));justify-content:start;gap:16px}
+  #deck .card{width:var(--mini-w);height:var(--mini-h);overflow:hidden;position:relative;
+    padding:7px 8px 6px;text-align:center;
+    background:var(--face);color:var(--faceink);
+    border:4px solid var(--facerule);border-radius:9px}
+  #deck .card:hover{background:var(--face)}
+  #deck .card, #deck .card *{font-family:var(--cardface)}
+  #deck .card > *{flex-shrink:0}
+  #deck .cn{font-weight:700;font-size:calc(11 * var(--pt));letter-spacing:.03em;
+    color:var(--faceink);margin:0 0 4px;line-height:1.2}
+  #deck .rule{border-top:1px dashed var(--facedash);margin:0 0 6px}
+  #deck .lb{font-weight:700;font-size:calc(9 * var(--pt));letter-spacing:.05em;line-height:1.1;
+    color:var(--faceink);margin:0 0 0}
+  #deck .tx{font-weight:400;font-size:calc(10 * var(--pt));line-height:1.05;
+    margin:0 0 4px;color:var(--faceink)}
+  #deck .card.spill{border-color:var(--warn)}
+  #deck .card.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
     letter-spacing:.12em;padding:2px 5px}
   .legendkey{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin:14px 0 0;
@@ -1925,17 +1936,16 @@
 
   <section>
     <h2>The deck</h2>
-    <p class="sub">Filter by what a card is <em>about</em> &mdash; tags stack, so picking two shows every card touching either. Turn on <em>True card size</em> to lock each card to the printed 44 &times; 68 mm footprint; anything whose text no longer fits gets flagged.</p>
+    <p class="sub">The printed face at <strong>Mini-Euro size, 44 &times; 68 mm</strong>, drawn as it comes off the print program. Filter by what a card is <em>about</em> &mdash; tags stack, so picking two shows every card touching either.</p>
     <div class="filters" id="tagbar"></div>
     <div class="controls" style="margin:0 0 18px">
-      <button class="toggle" id="tSize" aria-pressed="false">True card size</button>
       <button class="toggle" id="tReset" aria-pressed="false">Clear filters</button>
       <input class="srch" id="srch" type="search" placeholder="Search name or text&hellip;" aria-label="Search corporations">
       <span class="count" id="count"></span>
     </div>
     <div class="deck" id="deck"></div>
     <div class="empty" id="empty" hidden>No corporation matches those filters</div>
-    <p class="legendkey"><i></i> Marks a card that gives something up in exchange &mdash; a reduced die, a smaller hand, less Energy.</p>
+    <p class="legendkey"><i></i> Marks a card whose text overruns the printed 44 &times; 68 mm face. Which corporations carry a trade-off is in the ledger below.</p>
   </section>
 
   <section>
@@ -2436,7 +2446,7 @@ const CORPS = [
   {n:"Paragon",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives","cards"],
    p:["Whenever you recruit an Operative, draw and discard 1 additional Operative Card."]},
   {n:"Onyx",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["combat","operatives"],w:true,
-   p:["On a successful Bio Attack, add 1 to the Bio Roll.","Your Operatives have their maximum Energy capacity reduced by 1."]},
+   p:["On a successful Bio Attack, add 1 to the Bio Roll.","Your Operatives have their maximum Energy reduced by 1."]},
   {n:"Blacksun",cubes:10,res:"5 Resources of your choice",rt:"5 &times; Choice",tags:["territory","economy"],
    p:["During Game Setup, you may immediately claim a second Sector, set its Control Die to 3."]},
   {n:"Frontier",cubes:8,res:"1 Silica",rt:"Silica",tags:["construction","territory"],
@@ -2463,6 +2473,12 @@ const CORPS = [
    p:["During your turn, you may spend 1 Resource of your choice to replace a Structure you control with a different Structure."]},
   {n:"Resodyne",cubes:5,res:null,rt:"—",tags:["economy"],
    p:["During your Landing Phase, choose 1 Resource type. Whenever you gain Resources of that type, gain 1 extra for each."]},
+  {n:"Aurex Systems",cubes:8,res:"1 Cryofluid",rt:"Cryofluid",tags:["territory","construction"],
+   p:["Your Headquarters cannot be destroyed as long as you have any other Control Point under your control."]},
+  {n:"Panopticon",cubes:8,res:null,rt:"—",tags:["economy"],
+   p:["During your Income Phase, gain 1 extra Arc Cube."]},
+  {n:"Axiom",cubes:5,res:"1 Biofuel",rt:"Biofuel",tags:["economy"],
+   p:["You start the game with 2 extra Workers."]},
   {n:"Atlas Inc.",cubes:8,res:"1 Metal",rt:"Metal",tags:["economy"],
    p:["If you gain a Resource that exceeds your storage capacity, you gain 3 Arc Cubes."]},
   {n:"Genesys",cubes:7,res:"1 Resource of your choice",rt:"Choice",tags:["events","economy"],
@@ -2504,13 +2520,7 @@ const CORPS = [
   {n:"Paradox",cubes:9,res:null,rt:"—",tags:["cards"],
    p:["During your turn, you may pay 3 Arc Cubes to play 1 Order Ability Card from the discard pile. It is removed from the game."]},
   {n:"Cinderworks",cubes:8,res:null,rt:"—",tags:["mobility","combat"],
-   p:["Your Operatives may move onto Lava Field tiles, at a cost of 2 Movement per tile.","Your Operatives roll 1 extra Combat Die on Lava Fields."]},
-  {n:"Aurex Systems",cubes:8,res:"1 Cryofluid",rt:"Cryofluid",tags:["territory","construction"],
-   p:["Your Headquarters cannot be destroyed as long as you have any other Control Point under your control."]},
-  {n:"Panopticon",cubes:8,res:null,rt:"—",tags:["economy"],
-   p:["During your Income Phase, gain 1 extra Arc Cube."]},
-  {n:"Axiom",cubes:5,res:"1 Biofuel",rt:"Biofuel",tags:["economy"],
-   p:["You start the game with 3 available Workers."]}
+   p:["Your Operatives may move onto Lava Field tiles, at a cost of 2 Movement per tile.","Your Operatives roll 1 extra Combat Die on Lava Fields."]}
 ];
 
 function startLine(c){
@@ -2552,17 +2562,12 @@ function matches(c){
 
 function render(){
   const list = CORPS.filter(matches);
-  deck.innerHTML = list.map(c => {
-    const tc = "var(--g-" + c.tags[0] + ")";
-    return '<article class="card" style="--tc:' + tc + '">' +
-      (c.w ? '<span class="tradeoff" title="Carries a trade-off"></span>' : '') +
+  deck.innerHTML = list.map(c =>
+    '<article class="card">' +
       '<h3 class="cn">' + esc(c.n) + '</h3><div class="rule"></div>' +
       '<p class="lb">Start of the game</p><p class="tx">' + esc(startLine(c)) + '</p>' +
-      c.p.map(t => '<p class="lb pass">Passive ability</p><p class="tx">' + esc(t) + '</p>').join("") +
-      '<div class="foot">' + c.tags.map(k =>
-        '<span class="chip" style="--tc:var(--g-' + k + ')">' + TAGN[k] + '</span>').join("") +
-      '</div></article>';
-  }).join("");
+      c.p.map(t => '<p class="lb">Passive ability</p><p class="tx">' + esc(t) + '</p>').join("") +
+    '</article>').join("");
   emptyMsg.hidden = list.length > 0;
   countEl.innerHTML = '<b>' + list.length + '</b> of ' + CORPS.length + ' shown';
   sizeCheck();
@@ -2570,22 +2575,12 @@ function render(){
 
 /* flag any card whose text overruns the printed 44 x 68 mm face */
 function sizeCheck(){
-  if (!document.body.classList.contains("truesize")) {
-    deck.querySelectorAll(".card.spill").forEach(el => el.classList.remove("spill"));
-    return;
-  }
   deck.querySelectorAll(".card").forEach(el => {
     el.classList.remove("spill");
     if (el.scrollHeight > el.clientHeight + 1) el.classList.add("spill");
   });
 }
 
-document.getElementById("tSize").addEventListener("click", e => {
-  const on = e.currentTarget.getAttribute("aria-pressed") === "true";
-  e.currentTarget.setAttribute("aria-pressed", String(!on));
-  document.body.classList.toggle("truesize", !on);
-  sizeCheck();
-});
 document.getElementById("tReset").addEventListener("click", () => {
   active.clear();
   tagbar.querySelectorAll(".tg").forEach(b => b.setAttribute("aria-pressed","false"));
@@ -3069,13 +3064,13 @@ const OPS = [
  {n:"Pathfinder",e:3,m:4,r:2,a:3,d:2,g:["mobility"],ab:[
    ["p","Mountain tiles cost 1 Movement for your Operatives."],
    ["p","Sludge tiles do not reduce your Operatives' Combat Dice."]]},
- {n:"Foreman",e:3,m:3,r:2,a:3,d:2,g:["territory","economy"],ab:[
+ {n:"Foreman",e:3,m:3,r:2,a:2,d:2,g:["territory","economy"],ab:[
    ["p","Structures cost you 1 less Resource of your choice."],
    ["p","Structures you construct Fortify your Sectors by an extra 1."]]},
  {n:"Seer",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
    ["p","During your Income Phase, roll the Event Die one extra time."],
    ["p","Whenever the Event Die grants you a Resource, gain 1 Arc Cube."]]},
- {n:"Archivist",e:3,m:3,r:2,a:3,d:2,g:["support"],ab:[
+ {n:"Archivist",e:3,m:3,r:2,a:2,d:2,g:["support"],ab:[
    ["a","Discard 1 Ability Card to draw 2."],
    ["p","Your maximum hand size is increased by 2."]]},
  {n:"Beastmaster",e:4,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
