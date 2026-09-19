@@ -20,7 +20,11 @@
     /* the keyline says which deck a card belongs to. All three sit in the same
        luminance band so they carry equal weight, and each has to read against the
        dark page outside the card and the white face inside it. */
-    --rule-enc:#e05a25;  --rule-op:#3f86c4;  --rule-corp:#c08a2e;
+    --rule-enc:#e05a25;  --rule-op:#3f86c4;  --rule-corp:#c08a2e;  --rule-obj:#9a6cc6;
+    --rule-abil:#3f9e6e;  --rule-disc:#1f8a99;
+    /* the tier colours are tuned for the dark page; on a white card face they need
+       darkening to stay legible as text rather than as a graphic */
+    --card-tier1:#2d6fb8;  --card-tier2:#a13fb0;  --card-tier3:#c0352c;
     --cardface:"Space Mono",ui-monospace,Menlo,monospace;  /* the printed card's own face */
     --pt:1.33333px;  /* one typographic point, at the 96 px/inch the mm sizes resolve to */
     /* printed card faces, in real units. 1:1 on a display where 96 CSS px = 1 inch;
@@ -279,11 +283,57 @@
     font-family:var(--mono);font-size:8px;font-style:normal;display:flex;
     align-items:center;justify-content:center;opacity:.75}
   .acard .foot{margin-top:auto;padding:10px 14px 0;display:flex;gap:5px;flex-wrap:wrap;align-items:center}
-  body.atruesize .adeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start}
-  body.atruesize .acard{width:var(--poker-w);height:var(--poker-h);overflow:hidden}
-  body.atruesize .acard > *{flex-shrink:0}
-  body.atruesize .acard.spill{border-color:var(--warn)}
-  body.atruesize .acard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
+  /* ---- Discovery Cards: the printed Poker face, 1:1 ---- */
+  #ddeck{display:grid;grid-template-columns:repeat(auto-fill,var(--poker-w));
+    justify-content:start;gap:18px;--facerule:var(--rule-disc)}
+  #ddeck .dcard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
+    padding:9px 10px 7px;text-align:center;display:flex;flex-direction:column;
+    background:var(--face);color:var(--faceink);
+    border:4px solid var(--facerule);border-radius:11px;
+    font-family:var(--cardface)}
+  #ddeck .dcard > *{flex-shrink:0}
+  #ddeck .dn{font-weight:700;font-size:calc(13 * var(--pt));letter-spacing:.03em;
+    text-transform:uppercase;color:var(--faceink);margin:0 0 6px;line-height:1.2}
+  #ddeck .ddash{border-top:1px dashed var(--facedash);margin:0 0 12px}
+  #ddeck .dx{font-size:calc(10 * var(--pt));line-height:1.2;color:var(--faceink);margin:0}
+  #ddeck .droll{list-style:none;margin:7px auto 0;padding:0;text-align:left;
+    font-size:calc(10 * var(--pt));line-height:1.35;color:var(--faceink);display:table}
+  #ddeck .droll li{display:table-row}
+  #ddeck .droll b{display:table-cell;font-weight:700;padding-right:7px;white-space:nowrap}
+  #ddeck .df{font-size:calc(10 * var(--pt));line-height:1.2;color:var(--faceink);
+    font-style:italic;margin:auto 0 0}
+  #ddeck .dfoot{margin:9px 0 0;padding-top:7px;border-top:1px dashed var(--facedash);
+    font-size:calc(8 * var(--pt));letter-spacing:.18em;color:var(--faceink);text-align:center;
+    text-transform:uppercase;font-weight:700}
+  #ddeck .dcard.spill{border-color:var(--warn)}
+  #ddeck .dcard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
+    background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
+    letter-spacing:.12em;padding:2px 5px}
+
+  /* ---- Ability Cards: the printed Poker face, 1:1 ---- */
+  #adeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;gap:18px;
+    --facerule:var(--rule-abil)}
+  #adeck .acard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
+    padding:9px 10px 8px;text-align:center;justify-content:center;
+    background:var(--face);color:var(--faceink);
+    border:4px solid var(--facerule);border-radius:11px}
+  #adeck .acard:hover{background:var(--face)}
+  #adeck .acard, #adeck .acard *{font-family:var(--cardface)}
+  #adeck .acard > *{flex-shrink:0}
+  #adeck .abil{padding:0;border-top:0;margin:0 0 7px}
+  #adeck .abil:last-child{margin-bottom:0}
+  #adeck .an{font-weight:700;font-size:calc(10 * var(--pt));letter-spacing:.01em;
+    text-transform:uppercase;color:var(--tier);margin:0 0 1px;line-height:1.15}
+  #adeck .an .ty{font-weight:400;font-size:calc(8 * var(--pt));letter-spacing:0;
+    border:0;padding:0;margin:0;color:inherit;flex:none}
+  #adeck .dur{display:inline-flex;gap:6px;margin:2px 0 3px}
+  #adeck .dur i{width:6.9mm;height:6.9mm;border:1px solid var(--faceink);color:var(--faceink);
+    font-size:calc(10 * var(--pt));font-style:normal;line-height:1;opacity:1;
+    display:flex;align-items:center;justify-content:center}
+  #adeck .ax{font-weight:400;font-size:calc(9 * var(--pt));line-height:1.2;
+    margin:0;color:var(--faceink)}
+  #adeck .acard.spill{border-color:var(--warn)}
+  #adeck .acard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
     letter-spacing:.12em;padding:2px 5px}
 
@@ -369,6 +419,48 @@
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
     letter-spacing:.12em;padding:2px 5px}
 
+  /* ---- Objectives: the printed Poker face, same rules as the other decks ---- */
+  #odeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;gap:18px;
+    --facerule:var(--rule-obj)}
+  #odeck .ocard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
+    padding:7px 9px 6px;text-align:center;
+    background:var(--face);color:var(--faceink);
+    border:4px solid var(--facerule);border-radius:11px}
+  #odeck .ocard:hover{background:var(--face)}
+  #odeck .ocard, #odeck .ocard *{font-family:var(--cardface)}
+  #odeck .ocard > *{flex-shrink:0}
+  #odeck .onm{font-weight:700;font-size:calc(13 * var(--pt));letter-spacing:.06em;
+    color:var(--faceink);margin:0 0 5px;line-height:1.2}
+  #odeck .odash{border-top:1px dashed var(--facedash);margin:0 0 7px}
+  #odeck .ohow{font-size:calc(10 * var(--pt));line-height:1.15;color:var(--faceink);
+    margin:0 0 6px;text-align:center}
+  #odeck .boxes{display:flex;justify-content:center;gap:9px;margin:0 0 8px}
+  #odeck .boxes i{width:6.9mm;height:6.9mm;border:1px solid var(--faceink);color:var(--faceink);
+    font-size:calc(10 * var(--pt));font-style:normal;line-height:1;
+    display:flex;align-items:center;justify-content:center}
+  #odeck .ogoal{font-weight:700;font-size:calc(11 * var(--pt));letter-spacing:.02em;
+    color:var(--faceink);margin:0 0 3px;line-height:1.2;text-align:left}
+  #odeck .place{display:block;text-align:left;border-top:0;padding:0;margin:0}
+  #odeck .place + .place{border-top:1px dashed var(--facedash);margin-top:5px;padding-top:5px}
+  #odeck .place .pn{font-weight:400;font-size:calc(10 * var(--pt));color:var(--faceink);
+    width:auto;line-height:1.15;margin:0;padding:0;letter-spacing:0}
+  #odeck .place .pn b{font-weight:700}
+  #odeck .place ul{font-size:calc(10 * var(--pt));line-height:1.15;color:var(--faceink);
+    margin:0;padding:0 0 0 4px;list-style:none}
+  #odeck .crit{display:flex;border-top:0;padding:0;margin:0;gap:8px;
+    align-items:center;text-align:left}
+  #odeck .crit + .crit{border-top:1px dashed var(--facedash);margin-top:4px;padding-top:4px}
+  #odeck .crit .ct{font-weight:700;font-size:calc(10 * var(--pt));color:var(--faceink);
+    margin:0;line-height:1.15;letter-spacing:0}
+  #odeck .crit .cr{font-size:calc(10 * var(--pt));color:var(--faceink);margin:0;line-height:1.15}
+  #odeck .crit i{width:6.9mm;height:6.9mm;border:1px solid var(--faceink);flex:none;
+    font-size:calc(10 * var(--pt));font-style:normal;line-height:1;color:var(--faceink);
+    display:flex;align-items:center;justify-content:center}
+  #odeck .ocard.spill{border-color:var(--warn)}
+  #odeck .ocard.spill::after{content:"OVER";position:absolute;right:0;bottom:0;
+    background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
+    letter-spacing:.12em;padding:2px 5px}
+
   /* ---- objectives ---- */
   .odeck{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:14px}
   .ocard{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--g-territory);
@@ -397,9 +489,6 @@
     line-height:1.25;margin:0 0 3px;letter-spacing:.02em}
   .crit .cr{font-family:var(--mono);font-size:10px;color:var(--ink-dim);margin:0;line-height:1.4}
   .crit i{width:21px;height:21px;border:1px solid var(--line);flex:none;margin-top:2px}
-  .ofoot{margin-top:auto;padding-top:11px;border-top:1px solid var(--line-soft);
-    font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
-    color:var(--ink-faint)}
 
   /* ---- changelog ---- */
   .log{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line)}
@@ -591,6 +680,7 @@
           <tbody>
             <tr><td class="k">Corporation</td><td class="n">48</td></tr>
             <tr><td class="k">Ability</td><td class="n">36</td></tr>
+            <tr><td class="k">Discovery</td><td class="n">18</td></tr>
             <tr><td class="k">Operative</td><td class="n">36</td></tr>
             <tr><td class="k">Encounter</td><td class="n">18</td></tr>
             <tr><td class="k">Objective</td><td class="n">5</td></tr>
@@ -669,7 +759,7 @@
           <li><strong>Deploy</strong> assigned Operatives.</li>
           <li><strong>Propose a trade.</strong> Arc Cubes, Resources and Xeno Eggs may be exchanged freely with any player, in any quantity, and a trade need not be balanced &mdash; both players simply have to agree.</li>
         </ul>
-        <div class="tip"><b>Discovery cards</b><p>If a card you draw is a <strong>Discovery</strong>, resolve it immediately for free. It never enters your hand, unlike Orders, Counters and Contracts.</p></div>
+        <div class="tip"><b>Discovery Cards</b><p>If a card you draw is a <strong>Discovery</strong>, resolve it immediately for free and discard it. It never enters your hand and never counts against your hand limit. This applies to every draw, including the one in your Income Phase and any a card hands you mid-turn.</p></div>
       </section>
       <section id="s-combat">
         <p class="kicker">06</p>
@@ -789,7 +879,7 @@
         <p class="kicker">10</p>
         <h3>Structures</h3>
         <p>Structures are built onto your Player Board, not placed on the map. Construct one during your Action Phase by paying its Resource cost and assigning one free Worker. The number beside it is the <strong>Fortify</strong> value you gain the moment it is built.</p>
-        <div class="tip"><b>Fortify</b><p><em>Fortify your Sectors by X</em> means add X Sector Strength in total, divided between your Control Points however you like &mdash; all of it on one Control Die, or spread around. No Control Die may pass its maximum of 6, or 12 for a Headquarters; anything over that is lost.</p><p>A <strong>Suppressed</strong> Sector cannot be Fortified at all. While an enemy stands in it you cannot shore it up &mdash; you have to remove them first.</p></div>
+        <div class="tip"><b>Fortify</b><p><em>Fortify your Sectors by X</em> means add X Sector Strength in total, divided between your Control Points however you like &mdash; all of it on one Control Die, or spread around. No Control Die may pass its maximum of 6, or 12 for a Headquarters; anything over that is lost. Where space is tight a card may shorten this to <em>Fortify X</em>; it means the same thing.</p><p>A <strong>Suppressed</strong> Sector cannot be Fortified at all. While an enemy stands in it you cannot shore it up &mdash; you have to remove them first.</p></div>
         <div class="tw"><table>
           <thead><tr><th>Structure</th><th>Cost</th><th>Fortify</th><th>Type</th><th>Effect</th></tr></thead>
           <tbody>
@@ -894,7 +984,8 @@
         <p><strong>Corporation Cards</strong> give you a starting supply and one or more permanent passive abilities. You keep one for the whole game.</p>
         <p><strong>Operative Cards</strong> carry the figures you put on the board &mdash; Movement, Range, Attack and Defense along the bottom, an Energy track, and passive or active abilities. Every value is fixed for the whole game.</p>
         <p><strong>Encounter Cards</strong> are the planet's Creatures: Movement, Health, Defense, Range and Attack values, plus their passive abilities.</p>
-        <p><strong>Ability Cards</strong> hold three abilities each &mdash; one per Tier. You may play any single ability at or below your current Tier, paying 3, 6 or 9 Arc Cubes for Tier I, II or III. An ability is an <em>Order</em> (your turn), a <em>Counter</em> (someone else's turn, on a condition), a <em>Contract</em> (stays in play three rounds) or a <em>Discovery</em> (resolves free the moment it is drawn).</p>
+        <p><strong>Ability Cards</strong> hold three abilities each &mdash; one per Tier. You may play any single ability at or below your current Tier, paying 3, 6 or 9 Arc Cubes for Tier I, II or III. An ability is an <em>Order</em> (your turn), a <em>Counter</em> (someone else's turn, on a condition) or a <em>Contract</em> (stays in play three rounds).</p>
+        <p><strong>Discovery Cards</strong> are shuffled through the same deck and drawn the same way, but they are not abilities and never enter your hand. A Discovery resolves the moment you draw it, costs nothing, and is discarded. Most are a windfall; a few are not.</p>
         <p><strong>Objective Cards</strong> are revealed one at a time and give everyone a shared side goal to race for &mdash; see <em>Objectives</em>.</p>
         <div class="tip"><b>A card beats this manual</b><p>Where a card's text contradicts a rule written here, <strong>the card wins</strong>. Cards are written as deliberate exceptions: Sentinel Sieges from Range&nbsp;2 where the rule says Range&nbsp;1, Cinderworks walks onto Lava Fields where the rule says impassable. If the card says it, it happens.</p></div>
         <div class="tip"><b>One Contract at a time</b><p>Only one Contract may sit in front of you. Discard it whenever you like, and playing a new Contract replaces it.</p></div>
@@ -2004,16 +2095,22 @@
 
   <section>
     <h2>The deck</h2>
-    <p class="sub">Filter by what a card is <em>about</em> &mdash; a card matches if any of its three abilities does, so tags here describe the card's reach rather than a single effect. The bar above each card splits three ways, one segment per ability, colored by type: scan for a pale segment to find the Counters.</p>
+    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>. Each ability is named in its Tier's color with its type beside it. Filter by what a card is <em>about</em> &mdash; a card matches if any of its three abilities does, so tags describe the card's reach rather than a single effect.</p>
     <div class="filters" id="atagbar"></div>
     <div class="controls" style="margin:0 0 18px">
-      <button class="toggle" id="aSize" aria-pressed="false">True card size</button>
       <button class="toggle" id="aReset" aria-pressed="false">Clear filters</button>
       <input class="srch" id="asrch" type="search" placeholder="Search ability or text&hellip;" aria-label="Search ability cards">
       <span class="count" id="acount"></span>
     </div>
     <div class="adeck" id="adeck"></div>
     <div class="empty" id="aempty" hidden>No ability card matches those filters</div>
+  </section>
+
+  <section>
+    <h2>Discoveries</h2>
+    <p class="sub">Shuffled through the same deck and drawn the same way, but a Discovery never enters your hand &mdash; <strong>you resolve it the moment you draw it</strong>, for free, and it is discarded. Six of the eighteen cost you something.</p>
+    <div class="ddeck" id="ddeck"></div>
+    <p class="legendkey"><i></i> Would mark a card whose text overruns the printed face. Nothing does.</p>
   </section>
 
   <section>
@@ -2057,7 +2154,7 @@
 
   <section>
     <h2>The deck</h2>
-    <p class="sub">Every card past <em>First Contact</em> pays the same shape: first place adds Progression on top of the themed reward, second place gets the themed reward alone, and third gets a single card for showing up.</p>
+    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>. Every card past <em>First Contact</em> pays the same shape: first place adds Progression on top of the themed reward, second place gets the themed reward alone, and third gets a single card for showing up.</p>
     <div class="odeck" id="odeck"></div>
   </section>
 
@@ -2081,6 +2178,17 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
+        <div><p class="v">3.11</p><p class="vt">Discoveries</p></div>
+        <div><ul>
+          <li><b>18 Discovery Cards</b> added, shuffled through the Ability deck. A Discovery resolves the moment it is drawn, costs nothing and never enters your hand.</li>
+          <li>They are <b>their own card type</b>, not a fourth kind of ability &mdash; the manual said the latter, which was never true of the printed cards.</li>
+          <li>Twelve are a windfall and <b>six cost you something</b>: Corrosive Bloom, Fault Line, Unstable Ruins, Corrupted Archive, Tremor and Broken Seal on a roll of 1.</li>
+          <li><b>Ancient Bulwark</b> Fortifies rather than granting Sector Strength directly.</li>
+          <li><b>Sealed Crate</b> renamed <b>Broken Seal</b> &mdash; a sealed crate does not explain the Creature that comes out of it.</li>
+          <li>Ability Cards, Objectives and Discoveries are all laid out at their printed <b>Poker size, 63.5 &times; 89 mm</b>. Every deck now shows its true printed face.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
         <div><p class="v">3.10</p><p class="vt">Corporations</p></div>
         <div><ul>
           <li><b>Storage limits published.</b> 12 Arc Cubes, 3 of each Resource, 4 Xeno Eggs. Anything gained past a limit is lost. Atlas Inc. and Maximum Yield both referred to limits the manual never stated.</li>
@@ -2094,7 +2202,8 @@
           <li>A Structure that is <b>replaced</b> rather than destroyed passes its Worker to the replacement.</li>
           <li><b>Aurex Systems</b> sets a floor of 1 on its Headquarters Control Die rather than preventing destruction, which left a Control Die sitting at 0 in a state the rules did not describe.</li>
           <li>Corporation cards are laid out at their printed <b>Mini-Euro size, 44 &times; 68 mm</b>, in the order of the two print sheets.</li>
-          <li>Three corporations added, each for a system no other card touched: <b>Quorum</b> (Objectives), <b>Perigee</b> (deployment) and <b>Fallow</b> (Sectors rendered uninhabitable).</li>
+          <li>Objective reward lists shorten the keyword to <b>Fortify X</b> to fit the printed face. The manual notes the shorthand.</li>
+          <li>Three corporations added, each for a system no other card touched: <b>Quartex</b> (Objectives), <b>Tristar</b> (deployment) and <b>Red Sector Inc.</b> (Sectors rendered uninhabitable).</li>
         </ul></div>
       </article>
       <article class="rel">
@@ -2321,7 +2430,8 @@ function show(v){
   window.scrollTo({top:0,behavior:"instant"});
   /* aspect-ratio cards measure as zero while their panel is hidden */
   if (v === "corp") sizeCheck();
-  if (v === "ability") aSizeCheck();
+  if (v === "objective") oSizeCheck();
+  if (v === "ability") { aSizeCheck(); dSizeCheck(); }
   if (v === "encounter") eSizeCheck();
   if (v === "operative") pSizeCheck();
 }
@@ -2558,11 +2668,11 @@ const CORPS = [
    p:["During your turn, you may pay 3 Arc Cubes to play 1 Order Ability Card from the discard pile. It is removed from the game."]},
   {n:"Cinderworks",cubes:8,res:null,rt:"—",tags:["mobility","combat"],
    p:["Your Operatives may move onto Lava Field tiles, at a cost of 2 Movement per tile.","Your Operatives roll 1 extra Combat Die on Lava Fields."]},
-  {n:"Quorum",cubes:6,res:"1 Resource of your choice",rt:"Choice",tags:["economy"],
+  {n:"Quartex",cubes:6,res:"1 Resource of your choice",rt:"Choice",tags:["economy"],
    p:["Whenever you place a tracker token on an Objective, gain 3 Arc Cubes."]},
-  {n:"Perigee",cubes:7,res:"1 Silica",rt:"Silica",tags:["operatives"],
+  {n:"Tristar",cubes:7,res:"1 Silica",rt:"Silica",tags:["operatives"],
    p:["Operatives you deploy into a Suppressed Sector arrive at full Energy."]},
-  {n:"Fallow",cubes:8,res:null,rt:"—",tags:["economy","territory"],
+  {n:"Red Sector Inc.",cubes:8,res:null,rt:"—",tags:["economy","territory"],
    p:["Whenever you render a Sector permanently uninhabitable, gain 6 Arc Cubes and 1 Resource of your choice."]}
 ];
 
@@ -2712,7 +2822,7 @@ const ACARDS = [
   {n:"Time Dilation",t:"order",g:["mobility"],x:"Immediately after your turn ends, take another turn."}],
 
  [{n:"Stonewall",t:"counter",g:["territory","combat"],x:"When a Siege Attack would deal Siege Damage to one of your Control Points, prevent that damage."},
-  {n:"Preservation",t:"counter",g:["operatives"],x:"When one of your Operatives would be eliminated, set its Energy to its maximum Energy capacity instead."},
+  {n:"Preservation",t:"counter",g:["operatives"],x:"When one of your Operatives would be eliminated, set it to its maximum Energy instead."},
   {n:"Mirror Ward",t:"counter",g:["cards"],x:"When an enemy plays an Ability Card, cancel that card's effect. Arc Cubes spent on it are not refunded. You gain the Ability Card instead of it being discarded."}],
 
  [{n:"Slipstream",t:"counter",g:["territory"],x:"When an enemy advances its Progression Tracker, advance yours 1 square."},
@@ -2769,7 +2879,7 @@ const ACARDS = [
 
  [{n:"Windfall",t:"order",g:["events"],x:"Roll the Event Die twice and resolve all results. Other corporations may roll the Event Die once and resolve its result."},
   {n:"Cryofluid Tariff",t:"contract",g:["economy"],x:"For 3 rounds, when another corporation gains 1 Cryofluid, you also gain 1 Cryofluid."},
-  {n:"Energy Cell",t:"order",g:["operatives"],x:"Restore all of your Operatives to their maximum Energy capacity."}],
+  {n:"Energy Cell",t:"order",g:["operatives"],x:"Restore all of your Operatives to their maximum Energy."}],
 
  [{n:"Kickback",t:"order",g:["economy"],x:"Gain 1 Resource of your choice. Each other corporation may gain 1 Resource of their choice. For each corporation that does, you gain 1 Resource of the same type."},
   {n:"Blackout",t:"order",g:["cards"],x:"Each other corporation discards 2 Ability Cards from their hand."},
@@ -2777,9 +2887,9 @@ const ACARDS = [
 
  [{n:"Radar Station",t:"order",g:["construction"],x:"Construct a Radar Station at no Resource cost."},
   {n:"Cease Fire",t:"contract",g:["combat"],x:"Choose one corporation. For 3 rounds, neither of you may target the other with Attacks or Ability Cards."},
-  {n:"Subjugate",t:"order",g:["creatures"],x:"Choose a Creature not on the Volcano tile. Claim its Encounter Card and set its Health to 10."}],
+  {n:"Subjugate",t:"order",g:["creatures"],x:"Choose a Creature not on the Volcano tile. Claim its Encounter Card and restore it to its maximum Health."}],
 
- [{n:"Terminal Run",t:"order",g:["combat","operatives"],x:"Choose one of your Operatives. It is eliminated. Deal 4 Bio Damage or 2 Siege Damage to one target within its Range."},
+ [{n:"Terminal Run",t:"order",g:["combat","operatives"],x:"Choose one of your Operatives. Deal 4 Bio Damage or 2 Siege Damage to one target within its Range."},
   {n:"Breakthrough",t:"order",g:["territory"],x:"Advance your Progression Tracker 1 square. If you have the lowest Progression Tracker value, or are tied for lowest, advance 2 squares instead."},
   {n:"Maximum Yield",t:"order",g:["economy"],x:"Replenish your Arc Cubes, Resources, or Xeno Eggs to their respective limits."}],
 
@@ -2819,7 +2929,7 @@ const ACARDS = [
   {n:"Counter Seizure",t:"counter",g:["cards"],x:"When another corporation plays a Counter Card, cancel its effect. You gain the Ability Card instead of it being discarded."},
   {n:"Power Drain",t:"order",g:["operatives"],x:"Set all enemy Operatives' Energy to 1."}],
 
- [{n:"Undermine",t:"contract",g:["construction","territory"],x:"For 3 rounds, enemy corporations cannot Fortify. Draw 1 Ability Card."},
+ [{n:"Undermine",t:"contract",g:["construction","territory"],x:"For 3 rounds, enemy corporations cannot Fortify their Sectors. Draw 1 Ability Card."},
   {n:"Equilibrium",t:"order",g:["economy"],x:"Each other corporation removes Arc Cubes, Resources, Xeno Eggs, and Ability Cards of their choice until they match yours."},
   {n:"Arc Jump",t:"order",g:["mobility"],x:"Move any of your Operatives to any other passable tile."}],
 
@@ -2850,7 +2960,6 @@ ACARDS.forEach((card, ci) => card.forEach((ab, ti) => {
   ABILITIES.push({...ab, tier: ti + 1, card: ci + 1});
 }));
 const cardTags = card => [...new Set(card.flatMap(a => a.g))];
-const cardNo = i => "Ability card " + String(i + 1).padStart(2, "0");
 
 /* headline counts come from the deck, so editing a card can never leave them stale */
 document.getElementById("ab-cards").textContent = ACARDS.length;
@@ -2894,22 +3003,15 @@ function aMatches(card){
 
 function aRender(){
   const rows = ACARDS.map((c, i) => [c, i]).filter(([c]) => aMatches(c));
-  adeck.innerHTML = rows.map(([c, i]) =>
+  adeck.innerHTML = rows.map(([c]) =>
     '<article class="acard">' +
-      '<div class="types">' + c.map(a =>
-        '<i style="background:var(--ty-' + a.t + ')" title="' + TYPEN[a.t] + '"></i>').join("") + '</div>' +
-      '<p class="idx">' + cardNo(i) + '</p>' +
       c.map((a, ti) =>
-        '<div class="abil" style="--tier:var(--tier' + (ti + 1) + ');--ty:var(--ty-' + a.t + ')">' +
-          '<div class="hd"><span class="rn">' + ["I","II","III"][ti] + '</span>' +
-            '<span class="an">' + esc(a.n) + '</span>' +
-            '<span class="ty">' + TYPEN[a.t] + '</span></div>' +
+        '<div class="abil" style="--tier:var(--card-tier' + (ti + 1) + ')">' +
+          '<p class="an">' + esc(a.n) +
+            ' <span class="ty">(' + TYPEN[a.t].toUpperCase() + ')</span></p>' +
           (a.t === "contract" ? '<span class="dur"><i>1</i><i>2</i><i>3</i></span>' : '') +
           '<p class="ax">' + esc(a.x) + '</p>' +
         '</div>').join("") +
-      '<div class="foot">' + cardTags(c).map(k =>
-        '<span class="chip" style="--tc:var(--g-' + k + ')">' + ATAGN[k] + '</span>').join("") +
-      '</div>' +
     '</article>').join("");
   aEmpty.hidden = rows.length > 0;
   aCount.innerHTML = '<b>' + rows.length + '</b> of ' + ACARDS.length + ' shown';
@@ -2917,22 +3019,12 @@ function aRender(){
 }
 
 function aSizeCheck(){
-  if (!document.body.classList.contains("atruesize")) {
-    adeck.querySelectorAll(".acard.spill").forEach(el => el.classList.remove("spill"));
-    return;
-  }
   adeck.querySelectorAll(".acard").forEach(el => {
     el.classList.remove("spill");
     if (el.scrollHeight > el.clientHeight + 1) el.classList.add("spill");
   });
 }
 
-document.getElementById("aSize").addEventListener("click", e => {
-  const on = e.currentTarget.getAttribute("aria-pressed") === "true";
-  e.currentTarget.setAttribute("aria-pressed", String(!on));
-  document.body.classList.toggle("atruesize", !on);
-  aSizeCheck();
-});
 document.getElementById("aReset").addEventListener("click", () => {
   aActive.clear();
   atagbar.querySelectorAll(".tg").forEach(b => b.setAttribute("aria-pressed", "false"));
@@ -2941,6 +3033,70 @@ document.getElementById("aReset").addEventListener("click", () => {
 });
 asrch.addEventListener("input", aRender);
 window.addEventListener("resize", aSizeCheck);
+
+/* ---- Discovery Cards: one effect, resolved on the draw ---- */
+const DISCOVERIES = [
+ {n:"Salvaged Cache",x:"Gain 1 Resource of your choice.",
+  f:"A supply crate, corporate markings long faded, still sealed against the weather."},
+ {n:"Raw Vein",x:"Gain 6 Arc Cubes.",
+  f:"A seam of unrefined Arc Crystal, pulsing faintly beneath the rock."},
+ {n:"Unmarked Deposit",x:"Gain 3 Arc Cubes and 1 Resource of your choice.",
+  f:"No corporation logged this find. Now it's yours."},
+ {n:"Unguarded Clutch",x:"Gain 2 Xeno Eggs.",
+  f:"Whatever laid these eggs isn't watching. Not yet, anyway."},
+ {n:"Recovered Intel",x:"Draw 3 Ability Cards.",
+  f:"Field notes from an expedition that never made it home."},
+ {n:"Lone Survivor",x:"Draw an Operative Card. Assign or discard the card. If you assign, set its Energy to 2.",
+  f:"Half-starved and half-mad, but alive&hellip; and willing to fight for whoever found him first."},
+ {n:"Dormant Conduit",x:"Gain 1 Progression.",
+  f:"Ancient, alien, and for a moment, responsive to your touch."},
+ {n:"Broken Seal",x:"Roll the Event Die.",
+  roll:["Deploy a Creature","Gain 1 Metal","Gain 1 Biofuel","Gain 1 Silica","Gain 1 Cryofluid","Gain 1 Progression"],
+  f:"No manifest. No markings."},
+ {n:"Ancient Bulwark",x:"Fortify your Sectors by 4.",
+  f:"Whoever built these understood siege warfare long before humanity arrived."},
+ {n:"Orbital Relay",x:"Deal 3 Siege Damage to one enemy Control Point of your choice.",
+  f:"Still transmitting targeting data to a war that ended decades ago."},
+ {n:"Something Stirs",x:"If a Creature slot is available, draw 1 Encounter Card. Deploy the Creature adjacent to one of your Operatives.",
+  f:"The ground shifts. Then it opens."},
+ {n:"Corrosive Bloom",x:"Lose 2 Resources of your choice.",
+  f:"The spores eat through containment faster than anyone accounted for."},
+ {n:"Fault Line",x:"Reduce the Sector Strength of one of your Control Dice by 2.",
+  f:"The ground beneath your Control Point was never as stable as it looked."},
+ {n:"Unstable Ruins",x:"Destroy 1 of your Structures.",
+  f:"Whatever held these structures together for a thousand years finally gives out under yours."},
+ {n:"Corrupted Archive",x:"Discard 2 Ability Cards.",
+  f:"The files open. Then they don't stop opening."},
+ {n:"Tremor",x:"Move each deployed Creature up to 2 tiles, in any direction, of your choice.",
+  f:"The ground doesn't ask permission before it moves. Neither does anything standing on it."},
+ {n:"Fleeting Passage",x:"You may move one of your Operatives to any Tunnel tile on Arcworld.",
+  f:"It won't hold for long."},
+ {n:"Abandoned Structure",x:"Construct a Structure of your choice at no Worker or Resource cost.",
+  f:"Its original purpose is long lost, but the frame, foundation, and power conduits still hold."}
+];
+
+const ddeck = document.getElementById("ddeck");
+function dRender(){
+  ddeck.innerHTML = DISCOVERIES.map(d =>
+    '<article class="dcard">' +
+      '<h3 class="dn">' + esc(d.n) + '</h3><div class="ddash"></div>' +
+      '<p class="dx">' + esc(d.x) + '</p>' +
+      (d.roll ? '<ul class="droll">' + d.roll.map((r, i) =>
+        '<li><b>' + (i + 1) + ':</b> ' + esc(r) + '</li>').join("") + '</ul>' : '') +
+      '<p class="df">' + d.f + '</p>' +
+      '<p class="dfoot">Discovery</p>' +
+    '</article>').join("");
+  dSizeCheck();
+}
+
+/* flag any Discovery whose text overruns the printed Poker face */
+function dSizeCheck(){
+  ddeck.querySelectorAll(".dcard").forEach(el => {
+    el.classList.remove("spill");
+    if (el.scrollHeight > el.clientHeight + 1) el.classList.add("spill");
+  });
+}
+dRender();
 
 /* ---- ability index ---- */
 const axTier = new Set(), axType = new Set();
@@ -3407,7 +3563,7 @@ const OBJECTIVES = [
   {n:"First Contact", lead:true,
    how:"When all criteria are met, 1st place gains 1 Progression.",
    crit:[
-     {t:"Claim a Control Point", r:"Fortify your Sectors by 3"},
+     {t:"Claim a Control Point", r:"Fortify by 3"},
      {t:"Construct a Structure", r:"1 Worker"},
      {t:"Eliminate a Creature",  r:"1 Xeno Egg"},
      {t:"Eliminate an Operative", r:"3 Arc Cubes"}
@@ -3417,29 +3573,42 @@ const OBJECTIVES = [
   {n:"Blood in the Sand", goal:"Eliminate 3 Operatives",
    places:[["1 Progression","6 Arc Cubes","1 Ability Card"],["6 Arc Cubes","1 Ability Card"],["1 Ability Card"]]},
   {n:"Grand Expansion", goal:"Claim 3 Control Points",
-   places:[["1 Progression","Fortify your Sectors by 6","1 Ability Card"],["Fortify your Sectors by 6","1 Ability Card"],["1 Ability Card"]]},
+   places:[["1 Progression","Fortify by 6","1 Ability Card"],["Fortify by 6","1 Ability Card"],["1 Ability Card"]]},
   {n:"Arms Race", goal:"Construct 3 Structures",
    places:[["1 Progression","2 Workers","1 Ability Card"],["2 Workers","1 Ability Card"],["1 Ability Card"]]}
 ];
 const ORD = ["1st","2nd","3rd"];
 const OBOXES = 3;   /* tracker boxes printed on every card past First Contact */
 
-document.getElementById("odeck").innerHTML = OBJECTIVES.map(o => {
-  const head = '<h3 class="onm">' + esc(o.n) + '</h3><div class="odash"></div>' +
-    '<p class="ohow">' + esc(o.how || "When the criteria is met, resolve its reward based on place.") + '</p>';
-  if (o.lead) {
-    return '<article class="ocard lead">' + head +
-      o.crit.map(c => '<div class="crit"><div class="cx"><p class="ct">' + esc(c.t) + '</p>' +
-        '<p class="cr">Reward: ' + esc(c.r) + '</p></div><i></i></div>').join("") +
-      '<p class="ofoot">4 slots &middot; one each</p></article>';
-  }
-  return '<article class="ocard">' + head +
-    '<div class="boxes">' + Array.from({length:OBOXES}, (_, i) => '<i>' + (i + 1) + '</i>').join("") + '</div>' +
-    '<p class="ogoal">' + esc(o.goal) + '</p>' +
-    o.places.map((p, i) => '<div class="place"><span class="pn">' + ORD[i] + '</span><ul>' +
-      p.map(x => '<li>' + esc(x) + '</li>').join("") + '</ul></div>').join("") +
-    '</article>';
-}).join("");
+function oRender(){
+  document.getElementById("odeck").innerHTML = OBJECTIVES.map(o => {
+    const head = '<h3 class="onm">' + esc(o.n) + '</h3><div class="odash"></div>' +
+      '<p class="ohow">' +
+      esc(o.how || "When the criteria is met, resolve its reward based on place.") + '</p>';
+    if (o.lead) {
+      return '<article class="ocard lead">' + head +
+        o.crit.map(c => '<div class="crit"><div class="cx"><p class="ct">' + esc(c.t) + '</p>' +
+          '<p class="cr">Reward:<br>' + esc(c.r) + '</p></div><i>1</i></div>').join("") +
+        '</article>';
+    }
+    return '<article class="ocard">' + head +
+      '<div class="boxes">' + Array.from({length:OBOXES}, (_, i) => '<i>' + (i + 1) + '</i>').join("") + '</div>' +
+      '<p class="ogoal">' + esc(o.goal) + '</p>' +
+      o.places.map((p, i) => '<div class="place"><p class="pn"><b>' + ORD[i] + '</b> Place Reward:</p><ul>' +
+        p.map(x => '<li>' + esc(x) + '</li>').join("") + '</ul></div>').join("") +
+      '</article>';
+  }).join("");
+  oSizeCheck();
+}
+
+/* flag any Objective whose text overruns the printed Poker face */
+function oSizeCheck(){
+  document.querySelectorAll("#odeck .ocard").forEach(el => {
+    el.classList.remove("spill");
+    if (el.scrollHeight > el.clientHeight + 1) el.classList.add("spill");
+  });
+}
+oRender();
 
 /* worked example of the tie rule */
 (function(){
