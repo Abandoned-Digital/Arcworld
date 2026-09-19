@@ -98,16 +98,14 @@
   .tile.off{opacity:.11}
   .tile:hover{stroke:#fff;stroke-width:3}
   .volc{fill:#2b1a12;stroke:#100d0c;stroke-width:2}
-  #spiremark path{fill:none;stroke:#0d3d45;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
-  body.hidemark #spiremark{display:none}
+  #cpmark circle{fill:#f4efe7;stroke:#141110;stroke-width:3}
+  body.nocp #cpmark{display:none}
+  #mtnmark path,#hillmark path{fill:none;stroke:#2b3138;stroke-width:2.4;
+    stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+  body.hidemtn #mtnmark{display:none}
+  body.hidehill #hillmark{display:none}
   #volcano{filter:drop-shadow(0 0 14px rgba(224,90,37,.45))}
   #secline line{stroke:#fdfb4a;stroke-width:2.4;stroke-linecap:round;opacity:.75}
-  #riftline{display:none}
-  body.showrift #riftline{display:block}
-  #riftline line{stroke:#fff;stroke-width:5;stroke-linecap:round;opacity:.95}
-  #marks circle{fill:none;stroke:#fff;stroke-width:2.4;opacity:.9}
-  #marks{display:none}
-  body.showrift #marks{display:block}
   #seclabels text{font-family:var(--display);font-weight:700;font-size:30px;fill:#100d0c;
      opacity:.34;text-anchor:middle;dominant-baseline:central;pointer-events:none}
   #coords text{font-family:var(--mono);font-size:12px;fill:#171210;opacity:.62;
@@ -135,9 +133,9 @@
   .terr.off{opacity:.34}
   .terr .swatch{width:14px;height:16px;flex:none;margin-top:3px;background:var(--sw);
     clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);position:relative}
-  .terr[data-key="spire"] .swatch::after{content:"";position:absolute;left:4px;top:6px;
-    width:5px;height:5px;border-left:2px solid #0d3d45;border-top:2px solid #0d3d45;
-    transform:rotate(45deg)}
+  .terr[data-key="mountain"] .swatch::after,.terr[data-key="hills"] .swatch::after{
+    content:"";position:absolute;left:4px;top:6px;width:5px;height:5px;
+    border-left:2px solid #2b3138;border-top:2px solid #2b3138;transform:rotate(45deg)}
   .terr .nm{font-family:var(--display);font-weight:600;font-size:15px;display:flex;align-items:baseline;gap:8px}
   .terr .ct{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
   .terr .fx{font-size:12.5px;color:var(--ink-dim);line-height:1.45}
@@ -167,8 +165,9 @@
     border-bottom:1px solid var(--line);white-space:nowrap}
   thead th span{display:inline-block;width:8px;height:8px;margin-right:5px;background:var(--sw)}
   .brow i{position:relative}
-  .brow.spire i::after{content:"";position:absolute;left:2px;top:2px;width:5px;height:5px;
-    border-left:2px solid #0d3d45;border-top:2px solid #0d3d45;transform:rotate(45deg)}
+  .brow.mountain i::after,.brow.hills i::after{content:"";position:absolute;left:2px;top:2px;
+    width:5px;height:5px;border-left:2px solid #2b3138;border-top:2px solid #2b3138;
+    transform:rotate(45deg)}
   th.l,td.l{text-align:left}
   tbody tr:hover{background:var(--panel-2)}
   td.sec{font-family:var(--display);font-weight:600;font-size:14px}
@@ -1019,12 +1018,12 @@
   <header>
     <p class="eyebrow">Orbital survey &middot; 16 Sectors &middot; 222 tiles</p>
     <h1>Arcworld Sector Atlas</h1>
-    <p class="lede">The built board, read back tile by tile. A lava rift runs pole to pole through the central volcano, dividing Arcworld into a <strong>west half and an east half of 111 tiles each</strong> &mdash; close on every terrain, exactly equal on bonus tiles, and quite different to look at. Four crossings join them.</p>
+    <p class="lede">The built board, read back tile by tile. A lava rift runs pole to pole through the central volcano, dividing Arcworld into a <strong>west half and an east half of 111 tiles each</strong> &mdash; dead even on the bonus terrains, close on most of the rest, and quite different to look at. Four crossings join them.</p>
     <div class="stats">
-      <div class="stat"><b>222</b><span>Tiles</span></div>
-      <div class="stat"><b>111 &middot; 111</b><span>Tiles per half</span></div>
-      <div class="stat"><b>90 &middot; 89</b><span>Passable per half</span></div>
-      <div class="stat"><b>43</b><span>Lava</span></div>
+      <div class="stat"><b id="at-tiles">&mdash;</b><span>Tiles</span></div>
+      <div class="stat"><b id="at-halves">&mdash;</b><span>Tiles per half</span></div>
+      <div class="stat"><b id="at-passable">&mdash;</b><span>Passable per half</span></div>
+      <div class="stat"><b id="at-lava">&mdash;</b><span>Lava</span></div>
       <div class="stat"><b>4</b><span>Crossings</span></div>
     </div>
   </header>
@@ -1049,14 +1048,14 @@
 <polygon class="tile" points="894.5,14.0 925.9,32.2 925.9,68.5 894.5,86.6 863.0,68.5 863.0,32.2" data-key="mountain" data-sec="4" data-lbl="A11" data-half="E"/>
 <polygon class="tile" points="957.4,14.0 988.8,32.2 988.8,68.5 957.4,86.6 925.9,68.5 925.9,32.2" data-key="permafrost" data-sec="4" data-lbl="A12" data-half="E"/>
 <polygon class="tile" points="234.1,68.5 265.6,86.6 265.6,122.9 234.1,141.1 202.7,122.9 202.7,86.6" data-key="permafrost" data-sec="1" data-lbl="B1" data-half="W"/>
-<polygon class="tile" points="297.1,68.5 328.5,86.6 328.5,122.9 297.1,141.1 265.6,122.9 265.6,86.6" data-key="sludge" data-sec="1" data-lbl="B2" data-half="W"/>
+<polygon class="tile" points="297.1,68.5 328.5,86.6 328.5,122.9 297.1,141.1 265.6,122.9 265.6,86.6" data-key="lava" data-sec="1" data-lbl="B2" data-half="W"/>
 <polygon class="tile" points="360.0,68.5 391.4,86.6 391.4,122.9 360.0,141.1 328.5,122.9 328.5,86.6" data-key="hills" data-sec="1" data-lbl="B3" data-half="W"/>
 <polygon class="tile" points="422.9,68.5 454.3,86.6 454.3,122.9 422.9,141.1 391.4,122.9 391.4,86.6" data-key="hills" data-sec="2" data-lbl="B4" data-half="W"/>
-<polygon class="tile" points="485.8,68.5 517.2,86.6 517.2,122.9 485.8,141.1 454.3,122.9 454.3,86.6" data-key="sludge" data-sec="2" data-lbl="B5" data-half="W"/>
+<polygon class="tile" points="485.8,68.5 517.2,86.6 517.2,122.9 485.8,141.1 454.3,122.9 454.3,86.6" data-key="lava" data-sec="2" data-lbl="B5" data-half="W"/>
 <polygon class="tile" points="548.6,68.5 580.1,86.6 580.1,122.9 548.6,141.1 517.2,122.9 517.2,86.6" data-key="permafrost" data-sec="2" data-lbl="B6" data-half="W"/>
 <polygon class="tile" points="611.6,68.5 643.0,86.6 643.0,122.9 611.6,141.1 580.1,122.9 580.1,86.6" data-key="lava" data-sec="2" data-lbl="B7" data-half="W"/>
 <polygon class="tile" points="674.5,68.5 705.9,86.6 705.9,122.9 674.5,141.1 643.0,122.9 643.0,86.6" data-key="hills" data-sec="3" data-lbl="B8" data-half="E"/>
-<polygon class="tile" points="737.4,68.5 768.8,86.6 768.8,122.9 737.4,141.1 705.9,122.9 705.9,86.6" data-key="spire" data-sec="3" data-lbl="B9" data-half="E"/>
+<polygon class="tile" points="737.4,68.5 768.8,86.6 768.8,122.9 737.4,141.1 705.9,122.9 705.9,86.6" data-key="lava" data-sec="3" data-lbl="B9" data-half="E"/>
 <polygon class="tile" points="800.2,68.5 831.7,86.6 831.7,122.9 800.2,141.1 768.8,122.9 768.8,86.6" data-key="hills" data-sec="3" data-lbl="B10" data-half="E"/>
 <polygon class="tile" points="863.1,68.5 894.6,86.6 894.6,122.9 863.1,141.1 831.7,122.9 831.7,86.6" data-key="mountain" data-sec="4" data-lbl="B11" data-half="E"/>
 <polygon class="tile" points="926.1,68.5 957.5,86.6 957.5,122.9 926.1,141.1 894.6,122.9 894.6,86.6" data-key="lava" data-sec="4" data-lbl="B12" data-half="E"/>
@@ -1087,7 +1086,7 @@
 <polygon class="tile" points="737.4,177.4 768.8,195.6 768.8,231.9 737.4,250.0 705.9,231.9 705.9,195.6" data-key="wasteland" data-sec="3" data-lbl="D10" data-half="E"/>
 <polygon class="tile" points="800.2,177.4 831.7,195.6 831.7,231.9 800.2,250.0 768.8,231.9 768.8,195.6" data-key="mountain" data-sec="3" data-lbl="D11" data-half="E"/>
 <polygon class="tile" points="863.1,177.4 894.6,195.6 894.6,231.9 863.1,250.0 831.7,231.9 831.7,195.6" data-key="lava" data-sec="4" data-lbl="D12" data-half="E"/>
-<polygon class="tile" points="926.1,177.4 957.5,195.6 957.5,231.9 926.1,250.0 894.6,231.9 894.6,195.6" data-key="mountain" data-sec="4" data-lbl="D13" data-half="E"/>
+<polygon class="tile" points="926.1,177.4 957.5,195.6 957.5,231.9 926.1,250.0 894.6,231.9 894.6,195.6" data-key="spire" data-sec="4" data-lbl="D13" data-half="E"/>
 <polygon class="tile" points="989.0,177.4 1020.4,195.6 1020.4,231.9 989.0,250.0 957.5,231.9 957.5,195.6" data-key="mountain" data-sec="4" data-lbl="D14" data-half="E"/>
 <polygon class="tile" points="1051.8,177.4 1083.3,195.6 1083.3,231.9 1051.8,250.0 1020.4,231.9 1020.4,195.6" data-key="wasteland" data-sec="4" data-lbl="D15" data-half="E"/>
 <polygon class="tile" points="139.7,231.9 171.1,250.0 171.1,286.4 139.7,304.5 108.2,286.4 108.2,250.0" data-key="sludge" data-sec="5" data-lbl="E1" data-half="W"/>
@@ -1099,12 +1098,12 @@
 <polygon class="tile" points="517.1,231.9 548.5,250.0 548.5,286.4 517.1,304.5 485.6,286.4 485.6,250.0" data-key="wasteland" data-sec="6" data-lbl="E7" data-half="W"/>
 <polygon class="tile" points="580.0,231.9 611.4,250.0 611.4,286.4 580.0,304.5 548.5,286.4 548.5,250.0" data-key="mountain" data-sec="6" data-lbl="E8" data-half="W"/>
 <polygon class="tile" points="642.9,231.9 674.3,250.0 674.3,286.4 642.9,304.5 611.4,286.4 611.4,250.0" data-key="lava" data-sec="7" data-lbl="E9" data-half="E"/>
-<polygon class="tile" points="705.8,231.9 737.2,250.0 737.2,286.4 705.8,304.5 674.3,286.4 674.3,250.0" data-key="mountain" data-sec="7" data-lbl="E10" data-half="E"/>
+<polygon class="tile" points="705.8,231.9 737.2,250.0 737.2,286.4 705.8,304.5 674.3,286.4 674.3,250.0" data-key="sludge" data-sec="7" data-lbl="E10" data-half="E"/>
 <polygon class="tile" points="768.6,231.9 800.1,250.0 800.1,286.4 768.6,304.5 737.2,286.4 737.2,250.0" data-key="mountain" data-sec="7" data-lbl="E11" data-half="E"/>
 <polygon class="tile" points="831.5,231.9 863.0,250.0 863.0,286.4 831.5,304.5 800.1,286.4 800.1,250.0" data-key="lava" data-sec="7" data-lbl="E12" data-half="E"/>
 <polygon class="tile" points="894.5,231.9 925.9,250.0 925.9,286.4 894.5,304.5 863.0,286.4 863.0,250.0" data-key="mountain" data-sec="8" data-lbl="E13" data-half="E"/>
 <polygon class="tile" points="957.4,231.9 988.8,250.0 988.8,286.4 957.4,304.5 925.9,286.4 925.9,250.0" data-key="mountain" data-sec="8" data-lbl="E14" data-half="E"/>
-<polygon class="tile" points="1020.3,231.9 1051.7,250.0 1051.7,286.4 1020.3,304.5 988.8,286.4 988.8,250.0" data-key="mountain" data-sec="8" data-lbl="E15" data-half="E"/>
+<polygon class="tile" points="1020.3,231.9 1051.7,250.0 1051.7,286.4 1020.3,304.5 988.8,286.4 988.8,250.0" data-key="wasteland" data-sec="8" data-lbl="E15" data-half="E"/>
 <polygon class="tile" points="1083.1,231.9 1114.6,250.0 1114.6,286.4 1083.1,304.5 1051.7,286.4 1051.7,250.0" data-key="mountain" data-sec="8" data-lbl="E16" data-half="E"/>
 <polygon class="tile" points="108.3,286.4 139.8,304.5 139.8,340.8 108.3,359.0 76.9,340.8 76.9,304.5" data-key="mountain" data-sec="5" data-lbl="F1" data-half="W"/>
 <polygon class="tile" points="171.2,286.4 202.7,304.5 202.7,340.8 171.2,359.0 139.8,340.8 139.8,304.5" data-key="lava" data-sec="5" data-lbl="F2" data-half="W"/>
@@ -1112,10 +1111,10 @@
 <polygon class="tile" points="297.1,286.4 328.5,304.5 328.5,340.8 297.1,359.0 265.6,340.8 265.6,304.5" data-key="spire" data-sec="5" data-lbl="F4" data-half="W"/>
 <polygon class="tile" points="360.0,286.4 391.4,304.5 391.4,340.8 360.0,359.0 328.5,340.8 328.5,304.5" data-key="sludge" data-sec="6" data-lbl="F5" data-half="W"/>
 <polygon class="tile" points="422.9,286.4 454.3,304.5 454.3,340.8 422.9,359.0 391.4,340.8 391.4,304.5" data-key="hills" data-sec="6" data-lbl="F6" data-half="W"/>
-<polygon class="tile" points="485.8,286.4 517.2,304.5 517.2,340.8 485.8,359.0 454.3,340.8 454.3,304.5" data-key="spire" data-sec="6" data-lbl="F7" data-half="W"/>
+<polygon class="tile" points="485.8,286.4 517.2,304.5 517.2,340.8 485.8,359.0 454.3,340.8 454.3,304.5" data-key="lava" data-sec="6" data-lbl="F7" data-half="W"/>
 <polygon class="tile" points="548.6,286.4 580.1,304.5 580.1,340.8 548.6,359.0 517.2,340.8 517.2,304.5" data-key="sludge" data-sec="6" data-lbl="F8" data-half="W"/>
 <polygon class="tile" points="611.6,286.4 643.0,304.5 643.0,340.8 611.6,359.0 580.1,340.8 580.1,304.5" data-key="sludge" data-sec="6" data-lbl="F9" data-half="W"/>
-<polygon class="tile" points="674.5,286.4 705.9,304.5 705.9,340.8 674.5,359.0 643.0,340.8 643.0,304.5" data-key="mountain" data-sec="7" data-lbl="F10" data-half="E"/>
+<polygon class="tile" points="674.5,286.4 705.9,304.5 705.9,340.8 674.5,359.0 643.0,340.8 643.0,304.5" data-key="sludge" data-sec="7" data-lbl="F10" data-half="E"/>
 <polygon class="tile" points="737.4,286.4 768.8,304.5 768.8,340.8 737.4,359.0 705.9,340.8 705.9,304.5" data-key="lava" data-sec="7" data-lbl="F11" data-half="E"/>
 <polygon class="tile" points="800.2,286.4 831.7,304.5 831.7,340.8 800.2,359.0 768.8,340.8 768.8,304.5" data-key="mountain" data-sec="7" data-lbl="F12" data-half="E"/>
 <polygon class="tile" points="863.1,286.4 894.6,304.5 894.6,340.8 863.1,359.0 831.7,340.8 831.7,304.5" data-key="mountain" data-sec="7" data-lbl="F13" data-half="E"/>
@@ -1131,7 +1130,7 @@
 <polygon class="tile" points="391.2,340.8 422.7,359.0 422.7,395.3 391.2,413.5 359.8,395.3 359.8,359.0" data-key="spire" data-sec="6" data-lbl="G6" data-half="W"/>
 <polygon class="tile" points="454.2,340.8 485.6,359.0 485.6,395.3 454.2,413.5 422.7,395.3 422.7,359.0" data-key="mountain" data-sec="6" data-lbl="G7" data-half="W"/>
 <polygon class="tile" points="517.1,340.8 548.5,359.0 548.5,395.3 517.1,413.5 485.6,395.3 485.6,359.0" data-key="mountain" data-sec="6" data-lbl="G8" data-half="W"/>
-<polygon class="tile" points="705.8,340.8 737.2,359.0 737.2,395.3 705.8,413.5 674.3,395.3 674.3,359.0" data-key="mountain" data-sec="7" data-lbl="G11" data-half="E"/>
+<polygon class="tile" points="705.8,340.8 737.2,359.0 737.2,395.3 705.8,413.5 674.3,395.3 674.3,359.0" data-key="lava" data-sec="7" data-lbl="G11" data-half="E"/>
 <polygon class="tile" points="768.6,340.8 800.1,359.0 800.1,395.3 768.6,413.5 737.2,395.3 737.2,359.0" data-key="wasteland" data-sec="7" data-lbl="G12" data-half="E"/>
 <polygon class="tile" points="831.5,340.8 863.0,359.0 863.0,395.3 831.5,413.5 800.1,395.3 800.1,359.0" data-key="sludge" data-sec="7" data-lbl="G13" data-half="E"/>
 <polygon class="tile" points="894.5,340.8 925.9,359.0 925.9,395.3 894.5,413.5 863.0,395.3 863.0,359.0" data-key="hills" data-sec="7" data-lbl="G14" data-half="E"/>
@@ -1141,7 +1140,7 @@
 <polygon class="tile" points="1146.0,340.8 1177.5,359.0 1177.5,395.3 1146.0,413.5 1114.6,395.3 1114.6,359.0" data-key="sludge" data-sec="8" data-lbl="G18" data-half="E"/>
 <polygon class="tile" points="45.5,395.3 76.9,413.5 76.9,449.8 45.5,467.9 14.0,449.8 14.0,413.5" data-key="sludge" data-sec="9" data-lbl="H1" data-half="W"/>
 <polygon class="tile" points="108.3,395.3 139.8,413.5 139.8,449.8 108.3,467.9 76.9,449.8 76.9,413.5" data-key="sludge" data-sec="9" data-lbl="H2" data-half="W"/>
-<polygon class="tile" points="171.2,395.3 202.7,413.5 202.7,449.8 171.2,467.9 139.8,449.8 139.8,413.5" data-key="mountain" data-sec="5" data-lbl="H3" data-half="W"/>
+<polygon class="tile" points="171.2,395.3 202.7,413.5 202.7,449.8 171.2,467.9 139.8,449.8 139.8,413.5" data-key="sludge" data-sec="5" data-lbl="H3" data-half="W"/>
 <polygon class="tile" points="234.1,395.3 265.6,413.5 265.6,449.8 234.1,467.9 202.7,449.8 202.7,413.5" data-key="mountain" data-sec="5" data-lbl="H4" data-half="W"/>
 <polygon class="tile" points="297.1,395.3 328.5,413.5 328.5,449.8 297.1,467.9 265.6,449.8 265.6,413.5" data-key="sludge" data-sec="10" data-lbl="H5" data-half="W"/>
 <polygon class="tile" points="360.0,395.3 391.4,413.5 391.4,449.8 360.0,467.9 328.5,449.8 328.5,413.5" data-key="sludge" data-sec="10" data-lbl="H6" data-half="W"/>
@@ -1157,11 +1156,11 @@
 <polygon class="tile" points="1177.6,395.3 1209.1,413.5 1209.1,449.8 1177.6,467.9 1146.2,449.8 1146.2,413.5" data-key="sludge" data-sec="8" data-lbl="H19" data-half="E"/>
 <polygon class="tile" points="76.8,449.8 108.2,467.9 108.2,504.3 76.8,522.4 45.3,504.3 45.3,467.9" data-key="hills" data-sec="9" data-lbl="I1" data-half="W"/>
 <polygon class="tile" points="139.7,449.8 171.1,467.9 171.1,504.3 139.7,522.4 108.2,504.3 108.2,467.9" data-key="wasteland" data-sec="9" data-lbl="I2" data-half="W"/>
-<polygon class="tile" points="202.5,449.8 234.0,467.9 234.0,504.3 202.5,522.4 171.1,504.3 171.1,467.9" data-key="mountain" data-sec="9" data-lbl="I3" data-half="W"/>
+<polygon class="tile" points="202.5,449.8 234.0,467.9 234.0,504.3 202.5,522.4 171.1,504.3 171.1,467.9" data-key="wasteland" data-sec="9" data-lbl="I3" data-half="W"/>
 <polygon class="tile" points="265.5,449.8 296.9,467.9 296.9,504.3 265.5,522.4 234.0,504.3 234.0,467.9" data-key="mountain" data-sec="9" data-lbl="I4" data-half="W"/>
 <polygon class="tile" points="328.4,449.8 359.8,467.9 359.8,504.3 328.4,522.4 296.9,504.3 296.9,467.9" data-key="mountain" data-sec="10" data-lbl="I5" data-half="W"/>
 <polygon class="tile" points="391.2,449.8 422.7,467.9 422.7,504.3 391.2,522.4 359.8,504.3 359.8,467.9" data-key="mountain" data-sec="10" data-lbl="I6" data-half="W"/>
-<polygon class="tile" points="454.2,449.8 485.6,467.9 485.6,504.3 454.2,522.4 422.7,504.3 422.7,467.9" data-key="mountain" data-sec="10" data-lbl="I7" data-half="W"/>
+<polygon class="tile" points="454.2,449.8 485.6,467.9 485.6,504.3 454.2,522.4 422.7,504.3 422.7,467.9" data-key="hills" data-sec="10" data-lbl="I7" data-half="W"/>
 <polygon class="tile" points="517.1,449.8 548.5,467.9 548.5,504.3 517.1,522.4 485.6,504.3 485.6,467.9" data-key="mountain" data-sec="10" data-lbl="I8" data-half="W"/>
 <polygon class="tile" points="705.8,449.8 737.2,467.9 737.2,504.3 705.8,522.4 674.3,504.3 674.3,467.9" data-key="mountain" data-sec="11" data-lbl="I11" data-half="E"/>
 <polygon class="tile" points="768.6,449.8 800.1,467.9 800.1,504.3 768.6,522.4 737.2,504.3 737.2,467.9" data-key="hills" data-sec="11" data-lbl="I12" data-half="E"/>
@@ -1179,8 +1178,8 @@
 <polygon class="tile" points="422.9,504.3 454.3,522.4 454.3,558.7 422.9,576.9 391.4,558.7 391.4,522.4" data-key="lava" data-sec="10" data-lbl="J6" data-half="W"/>
 <polygon class="tile" points="485.8,504.3 517.2,522.4 517.2,558.7 485.8,576.9 454.3,558.7 454.3,522.4" data-key="lava" data-sec="10" data-lbl="J7" data-half="W"/>
 <polygon class="tile" points="548.6,504.3 580.1,522.4 580.1,558.7 548.6,576.9 517.2,558.7 517.2,522.4" data-key="sludge" data-sec="10" data-lbl="J8" data-half="W"/>
-<polygon class="tile" points="611.6,504.3 643.0,522.4 643.0,558.7 611.6,576.9 580.1,558.7 580.1,522.4" data-key="mountain" data-sec="11" data-lbl="J9" data-half="E"/>
-<polygon class="tile" points="674.5,504.3 705.9,522.4 705.9,558.7 674.5,576.9 643.0,558.7 643.0,522.4" data-key="mountain" data-sec="11" data-lbl="J10" data-half="E"/>
+<polygon class="tile" points="611.6,504.3 643.0,522.4 643.0,558.7 611.6,576.9 580.1,558.7 580.1,522.4" data-key="sludge" data-sec="11" data-lbl="J9" data-half="E"/>
+<polygon class="tile" points="674.5,504.3 705.9,522.4 705.9,558.7 674.5,576.9 643.0,558.7 643.0,522.4" data-key="sludge" data-sec="11" data-lbl="J10" data-half="E"/>
 <polygon class="tile" points="737.4,504.3 768.8,522.4 768.8,558.7 737.4,576.9 705.9,558.7 705.9,522.4" data-key="lava" data-sec="11" data-lbl="J11" data-half="E"/>
 <polygon class="tile" points="800.2,504.3 831.7,522.4 831.7,558.7 800.2,576.9 768.8,558.7 768.8,522.4" data-key="sludge" data-sec="11" data-lbl="J12" data-half="E"/>
 <polygon class="tile" points="863.1,504.3 894.6,522.4 894.6,558.7 863.1,576.9 831.7,558.7 831.7,522.4" data-key="sludge" data-sec="11" data-lbl="J13" data-half="E"/>
@@ -1200,7 +1199,7 @@
 <polygon class="tile" points="705.8,558.7 737.2,576.9 737.2,613.2 705.8,631.4 674.3,613.2 674.3,576.9" data-key="wasteland" data-sec="11" data-lbl="K10" data-half="E"/>
 <polygon class="tile" points="768.6,558.7 800.1,576.9 800.1,613.2 768.6,631.4 737.2,613.2 737.2,576.9" data-key="sludge" data-sec="11" data-lbl="K11" data-half="E"/>
 <polygon class="tile" points="831.5,558.7 863.0,576.9 863.0,613.2 831.5,631.4 800.1,613.2 800.1,576.9" data-key="sludge" data-sec="11" data-lbl="K12" data-half="E"/>
-<polygon class="tile" points="894.5,558.7 925.9,576.9 925.9,613.2 894.5,631.4 863.0,613.2 863.0,576.9" data-key="lava" data-sec="12" data-lbl="K13" data-half="E"/>
+<polygon class="tile" points="894.5,558.7 925.9,576.9 925.9,613.2 894.5,631.4 863.0,613.2 863.0,576.9" data-key="wasteland" data-sec="12" data-lbl="K13" data-half="E"/>
 <polygon class="tile" points="957.4,558.7 988.8,576.9 988.8,613.2 957.4,631.4 925.9,613.2 925.9,576.9" data-key="sludge" data-sec="12" data-lbl="K14" data-half="E"/>
 <polygon class="tile" points="1020.3,558.7 1051.7,576.9 1051.7,613.2 1020.3,631.4 988.8,613.2 988.8,576.9" data-key="sludge" data-sec="12" data-lbl="K15" data-half="E"/>
 <polygon class="tile" points="1083.1,558.7 1114.6,576.9 1114.6,613.2 1083.1,631.4 1051.7,613.2 1051.7,576.9" data-key="lava" data-sec="12" data-lbl="K16" data-half="E"/>
@@ -1266,6 +1265,24 @@
 <polygon class="volc" points="674.5,395.3 705.9,413.5 705.9,449.8 674.5,467.9 643.0,449.8 643.0,413.5"/>
 <polygon class="volc" points="580.0,449.8 611.4,467.9 611.4,504.3 580.0,522.4 548.5,504.3 548.5,467.9"/>
 <polygon class="volc" points="642.9,449.8 674.3,467.9 674.3,504.3 642.9,522.4 611.4,504.3 611.4,467.9"/>
+</g>
+<g id="cpmark">
+<circle cx="297.1" cy="104.8" r="11.5" data-sec="1" data-lbl="B2"/>
+<circle cx="485.8" cy="104.8" r="11.5" data-sec="2" data-lbl="B5"/>
+<circle cx="737.3" cy="104.8" r="11.5" data-sec="3" data-lbl="B9"/>
+<circle cx="926.0" cy="104.8" r="11.5" data-sec="4" data-lbl="B12"/>
+<circle cx="171.3" cy="322.7" r="11.5" data-sec="5" data-lbl="F2"/>
+<circle cx="485.8" cy="322.7" r="11.5" data-sec="6" data-lbl="F7"/>
+<circle cx="737.3" cy="322.7" r="11.5" data-sec="7" data-lbl="F11"/>
+<circle cx="1051.8" cy="322.7" r="11.5" data-sec="8" data-lbl="F16"/>
+<circle cx="171.3" cy="540.6" r="11.5" data-sec="9" data-lbl="J2"/>
+<circle cx="485.8" cy="540.6" r="11.5" data-sec="10" data-lbl="J7"/>
+<circle cx="737.3" cy="540.6" r="11.5" data-sec="11" data-lbl="J11"/>
+<circle cx="1051.8" cy="540.6" r="11.5" data-sec="12" data-lbl="J16"/>
+<circle cx="297.1" cy="758.5" r="11.5" data-sec="13" data-lbl="N2"/>
+<circle cx="485.8" cy="758.5" r="11.5" data-sec="14" data-lbl="N5"/>
+<circle cx="737.3" cy="758.5" r="11.5" data-sec="15" data-lbl="N9"/>
+<circle cx="926.0" cy="758.5" r="11.5" data-sec="16" data-lbl="N12"/>
 </g>
 <g id="secline">
 <line x1="1146.0" y1="340.8" x2="1177.5" y2="359.0"/>
@@ -1708,49 +1725,6 @@
 <line x1="548.6" y1="467.9" x2="517.2" y2="449.8"/>
 <line x1="517.2" y1="413.5" x2="548.6" y2="395.3"/>
 </g>
-<g id="riftline">
-<line x1="580.0" y1="231.9" x2="611.4" y2="250.0"/>
-<line x1="611.4" y1="250.0" x2="611.4" y2="286.4"/>
-<line x1="643.0" y1="340.8" x2="643.0" y2="304.5"/>
-<line x1="580.1" y1="522.4" x2="580.1" y2="558.7"/>
-<line x1="580.1" y1="740.3" x2="580.1" y2="776.6"/>
-<line x1="580.1" y1="195.6" x2="580.1" y2="231.9"/>
-<line x1="611.4" y1="32.2" x2="611.4" y2="68.5"/>
-<line x1="611.6" y1="613.2" x2="643.0" y2="631.4"/>
-<line x1="643.0" y1="631.4" x2="643.0" y2="667.7"/>
-<line x1="643.0" y1="667.7" x2="611.6" y2="685.8"/>
-<line x1="643.0" y1="122.9" x2="643.0" y2="86.6"/>
-<line x1="611.4" y1="831.1" x2="611.4" y2="794.8"/>
-<line x1="611.6" y1="286.4" x2="643.0" y2="304.5"/>
-<line x1="643.0" y1="304.5" x2="643.0" y2="340.8"/>
-<line x1="611.6" y1="576.9" x2="580.1" y2="558.7"/>
-<line x1="642.9" y1="631.4" x2="611.4" y2="613.2"/>
-<line x1="611.4" y1="613.2" x2="611.4" y2="576.9"/>
-<line x1="611.6" y1="794.8" x2="580.1" y2="776.6"/>
-<line x1="580.1" y1="740.3" x2="611.6" y2="722.1"/>
-<line x1="611.4" y1="722.1" x2="611.4" y2="685.8"/>
-<line x1="611.4" y1="685.8" x2="642.9" y2="667.7"/>
-<line x1="611.6" y1="68.5" x2="643.0" y2="86.6"/>
-<line x1="643.0" y1="86.6" x2="643.0" y2="122.9"/>
-<line x1="643.0" y1="122.9" x2="611.6" y2="141.1"/>
-<line x1="611.6" y1="250.0" x2="580.1" y2="231.9"/>
-<line x1="580.1" y1="195.6" x2="611.6" y2="177.4"/>
-<line x1="580.0" y1="776.6" x2="611.4" y2="794.8"/>
-<line x1="611.4" y1="794.8" x2="611.4" y2="831.1"/>
-<line x1="611.4" y1="177.4" x2="611.4" y2="141.1"/>
-<line x1="611.4" y1="141.1" x2="642.9" y2="122.9"/>
-<line x1="642.9" y1="304.5" x2="611.4" y2="286.4"/>
-<line x1="611.4" y1="286.4" x2="611.4" y2="250.0"/>
-<line x1="580.0" y1="558.7" x2="611.4" y2="576.9"/>
-<line x1="611.4" y1="576.9" x2="611.4" y2="613.2"/>
-<line x1="611.4" y1="685.8" x2="611.4" y2="722.1"/>
-<line x1="611.4" y1="722.1" x2="580.0" y2="740.3"/>
-<line x1="642.9" y1="86.6" x2="611.4" y2="68.5"/>
-<line x1="611.4" y1="68.5" x2="611.4" y2="32.2"/>
-<line x1="643.0" y1="667.7" x2="643.0" y2="631.4"/>
-<line x1="611.4" y1="141.1" x2="611.4" y2="177.4"/>
-<line x1="611.4" y1="177.4" x2="580.0" y2="195.6"/>
-</g>
 <g id="seclabels">
 <text x="294.7" y="139.8">1</text>
 <text x="509.9" y="129.9">2</text>
@@ -1991,41 +1965,13 @@
 <text x="831.5" y="812.9">O10</text>
 <text x="894.5" y="812.9">O11</text>
 <text x="957.4" y="812.9">O12</text>
-</g><g id="spiremark">
-<path d="M 728.4 110.8 L 737.4 97.8 L 746.4 110.8"/>
-<path d="M 696.8 165.3 L 705.8 152.3 L 714.8 165.3"/>
-<path d="M 759.6 165.3 L 768.6 152.3 L 777.6 165.3"/>
-<path d="M 256.5 274.2 L 265.5 261.2 L 274.5 274.2"/>
-<path d="M 288.1 328.7 L 297.1 315.7 L 306.1 328.7"/>
-<path d="M 476.8 328.7 L 485.8 315.7 L 494.8 328.7"/>
-<path d="M 382.2 383.2 L 391.2 370.2 L 400.2 383.2"/>
-<path d="M 791.2 437.6 L 800.2 424.6 L 809.2 437.6"/>
-<path d="M 854.1 437.6 L 863.1 424.6 L 872.1 437.6"/>
-<path d="M 822.5 492.1 L 831.5 479.1 L 840.5 492.1"/>
-<path d="M 1074.1 492.1 L 1083.1 479.1 L 1092.1 492.1"/>
-<path d="M 99.3 546.6 L 108.3 533.6 L 117.3 546.6"/>
-<path d="M 508.1 601.0 L 517.1 588.0 L 526.1 601.0"/>
-<path d="M 476.8 655.5 L 485.8 642.5 L 494.8 655.5"/>
-<path d="M 539.6 655.5 L 548.6 642.5 L 557.6 655.5"/>
-<path d="M 728.4 655.5 L 737.4 642.5 L 746.4 655.5"/>
-<path d="M 791.2 655.5 L 800.2 642.5 L 809.2 655.5"/>
-<path d="M 980.0 655.5 L 989.0 642.5 L 998.0 655.5"/>
-<path d="M 1042.8 655.5 L 1051.8 642.5 L 1060.8 655.5"/>
-<path d="M 508.1 710.0 L 517.1 697.0 L 526.1 710.0"/>
-<path d="M 633.9 710.0 L 642.9 697.0 L 651.9 710.0"/>
-<path d="M 1011.3 710.0 L 1020.3 697.0 L 1029.2 710.0"/>
-<path d="M 351.0 764.5 L 360.0 751.5 L 369.0 764.5"/>
-</g><g id="marks">
-<circle cx="642.9" cy="50.3" r="17"/>
-<circle cx="611.6" cy="322.7" r="17"/>
-<circle cx="611.6" cy="540.6" r="17"/>
-<circle cx="642.9" cy="812.9" r="17"/>
-</g></svg>
+</g><g id="mtnmark"></g>
+<g id="hillmark"></g></svg>
       </div>
       <div class="controls">
-        <button class="toggle" id="tSec" aria-pressed="true">Sector numbers</button>
+        <button class="toggle" id="tSec" aria-pressed="false">Sector numbers</button>
         <button class="toggle" id="tCoord" aria-pressed="false">Tile codes</button>
-        <button class="toggle" id="tRift" aria-pressed="false">Rift &amp; crossings</button>
+        <button class="toggle" id="tCP" aria-pressed="true">Control Points</button>
         <button class="toggle" id="tClear" aria-pressed="false">Show all terrain</button>
         <span class="readout" id="readout">Hover a tile</span>
       </div>
@@ -2035,7 +1981,7 @@
 
   <section>
     <h2>Balance</h2>
-    <p class="sub">The rift falls on the Sector boundary between columns two and three, so the halves come out at 111 tiles each with no reshaping. Terrain totals are close rather than identical &mdash; every type sits within three tiles of its opposite number &mdash; and the two bonus terrains land on <em>exactly 22 tiles per half</em>. Hills and spires separate on the other axis: 67% of hills sit in the northern rows, 61% of spires in the southern ones.</p>
+    <p class="sub">The rift falls on the Sector boundary between columns two and three, so the halves come out at 111 tiles each with no reshaping. Terrain totals are close rather than identical &mdash; the widest gap between halves is <b id="at-spread">&mdash;</b> tiles &mdash; and the two bonus terrains land on <em>exactly <b id="at-bonus">&mdash;</b> tiles per half</em>. Hills and spires separate on the other axis: <b id="at-hn">&mdash;</b>% of hills sit in the northern rows, <b id="at-ss">&mdash;</b>% of spires in the southern ones.</p>
     <div class="balance" id="balance"></div>
   </section>
 
@@ -2500,17 +2446,27 @@ if ("IntersectionObserver" in window) {
 
 /* ============ ATLAS ============ */
 const TERRAIN = [
-  {key:"sludge",     name:"Sludge",     total:44, fx:"Fewer combat dice attacking and defending"},
-  {key:"mountain",   name:"Mountain",   total:43, fx:"Costs 2 movement instead of 1"},
-  {key:"lava",       name:"Lava Field", total:43, fx:"Impassable — cannot be entered or crossed"},
-  {key:"wasteland",  name:"Wasteland",  total:24, fx:"Neutral — no effect either way"},
-  {key:"spire",      name:"Spire",      total:23, fx:"An extra combat die defending"},
-  {key:"hills",      name:"Hills",      total:21, fx:"An extra combat die attacking"},
-  {key:"permafrost", name:"Permafrost", total:24, fx:"Costs 0 movement — rim tiles and one row in"}
+  {key:"sludge",     name:"Sludge",     fx:"Fewer combat dice attacking and defending"},
+  {key:"mountain",   name:"Mountain",   fx:"Costs 2 movement instead of 1"},
+  {key:"lava",       name:"Lava Field", fx:"Impassable — cannot be entered or crossed"},
+  {key:"wasteland",  name:"Wasteland",  fx:"Neutral — no effect either way"},
+  {key:"spire",      name:"Spire",      fx:"An extra combat die defending"},
+  {key:"hills",      name:"Hills",      fx:"An extra combat die attacking"},
+  {key:"permafrost", name:"Permafrost", fx:"Costs 0 movement — rim tiles and one row in"}
 ];
-const ROW = {"1":[2,1,3,1,0,3,4],"2":[3,1,2,2,0,2,3],"3":[2,1,1,1,3,2,3],"4":[0,6,2,3,0,1,2],"5":[2,4,2,1,2,3,0],"6":[6,4,1,1,2,1,0],"7":[2,6,3,1,1,1,0],"8":[6,4,1,2,0,1,0],"9":[2,5,3,2,1,1,0],"10":[4,5,2,1,1,1,0],"11":[4,3,3,1,2,2,0],"12":[4,2,6,0,1,1,0],"13":[1,1,4,3,1,1,3],"14":[1,0,4,2,3,0,3],"15":[2,0,3,2,3,1,2],"16":[3,0,3,1,3,0,4]};
+
+/* every count on this page is read off the tiles themselves, so retiling the board
+   cannot leave a total, a row or a headline figure behind */
+const TILES = [...document.querySelectorAll("#planet .tile")].map(t =>
+  ({key:t.dataset.key, sec:+t.dataset.sec, half:t.dataset.half}));
+TERRAIN.forEach(t => t.total = TILES.filter(x => x.key === t.key).length);
 const NAME = {1:"Frost Marches","2":"Frost Corridor","3":"Northern Spires","4":"Iron Highlands","5":"Western Downs","6":"Green Reach","7":"Ash Basin","8":"Eastern Reach","9":"Grey Coast","10":"Central Flats","11":"Lower Ashspine","12":"Cinder Verge","13":"Southern Ice","14":"Southern Ice","15":"South Spires","16":"Ashen South"}
-const SIZE = {"1":14,"2":13,"3":13,"4":14,"5":14,"6":15,"7":14,"8":14,"9":14,"10":14,"11":15,"12":14,"13":14,"14":13,"15":13,"16":14};
+const ROW = {}, SIZE = {};
+for (let i = 1; i <= 16; i++) {
+  const inSec = TILES.filter(t => t.sec === i);
+  ROW[i] = TERRAIN.map(t => inSec.filter(x => x.key === t.key).length);
+  SIZE[i] = inSec.length;
+}
 const WEST = new Set([1,2,5,6,9,10,13,14]);
 const LOOKUP = {}; TERRAIN.forEach(t => LOOKUP[t.key] = t);
 
@@ -2533,6 +2489,13 @@ volc.innerHTML = '<span class="swatch"></span><span>' +
   '<span class="nm">Volcano <span class="ct">7</span></span>' +
   '<span class="fx">The crater at the center — impassable, and not part of any Sector</span></span>';
 legend.appendChild(volc);
+const cpKey = document.createElement("div");
+cpKey.className = "terr static";
+cpKey.innerHTML = '<span class="swatch" style="background:#f4efe7;border:2px solid #141110;' +
+  'clip-path:none;border-radius:50%;width:15px;height:15px"></span><span>' +
+  '<span class="nm">Control Point <span class="ct">16</span></span>' +
+  '<span class="fx">One per Sector, always on a Lava Field</span></span>';
+legend.appendChild(cpKey);
 
 const half = {W:[0,0,0,0,0,0,0], E:[0,0,0,0,0,0,0]};
 for (let s = 1; s <= 16; s++) {
@@ -2560,6 +2523,52 @@ html += '</tbody><tfoot><tr><td class="l">All</td><td></td><td></td><td>222</td>
   TERRAIN.map(t => '<td>' + t.total + '</td>').join("") + '</tr></tfoot>';
 document.getElementById("tbl").innerHTML = html;
 
+(function(){
+  const half = h => TILES.filter(t => t.half === h);
+  const pass = h => half(h).filter(t => t.key !== "lava").length;
+  document.getElementById("at-tiles").textContent    = TILES.length;
+  document.getElementById("at-halves").textContent   = half("W").length + " \u00b7 " + half("E").length;
+  document.getElementById("at-passable").textContent = pass("W") + " \u00b7 " + pass("E");
+  document.getElementById("at-lava").textContent     = TILES.filter(t => t.key === "lava").length;
+
+  /* the balance note quotes numbers too, so read those off the tiles as well */
+  const byHalf = k => ["W", "E"].map(h => TILES.filter(t => t.half === h && t.key === k).length);
+  const spread = Math.max(...TERRAIN.map(t => { const [w, e] = byHalf(t.key); return Math.abs(w - e); }));
+  const bonus = ["W", "E"].map(h =>
+    TILES.filter(t => t.half === h && (t.key === "hills" || t.key === "spire")).length);
+  const rowOf = el => el.dataset.lbl.charCodeAt(0) - 65;
+  const north = el => rowOf(el) <= 6;
+  const pct = (sel, test) => {
+    const all = [...document.querySelectorAll(sel)];
+    return Math.round(all.filter(test).length / all.length * 100);
+  };
+  /* relief marks come from the tiles too: two chevrons on a Mountain, one on a Hill.
+     Baked paths went stale the moment a tile changed terrain. */
+  const chev = (cx, cy) =>
+    '<path d="M ' + (cx - 9).toFixed(1) + ' ' + (cy + 6.5).toFixed(1) +
+    ' L ' + cx.toFixed(1) + ' ' + (cy - 6.5).toFixed(1) +
+    ' L ' + (cx + 9).toFixed(1) + ' ' + (cy + 6.5).toFixed(1) + '"/>';
+  const centre = el => {
+    const pts = el.getAttribute("points").trim().split(/\s+/).map(p => p.split(",").map(Number));
+    const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+    return [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...ys) + Math.max(...ys)) / 2];
+  };
+  const relief = (id, key, pair) => {
+    document.getElementById(id).innerHTML =
+      [...document.querySelectorAll('.tile[data-key="' + key + '"]')].map(el => {
+        const [cx, cy] = centre(el);
+        return pair ? chev(cx, cy - 7) + chev(cx, cy + 7) : chev(cx, cy);
+      }).join("");
+  };
+  relief("mtnmark", "mountain", true);
+  relief("hillmark", "hills", false);
+
+  document.getElementById("at-spread").textContent = spread;
+  document.getElementById("at-bonus").textContent  = bonus[0] === bonus[1] ? bonus[0] : bonus.join(" / ");
+  document.getElementById("at-hn").textContent = pct('.tile[data-key="hills"]', north);
+  document.getElementById("at-ss").textContent = pct('.tile[data-key="spire"]', el => !north(el));
+})();
+
 let current = null;
 const tiles = document.querySelectorAll(".tile");
 function isolate(key) {
@@ -2569,7 +2578,8 @@ function isolate(key) {
     el.setAttribute("aria-pressed", String(el.dataset.key === current));
   });
   tiles.forEach(el => el.classList.toggle("off", !!current && el.dataset.key !== current));
-  document.body.classList.toggle("hidemark", !!current && current !== "spire");
+  document.body.classList.toggle("hidemtn", !!current && current !== "mountain");
+  document.body.classList.toggle("hidehill", !!current && current !== "hills");
   document.getElementById("tClear").setAttribute("aria-pressed", String(!current));
 }
 
@@ -2577,23 +2587,27 @@ const readout = document.getElementById("readout");
 tiles.forEach(el => {
   el.addEventListener("mouseenter", () => {
     const t = LOOKUP[el.dataset.key];
+    const cp = document.querySelector('#cpmark circle[data-lbl="' + el.dataset.lbl + '"]');
     readout.innerHTML = '<b>' + el.dataset.lbl + '</b> · Sector ' + el.dataset.sec +
-      ' · ' + (el.dataset.half === "W" ? "west" : "east") + ' · <b>' + t.name + '</b>';
+      ' · ' + (el.dataset.half === "W" ? "west" : "east") + ' · <b>' + t.name + '</b>' +
+      (cp ? ' · <b>Control Point</b>' : '');
   });
 });
 document.getElementById("planet").addEventListener("mouseleave", () => { readout.textContent = "Hover a tile"; });
 
-function bind(id, cls, inverted) {
+function bind(id, cls, inverted, start) {
   const b = document.getElementById(id);
-  b.addEventListener("click", () => {
-    const on = b.getAttribute("aria-pressed") === "true";
-    b.setAttribute("aria-pressed", String(!on));
-    document.body.classList.toggle(cls, inverted ? on : !on);
-  });
+  const apply = on => {
+    b.setAttribute("aria-pressed", String(on));
+    document.body.classList.toggle(cls, inverted ? !on : on);
+  };
+  apply(start);
+  b.addEventListener("click", () => apply(b.getAttribute("aria-pressed") !== "true"));
 }
-bind("tSec", "nosec", true);
-bind("tCoord", "showcoords", false);
-bind("tRift", "showrift", false);
+/* how the Atlas opens */
+bind("tSec", "nosec", true, false);
+bind("tCoord", "showcoords", false, false);
+bind("tCP", "nocp", true, true);
 document.getElementById("tClear").addEventListener("click", () => { if (current) isolate(current); });
 document.getElementById("tClear").setAttribute("aria-pressed", "true");
 
