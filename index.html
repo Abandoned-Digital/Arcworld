@@ -573,7 +573,7 @@
           <tbody>
             <tr><td class="k">Corporation</td><td class="n">45</td></tr>
             <tr><td class="k">Ability</td><td class="n">36</td></tr>
-            <tr><td class="k">Operative</td><td class="n">34</td></tr>
+            <tr><td class="k">Operative</td><td class="n">36</td></tr>
             <tr><td class="k">Encounter</td><td class="n">18</td></tr>
             <tr><td class="k">Objective</td><td class="n">5</td></tr>
           </tbody>
@@ -613,7 +613,7 @@
         </ol>
         <div class="tip"><b>Phases are sealed</b><p>You may do nothing in the Cleanup Phase except reassign Workers and discard. Likewise the Income Phase allows nothing but its five listed steps.</p></div>
         <h4>Arc Cube income</h4>
-        <p>You gain <strong>1 Arc Cube per Sector you control</strong>, plus 1 more if you have a Worker assigned to Arc Cubes. A Sector holding an enemy Operative or Creature is suppressed and pays nothing.</p>
+        <p>You gain <strong>1 Arc Cube per Sector you control</strong>, plus 1 more if you have a Worker assigned to Arc Cubes. A Sector holding an enemy Operative or Creature is Suppressed and pays nothing.</p>
         <h4>The Event Die</h4>
         <p>Rolled once during your Income Phase. Four of its six faces are your main source of Resources.</p>
         <div class="tw"><table>
@@ -711,9 +711,10 @@
         </ol>
         <div class="tip"><b>Destroyed by a Creature</b><p>If a Creature reduces a Control Point to 0, the loss resolves normally and the Sector is rendered permanently uninhabitable &mdash; no one can ever claim it again. A Headquarters is no exception: that corporation is eliminated exactly as if a rival had done it, except that nothing changes hands. Its Arc Cubes, Resources and Xeno Eggs are gone, and its Headquarters Sector leaves play with the others.</p></div>
         <h4>Suppression</h4>
-        <p>A Sector you control is <strong>suppressed</strong> for as long as an enemy Operative or Creature stands in it. Holding the Control Point is not enough &mdash; while anything hostile is present:</p>
+        <p>A Sector you control is <strong>Suppressed</strong> for as long as an enemy Operative or Creature stands in it. Holding the Control Point is not enough &mdash; while anything hostile is present:</p>
         <ul>
           <li>The Sector generates <strong>no Arc Cubes</strong> during your Income Phase.</li>
+          <li>Its Control Point <strong>cannot be Fortified</strong>, from any source.</li>
           <li>Operatives you deploy into it arrive at <strong>half their maximum Energy, rounded up</strong>.</li>
         </ul>
         <p>Suppression lifts the moment the intruder leaves or dies.</p>
@@ -770,18 +771,18 @@
         <p class="kicker">10</p>
         <h3>Structures</h3>
         <p>Structures are built onto your Player Board, not placed on the map. Construct one during your Action Phase by paying its Resource cost and assigning one free Worker. The number beside it is the <strong>Fortify</strong> value you gain the moment it is built.</p>
-        <div class="tip"><b>Fortify</b><p><em>Fortify your Sectors by X</em> means add X Sector Strength in total, divided between your Control Points however you like &mdash; all of it on one Control Die, or spread around. No Control Die may pass its maximum of 6, or 12 for a Headquarters; anything over that is lost.</p></div>
+        <div class="tip"><b>Fortify</b><p><em>Fortify your Sectors by X</em> means add X Sector Strength in total, divided between your Control Points however you like &mdash; all of it on one Control Die, or spread around. No Control Die may pass its maximum of 6, or 12 for a Headquarters; anything over that is lost.</p><p>A <strong>Suppressed</strong> Sector cannot be Fortified at all. While an enemy stands in it you cannot shore it up &mdash; you have to remove them first.</p></div>
         <div class="tw"><table>
           <thead><tr><th>Structure</th><th>Cost</th><th>Fortify</th><th>Type</th><th>Effect</th></tr></thead>
           <tbody>
             <tr><td class="k">Headquarters</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td>Never constructed. Its Control Die starts at Sector Strength 10, and your corporation is eliminated when it is destroyed.</td></tr>
             <tr><td class="k">Barracks</td><td>1 Metal &middot; 2 Cryofluid</td><td class="n">2</td><td class="n">Active</td><td>Recruit an Operative.</td></tr>
             <tr><td class="k">Base Turret</td><td>2 Metal &middot; 1 Biofuel</td><td class="n">3</td><td class="n">Active</td><td>Perform a Bio Attack with 3 | 4 | 5 Combat Dice on an enemy in a Sector you control.</td></tr>
-            <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td class="n">Active</td><td>Fortify your Sectors by 2. The Sector you strengthen must not be suppressed.</td></tr>
+            <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td class="n">Active</td><td>Fortify your Sectors by 2.</td></tr>
             <tr><td class="k">Shield Generator</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Cryofluid</td><td class="n">3</td><td class="n">Passive</td><td>When a friendly Control Point takes damage, roll 1 Combat Die. On a Block, ignore the damage.</td></tr>
             <tr><td class="k">Radar Station</td><td>1 Biofuel &middot; 2 Silica</td><td class="n">2</td><td class="n">Passive</td><td>You ignore the Hostile Movement Penalty.</td></tr>
             <tr><td class="k">Refinery</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Silica</td><td class="n">1</td><td class="n">Active</td><td>Gain 2 Arc Cubes.</td></tr>
-            <tr><td class="k">Medlab</td><td>1 Metal &middot; 1 Silica &middot; 1 Cryofluid</td><td class="n">2</td><td class="n">Active</td><td>Restore 1 Energy to one of your Operatives.</td></tr>
+            <tr><td class="k">Charging Bay</td><td>1 Metal &middot; 1 Silica &middot; 1 Cryofluid</td><td class="n">2</td><td class="n">Active</td><td>Restore 1 Energy to one of your Operatives.</td></tr>
             <tr><td class="k">Science Academy</td><td>2 Silica &middot; 1 Cryofluid</td><td class="n">1</td><td class="n">Active</td><td>Gain 1 Ability Card.</td></tr>
             <tr><td class="k">Starport</td><td>1 Metal &middot; 2 Silica</td><td class="n">2</td><td class="n">Active</td><td>Move an Operative adjacent to a friendly Control Point.</td></tr>
             <tr><td class="k">Xeno Lab</td><td>1 Biofuel &middot; 2 Cryofluid</td><td class="n">1</td><td class="n">Passive</td><td>Gain 1 Reroll while attacking a Creature.</td></tr>
@@ -800,7 +801,7 @@
         <h4>Deploying</h4>
         <p>At any point in your Action Phase you may deploy an assigned Operative to a tile <strong>adjacent to any Control Point you control</strong>, your Headquarters included.</p>
         <p>No two Operatives may share a tile, and if there is no free space you simply cannot deploy until there is. Deploying is always optional.</p>
-        <p>Deploying into a <em>suppressed</em> Sector &mdash; one holding an enemy Operative or Creature &mdash; is allowed, but the Operative arrives at <strong>half its maximum Energy, rounded up</strong>.</p>
+        <p>Deploying into a <em>Suppressed</em> Sector &mdash; one holding an enemy Operative or Creature &mdash; is allowed, but the Operative arrives at <strong>half its maximum Energy, rounded up</strong>.</p>
         <h4>The Trooper</h4>
         <p>Your Troopers are printed on your Player Board rather than dealt from the Operative deck, and they fill your two Operative slots at the start of the game. A Trooper can never be permanently removed: an eliminated Trooper simply returns to its slot, assigned and undeployed, ready to deploy again.</p>
         <p>Assigning another Operative to a Trooper's slot benches the Trooper &mdash; it can no longer be deployed, and comes off the board if it was out. If that replacement Operative is later eliminated and its card removed, the slot reverts to the Trooper.</p>
@@ -2051,16 +2052,27 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
+        <div><p class="v">3.9</p><p class="vt">Suppression &amp; Structures</p></div>
+        <div><ul>
+          <li><b>A Suppressed Sector cannot be Fortified</b>, from any source. An enemy standing in your Sector now stops you shoring up its Control Point as well as stopping its income.</li>
+          <li>This closes a stalemate loop where a Foundry could undo an attack every round faster than it could be pressed home.</li>
+          <li>The <b>Foundry</b> drops its own suppression clause, which the general rule now covers.</li>
+          <li><b>Suppressed</b> is capitalized throughout as the defined state it is.</li>
+          <li>The <b>Medlab</b> is now the <b>Charging Bay</b>, on the Structure and on the Ability Card that builds it. Operatives carry Energy in a powered suit rather than wounds, so a medical name never described what it does.</li>
+        </ul></div>
+      </article>
+      <article class="rel">
         <div><p class="v">3.8</p><p class="vt">Operatives</p></div>
         <div><ul>
           <li><b>Operative Energy is a single fixed value.</b> It no longer rises with your Tier, so nothing on an Operative Card changes over the course of a game.</li>
           <li>With that and the Creature change, <b>advancing a Tier now does exactly one thing</b> &mdash; it unlocks that Tier's Ability Cards.</li>
-          <li>Roster reworked across two sheets, 34 cards. The old <b>Marksman becomes Reaper</b>, gaining Attack 4 and losing the ability to Siege; a different Marksman arrives on the second sheet.</li>
+          <li>Roster reworked across two sheets, 36 cards. The old <b>Marksman becomes Reaper</b>, gaining Attack 4 and losing the ability to Siege; a different Marksman arrives on the second sheet.</li>
           <li><b>Guardian</b> added: every enemy within Range 3 may only target it, and it Rerolls while defending.</li>
           <li>The new <b>Marksman</b> is a long-range specialist &mdash; 1 extra Bio Damage at Range 4 or more, and it cannot attack anything within Range 2.</li>
           <li><b>Saboteur</b> shuts off an adjacent corporation's Structure ability in place of unassigning a Worker.</li>
           <li><b>Mercenary</b> is bought for 9 Arc Cubes rather than 12. <b>Bounty Hunter</b> pays 5 and 10 rather than 3 and 8.</li>
-          <li>Six Operatives added, each opening a system the roster did not touch: <b>Occupier</b> (Suppression), <b>Pathfinder</b> (terrain), <b>Foreman</b> (Structures), <b>Seer</b> (the Event Die), <b>Archivist</b> (Ability Cards) and <b>Beastmaster</b> (the subjugated Creature slot).</li>
+          <li>Six Operatives added, each opening a system the roster did not touch: <b>Interloper</b> (Suppression), <b>Pathfinder</b> (terrain), <b>Foreman</b> (Structures), <b>Seer</b> (the Event Die), <b>Archivist</b> (Ability Cards) and <b>Beastmaster</b> (the subjugated Creature slot).</li>
+          <li>Two more push past the standard stat line, which 21 of the roster shared: <b>Arcwright</b> takes Attack 1 and Defense 1 and is worth no Progression to kill, and <b>Brawler</b> takes Range 1 and cuts a defender's Combat Dice.</li>
           <li><b>Engineer</b> Fortifies for 2 Energy instead of 3, and both of its abilities are Active.</li>
           <li><b>Demolitionist</b> deals 1 Siege Damage to a Control Point within Range 1 outright, in place of its bonus on a Siege Attack.</li>
           <li><b>Deflector</b> triggers on a successful Defense rather than on rolling two Blocks.</li>
@@ -2118,7 +2130,7 @@
           <li>Operative and Encounter Card stat blocks cut from <b>15 values to 4</b>. Movement, Range, Attack and Defense each carried a separate Tier&nbsp;I, II and III value; each is now a single number, printed along the bottom of the card.</li>
           <li><b>Bio and Siege damage merged into one Attack value.</b> A card no longer carries separate Bio and Siege numbers &mdash; the same dice count is rolled for either kind of attack.</li>
           <li><b>Outpost removed.</b> Deploying adjacent to any Control Point you control is now the base rule.</li>
-          <li><b>Medlab</b> added.</li>
+          <li><b>Charging Bay</b> added.</li>
           <li>Starport keeps only its reposition ability.</li>
         </ul></div>
       </article>
@@ -2173,7 +2185,6 @@
       <div class="stat"><b>4</b><span>On the board at once</span></div>
       <div class="stat"><b id="en-siege">&mdash;</b><span>Can Siege</span></div>
       <div class="stat"><b>2&ndash;5</b><span>Health range</span></div>
-      <div class="stat"><b>6</b><span>Roles</span></div>
     </div>
   </header>
 
@@ -2181,7 +2192,7 @@
     <h2>Reading a card</h2>
     <p class="sub">Laid out like an Operative Card, with one difference: the boxes count <em>Health</em> rather than Energy, and Creatures have no active abilities &mdash; everything they do is passive, resolved for them during the Intermission Phase.</p>
     <div class="key" id="enckey"></div>
-    <div class="tip"><b>Siege</b><p>A Creature only threatens a Control Point if it can perform a Siege Attack. The ones that cannot say so in plain text on the card, and they can still make life miserable by suppressing the Sector they stand in.</p></div>
+    <div class="tip"><b>Siege</b><p>A Creature only threatens a Control Point if it can perform a Siege Attack. The ones that cannot say so in plain text on the card, and they can still make life miserable by Suppressing the Sector they stand in.</p></div>
 
   </section>
 
@@ -2663,7 +2674,7 @@ const ACARDS = [
   {n:"Annex",t:"order",g:["territory"],x:"Claim one neutral or enemy Control Point adjacent to a Sector you control, if its Control Die is set to 4 or lower. Place your Control Die set to 4."},
   {n:"Regression",t:"order",g:["territory"],x:"Choose one corporation. Decrease their Progression Tracker by 3. It cannot go below 0."}],
 
- [{n:"Medlab",t:"order",g:["construction"],x:"Construct a Medlab at no Resource cost."},
+ [{n:"Charging Bay",t:"order",g:["construction"],x:"Construct a Charging Bay at no Resource cost."},
   {n:"Overtime",t:"order",g:["mobility","combat"],x:"At the end of your turn, your Operatives may perform an additional Move or Attack."},
   {n:"Ghost Protocol",t:"contract",g:["operatives"],x:"For 3 rounds, your Operatives cannot be attacked or targeted by any enemy effect or ability."}],
 
@@ -3052,9 +3063,9 @@ const OPS = [
  {n:"Marksman",e:4,m:3,r:4,a:3,d:2,g:["combat"],ab:[
    ["p","On a successful Bio Attack at Range 4 or more, deal 1 extra Bio Damage."],
    ["p","You cannot attack a target within Range 2."]]},
- {n:"Occupier",e:4,m:3,r:2,a:3,d:2,g:["territory","economy"],ab:[
+ {n:"Interloper",e:4,m:3,r:2,a:3,d:2,g:["territory","economy"],ab:[
    ["p","During your Income Phase, gain 2 Arc Cubes if you Suppress a Sector."],
-   ["p","Your Sectors cannot be Suppressed."]]},
+   ["p","Enemy Operatives cannot deploy into a Sector you Suppress."]]},
  {n:"Pathfinder",e:3,m:4,r:2,a:3,d:2,g:["mobility"],ab:[
    ["p","Mountain tiles cost 1 Movement for your Operatives."],
    ["p","Sludge tiles do not reduce your Operatives' Combat Dice."]]},
@@ -3069,7 +3080,13 @@ const OPS = [
    ["p","Your maximum hand size is increased by 2."]]},
  {n:"Beastmaster",e:4,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
    ["a","Restore 2 Health to your subjugated Creature."],
-   ["p","Your subjugated Creature gains 1 Combat Die while attacking."]]}
+   ["p","Your subjugated Creature gains 1 Combat Die while attacking."]]},
+ {n:"Arcwright",e:3,m:4,r:3,a:1,d:1,g:["support"],ab:[
+   ["a","Restore 2 Energy to a friendly Operative within Range 3."],
+   ["p","No corporation gains Progression for eliminating this Operative."]]},
+ {n:"Brawler",e:4,m:4,r:1,a:3,d:2,g:["combat"],ab:[
+   ["p","While performing a Bio Attack, gain 1 Combat Die for each other enemy within Range 1 of you."],
+   ["p","Enemy Operatives and Creatures roll 1 fewer Combat Die while defending against you."]]}
 ];
 
 const SICON = {
@@ -3179,18 +3196,7 @@ document.getElementById("t-operative").innerHTML = 'Operatives <u>' + OPS.length
 })();
 
 /* ============ ENCOUNTERS ============ */
-const ETAGS = [
-  {k:"brawler", n:"Brawler", c:"combat",       d:"Straight Bio Damage up close"},
-  {k:"ranged",  n:"Ranged",  c:"cards",        d:"Reaches you before you reach it"},
-  {k:"durable", n:"Durable", c:"construction", d:"Hard to remove — armor, regeneration, immunity"},
-  {k:"volatile",n:"Volatile",c:"events",       d:"Dangerous in death, or built to spend itself"},
-  {k:"alpha",   n:"Alpha",   c:"territory",    d:"Strengthens every other Creature on the board"},
-  {k:"raider",  n:"Raider",  c:"economy",      d:"Takes Arc Cubes and Resources off you"}
-];
-const ETN = {}, ETC = {};
-ETAGS.forEach(t => { ETN[t.k] = t.n; ETC[t.k] = "var(--g-" + t.c + ")"; });
-
-/* h = maximum Health at Tier I | II | III.  {a|b|c} in text renders in the tier colors */
+/* h = maximum Health.  m/r/a/d = Movement, Range, Attack, Defense */
 const ENC = [
  {n:"Sylth Grunt",h:3,m:2,r:2,a:2,d:2,g:["brawler"],ab:[
    "Gain 1 Reroll while performing a Bio Attack.",
@@ -3321,21 +3327,18 @@ function eLedger(){
     (eKey === k ? ' data-dir="' + eDir + '"' : '') + '>' + label + '</th>';
   const head = '<thead><tr>' + th("n", "Creature", "l") + th("h", "Health") +
     th("m", "Mov") + th("r", "Rng") + th("a", "Atk") + th("d", "Def") + th("s", "Siege") +
-    '<th class="l">Role</th></tr></thead>';
+    '</tr></thead>';
   const body = '<tbody>' + rows.map(c =>
     '<tr><td class="l sec">' + esc(c.n) + '</td>' +
     '<td>' + c.h + '</td>' +
     '<td>' + c.m + '</td><td>' + c.r + '</td><td>' + c.a + '</td><td>' + c.d + '</td>' +
-    '<td class="' + (canSiege(c) ? "yes" : "no") + '">' + (canSiege(c) ? "Yes" : "No") + '</td>' +
-    '<td class="l pairnote">' + c.g.map(k =>
-      '<span class="dot" style="--tc:' + ETC[k] + '"></span>' + ETN[k]).join(" ") + '</td></tr>').join("") +
+    '<td class="' + (canSiege(c) ? "yes" : "no") + '">' + (canSiege(c) ? "Yes" : "No") + '</td></tr>').join("") +
     '</tbody>';
   const avg = f => (ENC.reduce((s, o) => s + f(o), 0) / ENC.length).toFixed(1);
-  const foot = '<tfoot><tr><td class="l">18 creatures</td>' +
+  const foot = '<tfoot><tr><td class="l">' + ENC.length + ' creatures &middot; average</td>' +
     '<td>' + avg(o => o.h) + '</td>' +
     '<td>' + avg(o => o.m) + '</td><td>' + avg(o => o.r) + '</td><td>' + avg(o => o.a) + '</td>' +
-    '<td>' + avg(o => o.d) + '</td><td>' + ENC.filter(canSiege).length + '</td>' +
-    '<td class="l">average</td></tr></tfoot>';
+    '<td>' + avg(o => o.d) + '</td><td>' + ENC.filter(canSiege).length + '</td></tr></tfoot>';
   const t = document.getElementById("etbl");
   t.innerHTML = head + body + foot;
   t.querySelectorAll("th.sortable").forEach(el => el.addEventListener("click", () => {
