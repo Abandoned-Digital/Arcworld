@@ -515,6 +515,7 @@
   .toc a:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
   .doc{min-width:0}
   .doc section{padding-top:0;margin:0 0 48px;scroll-margin-top:76px}
+  .doc section:last-child{min-height:calc(100vh - 140px);margin-bottom:0}
   .doc .kicker{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
     color:var(--accent);margin:0 0 6px}
   .doc h3{font-family:var(--display);font-weight:700;font-size:23px;line-height:1.15;
@@ -717,7 +718,7 @@
         <ol class="steps">
           <li><b>Income Phase</b>Reduce the duration tracker on any Contract you have in play by 1, roll your Event Die and resolve it, gain your Arc Cubes and any Resources, then draw 1 Ability Card &mdash; in that order.</li>
           <li><b>Action Phase</b>The bulk of your turn. See <em>Your Action Phase</em> below.</li>
-          <li><b>Cleanup Phase</b>Reassign your available Workers, then discard down to your maximum hand size of 5. Moving into Cleanup is what ends your turn.</li>
+          <li><b>Cleanup Phase</b>Reassign your available Workers, then discard down to your maximum hand size of 5. Moving into Cleanup is what ends your turn. A Worker in a Structure is never available, and one in your Contract slot is unavailable while a Contract is in play.</li>
         </ol>
         <div class="tip"><b>Phases are sealed</b><p>You may do nothing in the Cleanup Phase except reassign Workers and discard. Likewise the Income Phase allows nothing but its five listed steps.</p></div>
         <h4>Arc Cube income</h4>
@@ -823,7 +824,7 @@
         <ul>
           <li>The Sector generates <strong>no Arc Cubes</strong> during your Income Phase.</li>
           <li>Its Control Point <strong>cannot be Fortified</strong>, from any source.</li>
-          <li>Operatives you deploy into it arrive at <strong>half their maximum Energy, rounded up</strong>.</li>
+          <li>Operatives you deploy into it arrive at <strong>half their maximum Energy, rounded down</strong>.</li>
         </ul>
         <p>Suppression lifts the moment the intruder leaves or dies.</p>
       </section>
@@ -848,13 +849,14 @@
         <h4>The Hostile Movement Penalty</h4>
         <p>Moving an Operative within a Sector controlled by an <em>enemy corporation</em> costs <strong>1 extra Movement per tile</strong>. Neutral Sectors are free of it. So in hostile territory Permafrost costs 1, an ordinary tile costs 2, and a Mountain costs 3.</p>
         <h4>Moving past other figures</h4>
-        <p><strong>Two things never share a tile.</strong> Nothing may end its move on a tile already holding an Operative, a Creature or a Control Point &mdash; not even your own, and not even your own Headquarters. You may move <em>through</em> anything that is not hostile to you: your own Operatives, your own subjugated Creature, your own or a neutral Control Point, and for a wild Creature, other Creatures. Passing through costs the Movement to enter the tile and the Movement to leave it, so at least 2. Anything hostile blocks you outright.</p>
+        <p><strong>Two things never share a tile.</strong> Nothing may end its move on a tile already holding an Operative, a Creature or a Control Point &mdash; not even your own, and not even your own Headquarters. You may move <em>through</em> anything that is not hostile to you: your own Operatives, your own subjugated Creature, your own Control Points, and for a wild Creature, other Creatures. Passing through costs the Movement to enter the tile and the Movement to leave it, so at least 2. Everything else blocks you outright &mdash; including a <strong>neutral</strong> Control Point, which stops you exactly as an enemy one does.</p>
         <h4>Event tokens</h4>
         <p>Placed face-down at setup. When one of your Operatives moves onto a tile holding one, flip it face-up.</p>
+        <div class="tip"><b>Counting a Tunnel trip</b><p>Add the Tunnel's 1 to the cost of the tile you come out on, and apply the Hostile Movement Penalty on top if that tile sits in an enemy Sector.</p><p>Out onto a Wasteland: <strong>2</strong>. Onto a Mountain: <strong>3</strong>. Onto Sludge in enemy territory: <strong>3</strong>. Onto a Mountain in enemy territory: <strong>4</strong>.</p></div>
         <div class="tw"><table>
           <thead><tr><th>Token</th><th>Effect</th></tr></thead>
           <tbody>
-            <tr><td class="k">Tunnel</td><td>Any Operative may move from this tile to any other Tunnel tile for 2 Movement, no matter who controls either Sector. Creatures cannot use Tunnels.</td></tr>
+            <tr><td class="k">Tunnel</td><td>Any Operative may move from this tile to any other Tunnel tile, no matter who controls either Sector. The trip costs whatever the tile you arrive on costs, <strong>plus 1</strong> for the Tunnel itself. Creatures cannot use Tunnels.</td></tr>
             <tr><td class="k">Creature</td><td>Immediately deploy 1 Creature on the Volcano tile if a slot is free, then discard this token.</td></tr>
           </tbody>
         </table></div>
@@ -871,9 +873,11 @@
             <tr><td class="k">Operatives</td><td>When you draw an Operative Card, draw 2 instead and assign or discard either or both.</td></tr>
             <tr><td class="k">A Resource</td><td>Whenever you gain that Resource type, gain 2 instead.</td></tr>
             <tr><td class="k">Xeno Eggs</td><td>Whenever you gain Xeno Eggs, gain 1 extra.</td></tr>
+            <tr><td class="k">Contracts</td><td>Every Contract you play lasts 1 round longer.</td></tr>
           </tbody>
         </table></div>
         <p>You may move Workers freely between assignments during your Cleanup Phase &mdash; <em>except</em> to or from a Structure. A Worker only enters a Structure when you construct it during your Action Phase, and never leaves it: if that Structure is destroyed, its Worker is removed from the game. If a Structure is <em>replaced</em> rather than destroyed, its Worker moves across to the replacement.</p>
+        <p>A Worker on your Contract slot is stuck in the same way, but only while a Contract is running: you cannot take it back until the slot is empty.</p>
       </section>
       <section id="s-structures">
         <p class="kicker">10</p>
@@ -883,7 +887,7 @@
         <div class="tw"><table>
           <thead><tr><th>Structure</th><th>Cost</th><th>Fortify</th><th>Type</th><th>Effect</th></tr></thead>
           <tbody>
-            <tr><td class="k">Headquarters</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td>Never constructed. Its Control Die starts at Sector Strength 10, and your corporation is eliminated when it is destroyed.</td></tr>
+            <tr><td class="k">Headquarters</td><td class="n">&mdash;</td><td class="n">10</td><td class="n">&mdash;</td><td>Never constructed &mdash; you begin the game with it built, which is where its Control Die's starting Sector Strength of 10 comes from. Your corporation is eliminated when it is destroyed.</td></tr>
             <tr><td class="k">Barracks</td><td>1 Metal &middot; 2 Cryofluid</td><td class="n">2</td><td class="n">Active</td><td>Recruit an Operative.</td></tr>
             <tr><td class="k">Base Turret</td><td>2 Metal &middot; 1 Biofuel</td><td class="n">3</td><td class="n">Active</td><td>Perform a Bio Attack with 3 | 4 | 5 Combat Dice on an enemy in a Sector you control.</td></tr>
             <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td class="n">Active</td><td>Fortify your Sectors by 2.</td></tr>
@@ -893,7 +897,7 @@
             <tr><td class="k">Charging Bay</td><td>1 Metal &middot; 1 Silica &middot; 1 Cryofluid</td><td class="n">2</td><td class="n">Active</td><td>Restore 1 Energy to one of your Operatives.</td></tr>
             <tr><td class="k">Science Academy</td><td>2 Silica &middot; 1 Cryofluid</td><td class="n">1</td><td class="n">Active</td><td>Gain 1 Ability Card.</td></tr>
             <tr><td class="k">Starport</td><td>1 Metal &middot; 2 Silica</td><td class="n">2</td><td class="n">Active</td><td>Move an Operative adjacent to a friendly Control Point.</td></tr>
-            <tr><td class="k">Xeno Lab</td><td>1 Biofuel &middot; 2 Cryofluid</td><td class="n">1</td><td class="n">Passive</td><td>Gain 1 Reroll while attacking a Creature.</td></tr>
+            <tr><td class="k">Xeno Lab</td><td>1 Biofuel &middot; 2 Cryofluid</td><td class="n">1</td><td class="n">Passive</td><td>When subjugating a Creature, you gain 1 Progression and 1 Xeno Egg.</td></tr>
           </tbody>
         </table></div>
         <p>You may use <strong>one Active Structure ability per Action Phase</strong>, whichever Structure you choose. Passive abilities are always on and never count against that.</p>
@@ -909,7 +913,7 @@
         <h4>Deploying</h4>
         <p>At any point in your Action Phase you may deploy an assigned Operative to a tile <strong>adjacent to any Control Point you control</strong>, your Headquarters included.</p>
         <p>No two Operatives may share a tile, and if there is no free space you simply cannot deploy until there is. Deploying is always optional.</p>
-        <p>Deploying into a <em>Suppressed</em> Sector &mdash; one holding an enemy Operative or Creature &mdash; is allowed, but the Operative arrives at <strong>half its maximum Energy, rounded up</strong>.</p>
+        <p>Deploying into a <em>Suppressed</em> Sector &mdash; one holding an enemy Operative or Creature &mdash; is allowed, but the Operative arrives at <strong>half its maximum Energy, rounded down</strong>.</p>
         <h4>The Trooper</h4>
         <p>Your Troopers are printed on your Player Board rather than dealt from the Operative deck, and they fill your two Operative slots at the start of the game. A Trooper can never be permanently removed: an eliminated Trooper simply returns to its slot, assigned and undeployed, ready to deploy again.</p>
         <p>Assigning another Operative to a Trooper's slot benches the Trooper &mdash; it can no longer be deployed, and comes off the board if it was out. If that replacement Operative is later eliminated and its card removed, the slot reverts to the Trooper.</p>
@@ -921,12 +925,18 @@
         <h3>Creatures</h3>
         <p>Up to four Creatures may be on the board at once, each marked with a numbered Creature Die from 1 to 4. That die is only an identifier for movement order &mdash; it is never rolled. If a fifth Creature would deploy while four are out, the deployment simply fails; nothing already on the board is removed.</p>
         <h4>The Intermission Phase</h4>
-        <p>Creatures act one at a time, in Creature Die order from lowest to highest. For each Creature:</p>
+        <p>Creatures act one at a time, in Creature Die order from lowest to highest, each resolved in full before the next begins. For each Creature:</p>
         <ol class="steps">
-          <li><b>Roll the Intermission Die</b>The result picks one of the six numbered directions marked on the Volcano tile &mdash; that is the way this Creature moves.</li>
-          <li><b>Attack if it can</b>It attacks <em>every</em> enemy within Range once, and does not move. Resolve Bio Attacks first, taking Operatives in order of their Operative Die from lowest to highest; where two corporations share a number, go in Initiative order clockwise. A Creature that can Siege then attacks the Control Point it is adjacent to, if there is one. A Creature on the Volcano tile can never attack from there, so it always goes straight to step 3.</li>
-          <li><b>Otherwise, move and check again</b>It moves its full Movement in the direction rolled. If an enemy is now within Range, it attacks as in step 2.</li>
+          <li><b>Roll for direction</b>The result picks one of the six numbered directions marked on the Volcano tile &mdash; that is the way this Creature moves.</li>
+          <li><b>Act on where it stands</b>
+            <ol class="inner">
+              <li><em>On the Volcano tile.</em> It moves its full Movement off the Volcano in the direction rolled, then checks: if an enemy is within Range, it attacks.</li>
+              <li><em>Elsewhere, already within Range of an enemy.</em> It attacks and does not move.</li>
+              <li><em>Elsewhere, with nothing in Range.</em> It moves its full Movement in the direction rolled, then checks again. If an enemy is now within Range, it attacks.</li>
+            </ol>
+          </li>
         </ol>
+        <p>A Creature that attacks hits <em>every</em> enemy within Range once. Resolve Bio Attacks first, taking Operatives in order of their Operative Die from lowest to highest; where two corporations share a number, go in Initiative order clockwise. A Creature that can Siege then attacks the Control Point it is adjacent to, if there is one.</p>
         <ul>
           <li>Movement cannot be split. A Creature that cannot complete its full move goes as far as it can and stops.</li>
           <li>A Creature that leaves the edge of the map is redeployed on the Volcano tile and its movement ends.</li>
@@ -934,7 +944,7 @@
         <p>A Creature's targets are enemy Operatives within its Range, plus the enemy Control Point on an adjacent tile if that Creature can perform a Siege Attack. Since attacking a Control Point needs adjacency &mdash; the same rule players follow &mdash; a Creature can never reach two at once.</p>
         <h4>Killing and subjugating Creatures</h4>
         <p>Eliminating a Creature with an Operative advances your Progression tracker by 1 and earns you <strong>1 Xeno Egg</strong>.</p>
-        <div class="tip"><b>Subjugation</b><p>When one of your Operatives would eliminate a Creature, you may subjugate it instead. You forgo the Progression advance. Place the Encounter Card on your Subjugated Creature slot and restore its Health fully &mdash; it now counts as an Operative under your control.</p></div>
+        <div class="tip"><b>Subjugation</b><p>When one of your Operatives would eliminate a Creature, you may subjugate it instead. You forgo both the Progression advance and the Xeno Egg. Place the Encounter Card on your Subjugated Creature slot and restore its Health fully &mdash; it now counts as an Operative under your control.</p></div>
       </section>
       <section id="s-tiers">
         <p class="kicker">13</p>
@@ -944,7 +954,16 @@
         <p>Move forward 1 square each time you destroy a Control Point, whether neutral or enemy-held; eliminate an enemy Operative or a Creature; or gain Progression from any other effect.</p>
         <p>Landing on a reward square immediately grants either <strong>1 Ability Card</strong> or <strong>3 Arc Cubes</strong>, depending on the icon. Landing on the Tier 2 or Tier 3 square advances you immediately &mdash; there is no cost, no action, and no way to delay it. Reaching the final black square ends the game and wins it.</p>
         <h4>What advancing changes</h4>
-        <p>Only one thing: <strong>you unlock that Tier's Ability Cards</strong>, and keep access to every lower Tier. Nothing on an Operative or Encounter Card changes, and neither does anything on the board.</p>
+        <p>Advancing unlocks that Tier's abilities on your Ability Cards, and you keep every Tier beneath it. Each card carries three abilities, one per Tier, and you may play any of them at or below your current Tier for its cost:</p>
+        <div class="tw"><table>
+          <thead><tr><th>Tier</th><th>Cost to play an ability</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Tier I</td><td class="n">3 Arc Cubes</td></tr>
+            <tr><td class="k">Tier II</td><td class="n">6 Arc Cubes</td></tr>
+            <tr><td class="k">Tier III</td><td class="n">9 Arc Cubes</td></tr>
+          </tbody>
+        </table></div>
+        <p>A Tier III corporation therefore has the whole deck open to it &mdash; reaching for a card's strongest ability when the moment is worth 9 Arc Cubes, and taking its Tier I ability for 3 when it is not.</p>
       </section>
       <section id="s-objectives">
         <p class="kicker">14</p>
@@ -967,7 +986,7 @@
         </table></div>
         <p>You may exceed your hand limit freely during your own turn &mdash; chaining draws is fine. You only discard back down to 5 in your Cleanup Phase.</p>
         <h4>Storage limits</h4>
-        <p>Your Player Board holds only so much of each thing. Anything you would gain past a limit is simply lost.</p>
+        <p>Each of these has a ceiling on your Player Board. Anything you gain beyond it is lost.</p>
         <div class="tw"><table>
           <thead><tr><th>Currency</th><th>Limit</th></tr></thead>
           <tbody>
@@ -984,11 +1003,11 @@
         <p><strong>Corporation Cards</strong> give you a starting supply and one or more permanent passive abilities. You keep one for the whole game.</p>
         <p><strong>Operative Cards</strong> carry the figures you put on the board &mdash; Movement, Range, Attack and Defense along the bottom, an Energy track, and passive or active abilities. Every value is fixed for the whole game.</p>
         <p><strong>Encounter Cards</strong> are the planet's Creatures: Movement, Health, Defense, Range and Attack values, plus their passive abilities.</p>
-        <p><strong>Ability Cards</strong> hold three abilities each &mdash; one per Tier. You may play any single ability at or below your current Tier, paying 3, 6 or 9 Arc Cubes for Tier I, II or III. An ability is an <em>Order</em> (your turn), a <em>Counter</em> (someone else's turn, on a condition) or a <em>Contract</em> (stays in play three rounds).</p>
+        <p><strong>Ability Cards</strong> hold three abilities each &mdash; one per Tier. You may play any single ability at or below your current Tier, paying 3, 6 or 9 Arc Cubes for Tier I, II or III. An ability is an <em>Order</em> (your turn), a <em>Counter</em> (someone else's turn, on a condition) or a <em>Contract</em> (stays in play two rounds).</p>
+        <div class="tip"><b>One Contract at a time</b><p>Only one Contract may sit in front of you. Discard it whenever you like, and playing a new Contract replaces it. A Worker assigned to your Contract slot adds a round to every Contract you play.</p></div>
         <p><strong>Discovery Cards</strong> are shuffled through the same deck and drawn the same way, but they are not abilities and never enter your hand. A Discovery resolves the moment you draw it, costs nothing, and is discarded. Most are a windfall; a few are not.</p>
         <p><strong>Objective Cards</strong> are revealed one at a time and give everyone a shared side goal to race for &mdash; see <em>Objectives</em>.</p>
         <div class="tip"><b>A card beats this manual</b><p>Where a card's text contradicts a rule written here, <strong>the card wins</strong>. Cards are written as deliberate exceptions: Sentinel Sieges from Range&nbsp;2 where the rule says Range&nbsp;1, Cinderworks walks onto Lava Fields where the rule says impassable. If the card says it, it happens.</p></div>
-        <div class="tip"><b>One Contract at a time</b><p>Only one Contract may sit in front of you. Discard it whenever you like, and playing a new Contract replaces it.</p></div>
       </section>
 
     </div>
@@ -2088,7 +2107,7 @@
     <p class="sub">Each card stacks its three tiers top to bottom, and each ability carries its own type. The rule of the deck is that <em>you pick one</em> &mdash; the other two are spent with it.</p>
     <div class="notes">
       <div class="note"><h3>Tiers</h3><p><em>Tier I</em> at the top, <em>Tier II</em> in the middle, <em>Tier III</em> at the bottom, colored here as they are in print. Tier is a position on the card, not a cost &mdash; a card is worth as much as the one ability you take from it.</p></div>
-      <div class="note"><h3>Types</h3><p><em>Orders</em> resolve on your own turn. <em>Counters</em> wait for someone else's turn and a matching condition. <em>Contracts</em> stay on your board and tick down three rounds before they are discarded &mdash; the numbered boxes on the card are that countdown.</p></div>
+      <div class="note"><h3>Types</h3><p><em>Orders</em> resolve on your own turn. <em>Counters</em> wait for someone else's turn and a matching condition. <em>Contracts</em> stay on your board and tick down two rounds before they are discarded &mdash; the numbered boxes on the card are that countdown.</p></div>
       <div class="note"><h3>Hand</h3><p>One card drawn per turn, five held. Go over during your turn and you discard back down to five in your cleanup phase, so a card kept for its Tier III is a card not spent on tempo.</p></div>
     </div>
   </section>
@@ -2177,6 +2196,23 @@
   <section>
     <h2>Releases</h2>
     <div class="log">
+      <article class="rel">
+        <div><p class="v">3.12</p><p class="vt">Rules &amp; wording</p></div>
+        <div><ul>
+          <li>Deploying into a Suppressed Sector arrives at half maximum Energy <b>rounded down</b>, not up.</li>
+          <li>A <b>neutral Control Point blocks movement</b> exactly as an enemy one does. The manual had listed it as something you could pass through.</li>
+          <li><b>Tunnel movement costs the tile you arrive on plus 1</b>, with the Hostile Movement Penalty on top &mdash; not a flat 2.</li>
+          <li><b>Contracts run two rounds</b> rather than three, and the duration boxes drop to two.</li>
+          <li><b>Stockpile</b> becomes an Order: 3 Resources of one type for you, 1 of that type for everyone else. The Contract count drops to 19.</li>
+          <li>A Worker may be assigned to your <b>Contract slot</b>, adding a round to every Contract you play &mdash; which buys the third round back.</li>
+          <li><b>Xeno Lab</b> grants 1 Progression and 1 Xeno Egg when you subjugate a Creature, in place of a Reroll against Creatures.</li>
+          <li><b>Xenobiologist</b> pays an extra Xeno Egg for <em>eliminating</em> a Creature and Rerolls while defending against one, so it no longer covers the same ground as the Xeno Lab.</li>
+          <li>Subjugating a Creature gives up <b>the Xeno Egg as well as the Progression</b>.</li>
+          <li>The <b>Intermission Phase</b> now branches on where a Creature stands: off the Volcano first, attack if already in Range, otherwise move and check again.</li>
+          <li>The <b>Headquarters</b> lists a Fortify of 10 &mdash; you begin with it built, which is where its Control Die's 10 comes from.</li>
+          <li>Advancing a Tier states what it buys: 3, 6 and 9 Arc Cubes for a Tier I, II or III ability.</li>
+        </ul></div>
+      </article>
       <article class="rel">
         <div><p class="v">3.11</p><p class="vt">Discoveries</p></div>
         <div><ul>
@@ -2814,7 +2850,7 @@ const ACARDS = [
   {n:"Dissolution",t:"order",g:["cards"],x:"Choose one corporation. They discard their Corporation Card and lose all of its Abilities for the remainder of the game."}],
 
  [{n:"Starport",t:"order",g:["construction"],x:"Construct a Starport at no Resource cost."},
-  {n:"Suppression",t:"contract",g:["economy"],x:"For 3 rounds, enemy corporations cannot gain Resources during their Income Phase."},
+  {n:"Suppression",t:"contract",g:["economy"],x:"For 2 rounds, enemy corporations cannot gain Resources during their Income Phase."},
   {n:"Realignment",t:"order",g:["territory"],x:"Swap up to 3 Control Points on Arcworld. Headquarters cannot be swapped."}],
 
  [{n:"Intel",t:"order",g:["cards"],x:"Look at the top 3 cards of an Ability Deck. Either return them to the deck in any order and retain this Card, or keep one, discarding the rest along with this Ability Card."},
@@ -2826,7 +2862,7 @@ const ACARDS = [
   {n:"Mirror Ward",t:"counter",g:["cards"],x:"When an enemy plays an Ability Card, cancel that card's effect. Arc Cubes spent on it are not refunded. You gain the Ability Card instead of it being discarded."}],
 
  [{n:"Slipstream",t:"counter",g:["territory"],x:"When an enemy advances its Progression Tracker, advance yours 1 square."},
-  {n:"Shockwave",t:"contract",g:["combat"],x:"For 3 rounds, enemies in your controlled Sectors take 2 Bio Damage at the end of your turn."},
+  {n:"Shockwave",t:"contract",g:["combat"],x:"For 2 rounds, enemies in your controlled Sectors take 2 Bio Damage at the end of your turn."},
   {n:"Armageddon",t:"order",g:["territory"],x:"Choose one corporation. They remove one of their Control Dice from the game. That corporation may then repeat this effect. Continue until someone declines."}],
 
  [{n:"Write-Off",t:"order",g:["economy","cards"],x:"Discard Ability Cards from your hand. Gain 5 Arc Cubes for each discarded card."},
@@ -2835,9 +2871,9 @@ const ACARDS = [
 
  [{n:"Charging Bay",t:"order",g:["construction"],x:"Construct a Charging Bay at no Resource cost."},
   {n:"Overtime",t:"order",g:["mobility","combat"],x:"At the end of your turn, your Operatives may perform an additional Move or Attack."},
-  {n:"Ghost Protocol",t:"contract",g:["operatives"],x:"For 3 rounds, your Operatives cannot be attacked or targeted by any enemy effect or ability."}],
+  {n:"Ghost Protocol",t:"contract",g:["operatives"],x:"For 2 rounds, your Operatives cannot be attacked or targeted by any enemy effect or ability."}],
 
- [{n:"Overwatch",t:"contract",g:["combat"],x:"For 3 rounds, your Operatives gain 1 extra Combat Die for each other friendly Operative in their Sector."},
+ [{n:"Overwatch",t:"contract",g:["combat"],x:"For 2 rounds, your Operatives gain 1 extra Combat Die for each other friendly Operative in their Sector."},
   {n:"Acquisition",t:"order",g:["cards"],x:"Gain control of a Contract Card in play controlled by another corporation. Set it to its full duration."},
   {n:"Decommissioned",t:"order",g:["operatives"],x:"All enemy Operatives are returned to the Player Board."}],
 
@@ -2846,30 +2882,30 @@ const ACARDS = [
   {n:"Ion Strike",t:"order",g:["combat","territory"],x:"Target a Sector. Deal 4 Siege Damage to its Control Point and 6 Bio Damage to all Operatives and Creatures within that Sector."}],
 
  [{n:"Survey",t:"order",g:["events","cards"],x:"Either roll the Event Die and resolve the result or draw 2 Ability Cards."},
-  {n:"Signal Jam",t:"contract",g:["cards"],x:"Choose one corporation. For 3 rounds, they cannot play Ability Cards."},
+  {n:"Signal Jam",t:"contract",g:["cards"],x:"Choose one corporation. For 2 rounds, they cannot play Ability Cards."},
   {n:"Execute",t:"order",g:["combat"],x:"Choose one Operative or Creature anywhere on the board. Eliminate it."}],
 
  [{n:"Double Yolk",t:"order",g:["economy"],x:"Until the end of your turn, when you spend a Xeno Egg, you gain both of its effects."},
   {n:"Orbital Trading",t:"order",g:["economy"],x:"Exchange any number of your Resources for an equal number of other Resources of your choice."},
   {n:"Defector",t:"order",g:["operatives"],x:"Choose one enemy Operative within Range of one of your Operatives. Remove that Operative from the board. Gain its Operative Card and assign it as normal."}],
 
- [{n:"Martial Law",t:"contract",g:["operatives"],x:"For 3 rounds, abilities on enemy Operative Cards have no effect."},
+ [{n:"Martial Law",t:"contract",g:["operatives"],x:"For 2 rounds, abilities on enemy Operative Cards have no effect."},
   {n:"Biofuel Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Biofuel from their storage."},
   {n:"Clearance",t:"order",g:["economy"],x:"Choose one corporation. Remove all of their Workers not assigned to a Structure from the game."}],
 
- [{n:"Stockpile",t:"contract",g:["economy"],x:"Gain 1 Resource of your choice. For 3 rounds, during your Income Phase, gain 1 Resource of your choice."},
+ [{n:"Stockpile",t:"order",g:["economy"],x:"Gain 3 Resources of the same type. All other corporations gain 1 Resource of the same type."},
   {n:"Targeted Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal 1 Resource of your choice from their storage."},
   {n:"Cataclysm",t:"order",g:["construction"],x:"Choose one corporation. Destroy all of their Structures except their Headquarters."}],
 
  [{n:"Data Burst",t:"order",g:["cards"],x:"Draw 3 Ability Cards. Each other corporation draws 1 Ability Card."},
-  {n:"Metal Tariff",t:"contract",g:["economy"],x:"For 3 rounds, when another corporation gains 1 Metal, you also gain 1 Metal."},
+  {n:"Metal Tariff",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains 1 Metal, you also gain 1 Metal."},
   {n:"Purge",t:"order",g:["cards"],x:"Every other corporation discards their entire hand of Ability Cards. Any Contract Card in play is also discarded."}],
 
  [{n:"First Strike",t:"counter",g:["combat"],x:"When an enemy Operative moves within Range of one of your Operatives, that Operative may immediately attack it."},
   {n:"Requisition",t:"order",g:["construction"],x:"Construct a Structure of your choice at no Resource cost."},
   {n:"Conquest",t:"order",g:["territory"],x:"Claim one neutral or enemy Control Point adjacent to a Sector you control, if its Control Die is set to 6 or lower. Place your Control Die set to 6."}],
 
- [{n:"Sabotage",t:"contract",g:["combat"],x:"For 3 rounds, enemy Operatives and Creatures in your controlled Sectors roll 1 less Combat Die while attacking."},
+ [{n:"Sabotage",t:"contract",g:["combat"],x:"For 2 rounds, enemy Operatives and Creatures in your controlled Sectors roll 1 less Combat Die while attacking."},
   {n:"Metal Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Metal from their storage."},
   {n:"Bankrupt",t:"order",g:["economy"],x:"Choose one corporation. Steal all Arc Cubes and Resources from their storage."}],
 
@@ -2878,7 +2914,7 @@ const ACARDS = [
   {n:"Displacement",t:"order",g:["mobility"],x:"Move any of your Operatives from their current tile to any passable tile."}],
 
  [{n:"Windfall",t:"order",g:["events"],x:"Roll the Event Die twice and resolve all results. Other corporations may roll the Event Die once and resolve its result."},
-  {n:"Cryofluid Tariff",t:"contract",g:["economy"],x:"For 3 rounds, when another corporation gains 1 Cryofluid, you also gain 1 Cryofluid."},
+  {n:"Cryofluid Tariff",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains 1 Cryofluid, you also gain 1 Cryofluid."},
   {n:"Energy Cell",t:"order",g:["operatives"],x:"Restore all of your Operatives to their maximum Energy."}],
 
  [{n:"Kickback",t:"order",g:["economy"],x:"Gain 1 Resource of your choice. Each other corporation may gain 1 Resource of their choice. For each corporation that does, you gain 1 Resource of the same type."},
@@ -2886,7 +2922,7 @@ const ACARDS = [
   {n:"Egg Heist",t:"order",g:["economy"],x:"Steal all Xeno Eggs from each other corporation and add them to your supply."}],
 
  [{n:"Radar Station",t:"order",g:["construction"],x:"Construct a Radar Station at no Resource cost."},
-  {n:"Cease Fire",t:"contract",g:["combat"],x:"Choose one corporation. For 3 rounds, neither of you may target the other with Attacks or Ability Cards."},
+  {n:"Cease Fire",t:"contract",g:["combat"],x:"Choose one corporation. For 2 rounds, neither of you may target the other with Attacks or Ability Cards."},
   {n:"Subjugate",t:"order",g:["creatures"],x:"Choose a Creature not on the Volcano tile. Claim its Encounter Card and restore it to its maximum Health."}],
 
  [{n:"Terminal Run",t:"order",g:["combat","operatives"],x:"Choose one of your Operatives. Deal 4 Bio Damage or 2 Siege Damage to one target within its Range."},
@@ -2898,7 +2934,7 @@ const ACARDS = [
   {n:"Mutual Interest",t:"counter",g:["territory"],x:"When another corporation would lose a Control Point, prevent it from being lost. Set their Control Die to 6. They gain 6 Arc Cubes and draw 2 Ability Cards."}],
 
  [{n:"Blacklist",t:"counter",g:["operatives","cards"],x:"When an enemy corporation draws an Operative Card, they are forced to discard it."},
-  {n:"Iron Defense",t:"contract",g:["territory"],x:"For 3 rounds, your Control Points cannot receive more than 1 Siege Damage from any single source."},
+  {n:"Iron Defense",t:"contract",g:["territory"],x:"For 2 rounds, your Control Points cannot receive more than 1 Siege Damage from any single source."},
   {n:"Prefabrication",t:"order",g:["construction"],x:"Construct up to 2 Structures of your choice at no Worker or Resource cost."}],
 
  [{n:"Reposition",t:"order",g:["mobility"],x:"Move one of your Operatives up to 3 Movement. Either retain this card and move only that Operative, or discard this card and apply this movement to all your Operatives."},
@@ -2907,9 +2943,9 @@ const ACARDS = [
 
  [{n:"Barracks",t:"order",g:["construction"],x:"Construct a Barracks at no Resource cost."},
   {n:"Silica Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Silica from their storage."},
-  {n:"Global Tariffs",t:"contract",g:["economy"],x:"For 3 rounds, when another corporation gains a Resource, you also gain 1 of the same Resource type."}],
+  {n:"Global Tariffs",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains a Resource, you also gain 1 of the same Resource type."}],
 
- [{n:"Inflation",t:"contract",g:["economy","cards"],x:"For 3 rounds, all Ability Cards cost 2 extra Arc Cubes for each other corporation."},
+ [{n:"Inflation",t:"contract",g:["economy","cards"],x:"For 2 rounds, all Ability Cards cost 2 extra Arc Cubes for each other corporation."},
   {n:"Second Wind",t:"order",g:["combat"],x:"On a successful Bio Attack, your Operatives may perform another Bio Attack against a target within their Range. This continues until an attack misses."},
   {n:"Scorched Earth",t:"order",g:["territory"],x:"Reduce all enemy Control Points by 2."}],
 
@@ -2918,30 +2954,30 @@ const ACARDS = [
   {n:"Menagerie",t:"order",g:["creatures"],x:"Draw 5 Encounter Cards and add them to your Subjugation slot in any order. When your Creature is eliminated, you may deploy the next one sequentially."}],
 
  [{n:"Refine",t:"order",g:["economy"],x:"Remove 2 Resources from your storage. Gain 1 Resource of any Resource type. This effect may be repeated any number of times."},
-  {n:"Sentinel Grid",t:"contract",g:["combat"],x:"For 3 rounds, your Operatives within Range 3 of a Control Die under your control gain 2 extra Combat Dice while defending."},
+  {n:"Sentinel Grid",t:"contract",g:["combat"],x:"For 2 rounds, your Operatives within Range 3 of a Control Die under your control gain 2 extra Combat Dice while defending."},
   {n:"Strategic Shift",t:"order",g:["cards"],x:"Draw 5 Ability Cards."}],
 
  [{n:"Spoil",t:"counter",g:["economy"],x:"When a Xeno Egg is consumed, cancel its effect."},
   {n:"Xeno Surge",t:"order",g:["creatures"],x:"Draw 2 cards from the Encounter Deck. For each, if a Creature slot is available, assign it to that slot and move its Creature Die to the Volcano tile. Otherwise, discard it."},
   {n:"Legion",t:"order",g:["operatives"],x:"Draw 5 Operative Cards and add them to the same Operative slot in any order. When your Operative is eliminated, you may deploy the next one sequentially."}],
 
- [{n:"Assembly Line",t:"contract",g:["construction","territory"],x:"For 3 rounds, when you construct a Structure, Fortify your Sectors by an extra 4."},
+ [{n:"Assembly Line",t:"contract",g:["construction","territory"],x:"For 2 rounds, when you construct a Structure, Fortify your Sectors by an extra 4."},
   {n:"Counter Seizure",t:"counter",g:["cards"],x:"When another corporation plays a Counter Card, cancel its effect. You gain the Ability Card instead of it being discarded."},
   {n:"Power Drain",t:"order",g:["operatives"],x:"Set all enemy Operatives' Energy to 1."}],
 
- [{n:"Undermine",t:"contract",g:["construction","territory"],x:"For 3 rounds, enemy corporations cannot Fortify their Sectors. Draw 1 Ability Card."},
+ [{n:"Undermine",t:"contract",g:["construction","territory"],x:"For 2 rounds, enemy corporations cannot Fortify their Sectors. Draw 1 Ability Card."},
   {n:"Equilibrium",t:"order",g:["economy"],x:"Each other corporation removes Arc Cubes, Resources, Xeno Eggs, and Ability Cards of their choice until they match yours."},
   {n:"Arc Jump",t:"order",g:["mobility"],x:"Move any of your Operatives to any other passable tile."}],
 
  [{n:"Ambush",t:"counter",g:["combat"],x:"When an enemy enters a controlled Sector, perform a Bio Attack with 6 Combat Dice against it."},
-  {n:"Lockdown",t:"contract",g:["mobility"],x:"For 3 rounds, enemy Operatives and Creatures cannot move within or into your controlled Sectors."},
+  {n:"Lockdown",t:"contract",g:["mobility"],x:"For 2 rounds, enemy Operatives and Creatures cannot move within or into your controlled Sectors."},
   {n:"Siege Protocol",t:"order",g:["combat"],x:"Until the end of your turn, on a successful Attack, your Operatives add 3 to their Siege Roll."}],
 
  [{n:"Contract Breach",t:"counter",g:["cards"],x:"When another corporation plays a Contract Card, cancel its effect. It is discarded and the Arc Cubes spent are lost."},
   {n:"Barrage",t:"order",g:["combat"],x:"Perform a Bio Attack with 2 of your Operatives against an enemy within their Range."},
   {n:"Terminal Decline",t:"order",g:["combat","territory"],x:"Target an enemy Headquarters. During your Income Phase, it takes 1 Siege Damage for the remainder of the game."}],
 
- [{n:"Dampening Field",t:"contract",g:["operatives","combat"],x:"For 3 rounds, your Operatives cannot receive more than 1 Bio Damage from any single source."},
+ [{n:"Dampening Field",t:"contract",g:["operatives","combat"],x:"For 2 rounds, your Operatives cannot receive more than 1 Bio Damage from any single source."},
   {n:"Sever Bond",t:"order",g:["creatures"],x:"Choose an enemy's subjugated Creature within Range of one of your Operatives. Remove it from their control and move its Creature Die to the Volcano tile."},
   {n:"Work Complete",t:"order",g:["economy"],x:"Gain 5 Workers."}],
 
@@ -2950,7 +2986,7 @@ const ACARDS = [
   {n:"Biohazard",t:"order",g:["combat"],x:"All enemy Operatives in one of your controlled Sectors take 1 Bio Damage during your Income Phase for the remainder of the game."}],
 
  [{n:"Decrypt",t:"order",g:["cards"],x:"Look at the top 3 Ability Cards. Keep 1 in your hand. Return the rest in any order to the top of the deck."},
-  {n:"Retaliation",t:"contract",g:["combat"],x:"For 3 rounds, when one of your Operatives takes Bio Damage, the attacker takes 2 Bio Damage in return."},
+  {n:"Retaliation",t:"contract",g:["combat"],x:"For 2 rounds, when one of your Operatives takes Bio Damage, the attacker takes 2 Bio Damage in return."},
   {n:"Double Shift",t:"order",g:["economy","territory"],x:"For the remainder of the game, your Sectors yield 2 instead of 1 Arc Cube each."}]
 ];
 
@@ -3009,7 +3045,7 @@ function aRender(){
         '<div class="abil" style="--tier:var(--card-tier' + (ti + 1) + ')">' +
           '<p class="an">' + esc(a.n) +
             ' <span class="ty">(' + TYPEN[a.t].toUpperCase() + ')</span></p>' +
-          (a.t === "contract" ? '<span class="dur"><i>1</i><i>2</i><i>3</i></span>' : '') +
+          (a.t === "contract" ? '<span class="dur"><i>1</i><i>2</i></span>' : '') +
           '<p class="ax">' + esc(a.x) + '</p>' +
         '</div>').join("") +
     '</article>').join("");
@@ -3207,8 +3243,8 @@ const OPS = [
    ["a","On a successful Defense, the attacker takes 2 Bio Damage."],
    ["p","Perform a Bio Attack whenever an enemy within Range misses you with an Attack."]]},
  {n:"Xenobiologist",e:3,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
-   ["p","When one of your Operatives subjugates a Creature, you gain 1 Progression and 1 Xeno Egg."],
-   ["p","While defending against a Creature, gain 1 Combat Die."]]},
+   ["p","When one of your Operatives eliminates a Creature, you gain 1 extra Xeno Egg."],
+   ["p","Your Operatives gain 1 Reroll while defending against a Creature."]]},
  {n:"Shock Trooper",e:4,m:3,r:2,a:3,d:2,g:["mobility","combat"],ab:[
    ["a","Gain 2 Movement. Cannot be performed if you already attacked."],
    ["p","If you did not move this turn, roll 1 extra Combat Die while attacking."]]},
