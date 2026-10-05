@@ -32,6 +32,8 @@
        own screen with browser zoom, which scales card and text together. */
     --mini-w:44mm;  --mini-h:68mm;     /* Mini-Euro  — Corporations */
     --poker-w:63.5mm; --poker-h:89mm;  /* Poker      — Abilities, Encounters */
+    --obj-w:var(--poker-w); --obj-h:calc(var(--poker-h) * 1.193);
+                                       /* Objective  — not a card; Poker width, a fifth taller */
     --display:"Chakra Petch","Trebuchet MS",sans-serif;
     --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
@@ -418,16 +420,16 @@
     background:var(--warn);color:var(--ground);font-family:var(--mono);font-size:8px;
     letter-spacing:.12em;padding:2px 5px}
 
-  /* ---- Objectives: the printed Poker face, same rules as the other decks ---- */
-  #odeck{grid-template-columns:repeat(auto-fill,var(--poker-w));justify-content:start;gap:18px;
+  /* ---- Objective: the printed panel at 1:1. Not Poker size and not really a card ---- */
+  #odeck{grid-template-columns:repeat(auto-fill,var(--obj-w));justify-content:start;gap:18px;
     --facerule:var(--rule-obj)}
-  #odeck .ocard{width:var(--poker-w);height:var(--poker-h);overflow:hidden;position:relative;
+  #odeck .ocard{width:var(--obj-w);height:var(--obj-h);overflow:hidden;position:relative;
     padding:7px 9px 6px;text-align:center;
     background:var(--face);color:var(--faceink);
     border:4px solid var(--facerule);border-radius:11px}
   #odeck .ocard:hover{background:var(--face)}
   #odeck .ocard, #odeck .ocard *{font-family:var(--cardface)}
-  #odeck .ocard > *{flex-shrink:0}
+  #odeck .ocard > *:not(.crit){flex-shrink:0}
   #odeck .onm{font-weight:700;font-size:calc(13 * var(--pt));letter-spacing:.06em;
     color:var(--faceink);margin:0 0 5px;line-height:1.2}
   #odeck .odash{border-top:1px dashed var(--facedash);margin:0 0 7px}
@@ -446,7 +448,8 @@
   #odeck .place .pn b{font-weight:700}
   #odeck .place ul{font-size:calc(10 * var(--pt));line-height:1.15;color:var(--faceink);
     margin:0;padding:0 0 0 4px;list-style:none}
-  #odeck .crit{display:block;border-top:0;padding:0;margin:0;text-align:left}
+  #odeck .crit{display:block;border-top:0;padding:0;margin:0;text-align:left;
+    flex:1 1 0;min-height:0}
   #odeck .crit .cboxes{display:flex;gap:4px;justify-content:center;margin:3px 0 0}
   #odeck .crit + .crit{border-top:1px dashed var(--facedash);margin-top:4px;padding-top:4px}
   #odeck .crit .ct{font-weight:700;font-size:calc(10 * var(--pt));color:var(--faceink);
@@ -2119,7 +2122,7 @@
 
   <section>
     <h2>The card</h2>
-    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>. Four targets, five boxes each, and it never leaves the table.</p>
+    <p class="sub">Not a Poker card and, before long, not a card at all &mdash; the panel is <strong>Poker width and about a fifth taller</strong>, and it is headed for the board itself rather than the deck. Shown here at its true proportions, as a card, for easy reference.</p>
     <div class="odeck" id="odeck"></div>
   </section>
 
