@@ -446,8 +446,9 @@
   #odeck .place .pn b{font-weight:700}
   #odeck .place ul{font-size:calc(10 * var(--pt));line-height:1.15;color:var(--faceink);
     margin:0;padding:0 0 0 4px;list-style:none}
-  #odeck .crit{display:flex;border-top:0;padding:0;margin:0;gap:8px;
-    align-items:center;text-align:left}
+  #odeck .crit{display:block;border-top:0;padding:0;margin:0;text-align:left}
+  #odeck .crit .cb{display:flex;align-items:center;justify-content:space-between;gap:6px}
+  #odeck .crit .cboxes{display:flex;gap:4px;flex:none}
   #odeck .crit + .crit{border-top:1px dashed var(--facedash);margin-top:4px;padding-top:4px}
   #odeck .crit .ct{font-weight:700;font-size:calc(10 * var(--pt));color:var(--faceink);
     margin:0;line-height:1.15;letter-spacing:0}
@@ -601,7 +602,7 @@
       <button class="vtab" role="tab" id="t-atlas" aria-controls="v-atlas" aria-selected="false">Sector Atlas</button>
       <button class="vtab" role="tab" id="t-corp" aria-controls="v-corp" aria-selected="false">Corporations <u>45</u></button>
       <button class="vtab" role="tab" id="t-ability" aria-controls="v-ability" aria-selected="false">Abilities <u>36</u></button>
-      <button class="vtab" role="tab" id="t-objective" aria-controls="v-objective" aria-selected="false">Objectives <u>5</u></button>
+      <button class="vtab" role="tab" id="t-objective" aria-controls="v-objective" aria-selected="false">Objectives <u>&mdash;</u></button>
       <button class="vtab" role="tab" id="t-encounter" aria-controls="v-encounter" aria-selected="false">Encounters</button>
       <button class="vtab" role="tab" id="t-operative" aria-controls="v-operative" aria-selected="false">Operatives</button>
       <button class="vtab" role="tab" id="t-changelog" aria-controls="v-changelog" aria-selected="false">Changelog</button>
@@ -683,7 +684,7 @@
             <tr><td class="k">Discovery</td><td class="n">18</td></tr>
             <tr><td class="k">Operative</td><td class="n">36</td></tr>
             <tr><td class="k">Encounter</td><td class="n">18</td></tr>
-            <tr><td class="k">Objective</td><td class="n">5</td></tr>
+            <tr><td class="k">Objective</td><td class="n" id="ob-setup">&mdash;</td></tr>
           </tbody>
         </table></div>
       </section>
@@ -693,7 +694,7 @@
         <ol class="steps">
           <li><b>Build Arcworld</b>Place the game board.</li>
           <li><b>Hand out Player Boards</b>Each player takes a Player Board with their matching tokens and dice.</li>
-          <li><b>Prepare the decks</b>Shuffle the Corporation, Operative, Encounter and Ability decks separately and place them face-down on the board. Shuffle the Objective deck and place the <em>First Contact</em> card on top of it.</li>
+          <li><b>Prepare the decks</b>Shuffle the Corporation, Operative, Encounter and Ability decks separately and place them face-down on the board. Stack the Objective deck in order with <em>First Contact</em> on top, then <em>Entrenchment</em>, then <em>Total Dominion</em>.</li>
           <li><b>Prepare the event tokens</b>Build a face-down pile of Tunnel and Creature tokens scaled to the player count: 4 Tunnels and 2 Creatures at four players, 3 Tunnels and 1 Creature at three, and 2 Tunnels with no Creatures at two.</li>
           <li><b>Choose your corporation</b>Starting with the Initiative player and going clockwise, draw 3 Corporation Cards blind, keep 1, discard the rest.</li>
           <li><b>Roll for Initiative</b>Everyone rolls a die. Highest takes the Initiative Marker; tied players reroll until one wins.</li>
@@ -967,9 +968,9 @@
       <section id="s-objectives">
         <p class="kicker">14</p>
         <h3>Objectives</h3>
-        <p>One Objective is face-up at all times and everyone races the same one. <em>First Contact</em> starts on top of the deck; the rest are shuffled beneath it.</p>
-        <p>Whenever you meet a criterion on the face-up Objective, put one of your tracker tokens on it. <em>First Contact</em> carries four separate criteria, each claimable once and each paying its reward the moment you take it. Every other Objective has a single goal with three token spaces, and pays nothing until it is full.</p>
-        <p>When the last space fills, count tokens per player: most takes 1st place, next 2nd, then 3rd. A player with no tokens gets nothing, and any place nobody reaches goes unpaid. Players level on tokens all slide down one place and take that reward instead &mdash; so two players tied at the top means nobody takes 1st and both take 2nd. Then reveal the next Objective.</p>
+        <p>One Objective is face-up at all times and everyone races the same one. The deck is stacked in a fixed order &mdash; <em>First Contact</em>, <em>Entrenchment</em>, <em>Total Dominion</em> &mdash; and is never shuffled.</p>
+        <p>Every Objective carries the same four criteria &mdash; claim a Control Point, construct a Structure, eliminate a Creature, eliminate an Operative. Each sits on its own row with its own reward, and each row has a number of token boxes: <strong>one</strong> on <em>First Contact</em>, <strong>two</strong> on <em>Entrenchment</em>, <strong>three</strong> on <em>Total Dominion</em>. Meet a criterion and put one of your tracker tokens in the next free box on that row, then take that row's reward at once. The rewards climb with the card: a claimed Control Point is worth Fortify 2, then 4, then 6.</p>
+        <p>When the last box on the card is filled, count tokens per player. The player with the most &mdash; first place &mdash; gains <strong>1 Progression</strong>. Then reveal the next Objective. <em>Total Dominion</em> is the last card; once it is spent there are no more Objectives.</p>
       </section>
       <section id="s-currencies">
         <p class="kicker">15</p>
@@ -2096,45 +2097,40 @@
 
 <div class="view" id="v-objective" role="tabpanel" aria-labelledby="t-objective" hidden>
   <header>
-    <p class="eyebrow">Objective deck &middot; 5 cards &middot; one face-up at a time</p>
+    <p class="eyebrow">Objective deck &middot; <b id="ob-n">&mdash;</b> cards &middot; one face-up at a time</p>
     <h1>Objectives</h1>
-    <p class="lede">A shared side goal that everyone races at once. You do not choose to take one on &mdash; it sits face-up on the table, and <strong>the first player to do the thing places a tracker token on it</strong>. When the card fills up, the player with the most tokens on it takes first place.</p>
+    <p class="lede">A shared side goal that everyone races at once. You do not choose to take one on &mdash; it sits face-up on the table, and <strong>doing the thing it asks places one of your tracker tokens on it</strong> and pays you on the spot. The three cards run in a fixed order and ask for the same four things, <strong>once, then twice, then three times over</strong>.</p>
     <div class="stats">
-      <div class="stat"><b>5</b><span>Objectives</span></div>
+      <div class="stat"><b id="ob-cards">&mdash;</b><span>Objectives</span></div>
       <div class="stat"><b>1</b><span>Face-up at a time</span></div>
-      <div class="stat"><b>3</b><span>Tokens to fill a card</span></div>
-      <div class="stat"><b>3</b><span>Places paid</span></div>
+      <div class="stat"><b id="ob-slots">&mdash;</b><span>Token slots in the deck</span></div>
+      <div class="stat"><b id="ob-prog">&mdash;</b><span>Progression on offer</span></div>
     </div>
   </header>
 
   <section>
     <h2>How they work</h2>
-    <p class="sub"><em>First Contact</em> always starts on top; the rest are shuffled beneath it. Only the top card is ever active.</p>
+    <p class="sub">The deck is stacked, not shuffled: <em>First Contact</em>, then <em>Entrenchment</em>, then <em>Total Dominion</em>. Only the top card is ever active.</p>
     <div class="notes">
-      <div class="note"><h3>Placing tokens</h3><p>Whenever you meet a criterion on the face-up objective, put one of your tracker tokens on it. On <em>First Contact</em> each of the four criteria is a separate slot with its own immediate reward, claimable once. On every other card the tokens all go to the same goal, and nothing is paid out until the card is full.</p></div>
-      <div class="note"><h3>Resolving</h3><p>The moment the last token lands, count tokens per player. Most tokens takes 1st, next takes 2nd, then 3rd. Players with no tokens get nothing, and any place nobody reaches simply goes unpaid.</p></div>
-      <div class="note"><h3>Ties drop a place</h3><p>Players on equal tokens all slide down one place and take that reward instead. Two players tied at the top means <em>nobody</em> takes 1st &mdash; both take the 2nd-place reward.</p></div>
+      <div class="note"><h3>Placing tokens</h3><p>Each of the four criteria is its own row with its own reward. Meet one and put a tracker token in the next free box on that row, then take that row's reward immediately. A row with every box filled is closed.</p></div>
+      <div class="note"><h3>Each card asks for more</h3><p>The rows carry one box on <em>First Contact</em>, two on <em>Entrenchment</em> and three on <em>Total Dominion</em> &mdash; so the same four deeds are worth claiming three times over, and the rewards climb with them.</p></div>
+      <div class="note"><h3>Resolving</h3><p>When the last box on the card is filled, the player with the most tokens on it gains <b>1 Progression</b>. Then reveal the next Objective.</p></div>
     </div>
   </section>
 
   <section>
     <h2>The deck</h2>
-    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>. Every card past <em>First Contact</em> pays the same shape: first place adds Progression on top of the themed reward, second place gets the themed reward alone, and third gets a single card for showing up.</p>
+    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>. The four criteria never change &mdash; only how many times each can be claimed, and what it pays.</p>
     <div class="odeck" id="odeck"></div>
   </section>
 
-  <section>
-    <h2>Worked example</h2>
-    <p class="sub">Why the tie rule bites &mdash; a filled <em>Culling the Herd</em> where three corporations each killed one Creature.</p>
-    <div class="tablewrap"><table id="otbl"></table></div>
-  </section>
 
-  <footer>Card text as printed. First place on every card past First Contact carries 1 Progression, which also nudges you along the Tier track &mdash; the objectives are worth chasing for that alone.</footer>
+  <footer>Card text as printed. Each card carries 1 Progression for whoever holds the most tokens when it fills, which also nudges you along the Tier track &mdash; the objectives are worth chasing for that alone.</footer>
 </div>
 
 <div class="view" id="v-changelog" role="tabpanel" aria-labelledby="t-changelog" hidden>
   <header>
-    <p class="eyebrow">Change history &middot; 3.0 to 3.7</p>
+    <p class="eyebrow">Change history &middot; 3.0 to <b id="cl-latest">&mdash;</b></p>
     <h1>Changelog</h1>
     <p class="lede">What changed in the rules, newest first. The manual always describes the game <strong>as it stands today</strong> &mdash; this is the only page that remembers what it used to be.</p>
   </header>
@@ -2143,6 +2139,15 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
+        <div><p class="v">3.13</p><p class="vt">Objectives</p></div>
+        <ul>
+          <li>The Objective deck drops to <b>three cards</b> and is <b>stacked, not shuffled</b>: First Contact, then Entrenchment, then Total Dominion.</li>
+          <li>Place-based payouts are gone. Every card carries the <b>same four criteria</b> &mdash; claim a Control Point, construct a Structure, eliminate a Creature, eliminate an Operative &mdash; each on its own row, each paying the moment you claim it.</li>
+          <li>Rows carry <b>one token box on First Contact, two on Entrenchment, three on Total Dominion</b>, and the rewards climb with them: Fortify 2/4/6, 2/4/6 Arc Cubes, 1/2/3 Xeno Eggs, 1/2/3 Resources.</li>
+          <li>Filling a card pays <b>1 Progression</b> to whoever holds the most tokens on it.</li>
+          <li>Retired with the old deck: <b>Culling the Herd</b>, <b>Blood in the Sand</b>, <b>Grand Expansion</b> and <b>Arms Race</b>, along with second and third place rewards and the tie-drops-a-place rule.</li>
+        </ul>
+
         <div><p class="v">3.12</p><p class="vt">Rules &amp; wording</p></div>
         <div><ul>
           <li>Deploying into a Suppressed Sector arrives at half maximum Energy <b>rounded down</b>, not up.</li>
@@ -2937,11 +2942,11 @@ const ACARDS = [
 
  [{n:"Radar Station",t:"order",g:["construction"],x:"Construct a Radar Station at no Resource cost."},
   {n:"Cease Fire",t:"contract",g:["combat"],x:"Choose one corporation. For 2 rounds, neither of you may target the other with Attacks or Ability Cards."},
-  {n:"Subjugate",t:"order",g:["creatures"],x:"Choose a Creature not on the Volcano tile. Claim its Encounter Card and restore it to its maximum Health."}],
+  {n:"Subjugate",t:"order",g:["creatures"],x:"Choose a Creature not on the Volcano tile, Claim its Encounter Card and restore it to its maximum Health."}],
 
  [{n:"Terminal Run",t:"order",g:["combat","operatives"],x:"Choose one of your Operatives. Deal 4 Bio Damage or 2 Siege Damage to one target within its Range."},
   {n:"Breakthrough",t:"order",g:["territory"],x:"Advance your Progression Tracker 1 square. If you have the lowest Progression Tracker value, or are tied for lowest, advance 2 squares instead."},
-  {n:"Maximum Yield",t:"order",g:["economy"],x:"Replenish your Arc Cubes, Resources, or Xeno Eggs to their respective limits."}],
+  {n:"Power Drain",t:"order",g:["operatives"],x:"Set all enemy Operatives' Energy to 1."}],
 
  [{n:"Riposte",t:"counter",g:["creatures","combat"],x:"When a Creature attacks one of your Operatives, that Creature takes 3 Bio Damage before making its Attack Roll."},
   {n:"Bio Recovery",t:"counter",g:["economy"],x:"When a Xeno Egg is consumed, cancel its effect. Gain 1 Xeno Egg."},
@@ -2977,7 +2982,7 @@ const ACARDS = [
 
  [{n:"Assembly Line",t:"contract",g:["construction","territory"],x:"For 2 rounds, when you construct a Structure, Fortify your Sectors by an extra 4."},
   {n:"Counter Seizure",t:"counter",g:["cards"],x:"When another corporation plays a Counter Card, cancel its effect. You gain the Ability Card instead of it being discarded."},
-  {n:"Power Drain",t:"order",g:["operatives"],x:"Set all enemy Operatives' Energy to 1."}],
+  {n:"Maximum Yield",t:"order",g:["economy"],x:"Replenish your Arc Cubes, Resources, or Xeno Eggs to their respective limits."}],
 
  [{n:"Undermine",t:"contract",g:["construction","territory"],x:"For 2 rounds, enemy corporations cannot Fortify their Sectors. Draw 1 Ability Card."},
   {n:"Equilibrium",t:"order",g:["economy"],x:"Each other corporation removes Arc Cubes, Resources, Xeno Eggs, and Ability Cards of their choice until they match yours."},
@@ -3323,7 +3328,7 @@ const OPS = [
    ["p","Enemy Operatives cannot deploy into a Sector you Suppress."]]},
  {n:"Pathfinder",e:3,m:4,r:2,a:3,d:2,g:["mobility"],ab:[
    ["p","Mountain tiles cost 1 Movement for your Operatives."],
-   ["p","Sludge tiles do not reduce your Operatives' Combat Dice."]]},
+   ["p","Your Operatives ignore the Sludge tile penalties."]]},
  {n:"Foreman",e:3,m:3,r:2,a:2,d:2,g:["territory","economy"],ab:[
    ["p","Structures cost you 1 less Resource of your choice."],
    ["p","Structures you construct Fortify your Sectors by an extra 1."]]},
@@ -3610,44 +3615,41 @@ document.getElementById("t-encounter").innerHTML = 'Encounters <u>' + ENC.length
 
 /* ============ OBJECTIVES ============ */
 const OBJECTIVES = [
-  {n:"First Contact", lead:true,
-   how:"When all criteria are met, 1st place gains 1 Progression.",
+  {n:"First Contact", track:1,
    crit:[
-     {t:"Claim a Control Point", r:"Fortify by 3"},
-     {t:"Construct a Structure", r:"1 Worker"},
-     {t:"Eliminate a Creature",  r:"1 Xeno Egg"},
-     {t:"Eliminate an Operative", r:"3 Arc Cubes"}
+     {t:"Claim a Control Point",   r:"Fortify 2"},
+     {t:"Construct a Structure",   r:"2 Arc Cubes"},
+     {t:"Eliminate a Creature",    r:"1 Xeno Egg"},
+     {t:"Eliminate an Operative",  r:"1 Resource"}
    ]},
-  {n:"Culling the Herd", goal:"Eliminate 3 Creatures",
-   places:[["1 Progression","2 Xeno Eggs","1 Ability Card"],["2 Xeno Eggs","1 Ability Card"],["1 Ability Card"]]},
-  {n:"Blood in the Sand", goal:"Eliminate 3 Operatives",
-   places:[["1 Progression","6 Arc Cubes","1 Ability Card"],["6 Arc Cubes","1 Ability Card"],["1 Ability Card"]]},
-  {n:"Grand Expansion", goal:"Claim 3 Control Points",
-   places:[["1 Progression","Fortify by 6","1 Ability Card"],["Fortify by 6","1 Ability Card"],["1 Ability Card"]]},
-  {n:"Arms Race", goal:"Construct 3 Structures",
-   places:[["1 Progression","2 Workers","1 Ability Card"],["2 Workers","1 Ability Card"],["1 Ability Card"]]}
+  {n:"Entrenchment", track:2,
+   crit:[
+     {t:"Claim Control Points",    r:"Fortify 4"},
+     {t:"Construct Structures",    r:"4 Arc Cubes"},
+     {t:"Eliminate Creatures",     r:"2 Xeno Eggs"},
+     {t:"Eliminate Operatives",    r:"2 Resources"}
+   ]},
+  {n:"Total Dominion", track:3,
+   crit:[
+     {t:"Claim Control Points",    r:"Fortify 6"},
+     {t:"Construct Structures",    r:"6 Arc Cubes"},
+     {t:"Eliminate Creatures",     r:"3 Xeno Eggs"},
+     {t:"Eliminate Operatives",    r:"3 Resources"}
+   ]}
 ];
-const ORD = ["1st","2nd","3rd"];
-const OBOXES = 3;   /* tracker boxes printed on every card past First Contact */
-
+/* every card prints the same line above its criteria */
+const OHOW = "When all criteria are met, 1st place gains 1 Progression.";
 function oRender(){
-  document.getElementById("odeck").innerHTML = OBJECTIVES.map(o => {
-    const head = '<h3 class="onm">' + esc(o.n) + '</h3><div class="odash"></div>' +
-      '<p class="ohow">' +
-      esc(o.how || "When the criteria is met, resolve its reward based on place.") + '</p>';
-    if (o.lead) {
-      return '<article class="ocard lead">' + head +
-        o.crit.map(c => '<div class="crit"><div class="cx"><p class="ct">' + esc(c.t) + '</p>' +
-          '<p class="cr">Reward:<br>' + esc(c.r) + '</p></div><i>1</i></div>').join("") +
-        '</article>';
-    }
-    return '<article class="ocard">' + head +
-      '<div class="boxes">' + Array.from({length:OBOXES}, (_, i) => '<i>' + (i + 1) + '</i>').join("") + '</div>' +
-      '<p class="ogoal">' + esc(o.goal) + '</p>' +
-      o.places.map((p, i) => '<div class="place"><p class="pn"><b>' + ORD[i] + '</b> Place Reward:</p><ul>' +
-        p.map(x => '<li>' + esc(x) + '</li>').join("") + '</ul></div>').join("") +
-      '</article>';
-  }).join("");
+  document.getElementById("odeck").innerHTML = OBJECTIVES.map(o =>
+    '<article class="ocard lead">' +
+      '<h3 class="onm">' + esc(o.n) + '</h3><div class="odash"></div>' +
+      '<p class="ohow">' + esc(OHOW) + '</p>' +
+      o.crit.map(c => '<div class="crit"><p class="ct">' + esc(c.t) + '</p>' +
+        '<div class="cb"><p class="cr">Reward:<br>' + esc(c.r) + '</p>' +
+        '<span class="cboxes">' +
+        Array.from({length:o.track}, (_, i) => '<i>' + (i + 1) + '</i>').join("") +
+        '</span></div></div>').join("") +
+    '</article>').join("");
   oSizeCheck();
 }
 
@@ -3660,21 +3662,18 @@ function oSizeCheck(){
 }
 oRender();
 
-/* worked example of the tie rule */
+/* every objective figure on the page comes from the data above */
 (function(){
-  const rows = [
-    ["Yellow", 1, "2nd", "2 Xeno Eggs · 1 Ability Card"],
-    ["Red",    1, "2nd", "2 Xeno Eggs · 1 Ability Card"],
-    ["Blue",   1, "2nd", "2 Xeno Eggs · 1 Ability Card"],
-    ["Green",  0, "&mdash;", "Nothing"]
-  ];
-  document.getElementById("otbl").innerHTML =
-    '<thead><tr><th class="l">Corporation</th><th>Tokens</th>' +
-    '<th class="l">Place taken</th><th class="l">Reward</th></tr></thead><tbody>' +
-    rows.map(r => '<tr><td class="l sec">' + r[0] + '</td><td>' + r[1] + '</td>' +
-      '<td class="l pairnote">' + r[2] + '</td><td class="l pairnote">' + r[3] + '</td></tr>').join("") +
-    '</tbody><tfoot><tr><td class="l">All level on 1</td><td>3</td>' +
-    '<td class="l" colspan="2">Everyone ties, so everyone slides down one place. 1st and 3rd both go unpaid.</td>' +
-    '</tr></tfoot>';
+  const slots = OBJECTIVES.reduce((n, o) => n + o.crit.length * o.track, 0);
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  set("ob-n", OBJECTIVES.length);
+  set("ob-cards", OBJECTIVES.length);
+  set("ob-slots", slots);
+  set("ob-prog", OBJECTIVES.length);
+  set("ob-setup", OBJECTIVES.length);
+  document.getElementById("t-objective").querySelector("u").textContent = OBJECTIVES.length;
+  const v = document.querySelector("#v-changelog .v");
+  if (v) document.getElementById("cl-latest").textContent = v.textContent.trim();
 })();
+
 </script>
