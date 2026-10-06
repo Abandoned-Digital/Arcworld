@@ -171,6 +171,7 @@
     width:5px;height:5px;border-left:2px solid #2b3138;border-top:2px solid #2b3138;
     transform:rotate(45deg)}
   th.l,td.l{text-align:left}
+  table.printlist{min-width:0}
   tbody tr:hover{background:var(--panel-2)}
   td.sec{font-family:var(--display);font-weight:600;font-size:14px}
   td.zero{color:#4b4139}
@@ -2139,30 +2140,14 @@
 
   <section>
     <h2>To print for the next test</h2>
-    <p class="sub">Every Ability and Discovery Card added or changed on 6 October 2026: <b>20 cards</b> &mdash; 6 new, 14 edited. Card numbers match the layer names in the print file; sheet is the Ability Cards layer it sits on (Disc. = Discoveries).</p>
-    <div class="tablewrap"><table>
-      <thead><tr><th>Card</th><th>Sheet</th><th class="l">Status</th><th class="l">Abilities (Tier I / II / III)</th><th class="l">What changed</th></tr></thead>
+    <p class="sub"><b>20 cards</b>, by the layer they sit on in the print file.</p>
+    <div class="tablewrap"><table class="printlist">
+      <thead><tr><th class="l">Sheet</th><th class="l">Cards</th></tr></thead>
       <tbody>
-            <tr><td>1</td><td>1</td><td class="l">Edited</td><td class="l">Blitz / Arc Pulse / <b>Conglomerate</b></td><td class="l">Tier III: Conglomerate replaces Dissolution</td></tr>
-            <tr><td>7</td><td>1</td><td class="l">Edited</td><td class="l">Charging Bay / Overtime / <b>Ghost Protocol</b></td><td class="l">Tier III reworded: targeting only</td></tr>
-            <tr><td>10</td><td>1</td><td class="l">Edited</td><td class="l">Survey / <b>Silica Tariff</b> / Execute</td><td class="l">Tier II: Silica Tariff replaces Signal Jam</td></tr>
-            <tr><td>11</td><td>1</td><td class="l">Edited</td><td class="l">Double Yolk / Orbital Trading / <b>Defector</b></td><td class="l">Tier III reworded, no Progression; Tier II re-broken to fit</td></tr>
-            <tr><td>12</td><td>1</td><td class="l">Edited</td><td class="l">Martial Law / Biofuel Heist / <b>Clearance</b></td><td class="l">Tier III: every other corporation; Contract Workers are safe</td></tr>
-            <tr><td>13</td><td>1</td><td class="l">Edited</td><td class="l">Stockpile / Targeted Heist / <b>Cataclysm</b></td><td class="l">Tier III: 3 Structures of your choice</td></tr>
-            <tr><td>19</td><td>2</td><td class="l">Edited</td><td class="l">Kickback / Blackout / <b>Egg Heist</b></td><td class="l">Tier III: excess Xeno Eggs are lost; stray space in Tier II</td></tr>
-            <tr><td>23</td><td>2</td><td class="l">Edited</td><td class="l">Blacklist / <b>Biofuel Tariff</b> / Prefabrication</td><td class="l">Tier II: Biofuel Tariff replaces Iron Defense; boxes moved</td></tr>
-            <tr><td>24</td><td>2</td><td class="l">Edited</td><td class="l">Reposition / Xeno Lure / <b>Extinction Event</b></td><td class="l">Tier III: no Progression</td></tr>
-            <tr><td>25</td><td>2</td><td class="l">Edited</td><td class="l">Barracks / Silica Heist / <b>Global Tariffs</b></td><td class="l">Tier III: also 3 Arc Cubes</td></tr>
-            <tr><td>30</td><td>2</td><td class="l">Edited</td><td class="l">Assembly Line / Counter Seizure / <b>Maximum Yield</b></td><td class="l">Tier III: refills all three</td></tr>
-            <tr><td>37</td><td>3</td><td class="l">New</td><td class="l">Foundry / Iron Defense / Bastion</td><td class="l"></td></tr>
-            <tr><td>38</td><td>3</td><td class="l">New</td><td class="l">Refinery / Signal Jam / Overclock</td><td class="l"></td></tr>
-            <tr><td>39</td><td>3</td><td class="l">New</td><td class="l">Science Academy / Dissolution / Expropriation</td><td class="l"></td></tr>
-            <tr><td>40</td><td>3</td><td class="l">New</td><td class="l">Xeno Lab / Cryofluid Heist / Stasis Field</td><td class="l"></td></tr>
-            <tr><td>41</td><td>3</td><td class="l">New</td><td class="l">Base Turret / Overdrive / Warpath</td><td class="l"></td></tr>
-            <tr><td>42</td><td>3</td><td class="l">New</td><td class="l">Shield Generator / Pillage / Hardened Core</td><td class="l"></td></tr>
-            <tr><td>1</td><td>Disc.</td><td class="l">Edited</td><td class="l"><b>Salvaged Cache</b></td><td class="l">2 Resources</td></tr>
-            <tr><td>6</td><td>Disc.</td><td class="l">Edited</td><td class="l"><b>Lone Survivor</b></td><td class="l">no Energy clause</td></tr>
-            <tr><td>11</td><td>Disc.</td><td class="l">Edited</td><td class="l"><b>Something Stirs</b></td><td class="l">deploys on the Volcano tile</td></tr>
+        <tr><td class="l sec">Ability Cards 1</td><td class="l">1, 7, 10, 11, 12, 13</td></tr>
+        <tr><td class="l sec">Ability Cards 2</td><td class="l">19, 23, 24, 25, 30</td></tr>
+        <tr><td class="l sec">Ability Cards 3</td><td class="l">37, 38, 39, 40, 41, 42</td></tr>
+        <tr><td class="l sec">Discoveries</td><td class="l">1, 6, 11</td></tr>
       </tbody>
     </table></div>
   </section>
