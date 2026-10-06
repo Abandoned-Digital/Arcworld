@@ -2076,7 +2076,7 @@
 
   <section>
     <h2>Discoveries</h2>
-    <p class="sub">Shuffled through the same deck and drawn the same way, but a Discovery never enters your hand &mdash; <strong>you resolve it the moment you draw it</strong>, for free, and it is discarded. Six of the eighteen cost you something.</p>
+    <p class="sub">Shuffled through the same deck and drawn the same way, but a Discovery never enters your hand &mdash; <strong>you resolve it the moment you draw it</strong>, for free, and it is discarded. Five of the <b id="dc-n">&mdash;</b> cost you something.</p>
     <div class="ddeck" id="ddeck"></div>
     <p class="legendkey"><i></i> Would mark a card whose text overruns the printed face. Nothing does.</p>
   </section>
@@ -2139,7 +2139,7 @@
 
   <section>
     <h2>To print for the next test</h2>
-    <p class="sub">Every Ability Card added or changed on 6 October 2026: <b>17 cards</b> &mdash; 6 new, 11 edited. Card numbers match the layer names in the print file; sheet is the Ability Cards layer it sits on.</p>
+    <p class="sub">Every Ability and Discovery Card added or changed on 6 October 2026: <b>20 cards</b> &mdash; 6 new, 14 edited. Card numbers match the layer names in the print file; sheet is the Ability Cards layer it sits on (Disc. = Discoveries).</p>
     <div class="tablewrap"><table>
       <thead><tr><th>Card</th><th>Sheet</th><th class="l">Status</th><th class="l">Abilities (Tier I / II / III)</th><th class="l">What changed</th></tr></thead>
       <tbody>
@@ -2160,6 +2160,9 @@
             <tr><td>40</td><td>3</td><td class="l">New</td><td class="l">Xeno Lab / Cryofluid Heist / Stasis Field</td><td class="l"></td></tr>
             <tr><td>41</td><td>3</td><td class="l">New</td><td class="l">Base Turret / Overdrive / Warpath</td><td class="l"></td></tr>
             <tr><td>42</td><td>3</td><td class="l">New</td><td class="l">Shield Generator / Pillage / Hardened Core</td><td class="l"></td></tr>
+            <tr><td>1</td><td>Disc.</td><td class="l">Edited</td><td class="l"><b>Salvaged Cache</b></td><td class="l">2 Resources</td></tr>
+            <tr><td>6</td><td>Disc.</td><td class="l">Edited</td><td class="l"><b>Lone Survivor</b></td><td class="l">no Energy clause</td></tr>
+            <tr><td>11</td><td>Disc.</td><td class="l">Edited</td><td class="l"><b>Something Stirs</b></td><td class="l">deploys on the Volcano tile</td></tr>
       </tbody>
     </table></div>
   </section>
@@ -2178,6 +2181,7 @@
           <li><b>Maximum Yield</b> refills Arc Cubes, Resources and Xeno Eggs together, rather than one of the three. <b>Global Tariffs</b> also pays 3 Arc Cubes each time it triggers. <b>Cataclysm</b> destroys 3 Structures of your choice rather than all of them. <b>Clearance</b> hits every other corporation, and Workers on a Contract are safe.</li>
           <li><b>Ghost Protocol</b> stops enemy effects and abilities targeting your Operatives; it does not stop Attacks. Xeno Eggs from <b>Egg Heist</b> beyond your storage limit are lost. <b>Extinction Event</b> and <b>Defector</b> earn no Progression.</li>
           <li>The deck grows to 42 cards and 126 abilities, 22 of them Contracts.</li>
+          <li>Discoveries drop to 16: <b>Dormant Conduit</b> and <b>Broken Seal</b> are retired. <b>Salvaged Cache</b> gives 2 Resources, <b>Lone Survivor</b> no longer sets the Operative's Energy, and <b>Something Stirs</b> deploys its Creature on the Volcano tile rather than beside your Operatives.</li>
         </ul>
 
         <div><p class="v">3.15</p><p class="vt">Plural names</p></div>
@@ -3175,7 +3179,7 @@ window.addEventListener("resize", aSizeCheck);
 
 /* ---- Discovery Cards: one effect, resolved on the draw ---- */
 const DISCOVERIES = [
- {n:"Salvaged Cache",x:"Gain 1 Resource of your choice.",
+ {n:"Salvaged Cache",x:"Gain 2 Resources of your choice.",
   f:"A supply crate, corporate markings long faded, still sealed against the weather."},
  {n:"Raw Vein",x:"Gain 6 Arc Cubes.",
   f:"A seam of unrefined Arc Crystal, pulsing faintly beneath the rock."},
@@ -3185,18 +3189,13 @@ const DISCOVERIES = [
   f:"Whatever laid these eggs isn't watching. Not yet, anyway."},
  {n:"Recovered Intel",x:"Draw 3 Ability Cards.",
   f:"Field notes from an expedition that never made it home."},
- {n:"Lone Survivor",x:"Draw an Operative Card. Assign or discard the card. If you assign, set its Energy to 2.",
+ {n:"Lone Survivor",x:"Draw an Operative Card. Assign or discard the card.",
   f:"Half-starved and half-mad, but alive&hellip; and willing to fight for whoever found him first."},
- {n:"Dormant Conduit",x:"Gain 1 Progression.",
-  f:"Ancient, alien, and for a moment, responsive to your touch."},
- {n:"Broken Seal",x:"Roll the Event Die.",
-  roll:["Deploy a Creature","Gain 1 Metal","Gain 1 Biofuel","Gain 1 Silica","Gain 1 Cryofluid","Gain 1 Progression"],
-  f:"No manifest. No markings."},
  {n:"Ancient Bulwark",x:"Fortify your Sectors by 4.",
   f:"Whoever built these understood siege warfare long before humanity arrived."},
  {n:"Orbital Relay",x:"Deal 3 Siege Damage to one enemy Control Point of your choice.",
   f:"Still transmitting targeting data to a war that ended decades ago."},
- {n:"Something Stirs",x:"If a Creature slot is available, draw 1 Encounter Card. Deploy the Creature adjacent to one of your Operatives.",
+ {n:"Something Stirs",x:"Deploy 1 Creature on the Volcano tile if a Creature slot is free.",
   f:"The ground shifts. Then it opens."},
  {n:"Corrosive Bloom",x:"Lose 2 Resources of your choice.",
   f:"The spores eat through containment faster than anyone accounted for."},
@@ -3737,6 +3736,7 @@ oRender();
   const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   set("dk-corp", CORPS.length); set("dk-abil", ACARDS.length); set("dk-disc", DISCOVERIES.length);
   set("dk-op", OPS.length);     set("dk-enc", ENC.length);
+  set("dc-n", DISCOVERIES.length);
 })();
 
 /* every objective figure on the page comes from the data above */
