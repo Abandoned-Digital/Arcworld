@@ -2141,10 +2141,11 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
-        <div><p class="v">3.15</p><p class="vt">Operatives</p></div>
+        <div><p class="v">3.15</p><p class="vt">Plural names</p></div>
         <ul>
           <li>Every Operative is named in the <b>plural</b> &mdash; each card is a squad, not a lone figure: <b>Hunters</b>, <b>Engineers</b>, <b>Shock Troopers</b> and the rest of the 36.</li>
           <li>Three irregular plurals: <b>Foreman</b> becomes <b>Foremen</b>, <b>Marksman</b> becomes <b>Marksmen</b>, <b>Mercenary</b> becomes <b>Mercenaries</b>.</li>
+          <li>Creatures that hunt in numbers are named in the plural too &mdash; <b>Sylth Grunts</b>, <b>Gorepods</b>, <b>Brood Leeches</b> and eleven more. The four lone giants keep their singular names: <b>Sylth Titan</b>, <b>Overseer</b>, <b>Overmind</b> and <b>Overlord</b>.</li>
         </ul>
 
         <div><p class="v">3.14</p><p class="vt">Objectives</p></div>
@@ -3475,45 +3476,45 @@ document.getElementById("t-operative").innerHTML = 'Operatives <u>' + OPS.length
 /* ============ ENCOUNTERS ============ */
 /* h = maximum Health.  m/r/a/d = Movement, Range, Attack, Defense */
 const ENC = [
- {n:"Sylth Grunt",h:3,m:2,r:2,a:2,d:2,g:["brawler"],ab:[
+ {n:"Sylth Grunts",h:3,m:2,r:2,a:2,d:2,g:["brawler"],ab:[
    "Gain 1 Reroll while performing a Bio Attack.",
    "You cannot perform a Siege Attack."]},
- {n:"Sylth Brute",h:4,m:2,r:2,a:3,d:2,g:["brawler"],ab:[
+ {n:"Sylth Brutes",h:4,m:2,r:2,a:3,d:2,g:["brawler"],ab:[
    "On a successful Bio Attack, add 1 to your Bio Roll.",
    "You cannot perform a Siege Attack."]},
- {n:"Sylth Guard",h:4,m:2,r:2,a:2,d:3,g:["durable"],ab:[
+ {n:"Sylth Guards",h:4,m:2,r:2,a:2,d:3,g:["durable"],ab:[
    "You gain 1 Reroll while defending.",
    "You cannot perform a Siege Attack."]},
  {n:"Sylth Titan",h:5,m:1,r:2,a:4,d:3,g:["brawler"],ab:[
    "On a successful Bio Attack, if you dealt 4 or more Bio Damage, your target is eliminated."]},
- {n:"Carapoid",h:3,m:2,r:2,a:2,d:0,g:["durable"],ab:[
+ {n:"Carapoids",h:3,m:2,r:2,a:2,d:0,g:["durable"],ab:[
    "You are immune to all Bio Damage, but are eliminated when dealt 3 successful Critical Hits while defending."]},
- {n:"Glintmaw",h:4,m:2,r:2,a:2,d:2,g:["durable"],ab:[
+ {n:"Glintmaws",h:4,m:2,r:2,a:2,d:2,g:["durable"],ab:[
    "While defending, if you roll at least one Block, the attacker takes 2 Bio Damage.",
    "You cannot perform a Siege Attack."]},
- {n:"Gorepod",h:3,m:2,r:2,a:3,d:2,g:["volatile"],ab:[
+ {n:"Gorepods",h:3,m:2,r:2,a:3,d:2,g:["volatile"],ab:[
    "When eliminated, deal 4 Bio Damage to Operatives within Range 3.",
    "When eliminated, deal 2 Siege Damage to Control Points within Range 3."]},
- {n:"Arclith",h:4,m:2,r:2,a:2,d:2,g:["raider"],ab:[
+ {n:"Arcliths",h:4,m:2,r:2,a:2,d:2,g:["raider"],ab:[
    "On a successful Bio Attack, you steal up to 3 Arc Cubes.",
    "On a successful Siege Attack, you steal 1 Resource of the defender's choice."]},
- {n:"Bloat",h:4,m:2,r:2,a:1,d:2,g:["brawler","durable"],ab:[
+ {n:"Bloats",h:4,m:2,r:2,a:1,d:2,g:["brawler","durable"],ab:[
    "While performing a Bio Attack, roll Combat Dice equal to your Health.",
    "Restore 1 Health at the end of the Intermission Phase."]},
- {n:"Spitter",h:3,m:2,r:3,a:0,d:2,g:["ranged"],ab:[
+ {n:"Spitters",h:3,m:2,r:3,a:0,d:2,g:["ranged"],ab:[
    "You always deal 2 Bio Damage while performing a Bio Attack.",
    "You cannot perform a Siege Attack."]},
- {n:"Ravager",h:4,m:3,r:2,a:3,d:2,g:["brawler"],ab:[
+ {n:"Ravagers",h:4,m:3,r:2,a:3,d:2,g:["brawler"],ab:[
    "While below 3 Health, gain 1 Combat Die while performing a Bio Attack.",
    "While below 3 Health, gain 1 Reroll while defending."]},
- {n:"Brood Leech",h:3,m:2,r:2,a:4,d:1,g:["brawler","durable"],ab:[
+ {n:"Brood Leeches",h:3,m:2,r:2,a:4,d:1,g:["brawler","durable"],ab:[
    "You restore Health equal to the Bio Damage you deal.",
    "You cannot perform a Siege Attack."]},
- {n:"Shimmer",h:4,m:2,r:2,a:2,d:2,g:["durable"],ab:[
+ {n:"Shimmers",h:4,m:2,r:2,a:2,d:2,g:["durable"],ab:[
    "After you take Bio Damage, you are immune to Bio Damage for the remainder of the turn."]},
- {n:"Swarmer",h:4,m:3,r:3,a:2,d:2,g:["ranged"],ab:[
+ {n:"Swarmers",h:4,m:3,r:3,a:2,d:2,g:["ranged"],ab:[
    "You roll 1 extra Combat Die for each other Creature within Range 3."]},
- {n:"Snaprunner",h:2,m:4,r:3,a:5,d:1,g:["volatile","ranged"],ab:[
+ {n:"Snaprunners",h:2,m:4,r:3,a:5,d:1,g:["volatile","ranged"],ab:[
    "When this Creature performs a Bio Attack, if it deals any Bio Damage, it is eliminated.",
    "You cannot perform a Siege Attack."]},
  {n:"Overmind",h:5,m:2,r:2,a:2,d:2,g:["alpha"],ab:[
