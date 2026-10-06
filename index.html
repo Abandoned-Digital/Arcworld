@@ -2141,6 +2141,12 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
+        <div><p class="v">3.15</p><p class="vt">Operatives</p></div>
+        <ul>
+          <li>Every Operative is named in the <b>plural</b> &mdash; each card is a squad, not a lone figure: <b>Hunters</b>, <b>Engineers</b>, <b>Shock Troopers</b> and the rest of the 36.</li>
+          <li>Three irregular plurals: <b>Foreman</b> becomes <b>Foremen</b>, <b>Marksman</b> becomes <b>Marksmen</b>, <b>Mercenary</b> becomes <b>Mercenaries</b>.</li>
+        </ul>
+
         <div><p class="v">3.14</p><p class="vt">Objectives</p></div>
         <ul>
           <li>The Objective deck becomes <b>a single permanent card, Incentives</b>, face-up from setup to the end of the game. <b>First Contact</b>, <b>Entrenchment</b> and <b>Total Dominion</b> are retired, and objectives no longer run out.</li>
@@ -3250,112 +3256,112 @@ PTAGS.forEach(t => { PTN[t.k] = t.n; PTC[t.k] = "var(--g-" + t.c + ")"; });
 
 /* e = maximum Energy.  m/r/a/d = Movement, Range, Attack, Defense */
 const OPS = [
- {n:"Hunter",e:4,m:3,r:3,a:3,d:2,g:["creatures"],ab:[
+ {n:"Hunters",e:4,m:3,r:3,a:3,d:2,g:["creatures"],ab:[
    ["a","Spend 1 Xeno Egg to draw an Encounter Card."],
    ["p","While attacking a Creature, gain 1 Reroll."],
    ["p","Take 1 less Bio Damage from Creature attacks."]]},
- {n:"Berserker",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
+ {n:"Berserkers",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["p","If you lost Energy during this turn or your previous turn, gain 1 Reroll while attacking."],
    ["p","While attacking, spend 2 Energy. On a successful Bio Attack, deal 2 extra Bio Damage."]]},
- {n:"Reaper",e:4,m:3,r:3,a:4,d:2,g:["combat"],ab:[
+ {n:"Reapers",e:4,m:3,r:3,a:4,d:2,g:["combat"],ab:[
    ["p","On a successful Bio Attack, if you dealt 3 or more Bio Damage, your target is eliminated."],
    ["p","You cannot perform a Siege Attack."]]},
- {n:"Engineer",e:3,m:3,r:2,a:3,d:3,g:["support","territory"],ab:[
+ {n:"Engineers",e:3,m:3,r:2,a:3,d:3,g:["support","territory"],ab:[
    ["a","All Bio Damage dealt restores an equal amount of Energy to an Operative within Range 3."],
    ["a","Spend 2 Energy to Fortify your Sectors by 2."]]},
- {n:"Demolitionist",e:4,m:3,r:2,a:3,d:2,g:["combat","territory"],ab:[
+ {n:"Demolitionists",e:4,m:3,r:2,a:3,d:2,g:["combat","territory"],ab:[
    ["a","A Control Point within Range 1 takes 1 Siege Damage."],
    ["p","On a successful Attack, all enemies within Range 1 of the target take 2 Bio Damage."]]},
- {n:"Specter",e:4,m:0,r:2,a:3,d:3,g:["mobility"],ab:[
+ {n:"Specters",e:4,m:0,r:2,a:3,d:3,g:["mobility"],ab:[
    ["a","Teleport to a passable tile within Range 3."],
    ["p","On a successful Bio Attack, you may teleport to a passable tile within Range 2."]]},
- {n:"Deflector",e:4,m:3,r:2,a:3,d:3,g:["defense","combat"],ab:[
+ {n:"Deflectors",e:4,m:3,r:2,a:3,d:3,g:["defense","combat"],ab:[
    ["a","On a successful Defense, the attacker takes 2 Bio Damage."],
    ["p","Perform a Bio Attack whenever an enemy within Range misses you with an Attack."]]},
- {n:"Xenobiologist",e:3,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
+ {n:"Xenobiologists",e:3,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
    ["p","When one of your Operatives eliminates a Creature, you gain 1 extra Xeno Egg."],
    ["p","Your Operatives gain 1 Reroll while defending against a Creature."]]},
- {n:"Shock Trooper",e:4,m:3,r:2,a:3,d:2,g:["mobility","combat"],ab:[
+ {n:"Shock Troopers",e:4,m:3,r:2,a:3,d:2,g:["mobility","combat"],ab:[
    ["a","Gain 2 Movement. Cannot be performed if you already attacked."],
    ["p","If you did not move this turn, roll 1 extra Combat Die while attacking."]]},
- {n:"Psychic",e:3,m:3,r:2,a:3,d:2,g:["mobility","defense"],ab:[
+ {n:"Psychics",e:3,m:3,r:2,a:3,d:2,g:["mobility","defense"],ab:[
    ["p","Move an enemy Operative or Creature within Range 2 up to 2 tiles across passable terrain."],
    ["p","You can only be targeted by enemies within Range 1."]]},
- {n:"Scout",e:3,m:4,r:2,a:3,d:2,g:["mobility","support"],ab:[
+ {n:"Scouts",e:3,m:4,r:2,a:3,d:2,g:["mobility","support"],ab:[
    ["a","Friendly Operatives gain 1 Movement."],
    ["p","Friendly Operatives are not affected by the Hostile Movement Penalty."]]},
- {n:"Juggernaut",e:5,m:2,r:2,a:3,d:2,g:["defense"],ab:[
+ {n:"Juggernauts",e:5,m:2,r:2,a:3,d:2,g:["defense"],ab:[
    ["a","While defending, add 1 to your Defense Roll."],
    ["p","On a successful Bio Attack, your target cannot move on its next turn."]]},
- {n:"Scientist",e:3,m:3,r:2,a:3,d:2,g:["combat","support"],ab:[
+ {n:"Scientists",e:3,m:3,r:2,a:3,d:2,g:["combat","support"],ab:[
    ["p","Enemy Operatives cannot restore Energy."],
    ["p","On a successful Bio Attack, your target takes 1 Bio Damage during your next Income Phase."]]},
- {n:"Survivor",e:4,m:3,r:2,a:3,d:2,g:["defense"],ab:[
+ {n:"Survivors",e:4,m:3,r:2,a:3,d:2,g:["defense"],ab:[
    ["p","During your Income Phase, restore 1 Energy to this Operative."],
    ["p","When eliminated, roll 2 Combat Dice. On a Critical, set your Energy to 2 instead."]]},
- {n:"Pyromancer",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
+ {n:"Pyromancers",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["p","On a successful Bio Attack, the target rolls 1 fewer Combat Die until the end of its next turn."],
    ["p","On a successful Bio Attack, your target takes 1 extra Bio Damage."]]},
- {n:"Assassin",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
+ {n:"Assassins",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["a","An enemy within Range 1 takes 2 Bio Damage."],
    ["p","On a successful Bio Attack, if your target has 2 Energy or Health remaining, it is eliminated."]]},
- {n:"Spotter",e:4,m:4,r:2,a:3,d:2,g:["support"],ab:[
+ {n:"Spotters",e:4,m:4,r:2,a:3,d:2,g:["support"],ab:[
    ["a","Friendly Operatives within Range 2 gain 1 Reroll."],
    ["p","Friendly Operatives within Range 2 gain 1 Range."]]},
- {n:"Prospector",e:3,m:3,r:2,a:3,d:2,g:["economy"],ab:[
+ {n:"Prospectors",e:3,m:3,r:2,a:3,d:2,g:["economy"],ab:[
    ["a","Spend 6 Arc Cubes to gain 1 Resource of your choice."],
    ["p","Once during your turn, whenever you gain a Resource from any source, gain 2 Arc Cubes."]]},
- {n:"Tactician",e:4,m:3,r:2,a:3,d:2,g:["support"],ab:[
+ {n:"Tacticians",e:4,m:3,r:2,a:3,d:2,g:["support"],ab:[
    ["a","Move a friendly Operative within Range 2 up to 2 tiles across passable terrain."],
    ["p","Friendly Operatives within Range 2 gain 1 Combat Die while attacking."]]},
- {n:"Reclaimer",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
+ {n:"Reclaimers",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
    ["a","While adjacent to an enemy Control Point, steal 1 Resource."],
    ["p","On a successful Bio Attack, if your target is eliminated, steal its Operative or Encounter Card."]]},
- {n:"Saboteur",e:4,m:3,r:2,a:3,d:2,g:["territory"],ab:[
+ {n:"Saboteurs",e:4,m:3,r:2,a:3,d:2,g:["territory"],ab:[
    ["a","When within Range 1 of an enemy Control Point, that corporation cannot use its Structure ability."],
    ["p","Enemy Control Points cannot be saved by a Shield Generator."]]},
- {n:"Entropist",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
+ {n:"Entropists",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["a","At the end of your turn, enemies within Range 2 take 2 Bio Damage."],
    ["p","When eliminated, enemies within Range 2 take 5 Bio Damage."]]},
- {n:"Mercenary",e:5,m:3,r:3,a:4,d:3,g:["economy","combat"],ab:[
+ {n:"Mercenaries",e:5,m:3,r:3,a:4,d:3,g:["economy","combat"],ab:[
    ["p","Any corporation may spend 9 Arc Cubes to assign this Operative to its Player Board."],
    ["p","When you eliminate an enemy, gain 2 Energy."]]},
- {n:"Infiltrator",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
+ {n:"Infiltrators",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
    ["a","While adjacent to an enemy Control Point, steal 2 Arc Cubes."],
    ["p","On a successful Bio Attack, the target discards 1 Ability Card at random from their hand."]]},
- {n:"Warden",e:3,m:3,r:2,a:3,d:2,g:["defense","territory"],ab:[
+ {n:"Wardens",e:3,m:3,r:2,a:3,d:2,g:["defense","territory"],ab:[
    ["p","Friendly Operatives in your Sector or an adjacent Sector take 1 less Bio Damage."],
    ["p","Friendly Control Points in your Sector or an adjacent Sector take 1 less Siege Damage."]]},
- {n:"Bounty Hunter",e:4,m:4,r:3,a:3,d:2,g:["economy","combat"],ab:[
+ {n:"Bounty Hunters",e:4,m:4,r:3,a:3,d:2,g:["economy","combat"],ab:[
    ["p","When you deploy this Operative, designate one enemy as your Bounty. When your corporation eliminates the Bounty, gain 5 Arc Cubes and immediately designate a new one. If you eliminated the Bounty, gain 10 instead."]]},
- {n:"Guardian",e:5,m:3,r:2,a:2,d:3,g:["defense"],ab:[
+ {n:"Guardians",e:5,m:3,r:2,a:2,d:3,g:["defense"],ab:[
    ["a","Enemies within Range 3 may only target this Operative."],
    ["p","Gain 1 Reroll while defending."]]},
- {n:"Marksman",e:4,m:3,r:4,a:3,d:2,g:["combat"],ab:[
+ {n:"Marksmen",e:4,m:3,r:4,a:3,d:2,g:["combat"],ab:[
    ["p","On a successful Bio Attack at Range 4 or more, deal 1 extra Bio Damage."],
    ["p","You cannot attack a target within Range 2."]]},
- {n:"Interloper",e:4,m:3,r:2,a:3,d:2,g:["territory","economy"],ab:[
+ {n:"Interlopers",e:4,m:3,r:2,a:3,d:2,g:["territory","economy"],ab:[
    ["p","During your Income Phase, gain 2 Arc Cubes if you Suppress a Sector."],
    ["p","Enemy Operatives cannot deploy into a Sector you Suppress."]]},
- {n:"Pathfinder",e:3,m:4,r:2,a:3,d:2,g:["mobility"],ab:[
+ {n:"Pathfinders",e:3,m:4,r:2,a:3,d:2,g:["mobility"],ab:[
    ["p","Mountain tiles cost 1 Movement for your Operatives."],
    ["p","Your Operatives ignore the Sludge tile penalties."]]},
- {n:"Foreman",e:3,m:3,r:2,a:2,d:2,g:["territory","economy"],ab:[
+ {n:"Foremen",e:3,m:3,r:2,a:2,d:2,g:["territory","economy"],ab:[
    ["p","Structures cost you 1 less Resource of your choice."],
    ["p","Structures you construct Fortify your Sectors by an extra 1."]]},
- {n:"Seer",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
+ {n:"Seers",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
    ["p","During your Income Phase, roll the Event Die one extra time."],
    ["p","Whenever the Event Die grants you a Resource, gain 1 Arc Cube."]]},
- {n:"Archivist",e:3,m:3,r:2,a:2,d:2,g:["support"],ab:[
+ {n:"Archivists",e:3,m:3,r:2,a:2,d:2,g:["support"],ab:[
    ["a","Discard 1 Ability Card to draw 2."],
    ["p","Your maximum hand size is increased by 2."]]},
- {n:"Beastmaster",e:4,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
+ {n:"Beastmasters",e:4,m:3,r:2,a:3,d:2,g:["creatures"],ab:[
    ["a","Restore 2 Health to your subjugated Creature."],
    ["p","Your subjugated Creature gains 1 Combat Die while attacking."]]},
- {n:"Arcwright",e:3,m:4,r:3,a:1,d:1,g:["support"],ab:[
+ {n:"Arcwrights",e:3,m:4,r:3,a:1,d:1,g:["support"],ab:[
    ["a","Restore 2 Energy to a friendly Operative within Range 3."],
    ["p","No corporation gains Progression for eliminating this Operative."]]},
- {n:"Brawler",e:4,m:4,r:1,a:3,d:2,g:["combat"],ab:[
+ {n:"Brawlers",e:4,m:4,r:1,a:3,d:2,g:["combat"],ab:[
    ["p","While performing a Bio Attack, gain 1 Combat Die for each other enemy within Range 1 of you."],
    ["p","Enemy Operatives and Creatures roll 1 fewer Combat Die while defending against you."]]}
 ];
