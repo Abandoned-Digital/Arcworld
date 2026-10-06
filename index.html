@@ -603,7 +603,7 @@
       <button class="vtab" role="tab" id="t-manual" aria-controls="v-manual" aria-selected="true">Manual</button>
       <button class="vtab" role="tab" id="t-atlas" aria-controls="v-atlas" aria-selected="false">Sector Atlas</button>
       <button class="vtab" role="tab" id="t-corp" aria-controls="v-corp" aria-selected="false">Corporations <u>45</u></button>
-      <button class="vtab" role="tab" id="t-ability" aria-controls="v-ability" aria-selected="false">Abilities <u>36</u></button>
+      <button class="vtab" role="tab" id="t-ability" aria-controls="v-ability" aria-selected="false">Abilities <u>&mdash;</u></button>
       <button class="vtab" role="tab" id="t-objective" aria-controls="v-objective" aria-selected="false">Objectives <u>&mdash;</u></button>
       <button class="vtab" role="tab" id="t-encounter" aria-controls="v-encounter" aria-selected="false">Encounters</button>
       <button class="vtab" role="tab" id="t-operative" aria-controls="v-operative" aria-selected="false">Operatives</button>
@@ -681,11 +681,11 @@
         <div class="tw"><table class="fixed"><colgroup><col style="width:75%"><col style="width:25%"></colgroup>
           <thead><tr><th>Deck</th><th>Cards</th></tr></thead>
           <tbody>
-            <tr><td class="k">Corporation</td><td class="n">48</td></tr>
-            <tr><td class="k">Ability</td><td class="n">36</td></tr>
-            <tr><td class="k">Discovery</td><td class="n">18</td></tr>
-            <tr><td class="k">Operative</td><td class="n">36</td></tr>
-            <tr><td class="k">Encounter</td><td class="n">18</td></tr>
+            <tr><td class="k">Corporation</td><td class="n" id="dk-corp">&mdash;</td></tr>
+            <tr><td class="k">Ability</td><td class="n" id="dk-abil">&mdash;</td></tr>
+            <tr><td class="k">Discovery</td><td class="n" id="dk-disc">&mdash;</td></tr>
+            <tr><td class="k">Operative</td><td class="n" id="dk-op">&mdash;</td></tr>
+            <tr><td class="k">Encounter</td><td class="n" id="dk-enc">&mdash;</td></tr>
             <tr><td class="k">Objective</td><td class="n" id="ob-setup">&mdash;</td></tr>
           </tbody>
         </table></div>
@@ -2038,7 +2038,7 @@
 <!-- ============ PENDING DECKS ============ -->
 <div class="view" id="v-ability" role="tabpanel" aria-labelledby="t-ability" hidden>
   <header>
-    <p class="eyebrow">Ability deck &middot; 36 cards &middot; 108 abilities &middot; Poker 63.5 &times; 89 mm</p>
+    <p class="eyebrow">Ability deck &middot; <b id="ab-ey-cards">&mdash;</b> cards &middot; <b id="ab-ey-abils">&mdash;</b> abilities &middot; Poker 63.5 &times; 89 mm</p>
     <h1>Ability Cards</h1>
     <p class="lede">Draw one a turn, hold five. Every card carries <strong>three abilities and you may play only one of them</strong> &mdash; a Tier I, a Tier II and a Tier III &mdash; so the card you keep is really a choice you have not made yet.</p>
     <div class="stats">
@@ -2083,7 +2083,7 @@
 
   <section>
     <h2>Ability index</h2>
-    <p class="sub">All 108 abilities pulled out of their cards and listed on their own, so you can compare a single ability against the rest of the deck. Filters here are independent of the deck above. Click a heading to sort.</p>
+    <p class="sub">All <b id="ab-all">&mdash;</b> abilities pulled out of their cards and listed on their own, so you can compare a single ability against the rest of the deck. Filters here are independent of the deck above. Click a heading to sort.</p>
     <div class="seg" id="atierbar"><span class="lbl">Tier</span></div>
     <div class="seg" id="atypebar"><span class="lbl">Type</span></div>
     <div class="controls" style="margin:0 0 18px">
@@ -2141,6 +2141,14 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
+        <div><p class="v">3.16</p><p class="vt">Ability Cards</p></div>
+        <ul>
+          <li><b>Six cards added</b>, completing the Structure, Heist and Tariff sets. <b>Foundry</b>, <b>Refinery</b>, <b>Science Academy</b>, <b>Xeno Lab</b>, <b>Base Turret</b> and <b>Shield Generator</b> join at Tier I; <b>Biofuel Tariff</b>, <b>Silica Tariff</b> and <b>Cryofluid Heist</b> at Tier II.</li>
+          <li><b>Dissolution</b> drops from Tier III to Tier II. <b>Conglomerate</b> takes its old place: for the rest of the game you also gain the passive abilities of every other Corporation Card in play.</li>
+          <li>Also new: <b>Overdrive</b> and <b>Pillage</b> at Tier II; <b>Bastion</b>, <b>Overclock</b>, <b>Expropriation</b>, <b>Stasis Field</b>, <b>Warpath</b> and <b>Hardened Core</b> at Tier III.</li>
+          <li>The deck grows to 42 cards and 126 abilities, 22 of them Contracts.</li>
+        </ul>
+
         <div><p class="v">3.15</p><p class="vt">Plural names</p></div>
         <ul>
           <li>Every Operative is named in the <b>plural</b> &mdash; each card is a squad, not a lone figure: <b>Hunters</b>, <b>Engineers</b>, <b>Shock Troopers</b> and the rest of the 36.</li>
@@ -2884,7 +2892,7 @@ const TYPEN = {order:"Order", contract:"Contract", counter:"Counter"};
 const ACARDS = [
  [{n:"Blitz",t:"order",g:["mobility"],x:"Your Operatives may move up to 3 Movement across passable tiles ignoring the Hostile Movement Penalty."},
   {n:"Arc Pulse",t:"order",g:["combat"],x:"Each enemy Operative and Creature in your controlled Sectors takes 3 Bio Damage."},
-  {n:"Dissolution",t:"order",g:["cards"],x:"Choose one corporation. They discard their Corporation Card and lose all of its Abilities for the remainder of the game."}],
+  {n:"Conglomerate",t:"order",g:["cards"],x:"For the remainder of the game, you also gain the passive abilities of every other Corporation Card in play. Their owners keep them."}],
 
  [{n:"Starport",t:"order",g:["construction"],x:"Construct a Starport at no Resource cost."},
   {n:"Suppression",t:"contract",g:["economy"],x:"For 2 rounds, enemy corporations cannot gain Resources during their Income Phase."},
@@ -3024,7 +3032,31 @@ const ACARDS = [
 
  [{n:"Decrypt",t:"order",g:["cards"],x:"Look at the top 3 Ability Cards. Keep 1 in your hand. Return the rest in any order to the top of the deck."},
   {n:"Retaliation",t:"contract",g:["combat"],x:"For 2 rounds, when one of your Operatives takes Bio Damage, the attacker takes 2 Bio Damage in return."},
-  {n:"Double Shift",t:"order",g:["economy","territory"],x:"For the remainder of the game, your Sectors yield 2 instead of 1 Arc Cube each."}]
+  {n:"Double Shift",t:"order",g:["economy","territory"],x:"For the remainder of the game, your Sectors yield 2 instead of 1 Arc Cube each."}],
+
+ [{n:"Foundry",t:"order",g:["construction"],x:"Construct a Foundry at no Resource cost."},
+  {n:"Biofuel Tariff",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains 1 Biofuel, you also gain 1 Biofuel."},
+  {n:"Bastion",t:"order",g:["territory"],x:"Set every one of your Control Dice to its maximum."}],
+
+ [{n:"Refinery",t:"order",g:["construction"],x:"Construct a Refinery at no Resource cost."},
+  {n:"Silica Tariff",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains 1 Silica, you also gain 1 Silica."},
+  {n:"Overclock",t:"order",g:["construction"],x:"Until the end of your turn, you may use the Active ability of each of your Structures once."}],
+
+ [{n:"Science Academy",t:"order",g:["construction"],x:"Construct a Science Academy at no Resource cost."},
+  {n:"Dissolution",t:"order",g:["cards"],x:"Choose one corporation. They discard their Corporation Card and lose all of its Abilities for the remainder of the game."},
+  {n:"Expropriation",t:"order",g:["construction","combat"],x:"Destroy 1 enemy Structure other than a Headquarters. Construct the same Structure at no Worker or Resource cost."}],
+
+ [{n:"Xeno Lab",t:"order",g:["construction"],x:"Construct a Xeno Lab at no Resource cost."},
+  {n:"Cryofluid Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Cryofluid from their storage."},
+  {n:"Stasis Field",t:"order",g:["mobility"],x:"Choose one corporation. They skip their next turn entirely."}],
+
+ [{n:"Base Turret",t:"order",g:["construction"],x:"Construct a Base Turret at no Resource cost."},
+  {n:"Overdrive",t:"contract",g:["combat"],x:"For 2 rounds, your Operatives roll 1 extra Combat Die while performing a Bio Attack and gain 1 Range."},
+  {n:"Warpath",t:"order",g:["mobility","combat"],x:"Each of your Operatives may activate a second time this turn."}],
+
+ [{n:"Shield Generator",t:"order",g:["construction"],x:"Construct a Shield Generator at no Resource cost."},
+  {n:"Pillage",t:"order",g:["economy","cards"],x:"Discard Ability Cards from your hand. Choose one corporation. They lose 3 Arc Cubes for each card discarded. Draw 1 Ability Card."},
+  {n:"Hardened Core",t:"order",g:["territory"],x:"For the remainder of the game, your Headquarters cannot take more than 1 Siege Damage from any single source."}]
 ];
 
 /* flatten once — the index, the audit and the card tags all read from this */
@@ -3041,6 +3073,9 @@ document.getElementById("ab-abils").textContent = ABILITIES.length;
   document.getElementById("ab-" + t).textContent = ABILITIES.filter(a => a.t === t).length;
 });
 document.getElementById("t-ability").querySelector("u").textContent = ACARDS.length;
+document.getElementById("ab-ey-cards").textContent = ACARDS.length;
+document.getElementById("ab-ey-abils").textContent = ABILITIES.length;
+document.getElementById("ab-all").textContent = ABILITIES.length;
 
 /* ---- deck ---- */
 const aActive = new Set();
@@ -3665,6 +3700,13 @@ function oSizeCheck(){
   });
 }
 oRender();
+
+/* deck sizes in the Components table, read from the card data */
+(function(){
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  set("dk-corp", CORPS.length); set("dk-abil", ACARDS.length); set("dk-disc", DISCOVERIES.length);
+  set("dk-op", OPS.length);     set("dk-enc", ENC.length);
+})();
 
 /* every objective figure on the page comes from the data above */
 (function(){
