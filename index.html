@@ -696,7 +696,7 @@
         <ol class="steps">
           <li><b>Build Arcworld</b>Place the game board.</li>
           <li><b>Hand out Player Boards</b>Each player takes a Player Board with their matching tokens and dice.</li>
-          <li><b>Prepare the decks</b>Shuffle the Corporation, Operative, Encounter and Ability decks separately and place them face-down on the board. Place the <em>Planetfall</em> Objective card face-up beside the board.</li>
+          <li><b>Prepare the decks</b>Shuffle the Corporation, Operative, Encounter and Ability decks separately and place them face-down on the board. Place the <em>Incentives</em> Objective card face-up beside the board.</li>
           <li><b>Prepare the event tokens</b>Build a face-down pile of Tunnel and Creature tokens scaled to the player count: 4 Tunnels and 2 Creatures at four players, 3 Tunnels and 1 Creature at three, and 2 Tunnels with no Creatures at two.</li>
           <li><b>Choose your corporation</b>Starting with the Initiative player and going clockwise, draw 3 Corporation Cards blind, keep 1, discard the rest.</li>
           <li><b>Roll for Initiative</b>Everyone rolls a die. Highest takes the Initiative Marker; tied players reroll until one wins.</li>
@@ -970,8 +970,8 @@
       <section id="s-objectives">
         <p class="kicker">14</p>
         <h3>Objectives</h3>
-        <p>One Objective card &mdash; <em>Planetfall</em> &mdash; sits face-up in play from setup to the end of the game.</p>
-        <p>It carries four targets, each on its own row with its own reward and its own five token boxes: <strong>claim Control Points</strong> for Fortify 3, <strong>construct Structures</strong> for 3 Arc Cubes, <strong>eliminate Creatures</strong> for 1 Xeno Egg, <strong>eliminate Operatives</strong> for 1 Resource. Whenever you do one of these things, put one of your tracker tokens in the next free box on that row and take the reward at once.</p>
+        <p>One Objective card &mdash; <em>Incentives</em> &mdash; sits face-up in play from setup to the end of the game.</p>
+        <p>It carries four targets, each on its own row with its own reward and its own five token boxes: <strong>claim Control Points</strong> for Fortify 3, <strong>construct Structures</strong> for 3 Arc Cubes, <strong>eliminate Creatures</strong> for 1 Xeno Egg, <strong>eliminate Operatives</strong> for 1 Worker. Whenever you do one of these things, put one of your tracker tokens in the next free box on that row and take the reward at once.</p>
         <p>The rows are independent &mdash; a token on one counts for nothing on the others. When the fifth token lands on a row, count that row's tokens per player. Whoever holds the most gains <strong>1 Progression</strong>, and every player level on the most takes first place together and each gains 1 Progression; there is no second place. Then take all five tokens off that row and it is open again, as often as the game lasts.</p>
       </section>
       <section id="s-currencies">
@@ -2143,8 +2143,8 @@
       <article class="rel">
         <div><p class="v">3.14</p><p class="vt">Objectives</p></div>
         <ul>
-          <li>The Objective deck becomes <b>a single permanent card, Planetfall</b>, face-up from setup to the end of the game. <b>First Contact</b>, <b>Entrenchment</b> and <b>Total Dominion</b> are retired, and objectives no longer run out.</li>
-          <li>It carries <b>four targets</b>, each on its own row with its own reward and its own <b>five token boxes</b>: Control Points for Fortify 3, Structures for 3 Arc Cubes, Creatures for 1 Xeno Egg, Operatives for 1 Resource.</li>
+          <li>The Objective deck becomes <b>a single permanent card, Incentives</b>, face-up from setup to the end of the game. <b>First Contact</b>, <b>Entrenchment</b> and <b>Total Dominion</b> are retired, and objectives no longer run out.</li>
+          <li>It carries <b>four targets</b>, each on its own row with its own reward and its own <b>five token boxes</b>: Control Points for Fortify 3, Structures for 3 Arc Cubes, Creatures for 1 Xeno Egg, Operatives for 1 Worker.</li>
           <li>Meeting a target places a token on that row and pays its reward <b>at once</b>, whether or not the row ever fills.</li>
           <li>Filling a row's five boxes pays <b>1 Progression</b> to whoever holds the most tokens in that row, ties all paying. The row then <b>clears and reopens</b>, as often as the game lasts.</li>
           <li>The rows are <b>independent</b>: a token on one counts for nothing on the others.</li>
@@ -3628,12 +3628,12 @@ document.getElementById("t-encounter").innerHTML = 'Encounters <u>' + ENC.length
 /* one card, out from setup to the end of the game. Each row is its own race:
    it pays on every claim, pays Progression when it fills, then clears and reopens. */
 const OBJECTIVE = {
-  n:"Planetfall", boxes:5,
+  n:"Incentives", boxes:5,
   rows:[
     {t:"Claim Control Points", r:"Fortify 3"},
     {t:"Construct Structures", r:"3 Arc Cubes"},
     {t:"Eliminate Creatures",  r:"1 Xeno Egg"},
-    {t:"Eliminate Operatives", r:"1 Resource"}
+    {t:"Eliminate Operatives", r:"1 Worker"}
   ]
 };
 
