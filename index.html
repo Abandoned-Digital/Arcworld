@@ -2079,7 +2079,7 @@
 
   <section>
     <h2>Discoveries</h2>
-    <p class="sub">Shuffled through the same deck and drawn the same way, but a Discovery never enters your hand &mdash; <strong>you resolve it the moment you draw it</strong>, for free, and it is discarded. Five of the <b id="dc-n">&mdash;</b> cost you something.</p>
+    <p class="sub">Shuffled through the same deck and drawn the same way, but a Discovery never enters your hand &mdash; <strong>you resolve it the moment you draw it</strong>, for free, and it is discarded. <b id="dc-cost">&mdash;</b> of the <b id="dc-n">&mdash;</b> cost you something.</p>
     <div class="ddeck" id="ddeck"></div>
     <p class="legendkey"><i></i> Would mark a card whose text overruns the printed face. Nothing does.</p>
   </section>
@@ -2142,14 +2142,14 @@
 
   <section>
     <h2>To print for the next test</h2>
-    <p class="sub"><b>21 cards</b>, by the layer they sit on in the print file.</p>
+    <p class="sub"><b>26 cards</b>, by the layer they sit on in the print file.</p>
     <div class="tablewrap"><table class="printlist">
       <thead><tr><th class="l">Sheet</th><th class="l">Cards</th></tr></thead>
       <tbody>
         <tr><td class="l sec">Ability Cards 1</td><td class="l">1, 7, 10, 11, 12, 13</td></tr>
         <tr><td class="l sec">Ability Cards 2</td><td class="l">19, 23, 24, 25, 30</td></tr>
         <tr><td class="l sec">Ability Cards 3</td><td class="l">37, 38, 39, 40, 41, 42</td></tr>
-        <tr><td class="l sec">Discoveries</td><td class="l">1, 6, 11</td></tr>
+        <tr><td class="l sec">Discoveries</td><td class="l">1, 6, 9, 10, 11, 12, 13, 16</td></tr>
         <tr><td class="l sec">Helper Cards</td><td class="l">Control Points</td></tr>
       </tbody>
     </table></div>
@@ -2159,6 +2159,12 @@
     <h2>Releases</h2>
     <div class="log">
       <article class="rel">
+        <div><p class="v">3.18</p><p class="vt">Discoveries</p></div>
+        <ul>
+          <li>Discoveries drop to 14: <b>Recovered Intel</b> and <b>Unstable Ruins</b> are retired.</li>
+          <li><b>Orbital Relay</b> deals 2 Siege Damage rather than 3, and <b>Fault Line</b> and <b>Orbital Relay</b> both render the Sector uninhabitable if they destroy the Control Point. <b>Corrosive Bloom</b> costs 1 Resource rather than 2.</li>
+        </ul>
+
         <div><p class="v">3.17</p><p class="vt">Incentives</p></div>
         <ul>
           <li>A claimed Control Die no longer starts at 3. Its Sector Strength comes out of the <b>Fortify 3</b> from the <b>Claim Control Points</b> row on Incentives, spread across your Control Points as you like.</li>
@@ -3182,25 +3188,21 @@ const DISCOVERIES = [
   f:"No corporation logged this find. Now it's yours."},
  {n:"Unguarded Clutch",x:"Gain 2 Xeno Eggs.",
   f:"Whatever laid these eggs isn't watching. Not yet, anyway."},
- {n:"Recovered Intel",x:"Draw 3 Ability Cards.",
-  f:"Field notes from an expedition that never made it home."},
  {n:"Lone Survivor",x:"Draw an Operative Card. Assign or discard the card.",
   f:"Half-starved and half-mad, but alive&hellip; and willing to fight for whoever found him first."},
- {n:"Ancient Bulwark",x:"Fortify your Sectors by 4.",
+ {n:"Ancient Bulwark",x:"Fortify 4.",
   f:"Whoever built these understood siege warfare long before humanity arrived."},
- {n:"Orbital Relay",x:"Deal 3 Siege Damage to one enemy Control Point of your choice.",
+ {n:"Orbital Relay",x:"Deal 2 Siege Damage to one enemy Control Point of your choice. If this destroys it, the Sector is rendered uninhabitable.",
   f:"Still transmitting targeting data to a war that ended decades ago."},
  {n:"Something Stirs",x:"Deploy 1 Creature on the Volcano tile if a Creature slot is free.",
   f:"The ground shifts. Then it opens."},
- {n:"Corrosive Bloom",x:"Lose 2 Resources of your choice.",
+ {n:"Corrosive Bloom",cost:1,x:"Lose 1 Resource of your choice.",
   f:"The spores eat through containment faster than anyone accounted for."},
- {n:"Fault Line",x:"Reduce the Sector Strength of one of your Control Dice by 2.",
+ {n:"Fault Line",cost:1,x:"Reduce the Sector Strength of one of your Control Dice by 2. If this destroys the Control Point, the Sector is rendered uninhabitable.",
   f:"The ground beneath your Control Point was never as stable as it looked."},
- {n:"Unstable Ruins",x:"Destroy 1 of your Structures.",
-  f:"Whatever held these structures together for a thousand years finally gives out under yours."},
- {n:"Corrupted Archive",x:"Discard 2 Ability Cards.",
+ {n:"Corrupted Archive",cost:1,x:"Discard 2 Ability Cards.",
   f:"The files open. Then they don't stop opening."},
- {n:"Tremor",x:"Move each deployed Creature up to 2 tiles, in any direction, of your choice.",
+ {n:"Tremor",cost:1,x:"Move each deployed Creature up to 2 tiles in any direction of your choice.",
   f:"The ground doesn't ask permission before it moves. Neither does anything standing on it."},
  {n:"Fleeting Passage",x:"You may move one of your Operatives to any Tunnel tile on Arcworld.",
   f:"It won't hold for long."},
@@ -3732,6 +3734,8 @@ oRender();
   set("dk-corp", CORPS.length); set("dk-abil", ACARDS.length); set("dk-disc", DISCOVERIES.length);
   set("dk-op", OPS.length);     set("dk-enc", ENC.length);
   set("dc-n", DISCOVERIES.length);
+  const WORDS = ["None","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten"];
+  set("dc-cost", WORDS[DISCOVERIES.filter(d => d.cost).length]);
 })();
 
 /* every objective figure on the page comes from the data above */
