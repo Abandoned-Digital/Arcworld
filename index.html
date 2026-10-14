@@ -651,7 +651,7 @@
       <section id="s-win">
         <p class="kicker">01</p>
         <h3>Overview &amp; winning</h3>
-        <p>Arcworld is a competitive strategy game for two to four players. Each player runs one corporation, commands a small squad of Operatives across a hex map, claims Control Points, constructs Structures, and fights both rival corporations and the planet's native Creatures.</p>
+        <p>Arcworld is a competitive strategy game for two to four players. Each player runs one corporation, commands a small squad of Operatives across a hex map, claims Outposts, constructs Structures, and fights both rival corporations and the planet's native Creatures.</p>
         <p>Play runs in rounds. Each round every player takes a full turn of their own, and once everyone has had theirs, the planet takes its turn &mdash; Creatures move and attack.</p>
         <h4>Two ways to win</h4>
         <ul>
@@ -659,12 +659,12 @@
           <li><strong>Progression victory.</strong> Reach the final black square of your Progression tracker. The game ends immediately and you win.</li>
         </ul>
         <h4>When a corporation is eliminated</h4>
-        <p>A corporation is eliminated the moment the Control Point of its Headquarters Sector is destroyed. Resolve it in this order:</p>
+        <p>A corporation is eliminated the moment its Headquarters is destroyed. Resolve it in this order:</p>
         <ol>
           <li>The attacking corporation takes all of the eliminated player's Arc Cubes, Resources and Xeno Eggs.</li>
           <li>The Headquarters Sector is claimed by the attacker as a normal claim.</li>
-          <li>Every other Control Point they controlled is <em>permanently destroyed</em> &mdash; nobody may claim it again.</li>
-          <li>All of their Operatives, Structures and Control Dice return to the box.</li>
+          <li>Every Outpost they held is <em>permanently destroyed</em> &mdash; nobody may claim it again.</li>
+          <li>All of their Operatives, Structures and dice return to the box.</li>
         </ol>
       </section>
       <section id="s-components">
@@ -690,8 +690,9 @@
             <tr><td class="k">Combat Dice</td><td class="n">24</td><td class="n">6</td></tr>
             <tr><td class="k">Event Dice</td><td class="n">4</td><td class="n">1</td></tr>
             <tr><td class="k">Operative Dice</td><td class="n">12</td><td class="n">3</td></tr>
-            <tr><td class="k">Control Dice</td><td class="n">60</td><td class="n">15</td></tr>
-            <tr><td class="k">Neutral Control Dice</td><td class="n" id="dk-neutral">&mdash;</td><td class="n">&mdash;</td></tr>
+            <tr><td class="k">Outpost Dice (D6)</td><td class="n">60</td><td class="n">15</td></tr>
+            <tr><td class="k">Headquarters Dice (D12)</td><td class="n">4</td><td class="n">1</td></tr>
+            <tr><td class="k">Settlement Dice (D6)</td><td class="n" id="dk-neutral">&mdash;</td><td class="n">&mdash;</td></tr>
           </tbody>
         </table></div>
         <h4>Decks</h4>
@@ -718,8 +719,8 @@
           <li><b>Roll for Initiative</b>Everyone rolls a die. Highest takes the Initiative Marker; tied players reroll until one wins.</li>
           <li><b>Establish landing sites</b>In Initiative order, each player completes all four of these before the next player begins.
             <ol class="inner">
-              <li>Choose any landing site no one has taken &mdash; one of the six four-tile Sectors on the rim of the board &mdash; and place your Headquarters Control Die on its Control Point, set to <strong>10</strong>.</li>
-              <li>Deploy your Troopers on passable tiles adjacent to your Headquarters Control Point.</li>
+              <li>Choose any landing site no one has taken &mdash; one of the six four-tile Sectors on the rim of the board &mdash; and place your Headquarters die on its landing site, set to <strong>10</strong>.</li>
+              <li>Deploy your Troopers on passable tiles adjacent to your Headquarters.</li>
               <li>Apply the <em>Start of the Game</em> effect on your Corporation Card.</li>
               <li>Draw 2 Ability Cards as your starting hand.</li>
             </ol>
@@ -738,21 +739,21 @@
         </ol>
         <div class="tip"><b>Phases are sealed</b><p>You may do nothing in the Cleanup Phase except reassign Workers and discard. Likewise the Income Phase allows nothing but its five listed steps.</p></div>
         <h4>Arc Cube income</h4>
-        <p>You gain <strong>1 Arc Cube per Control Point you control</strong>, plus 1 more if you have a Worker assigned to Arc Cubes. A Control Point in a Sector holding an enemy Operative or Creature is Suppressed and pays nothing.</p>
+        <p>You gain <strong>1 Arc Cube per Outpost you hold</strong>, or <strong>2</strong> for your Headquarters, plus 1 more if you have a Worker assigned to Arc Cubes. An Outpost or Headquarters in a Sector holding an enemy Operative or Creature is Suppressed and pays nothing.</p>
         <h4>The Event Die</h4>
         <p>Rolled once during your Income Phase. Four of its six faces are your main source of Resources.</p>
         <div class="tw"><table>
           <thead><tr><th>Roll</th><th>Result</th><th>Effect</th></tr></thead>
           <tbody>
             <tr><td class="n">1</td><td class="k">Movement Detected</td><td>Deploy 1 Creature.</td></tr>
-            <tr><td class="n">2</td><td class="k">Volcanic Eruption</td><td>Divide 3 Bio Damage among your own Operatives, and 2 Siege Damage among your own Control Points.</td></tr>
+            <tr><td class="n">2</td><td class="k">Volcanic Eruption</td><td>Divide 3 Bio Damage among your own Operatives, and 2 Siege Damage among your own Outposts and Headquarters.</td></tr>
             <tr><td class="n">3</td><td class="k">Metal Cache</td><td>Gain 1 Metal.</td></tr>
             <tr><td class="n">4</td><td class="k">Biofuel Cache</td><td>Gain 1 Biofuel.</td></tr>
             <tr><td class="n">5</td><td class="k">Silica Cache</td><td>Gain 1 Silica.</td></tr>
             <tr><td class="n">6</td><td class="k">Cryofluid Cache</td><td>Gain 1 Cryofluid.</td></tr>
           </tbody>
         </table></div>
-        <div class="tip"><b>Eruptions hit you</b><p>Volcanic Eruption damages your own forces, not anyone else's &mdash; you simply choose how to spread it across your Operatives and Control Points.</p></div>
+        <div class="tip"><b>Eruptions hit you</b><p>Volcanic Eruption damages your own forces, not anyone else's &mdash; you simply choose how to spread it across your Operatives, Outposts and Headquarters.</p></div>
         <h4>Intermission Phase</h4>
         <p>Once play returns to the Initiative player, the planet acts before their turn begins: each Creature attacks or moves in turn &mdash; see <em>Creatures</em>.</p>
       </section>
@@ -799,9 +800,9 @@
           <li>Bio Roll minus Defense Roll is the <strong>Bio Damage</strong> dealt.</li>
         </ol>
         <p>If the defender is eliminated, the attacker advances their Progression tracker by 1.</p>
-        <h4>Attacking a Control Point</h4>
-        <p>An Operative must be <strong>adjacent &mdash; within Range 1 &mdash;</strong> of a Control Point to attack it. The attacker's Hits and Criticals make the <strong>Siege Roll</strong>. A <strong>neutral</strong> Control Point defends with exactly <strong>1 Combat Die</strong> and an <strong>enemy-held</strong> one with exactly <strong>2 Combat Dice</strong>.</p>
-        <p>When a Control Die reaches 0 the Control Point is destroyed, and the attacker chooses to <strong>claim it</strong> or <strong>render it permanently uninhabitable</strong>.</p>
+        <h4>Attacking Settlements, Outposts and Headquarters</h4>
+        <p>An Operative must be <strong>adjacent &mdash; within Range 1 &mdash;</strong> of a Settlement, Outpost or Headquarters to attack it. The attacker's Hits and Criticals make the <strong>Siege Roll</strong>. A <strong>Settlement</strong> defends with exactly <strong>1 Combat Die</strong> and an <strong>enemy-held</strong> Outpost or Headquarters with exactly <strong>2 Combat Dice</strong>.</p>
+        <p>When a die reaches 0 the Settlement or Outpost is destroyed, and the attacker chooses to <strong>claim it</strong> or <strong>render it permanently uninhabitable</strong>.</p>
         <h4>Terrain</h4>
         <div class="tw"><table>
           <thead><tr><th>Terrain</th><th>Effect on Operatives</th></tr></thead>
@@ -820,27 +821,27 @@
       </section>
       <section id="s-control">
         <p class="kicker">07</p>
-        <h3>Control Points &amp; Sectors</h3>
-        <p>Every Sector tile carries one or two Control Points &mdash; the empty Sector tiles used at two and three players carry none &mdash; and each of the six four-tile landing-site Sectors on the rim carries one; every Control Point is marked by a Control Die showing its Sector Strength. A neutral Control Die starts at the strength printed beside its Control Point and a Headquarters starts at 10. A Control Die can be raised as far as <strong>6</strong>, and a Headquarters Control Die as far as <strong>12</strong>. What you count, and what pays, is the Control Point; the Sector is what many effects target. You <strong>control a Sector</strong> only while you hold <em>every</em> Control Point in it &mdash; holding one of two is not control.</p>
+        <h3>Settlements, Outposts &amp; Sectors</h3>
+        <p>Every Sector tile carries one or two <strong>Settlements</strong> &mdash; the empty Sector tiles used at two and three players carry none. A Settlement is unclaimed ground: a Lava Field marked with a die showing the strength it starts at. A corporation that claims one makes it an <strong>Outpost</strong> of its own. Each of the six four-tile landing-site Sectors on the rim carries a landing site instead, where a corporation places its <strong>Headquarters</strong>. Settlements and Outposts are D6s and can be raised as far as <strong>6</strong>; a Headquarters is a D12, starts at <strong>10</strong> and can be raised as far as <strong>12</strong>. What you count, and what pays, is your Outposts and Headquarters; the Sector is what many effects target. You <strong>control a Sector</strong> only while you hold <em>every</em> Settlement in it as an Outpost &mdash; holding one of two is not control.</p>
         <h4>Discovering Sectors</h4>
-        <p>The board starts with 16 empty Sector slots, and the 20 Sector tiles wait in a face-down stack beside it. The moment an Operative moves onto a tile adjacent to an empty slot, that Sector is discovered: that Operative's owner draws the top tile blind and places it in the slot, rotated however they like. Then put a neutral Control Die on each Control Point on the tile, set to the strength printed there, and deploy a Creature on each Encounter icon if a Creature slot is free. An Operative can never move into an empty slot.</p>
+        <p>The board starts with 16 empty Sector slots, and the 20 Sector tiles wait in a face-down stack beside it. The moment an Operative moves onto a tile adjacent to an empty slot, that Sector is discovered: that Operative's owner draws the top tile blind and places it in the slot, rotated however they like. Then put a die on each Settlement on the tile, set to the strength printed there, and deploy a Creature on each Encounter icon if a Creature slot is free. An Operative can never move into an empty slot.</p>
         <h4>Claiming</h4>
         <ol>
-          <li>Place your Control Die on the Control Point.</li>
-          <li>Put a tracker token on the <em>Claim Control Points</em> row of the <em>Incentives</em> Objective and take its <strong>Fortify 3</strong>. Spread it across your Control Points as you like, the new one included &mdash; whatever the new Control Die receives is its starting Sector Strength.</li>
-          <li>Advance your Control Points tracker and your Progression tracker by 1.</li>
+          <li>Place your die on the Settlement or Outpost.</li>
+          <li>Put a tracker token on the <em>Claim Outposts</em> row of the <em>Incentives</em> Objective and take its <strong>Fortify 3</strong>. Spread it across your Outposts and Headquarters as you like, the new Outpost included &mdash; whatever it receives is its starting strength.</li>
+          <li>Advance your <em>HQ + Outposts</em> tracker and your Progression tracker by 1.</li>
         </ol>
-        <p>Give the new Control Die none of that Fortify and the Control Point is <strong>rendered permanently uninhabitable</strong> instead: take your die back, and it can never be claimed again by anyone, including Creatures. The reward becomes <strong>Fortify 6</strong>, spread across your other Control Points, and your Control Points tracker does not advance.</p>
-        <p>A card that claims at a set value, such as <em>Annex</em> or <em>Conquest</em>, sets the new Control Die itself; you still take the Incentives row and its Fortify 3.</p>
+        <p>Give the new Outpost none of that Fortify and it is <strong>rendered permanently uninhabitable</strong> instead: take your die back, and it can never be claimed again by anyone, including Creatures. The reward becomes <strong>Fortify 6</strong>, spread across your other Outposts and Headquarters, and your <em>HQ + Outposts</em> tracker does not advance.</p>
+        <p>A card that claims at a set value, such as <em>Annex</em> or <em>Conquest</em>, sets the new Outpost's strength itself; you still take the Incentives row and its Fortify 3.</p>
         <h4>Losing</h4>
         <ol>
-          <li>Remove your Control Die.</li>
-          <li>Reduce your Control Points tracker by 1.</li>
+          <li>Remove your die.</li>
+          <li>Reduce your <em>HQ + Outposts</em> tracker by 1.</li>
           <li>Destroy one of your Structures if you have one &mdash; your choice which. Its Worker is removed from the game.</li>
         </ol>
-        <div class="tip"><b>Destroyed by a Creature</b><p>If a Creature reduces a Control Point to 0, the loss resolves normally and the Control Point is rendered permanently uninhabitable &mdash; no one can ever claim it again. A Headquarters is no exception: that corporation is eliminated exactly as if a rival had done it, except that nothing changes hands. Its Arc Cubes, Resources and Xeno Eggs are gone, and its Headquarters Sector leaves play with the others.</p></div>
+        <div class="tip"><b>Destroyed by a Creature</b><p>If a Creature reduces an Outpost to 0, the loss resolves normally and the Outpost is rendered permanently uninhabitable &mdash; no one can ever claim it again. A Headquarters is no exception: that corporation is eliminated exactly as if a rival had done it, except that nothing changes hands. Its Arc Cubes, Resources and Xeno Eggs are gone, and its Headquarters Sector leaves play with the others.</p></div>
         <h4>Suppression</h4>
-        <p>A Control Point you hold is <strong>Suppressed</strong> for as long as an enemy Operative or Creature stands in its Sector. It makes no difference how many Control Points the Sector has or who holds the others &mdash; every Control Point you hold there is Suppressed. Holding it is not enough &mdash; while anything hostile is present:</p>
+        <p>An Outpost or Headquarters you hold is <strong>Suppressed</strong> for as long as an enemy Operative or Creature stands in its Sector. It makes no difference how many Settlements the Sector has or who holds the others &mdash; every Outpost you hold there is Suppressed. Holding it is not enough &mdash; while anything hostile is present:</p>
         <ul>
           <li>It generates <strong>no Arc Cubes</strong> during your Income Phase.</li>
           <li>It <strong>cannot be Fortified</strong>, from any source.</li>
@@ -868,14 +869,14 @@
         <h4>The Hostile Movement Penalty</h4>
         <p>Moving an Operative within a Sector controlled by an <em>enemy corporation</em> costs <strong>1 extra Movement per tile</strong>. A Sector that no one controls &mdash; neutral, or split between corporations &mdash; is free of it. So in hostile territory an ordinary tile costs 2 and a Mountain costs 3.</p>
         <h4>Moving past other figures</h4>
-        <p><strong>Two things never share a tile.</strong> Nothing may end its move on a tile already holding an Operative, a Creature or a Control Point &mdash; not even your own, and not even your own Headquarters. You may move <em>through</em> anything that is not hostile to you: your own Operatives, your own subjugated Creature, your own Control Points, and for a wild Creature, other Creatures. Passing through costs the Movement to enter the tile and the Movement to leave it, so at least 2. Everything else blocks you outright &mdash; including a <strong>neutral</strong> Control Point, which stops you exactly as an enemy one does.</p>
+        <p><strong>Two things never share a tile.</strong> Nothing may end its move on a tile already holding an Operative, a Creature, a Settlement or an Outpost &mdash; not even your own, and not even your own Headquarters. You may move <em>through</em> anything that is not hostile to you: your own Operatives, your own subjugated Creature, your own Outposts and Headquarters, and for a wild Creature, other Creatures. Passing through costs the Movement to enter the tile and the Movement to leave it, so at least 2. Everything else blocks you outright &mdash; including a <strong>Settlement</strong>, which stops you exactly as an enemy Outpost does.</p>
         <h4>Tile icons</h4>
         <p>Icons are printed on the board and on the Sector tiles; nothing is placed or flipped during setup.</p>
         <div class="tw"><table>
           <thead><tr><th>Icon</th><th>Effect</th></tr></thead>
           <tbody>
-            <tr><td class="k">Landing site</td><td>One of the six four-tile Sectors on the rim of the board, each with one Control Point. At setup each corporation puts its Headquarters Control Die on the Control Point of one of them.</td></tr>
-            <tr><td class="k">Control Point</td><td>A numbered die, 1 to 6, on a Lava Field. The number is the Sector Strength its neutral Control Die starts at.</td></tr>
+            <tr><td class="k">Landing site</td><td>One of the six four-tile Sectors on the rim of the board, each with a landing site. At setup each corporation puts its Headquarters die on the landing site of one of them.</td></tr>
+            <tr><td class="k">Settlement</td><td>A numbered die, 1 to 6, on a Lava Field. The number is the strength its die starts at.</td></tr>
             <tr><td class="k">Tunnel</td><td>Any Operative may move from this tile to any other Tunnel tile, no matter who controls either Sector. The trip costs whatever the tile you arrive on costs, <strong>plus 1</strong> for the Tunnel itself. Creatures cannot use Tunnels.</td></tr>
             <tr><td class="k">Encounter</td><td>Marks where a Creature starts. When its Sector tile is placed, deploy 1 Creature on this tile if a Creature slot is free.</td></tr>
           </tbody>
@@ -904,20 +905,20 @@
         <p class="kicker">10</p>
         <h3>Structures</h3>
         <p>Structures are built onto your Player Board, not placed on the map. Construct one during your Action Phase by paying its Resource cost and assigning one free Worker. The number beside it is the <strong>Fortify</strong> value you gain the moment it is built.</p>
-        <div class="tip"><b>Fortify</b><p><em>Fortify your Sectors by X</em> means add X Sector Strength in total, divided between your Control Points however you like &mdash; all of it on one Control Die, or spread around. No Control Die may pass its maximum of 6, or 12 for a Headquarters; anything over that is lost. Where space is tight a card may shorten this to <em>Fortify X</em>; it means the same thing.</p><p>A <strong>Suppressed</strong> Control Point cannot be Fortified at all. While an enemy stands in its Sector you cannot shore it up &mdash; you have to remove them first.</p></div>
+        <div class="tip"><b>Fortify</b><p><em>Fortify X</em> means add X strength in total, divided between your Outposts and Headquarters however you like &mdash; all of it on one die, or spread around. No Outpost may pass its maximum of 6, or a Headquarters its 12; anything over that is lost.</p><p>A <strong>Suppressed</strong> Outpost or Headquarters cannot be Fortified at all. While an enemy stands in its Sector you cannot shore it up &mdash; you have to remove them first.</p></div>
         <div class="tw"><table>
           <thead><tr><th>Structure</th><th>Cost</th><th>Fortify</th><th>Type</th><th>Effect</th></tr></thead>
           <tbody>
-            <tr><td class="k">Headquarters</td><td class="n">&mdash;</td><td class="n">10</td><td class="n">&mdash;</td><td>Never constructed &mdash; you begin the game with it built, which is where its Control Die's starting Sector Strength of 10 comes from. Your corporation is eliminated when it is destroyed.</td></tr>
+            <tr><td class="k">Headquarters</td><td class="n">&mdash;</td><td class="n">10</td><td class="n">&mdash;</td><td>Never constructed &mdash; you begin the game with it built, which is where its starting strength of 10 comes from. Your corporation is eliminated when it is destroyed.</td></tr>
             <tr><td class="k">Barracks</td><td>1 Metal &middot; 2 Cryofluid</td><td class="n">2</td><td class="n">Active</td><td>Recruit an Operative.</td></tr>
             <tr><td class="k">Base Turret</td><td>2 Metal &middot; 1 Biofuel</td><td class="n">3</td><td class="n">Active</td><td>Perform a Bio Attack with 3 | 4 | 5 Combat Dice on an enemy in a Sector you control.</td></tr>
-            <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td class="n">Active</td><td>Fortify your Sectors by 2.</td></tr>
-            <tr><td class="k">Shield Generator</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Cryofluid</td><td class="n">3</td><td class="n">Passive</td><td>When a friendly Control Point takes damage, roll 1 Combat Die. On a Block, ignore the damage.</td></tr>
+            <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td class="n">Active</td><td>Fortify 2.</td></tr>
+            <tr><td class="k">Shield Generator</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Cryofluid</td><td class="n">3</td><td class="n">Passive</td><td>When a friendly Outpost or Headquarters takes damage, roll 1 Combat Die. On a Block, ignore the damage.</td></tr>
             <tr><td class="k">Radar Station</td><td>1 Biofuel &middot; 2 Silica</td><td class="n">2</td><td class="n">Passive</td><td>You ignore the Hostile Movement Penalty.</td></tr>
             <tr><td class="k">Refinery</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Silica</td><td class="n">1</td><td class="n">Active</td><td>Gain 2 Arc Cubes.</td></tr>
             <tr><td class="k">Charging Bay</td><td>1 Metal &middot; 1 Silica &middot; 1 Cryofluid</td><td class="n">2</td><td class="n">Active</td><td>Restore 1 Energy to one of your Operatives.</td></tr>
             <tr><td class="k">Science Academy</td><td>2 Silica &middot; 1 Cryofluid</td><td class="n">1</td><td class="n">Active</td><td>Gain 1 Ability Card.</td></tr>
-            <tr><td class="k">Starport</td><td>1 Metal &middot; 2 Silica</td><td class="n">2</td><td class="n">Active</td><td>Move an Operative adjacent to a friendly Control Point.</td></tr>
+            <tr><td class="k">Starport</td><td>1 Metal &middot; 2 Silica</td><td class="n">2</td><td class="n">Active</td><td>Move an Operative adjacent to a friendly Outpost or Headquarters.</td></tr>
             <tr><td class="k">Xeno Lab</td><td>1 Biofuel &middot; 2 Cryofluid</td><td class="n">1</td><td class="n">Passive</td><td>When subjugating a Creature, you gain 1 Progression and 1 Xeno Egg.</td></tr>
           </tbody>
         </table></div>
@@ -932,9 +933,9 @@
         <p>You may assign to any slot, empty or not. Assigning over an existing Operative discards that card, and if it was deployed its die comes off the board first. The new Operative always arrives assigned but undeployed.</p>
         <div class="tip"><b>Assigning is permanent</b><p>A replaced Operative Card is discarded, not returned to the deck or your hand. Choose carefully before assigning over an Operative you want to keep.</p></div>
         <h4>Deploying</h4>
-        <p>At any point in your Action Phase you may deploy an assigned Operative to a tile <strong>adjacent to any Control Point you control</strong>, your Headquarters included.</p>
+        <p>At any point in your Action Phase you may deploy an assigned Operative to a tile <strong>adjacent to any Outpost you hold</strong>, or to your Headquarters.</p>
         <p>No two Operatives may share a tile, and if there is no free space you simply cannot deploy until there is. Deploying is always optional.</p>
-        <p>Deploying next to a <em>Suppressed</em> Control Point &mdash; one whose Sector holds an enemy Operative or Creature &mdash; is allowed, but the Operative arrives at <strong>half its maximum Energy, rounded down</strong>.</p>
+        <p>Deploying next to a <em>Suppressed</em> Outpost or Headquarters &mdash; one whose Sector holds an enemy Operative or Creature &mdash; is allowed, but the Operative arrives at <strong>half its maximum Energy, rounded down</strong>.</p>
         <h4>The Trooper</h4>
         <p>Your Troopers are printed on your Player Board rather than dealt from the Operative deck, and they fill your two Operative slots at the start of the game. A Trooper can never be permanently removed: an eliminated Trooper simply returns to its slot, assigned and undeployed, ready to deploy again.</p>
         <p>Assigning another Operative to a Trooper's slot benches the Trooper &mdash; it can no longer be deployed, and comes off the board if it was out. If that replacement Operative is later eliminated and its card removed, the slot reverts to the Trooper.</p>
@@ -957,12 +958,12 @@
             </ol>
           </li>
         </ol>
-        <p>A Creature that attacks hits <em>every</em> enemy within Range once. Resolve Bio Attacks first, taking Operatives in order of their Operative Die from lowest to highest; where two corporations share a number, go in Initiative order clockwise. A Creature that can Siege then attacks the Control Point it is adjacent to, if there is one.</p>
+        <p>A Creature that attacks hits <em>every</em> enemy within Range once. Resolve Bio Attacks first, taking Operatives in order of their Operative Die from lowest to highest; where two corporations share a number, go in Initiative order clockwise. A Creature that can Siege then attacks the Settlement, Outpost or Headquarters it is adjacent to, if there is one.</p>
         <ul>
           <li>Movement cannot be split. A Creature that cannot complete its full move goes as far as it can and stops.</li>
           <li>A Creature that leaves the edge of the map is redeployed on the Volcano tile and its movement ends.</li>
         </ul>
-        <p>A Creature's targets are enemy Operatives within its Range, plus the enemy Control Point on an adjacent tile if that Creature can perform a Siege Attack. Since attacking a Control Point needs adjacency &mdash; the same rule players follow &mdash; a Creature can never reach two at once.</p>
+        <p>A Creature's targets are enemy Operatives within its Range, plus the enemy Outpost or Headquarters on an adjacent tile if that Creature can perform a Siege Attack. Since attacking one needs adjacency &mdash; the same rule players follow &mdash; a Creature can never reach two at once.</p>
         <h4>Killing and subjugating Creatures</h4>
         <p>Eliminating a Creature with an Operative advances your Progression tracker by 1 and puts a token on the <em>Eliminate Creatures</em> row of <em>Incentives</em>, which pays your <strong>1 Xeno Egg</strong>. The kill itself pays no other Xeno Egg.</p>
         <div class="tip"><b>Subjugation</b><p>When one of your Operatives would eliminate a Creature, you may subjugate it instead. You forgo both the Progression advance and the Xeno Egg. Place the Encounter Card on your Subjugated Creature slot and restore its Health fully &mdash; it now counts as an Operative under your control.</p></div>
@@ -972,7 +973,7 @@
         <h3>Tiers &amp; Progression</h3>
         <p>Every corporation starts at Tier 1 and climbs to 3 along the Progression tracker on its Player Board. Tier 1 is blue, Tier 2 purple, Tier 3 red &mdash; the same colors used on Ability Cards.</p>
         <h4>Advancing the tracker</h4>
-        <p>Move forward 1 square each time you destroy a Control Point, whether neutral or enemy-held; eliminate an enemy Operative or a Creature; or gain Progression from any other effect.</p>
+        <p>Move forward 1 square each time you destroy a Settlement or an enemy Outpost or Headquarters; eliminate an enemy Operative or a Creature; or gain Progression from any other effect.</p>
         <p>Landing on a reward square immediately grants either <strong>1 Ability Card</strong> or <strong>3 Arc Cubes</strong>, depending on the icon. Landing on the Tier 2 or Tier 3 square advances you immediately &mdash; there is no cost, no action, and no way to delay it. Reaching the final black square ends the game and wins it.</p>
         <h4>What advancing changes</h4>
         <p>Advancing unlocks that Tier's abilities on your Ability Cards, and you keep every Tier beneath it. Each card carries three abilities, one per Tier, and you may play any of them at or below your current Tier for its cost:</p>
@@ -990,7 +991,7 @@
         <p class="kicker">14</p>
         <h3>Objectives</h3>
         <p>One Objective card &mdash; <em>Incentives</em> &mdash; sits face-up in play from setup to the end of the game.</p>
-        <p>It carries four targets, each on its own row with its own reward and its own five token boxes: <strong>claim Control Points</strong> for Fortify 3 (Fortify 6 if you render the Control Point uninhabitable instead), <strong>construct Structures</strong> for 3 Arc Cubes, <strong>eliminate Creatures</strong> for 1 Xeno Egg, <strong>eliminate Operatives</strong> for 1 Worker. Whenever you do one of these things, put one of your tracker tokens in the next free box on that row and take the reward at once.</p>
+        <p>It carries four targets, each on its own row with its own reward and its own five token boxes: <strong>claim Outposts</strong> for Fortify 3 (Fortify 6 if you render the Settlement or Outpost uninhabitable instead), <strong>construct Structures</strong> for 3 Arc Cubes, <strong>eliminate Creatures</strong> for 1 Xeno Egg, <strong>eliminate Operatives</strong> for 1 Worker. Whenever you do one of these things, put one of your tracker tokens in the next free box on that row and take the reward at once.</p>
         <p>The rows are independent &mdash; a token on one counts for nothing on the others. When the fifth token lands on a row, count that row's tokens per player. Whoever holds the most gains <strong>1 Progression</strong>, and every player level on the most takes first place together and each gains 1 Progression; there is no second place. Then take all five tokens off that row and it is open again, as often as the game lasts.</p>
       </section>
       <section id="s-currencies">
@@ -999,7 +1000,7 @@
         <div class="tw"><table>
           <thead><tr><th>Currency</th><th>Gained from</th><th>Spent on</th></tr></thead>
           <tbody>
-            <tr><td class="k">Arc Cubes</td><td>1 per Control Point you control each Income Phase, +1 with a Worker assigned; the Progression tracker; card effects.</td><td>Playing Ability Cards, recruiting Operatives, trading.</td></tr>
+            <tr><td class="k">Arc Cubes</td><td>1 per Outpost you hold each Income Phase (2 for your Headquarters), +1 with a Worker assigned; the Progression tracker; card effects.</td><td>Playing Ability Cards, recruiting Operatives, trading.</td></tr>
             <tr><td class="k">Resources</td><td>The Event Die, and various card effects. Metal, Biofuel, Silica and Cryofluid.</td><td>Constructing Structures, trading.</td></tr>
             <tr><td class="k">Ability Cards</td><td>1 per turn in your Income Phase; the Progression tracker; card effects.</td><td>Playing them. Hand limit 5, enforced at Cleanup.</td></tr>
             <tr><td class="k">Xeno Eggs</td><td>Eliminating Creatures, and various card effects &mdash; +1 each time with a Worker assigned.</td><td>+2 Combat Dice before a Bio Roll, or restore an Operative to its maximum Energy.</td></tr>
@@ -1040,14 +1041,14 @@
   <header>
     <p class="eyebrow">Orbital survey &middot; 166 printed tiles &middot; 16 Sector slots &middot; 20 Sector tiles &middot; 8 empty tiles</p>
     <h1>Arcworld Sector Atlas</h1>
-    <p class="lede">The built board, read back tile by tile. Printed tiles ring the central volcano, <strong>six landing-site Sectors</strong> sit on the rim, and <strong>16 empty Sector slots</strong> wait to be filled; they fill during play from a stack of <strong>20 Sector tiles</strong>, drawn blind, with <strong>8 empty tiles</strong> swapped in at two and three players. Terrain, Control Points, Tunnels and Encounters are all read straight off the tiles below.</p>
+    <p class="lede">The built board, read back tile by tile. Printed tiles ring the central volcano, <strong>six landing-site Sectors</strong> sit on the rim, and <strong>16 empty Sector slots</strong> wait to be filled; they fill during play from a stack of <strong>20 Sector tiles</strong>, drawn blind, with <strong>8 empty tiles</strong> swapped in at two and three players. Terrain, Settlements, Tunnels and Encounters are all read straight off the tiles below.</p>
     <div class="stats">
       <div class="stat"><b id="at-tiles">&mdash;</b><span>Printed tiles</span></div>
       <div class="stat"><b id="at-slots">&mdash;</b><span>Sector slots</span></div>
       <div class="stat"><b id="at-sect">&mdash;</b><span>Sector tiles</span></div>
       <div class="stat"><b id="at-empty">&mdash;</b><span>Empty tiles</span></div>
       <div class="stat"><b id="at-land">&mdash;</b><span>Landing sites</span></div>
-      <div class="stat"><b id="at-cps">&mdash;</b><span>Control Points on tiles</span></div>
+      <div class="stat"><b id="at-cps">&mdash;</b><span>Settlements on tiles</span></div>
     </div>
   </header>
 
@@ -1757,13 +1758,13 @@
 
   <section>
     <h2>The Sector tiles</h2>
-    <p class="sub">The 20 tiles in the stack. A tile is drawn blind and placed in an empty slot in whichever rotation its player chooses; hexes are numbered top left to bottom right as shown. The dice show the Sector Strength a neutral Control Die starts at.</p>
+    <p class="sub">The 20 tiles in the stack. A tile is drawn blind and placed in an empty slot in whichever rotation its player chooses; hexes are numbered top left to bottom right as shown. The dice show the strength a Settlement starts at.</p>
     <div class="stiles" id="stiles"></div>
   </section>
 
   <section>
     <h2>The empty Sector tiles</h2>
-    <p class="sub">Eight tiles with no Control Point, used only in games of two or three players. With three players four of the 16 drawn tiles are swapped for empty ones, with two players eight. They keep the Encounters and Tunnels of the full set in proportion.</p>
+    <p class="sub">Eight tiles with no Settlement, used only in games of two or three players. With three players four of the 16 drawn tiles are swapped for empty ones, with two players eight. They keep the Encounters and Tunnels of the full set in proportion.</p>
     <div class="stiles" id="etiles"></div>
   </section>
 
@@ -1905,7 +1906,7 @@
     <h2>How they work</h2>
     <p class="sub">The four rows are four separate races. Nothing you do on one has any bearing on another.</p>
     <div class="notes">
-      <div class="note"><h3>Claim and get paid</h3><p>Meet one of the four targets and put a tracker token in the next free box on that row, then take that row's reward at once. Every claim pays, whether or not the row ever fills. A claim's Fortify 3 also sets the new Control Die: give it none, and the Control Point is rendered uninhabitable and pays Fortify 6 instead.</p></div>
+      <div class="note"><h3>Claim and get paid</h3><p>Meet one of the four targets and put a tracker token in the next free box on that row, then take that row's reward at once. Every claim pays, whether or not the row ever fills. A claim's Fortify 3 also sets the new Outpost's strength: give it none, and it is rendered uninhabitable and pays Fortify 6 instead.</p></div>
       <div class="note"><h3>Four separate races</h3><p>Each row has its own reward and its own five boxes. A token on one counts for nothing on the others &mdash; you can pour everything into one target or spread across all four.</p></div>
       <div class="note"><h3>Filling a row</h3><p>When the fifth token lands, count that row's tokens per player. The most gains <b>1 Progression</b>, and everyone level on the most takes first place together, <em>each</em> gaining 1 Progression. Then lift all five tokens off and the row is open again.</p></div>
     </div>
@@ -1930,13 +1931,19 @@
 
   <section>
     <h2>To print for the next test</h2>
-    <p class="sub">4 cards and 8 Sector tiles.</p>
+    <p class="sub">34 cards and 8 Sector tiles.</p>
     <div class="tablewrap"><table class="printlist">
       <thead><tr><th class="l">Sheet</th><th class="l">Cards</th></tr></thead>
       <tbody>
+        <tr><td class="l sec">Helper Cards</td><td class="l">Control Points, Game Setup 1, Game Setup 2</td></tr>
+        <tr><td class="l sec">Encounters</td><td class="l">Gorepods</td></tr>
+        <tr><td class="l sec">Operatives</td><td class="l">Foremen, Wardens, Infiltrators, Reclaimers, Saboteurs, Demolitionists</td></tr>
+        <tr><td class="l sec">Ability Cards 1</td><td class="l">2, 4, 5, 6, 9, 15</td></tr>
+        <tr><td class="l sec">Ability Cards 2</td><td class="l">22, 26, 28, 30, 31, 36</td></tr>
+        <tr><td class="l sec">Ability Cards 3</td><td class="l">37</td></tr>
         <tr><td class="l sec">Discoveries</td><td class="l">10, 13</td></tr>
-        <tr><td class="l sec">Corporations</td><td class="l">Red Sector Inc.</td></tr>
-        <tr><td class="l sec">Helper Cards</td><td class="l">Control Points</td></tr>
+        <tr><td class="l sec">Incentives</td><td class="l">Incentives</td></tr>
+        <tr><td class="l sec">Corporations</td><td class="l">Red Sector Inc., Helios Global, Ironvale, Chronos, Aurex Systems, Frontier, Blacksun, The Ashborn</td></tr>
         <tr><td class="l sec">Sector tiles</td><td class="l">21&ndash;28 (empty)</td></tr>
       </tbody>
     </table></div>
@@ -1949,14 +1956,16 @@
         <div><p class="v">3.20</p><p class="vt">The board</p></div>
         <ul>
           <li>The board is <b>166 printed tiles</b> around the volcano plus <b>16 empty Sector slots</b>. 20 Sector tiles are drawn blind and placed, in any rotation, the moment an Operative moves onto a tile next to an empty slot.</li>
-          <li>Control Points carry a printed strength from <b>1 to 6</b>, and a neutral Control Die starts there instead of at 3. A Sector tile holds one or two.</li>
-          <li>The player board tracks <b>Control Points</b>, not Sectors, and each Control Point you hold pays <b>1 Arc Cube</b> in the Income Phase.</li>
-          <li>Eight <b>empty Sector tiles</b> join the set: with three players four of the 16 drawn tiles are swapped for empty ones, with two players eight. They carry no Control Point, only a share of the Encounters and Tunnels.</li>
-          <li>You <b>control a Sector</b> only while you hold every Control Point in it. Suppression is per Control Point: one enemy in the Sector Suppresses each Control Point you hold there.</li>
+          <li><b>Settlement</b>, <b>Outpost</b> and <b>Headquarters</b> replace &ldquo;Control Point&rdquo;: an unclaimed one is a Settlement, a claimed one is its owner's Outpost, and your landing-site one is your Headquarters. &ldquo;Sector Strength&rdquo; becomes plain <b>strength</b>; Settlements and Outposts are D6s, a Headquarters a D12.</li>
+          <li>Settlements carry a printed strength from <b>1 to 6</b>, and a Settlement die starts there instead of at 3. A Sector tile holds one or two.</li>
+          <li><b>Fortify X</b> is the one form: add X strength, divided between your Outposts and Headquarters. &ldquo;Fortify your Sectors by X&rdquo; is gone from the cards.</li>
+          <li>The player board tracks <b>HQ + Outposts</b>, not Sectors, starting at 2 from the Headquarters, and each Outpost you hold pays <b>1 Arc Cube</b> in the Income Phase &mdash; <b>2</b> for your Headquarters.</li>
+          <li>Eight <b>empty Sector tiles</b> join the set: with three players four of the 16 drawn tiles are swapped for empty ones, with two players eight. They carry no Settlement, only a share of the Encounters and Tunnels.</li>
+          <li>You <b>control a Sector</b> only while you hold every Settlement in it as an Outpost. Suppression is per Outpost: one enemy in the Sector Suppresses each Outpost you hold there.</li>
           <li>Headquarters start on one of six four-tile <b>landing-site</b> Sectors on the rim of the board, rather than on a drawn Sector tile.</li>
           <li>Tunnels and Encounters are printed on the board and the Sector tiles. The face-down Tunnel and Creature tokens, and their player-count scaling, are gone; a Creature starts on every Encounter icon.</li>
           <li><b>Scientists</b> restore 1 Energy to friendly Operatives each Income Phase, in place of the Bio Damage after a successful Bio Attack. <b>Engineers</b> read <em>Fortify 2</em>.</li>
-          <li><b>Fault Line</b>, <b>Orbital Relay</b> and <b>Red Sector Inc.</b> speak of the Control Point rendered uninhabitable, not the Sector.</li>
+          <li><b>Fault Line</b>, <b>Orbital Relay</b> and <b>Red Sector Inc.</b> speak of the Settlement or Outpost rendered uninhabitable, not the Sector.</li>
           <li>Permafrost is removed from the terrain table. The Sector Atlas shows the printed board, all 20 Sector tiles and the tokens on them.</li>
         </ul>
 
@@ -2189,7 +2198,7 @@
   <header>
     <p class="eyebrow">Encounter deck &middot; 18 cards &middot; the planet's own side</p>
     <h1>Creatures</h1>
-    <p class="lede">Drawn from the Encounter deck and answerable to nobody. Up to four roam the board at once, moving and attacking during the Intermission Phase &mdash; and <strong>most of them cannot touch a Control Point at all</strong>, which is the first thing to check when one turns up next to your Sector.</p>
+    <p class="lede">Drawn from the Encounter deck and answerable to nobody. Up to four roam the board at once, moving and attacking during the Intermission Phase &mdash; and <strong>most of them cannot touch an Outpost or Headquarters at all</strong>, which is the first thing to check when one turns up next to your Sector.</p>
     <div class="stats">
       <div class="stat"><b>18</b><span>Creatures</span></div>
       <div class="stat"><b>4</b><span>On the board at once</span></div>
@@ -2202,13 +2211,13 @@
     <h2>Reading a card</h2>
     <p class="sub">Laid out like an Operative Card, with one difference: the boxes count <em>Health</em> rather than Energy, and Creatures have no active abilities &mdash; everything they do is passive, resolved for them during the Intermission Phase.</p>
     <div class="key" id="enckey"></div>
-    <div class="tip"><b>Siege</b><p>A Creature only threatens a Control Point if it can perform a Siege Attack. The ones that cannot say so in plain text on the card, and they can still make life miserable by Suppressing the Sector they stand in.</p></div>
+    <div class="tip"><b>Siege</b><p>A Creature only threatens an Outpost or Headquarters if it can perform a Siege Attack. The ones that cannot say so in plain text on the card, and they can still make life miserable by Suppressing the Sector they stand in.</p></div>
 
   </section>
 
   <section>
     <h2>The bestiary</h2>
-    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>, drawn as it comes off the print program. Search by name or ability text, or narrow to the Creatures that can threaten a Control Point.</p>
+    <p class="sub">The printed face at <strong>Poker size, 63.5 &times; 89 mm</strong>, drawn as it comes off the print program. Search by name or ability text, or narrow to the Creatures that can threaten an Outpost or Headquarters.</p>
     <div class="controls" style="margin:0 0 18px">
       <button class="toggle" id="eSiege" aria-pressed="false">Siege-capable only</button>
       <button class="toggle" id="eReset" aria-pressed="false">Clear filters</button>
@@ -2330,7 +2339,7 @@ const LOOKUP = {}; TERRAIN.forEach(t => LOOKUP[t.key] = t);
 const KEYS = TERRAIN.map(t => t.key);
 
 /* the 20 Sector tiles, hex 1 to 7 read top left to bottom right:
-   t = terrain, cp = hex -> printed Sector Strength, enc = Encounter hexes, tun = Tunnel hexes */
+   t = terrain, cp = hex -> printed strength, enc = Encounter hexes, tun = Tunnel hexes */
 const SECT = [
  {n:1,t:["sludge","wasteland","mountain","hills","lava","hills","hills"],cp:{5:3},enc:[6],tun:[]},
  {n:2,t:["sludge","lava","lava","wasteland","spire","sludge","hills"],cp:{2:3,3:5},enc:[],tun:[5]},
@@ -2353,7 +2362,7 @@ const SECT = [
  {n:19,t:["lava","mountain","mountain","sludge","hills","hills","lava"],cp:{1:5},enc:[],tun:[]},
  {n:20,t:["mountain","wasteland","spire","sludge","lava","lava","wasteland"],cp:{5:2,6:5},enc:[],tun:[]}
 ];
-/* the eight empty tiles: no Control Point, used at two and three players */
+/* the eight empty tiles: no Settlement, used at two and three players */
 const EMPTY = [
  {n:21,t:["hills","mountain","mountain","sludge","lava","lava","hills"],cp:{},enc:[],tun:[]},
  {n:22,t:["sludge","mountain","lava","mountain","sludge","sludge","hills"],cp:{},enc:[],tun:[]},
@@ -2405,7 +2414,7 @@ const tileCard = (s, empty) => {
     if (s.tun.includes(i + 1)) toks += tok.tun(x, y);
   });
   const bits = [];
-  const cps = cpsOf(s); if (cps.length) bits.push(cps.length + " Control Point" + (cps.length === 1 ? "" : "s"));
+  const cps = cpsOf(s); if (cps.length) bits.push(cps.length + " Settlement" + (cps.length === 1 ? "" : "s"));
   if (s.enc.length) bits.push(s.enc.length + " Encounter" + (s.enc.length === 1 ? "" : "s"));
   if (s.tun.length) bits.push("Tunnel");
   if (!bits.length) bits.push("No tokens");
@@ -2440,8 +2449,8 @@ const staticKey = (name, ct, fx, sw) => {
   legend.appendChild(el);
 };
 staticKey("Volcano", 7, "The crater at the center — impassable, and not part of any Sector", ico("#2b1a12", "", " volcico"));
-staticKey("Landing site", LAND, "A four-tile Sector on the rim with one Control Point; each corporation's Headquarters starts on one", ico("var(--t-lava)", tok.land(0, 0)));
-staticKey("Control Point", ALLCP.length, "On Sector tiles, always on a Lava Field; the die shows its Sector Strength", ico("var(--t-lava)", tok.cp(0, 0, 3)));
+staticKey("Landing site", LAND, "A four-tile Sector on the rim with a landing site; each corporation's Headquarters starts on one", ico("var(--t-lava)", tok.land(0, 0)));
+staticKey("Settlement", ALLCP.length, "On Sector tiles, always on a Lava Field; the die shows the strength it starts at", ico("var(--t-lava)", tok.cp(0, 0, 3)));
 staticKey("Tunnel", PTUN + " + " + TUNS, "Printed on the board, plus those on Sector tiles", ico("var(--t-spire)", tok.tun(0, 0)));
 staticKey("Encounter", ENCS, "On Sector tiles; a Creature starts on the tile", ico("var(--t-wasteland)", tok.enc(0, 0)));
 document.getElementById("legendnote").innerHTML = '<i></i>Terrain counts read <b>printed tiles + Sector-tile hexes</b>.';
@@ -2495,16 +2504,16 @@ const strengths = [1, 2, 3, 4, 5, 6].map(v => ALLCP.filter(x => x === v).length)
 const plain = (title, who, rows) => '<div class="bcol"><h3>' + title + '</h3><p class="who">' + who + '</p>' +
   rows.map(r => '<div class="brow" style="--sw:#f4efe7"><i></i><span>' + r[0] + '</span><b>' + r[1] + '</b></div>').join("") + '</div>';
 document.getElementById("tokens").innerHTML =
-  plain("Control Points", ALLCP.length + " on " + SECT.length + " Sector tiles", strengths.map((n, i) => ["Strength " + (i + 1), n])) +
+  plain("Settlements", ALLCP.length + " on " + SECT.length + " Sector tiles", strengths.map((n, i) => ["Strength " + (i + 1), n])) +
   plain("On the Sector tiles", "Tiles carrying each token",
-    [["One Control Point", SECT.filter(s => cpsOf(s).length === 1).length], ["Two Control Points", SECT.filter(s => cpsOf(s).length === 2).length],
+    [["One Settlement", SECT.filter(s => cpsOf(s).length === 1).length], ["Two Settlements", SECT.filter(s => cpsOf(s).length === 2).length],
      ["Encounters", ENCS], ["Tunnels", TUNS], ["Tiles with an Encounter", SECT.filter(s => s.enc.length).length], ["Tiles with a Tunnel", SECT.filter(s => s.tun.length).length]]) +
   plain("On the printed board", "Fixed by the board", [["Landing sites", LAND], ["Tunnels", PTUN], ["Sector slots", SLOTS]]);
 
 /* ---- distribution ---- */
 let rows = '<thead><tr><th class="l">Tile</th><th>Hexes</th>' +
   TERRAIN.map(t => '<th style="--sw:var(--t-' + t.key + ')"><span></span>' + t.name.split(" ")[0] + '</th>').join("") +
-  '<th class="l">Control Points</th><th>Encounters</th><th>Tunnels</th></tr></thead><tbody>';
+  '<th class="l">Settlements</th><th>Encounters</th><th>Tunnels</th></tr></thead><tbody>';
 SECT.forEach(s => {
   const row = tally(s.t);
   rows += '<tr><td class="l sec">' + s.n + '</td><td>' + s.t.length + '</td>' +
@@ -2514,7 +2523,7 @@ SECT.forEach(s => {
 });
 /* the empty tiles, counted apart from the full set */
 const EPOOL = tally(EMPTY.flatMap(s => s.t));
-rows += '<tr><td class="l pairnote" colspan="' + (TERRAIN.length + 5) + '">Empty Sector tiles &mdash; no Control Point</td></tr>';
+rows += '<tr><td class="l pairnote" colspan="' + (TERRAIN.length + 5) + '">Empty Sector tiles &mdash; no Settlement</td></tr>';
 EMPTY.forEach(s => {
   const row = tally(s.t);
   rows += '<tr><td class="l sec">' + s.n + '</td><td>' + s.t.length + '</td>' +
@@ -2529,7 +2538,7 @@ rows += '</tbody><tfoot><tr><td class="l">Tiles 1&ndash;20</td><td>' + sumOf(POO
 document.getElementById("tbl").innerHTML = rows;
 const sigOf = s => cpsOf(s).sort().join("") + "|" + s.enc.length + "|" + s.tun.length;
 document.getElementById("distnote").textContent = "Every row sums to its tile's seven hexes." +
-  (new Set(SECT.map(sigOf)).size === SECT.length ? " No two tiles carry the same Control Points, Encounters and Tunnels." : "");
+  (new Set(SECT.map(sigOf)).size === SECT.length ? " No two tiles carry the same Settlements, Encounters and Tunnels." : "");
 
 /* ---- headline figures ---- */
 document.getElementById("at-tiles").textContent = TILES.length;
@@ -2561,7 +2570,7 @@ tiles.forEach(el => {
   el.addEventListener("mouseenter", () => {
     const t = LOOKUP[el.dataset.key];
     if (el.dataset.sect) { readout.innerHTML = '<b>Tile ' + el.dataset.sect + '</b> · hex ' + el.dataset.hex + ' · <b>' + t.name + '</b>'; return; }
-    if (el.dataset.ls) { const ic2 = el.dataset.icon; readout.innerHTML = '<b>Landing site ' + el.dataset.ls + '</b> · hex ' + el.dataset.n + ' · <b>' + t.name + '</b>' + (ic2 === "land" ? ' · <b>Control Point</b>' : ''); return; }
+    if (el.dataset.ls) { const ic2 = el.dataset.icon; readout.innerHTML = '<b>Landing site ' + el.dataset.ls + '</b> · hex ' + el.dataset.n + ' · <b>' + t.name + '</b>' + (ic2 === "land" ? ' · <b>Landing site</b>' : ''); return; }
     const ic = el.dataset.icon;
     readout.innerHTML = '<b>Tile ' + el.dataset.n + '</b> · ' + ({W:"west", E:"east", A:"axis"})[el.dataset.half] + ' · <b>' + t.name + '</b>' +
       (ic === "land" ? ' · <b>Landing site</b>' : ic === "tun" ? ' · <b>Tunnel</b>' : '');
@@ -2589,7 +2598,7 @@ document.getElementById("tClear").setAttribute("aria-pressed", "true");
 const TAGS = [
   {k:"economy",      n:"Economy",      d:"Arc Cubes, Resources, trade and storage"},
   {k:"combat",       n:"Combat",       d:"Combat Dice, Siege and Bio Rolls"},
-  {k:"territory",    n:"Territory",    d:"Sectors, Control Points and Control Dice"},
+  {k:"territory",    n:"Territory",    d:"Sectors, Settlements, Outposts and Headquarters"},
   {k:"construction", n:"Construction", d:"Structures and what they are worth"},
   {k:"operatives",   n:"Operatives",   d:"Recruiting, Energy and staying alive"},
   {k:"cards",        n:"Cards",        d:"Ability Card draw, cost and hand size"},
@@ -2612,15 +2621,15 @@ const CORPS = [
   {n:"Hyperion",cubes:9,res:"1 Metal or 1 Biofuel",rt:"Metal / Biofuel",tags:["economy"],
    p:["Arc Cube rewards on the Progression Tracker yield 3 extra Arc Cubes."]},
   {n:"The Ashborn",cubes:5,res:"2 Xeno Eggs",rt:"2 Xeno Eggs",tags:["operatives"],
-   p:["Your Operatives and Control Points are immune to Volcanic Eruptions."]},
+   p:["Your Operatives, Outposts and Headquarters are immune to Volcanic Eruptions."]},
   {n:"Paragon",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives","cards"],
    p:["Whenever you recruit an Operative, draw and discard 1 additional Operative Card."]},
   {n:"Onyx",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["combat","operatives"],w:true,
    p:["On a successful Bio Attack, add 1 to the Bio Roll.","Your Operatives have their maximum Energy reduced by 1."]},
   {n:"Blacksun",cubes:10,res:"5 Resources of your choice",rt:"5 &times; Choice",tags:["territory","economy"],
-   p:["During Game Setup, you may immediately claim a second Sector, set its Control Die to 3."]},
+   p:["During Game Setup, you may also claim a second landing site as an Outpost at strength 3."]},
   {n:"Frontier",cubes:8,res:"1 Silica",rt:"Silica",tags:["construction","territory"],
-   p:["When you construct a Structure, Fortify your Sectors by an extra 2."]},
+   p:["When you construct a Structure, Fortify 2 extra."]},
   {n:"Terralift",cubes:10,res:null,rt:"—",tags:["economy"],
    p:["During your Income Phase, you may spend 6 Arc Cubes to gain 1 Resource of your choice."]},
   {n:"Nexus Dynamics",cubes:8,res:null,rt:"—",tags:["economy"],
@@ -2645,7 +2654,7 @@ const CORPS = [
    s2:"Choose 1 Resource type. Whenever you gain Resources of that type, gain 1 extra for each.",
    p:[]},
   {n:"Aurex Systems",cubes:8,res:"1 Cryofluid",rt:"Cryofluid",tags:["territory","construction"],
-   p:["Your Headquarters Control Die cannot be reduced below 1 as long as you have any other Control Point under your control."]},
+   p:["Your Headquarters strength cannot be reduced below 1 as long as you have an Outpost."]},
   {n:"Panopticon",cubes:8,res:null,rt:"—",tags:["economy"],
    p:["During your Income Phase, gain 1 extra Arc Cube."]},
   {n:"Axiom",cubes:5,res:"1 Biofuel",rt:"Biofuel",tags:["economy"],
@@ -2657,7 +2666,7 @@ const CORPS = [
   {n:"Phalanx",cubes:6,res:null,rt:"—",tags:["operatives"],
    p:["During your Income Phase, restore 1 Energy to one of your Operatives."]},
   {n:"Chronos",cubes:10,res:"1 Silica",rt:"Silica",tags:["economy","territory"],
-   p:["Your Sectors yield 1 extra Arc Cube if their Control Point is set to 6. This does not include your Headquarters Sector."]},
+   p:["Your Outposts yield 1 extra Arc Cube while their Strength is set to 6."]},
   {n:"Paxion",cubes:6,res:"1 Silica",rt:"Silica",tags:["economy"],
    p:["Once during your turn, when you perform a Resource trade, you gain 4 Arc Cubes and the other player gains 2 Arc Cubes."]},
   {n:"Citadel Systems",cubes:9,res:null,rt:"—",tags:["construction"],
@@ -2669,11 +2678,11 @@ const CORPS = [
   {n:"Aegis",cubes:5,res:"1 Xeno Egg",rt:"Xeno Egg",tags:["operatives"],
    p:["When one of your Operatives is eliminated, roll a Combat Die. On a Block, do not discard that Operative Card."]},
   {n:"Ironvale",cubes:9,res:null,rt:"—",tags:["territory"],
-   p:["While claiming a Control Point, set its Control Die to 6 instead of 3."]},
+   p:["When you claim a Settlement or an enemy Outpost, set its strength to 6."]},
   {n:"Sentinel",cubes:5,res:"1 Metal",rt:"Metal",tags:["combat"],
    p:["Your Operatives gain 1 extra Range while performing a Siege Attack."]},
   {n:"Helios Global",cubes:5,res:"1 Xeno Egg",rt:"Xeno Egg",tags:["territory"],
-   p:["Once during your Action Phase, you may reduce a friendly Control Die to 1 and Fortify your Sectors by the same amount."]},
+   p:["Once during your Action Phase, you may reduce one of your Outposts or your Headquarters to strength 1 and Fortify by the same amount."]},
   {n:"Meridian",cubes:6,res:"roll the Event Die once",rt:"—",tags:["events"],
    p:["While performing an Event Die roll during your turn, you may reroll the die. You must keep the second result."]},
   {n:"Obsidian",cubes:10,res:"1 Resource of your choice",rt:"Choice",tags:["cards"],w:true,
@@ -2697,7 +2706,7 @@ const CORPS = [
   {n:"Tristar",cubes:7,res:"1 Silica",rt:"Silica",tags:["operatives"],
    p:["Operatives you deploy into a Suppressed Sector arrive at full Energy."]},
   {n:"Red Sector Inc.",cubes:8,res:null,rt:"—",tags:["economy","territory"],
-   p:["Whenever you render a Control Point permanently uninhabitable, gain 6 Arc Cubes and 1 Resource of your choice."]}
+   p:["Whenever you render a Settlement or an Outpost permanently uninhabitable, gain 6 Arc Cubes and 1 Resource of your choice."]}
 ];
 
 function startLine(c){
@@ -2820,7 +2829,7 @@ ledger();
 const ATAGS = [
   {k:"economy",      n:"Economy",      d:"Arc Cubes, Resources, Xeno Eggs, Workers and theft"},
   {k:"combat",       n:"Combat",       d:"Attacks, damage, Combat Dice and elimination"},
-  {k:"territory",    n:"Territory",    d:"Control Points, Control Dice, Sectors and the Progression Tracker"},
+  {k:"territory",    n:"Territory",    d:"Settlements, Outposts, Sectors and the Progression Tracker"},
   {k:"construction", n:"Construction", d:"Building and destroying Structures"},
   {k:"operatives",   n:"Operatives",   d:"Operative Cards, Energy and deployment"},
   {k:"cards",        n:"Cards",        d:"Drawing, discarding, stealing and canceling cards"},
@@ -2839,22 +2848,22 @@ const ACARDS = [
 
  [{n:"Starport",t:"order",g:["construction"],x:"Construct a Starport at no Resource cost."},
   {n:"Suppression",t:"contract",g:["economy"],x:"For 2 rounds, enemy corporations cannot gain Resources during their Income Phase."},
-  {n:"Realignment",t:"order",g:["territory"],x:"Swap up to 3 Control Points on Arcworld. Headquarters cannot be swapped."}],
+  {n:"Realignment",t:"order",g:["territory"],x:"Swap up to 3 Outposts or Settlements on Arcworld."}],
 
  [{n:"Intel",t:"order",g:["cards"],x:"Look at the top 3 cards of an Ability Deck. Either return them to the deck in any order and retain this Card, or keep one, discarding the rest along with this Ability Card."},
   {n:"Demolition",t:"order",g:["construction","combat"],x:"Destroy 1 enemy Structure of your choice. This cannot target a Headquarters."},
   {n:"Time Dilation",t:"order",g:["mobility"],x:"Immediately after your turn ends, take another turn."}],
 
- [{n:"Stonewall",t:"counter",g:["territory","combat"],x:"When a Siege Attack would deal Siege Damage to one of your Control Points, prevent that damage."},
+ [{n:"Stonewall",t:"counter",g:["territory","combat"],x:"When a Siege Attack would deal Siege Damage to one of your Outposts or Headquarters, prevent that damage."},
   {n:"Preservation",t:"counter",g:["operatives"],x:"When one of your Operatives would be eliminated, set it to its maximum Energy instead."},
   {n:"Mirror Ward",t:"counter",g:["cards"],x:"When an enemy plays an Ability Card, cancel that card's effect. Arc Cubes spent on it are not refunded. You gain the Ability Card instead of it being discarded."}],
 
  [{n:"Slipstream",t:"counter",g:["territory"],x:"When an enemy advances its Progression Tracker, advance yours 1 square."},
   {n:"Shockwave",t:"contract",g:["combat"],x:"For 2 rounds, enemies in your controlled Sectors take 2 Bio Damage at the end of your turn."},
-  {n:"Armageddon",t:"order",g:["territory"],x:"Choose one corporation. They remove one of their Control Dice from the game. That corporation may then repeat this effect. Continue until someone declines."}],
+  {n:"Armageddon",t:"order",g:["territory"],x:"Choose one corporation. They remove one of their Outposts from the game. That corporation may then repeat this effect. Continue until someone declines."}],
 
  [{n:"Write-Off",t:"order",g:["economy","cards"],x:"Discard Ability Cards from your hand. Gain 5 Arc Cubes for each discarded card."},
-  {n:"Annex",t:"order",g:["territory"],x:"Claim one neutral or enemy Control Point adjacent to a Sector you control, if its Control Die is set to 4 or lower. Place your Control Die set to 4."},
+  {n:"Annex",t:"order",g:["territory"],x:"Claim one Settlement or enemy Outpost adjacent to a Sector you control if its strength is 4 or lower. It becomes yours at strength 4."},
   {n:"Regression",t:"order",g:["territory"],x:"Choose one corporation. Decrease their Progression Tracker by 3. It cannot go below 0."}],
 
  [{n:"Charging Bay",t:"order",g:["construction"],x:"Construct a Charging Bay at no Resource cost."},
@@ -2867,7 +2876,7 @@ const ACARDS = [
 
  [{n:"Red Tape",t:"counter",g:["construction"],x:"When another corporation constructs a Structure, cancel its construction. Resources spent are lost."},
   {n:"Resurgence",t:"order",g:["creatures"],x:"Move all Creatures on the board to the Volcano tile. Restore each to its maximum Health."},
-  {n:"Ion Strike",t:"order",g:["combat","territory"],x:"Target a Sector. Deal 4 Siege Damage to its Control Point and 6 Bio Damage to all Operatives and Creatures within that Sector."}],
+  {n:"Ion Strike",t:"order",g:["combat","territory"],x:"Target a Sector. Deal 4 Siege Damage to all its Outposts and 6 Bio Damage to all Operatives and Creatures within that Sector."}],
 
  [{n:"Survey",t:"order",g:["events","cards"],x:"Either roll the Event Die and resolve the result or draw 2 Ability Cards."},
   {n:"Silica Tariff",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains 1 Silica, you also gain 1 Silica."},
@@ -2891,7 +2900,7 @@ const ACARDS = [
 
  [{n:"First Strike",t:"counter",g:["combat"],x:"When an enemy Operative moves within Range of one of your Operatives, that Operative may immediately attack it."},
   {n:"Requisition",t:"order",g:["construction"],x:"Construct a Structure of your choice at no Resource cost."},
-  {n:"Conquest",t:"order",g:["territory"],x:"Claim one neutral or enemy Control Point adjacent to a Sector you control, if its Control Die is set to 6 or lower. Place your Control Die set to 6."}],
+  {n:"Conquest",t:"order",g:["territory"],x:"Claim one Settlement or enemy Outpost adjacent to a Sector you control if its strength is 6 or lower. It becomes yours at strength 6."}],
 
  [{n:"Sabotage",t:"contract",g:["combat"],x:"For 2 rounds, enemy Operatives and Creatures in your controlled Sectors roll 1 less Combat Die while attacking."},
   {n:"Metal Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Metal from their storage."},
@@ -2919,7 +2928,7 @@ const ACARDS = [
 
  [{n:"Riposte",t:"counter",g:["creatures","combat"],x:"When a Creature attacks one of your Operatives, that Creature takes 3 Bio Damage before making its Attack Roll."},
   {n:"Bio Recovery",t:"counter",g:["economy"],x:"When a Xeno Egg is consumed, cancel its effect. Gain 1 Xeno Egg."},
-  {n:"Mutual Interest",t:"counter",g:["territory"],x:"When another corporation would lose a Control Point, prevent it from being lost. Set their Control Die to 6. They gain 6 Arc Cubes and draw 2 Ability Cards."}],
+  {n:"Mutual Interest",t:"counter",g:["territory"],x:"When another corporation would lose an Outpost, prevent it from being lost. Set its strength to 6. They gain 6 Arc Cubes and draw 2 Ability Cards."}],
 
  [{n:"Blacklist",t:"counter",g:["operatives","cards"],x:"When an enemy corporation draws an Operative Card, they are forced to discard it."},
   {n:"Biofuel Tariff",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains 1 Biofuel, you also gain 1 Biofuel."},
@@ -2935,25 +2944,25 @@ const ACARDS = [
 
  [{n:"Inflation",t:"contract",g:["economy","cards"],x:"For 2 rounds, all Ability Cards cost 2 extra Arc Cubes for each other corporation."},
   {n:"Second Wind",t:"order",g:["combat"],x:"On a successful Bio Attack, your Operatives may perform another Bio Attack against a target within their Range. This continues until an attack misses."},
-  {n:"Scorched Earth",t:"order",g:["territory"],x:"Reduce all enemy Control Points by 2."}],
+  {n:"Scorched Earth",t:"order",g:["territory"],x:"Reduce all enemy Outposts and Headquarters by 2."}],
 
  [{n:"Redact",t:"counter",g:["events"],x:"When another corporation rolls the Event Die, cancel that roll."},
   {n:"New Management",t:"order",g:["cards"],x:"If you have a Corporation Card, discard it. Draw 2 Corporation Cards, choose 1, and discard the other. Your new Corporation Card's passive abilities take effect immediately."},
   {n:"Menagerie",t:"order",g:["creatures"],x:"Draw 5 Encounter Cards and add them to your Subjugation slot in any order. When your Creature is eliminated, you may deploy the next one sequentially."}],
 
  [{n:"Refine",t:"order",g:["economy"],x:"Remove 2 Resources from your storage. Gain 1 Resource of any Resource type. This effect may be repeated any number of times."},
-  {n:"Sentinel Grid",t:"contract",g:["combat"],x:"For 2 rounds, your Operatives within Range 3 of a Control Die under your control gain 2 extra Combat Dice while defending."},
+  {n:"Sentinel Grid",t:"contract",g:["combat"],x:"For 2 rounds, your Operatives within Range 3 of your Outposts or Headquarters gain 2 extra Combat Dice while defending."},
   {n:"Strategic Shift",t:"order",g:["cards"],x:"Draw 5 Ability Cards."}],
 
  [{n:"Spoil",t:"counter",g:["economy"],x:"When a Xeno Egg is consumed, cancel its effect."},
   {n:"Xeno Surge",t:"order",g:["creatures"],x:"Draw 2 cards from the Encounter Deck. For each, if a Creature slot is available, assign it to that slot and move its Creature Die to the Volcano tile. Otherwise, discard it."},
   {n:"Legion",t:"order",g:["operatives"],x:"Draw 5 Operative Cards and add them to the same Operative slot in any order. When your Operative is eliminated, you may deploy the next one sequentially."}],
 
- [{n:"Assembly Line",t:"contract",g:["construction","territory"],x:"For 2 rounds, when you construct a Structure, Fortify your Sectors by an extra 4."},
+ [{n:"Assembly Line",t:"contract",g:["construction","territory"],x:"For 2 rounds, when you construct a Structure, Fortify 4 extra."},
   {n:"Counter Seizure",t:"counter",g:["cards"],x:"When another corporation plays a Counter Card, cancel its effect. You gain the Ability Card instead of it being discarded."},
   {n:"Maximum Yield",t:"order",g:["economy"],x:"Replenish your Arc Cubes, Resources, and Xeno Eggs to their respective limits."}],
 
- [{n:"Undermine",t:"contract",g:["construction","territory"],x:"For 2 rounds, enemy corporations cannot Fortify their Sectors. Draw 1 Ability Card."},
+ [{n:"Undermine",t:"contract",g:["construction","territory"],x:"For 2 rounds, enemy corporations cannot Fortify. Draw 1 Ability Card."},
   {n:"Equilibrium",t:"order",g:["economy"],x:"Each other corporation removes Arc Cubes, Resources, Xeno Eggs, and Ability Cards of their choice until they match yours."},
   {n:"Arc Jump",t:"order",g:["mobility"],x:"Move any of your Operatives to any other passable tile."}],
 
@@ -2975,11 +2984,11 @@ const ACARDS = [
 
  [{n:"Decrypt",t:"order",g:["cards"],x:"Look at the top 3 Ability Cards. Keep 1 in your hand. Return the rest in any order to the top of the deck."},
   {n:"Retaliation",t:"contract",g:["combat"],x:"For 2 rounds, when one of your Operatives takes Bio Damage, the attacker takes 2 Bio Damage in return."},
-  {n:"Double Shift",t:"order",g:["economy","territory"],x:"For the remainder of the game, your Sectors yield 2 instead of 1 Arc Cube each."}],
+  {n:"Double Shift",t:"order",g:["economy","territory"],x:"For the remainder of the game, your Outposts yield 2 instead of 1 Arc Cube each."}],
 
  [{n:"Foundry",t:"order",g:["construction"],x:"Construct a Foundry at no Resource cost."},
-  {n:"Iron Defense",t:"contract",g:["territory"],x:"For 2 rounds, your Control Points cannot receive more than 1 Siege Damage from any single source."},
-  {n:"Bastion",t:"order",g:["territory"],x:"Set every one of your Control Dice to its maximum."}],
+  {n:"Iron Defense",t:"contract",g:["territory"],x:"For 2 rounds, your Outposts and Headquarters cannot receive more than 1 Siege Damage from any single source."},
+  {n:"Bastion",t:"order",g:["territory"],x:"Set every one of your Outposts and your Headquarters to maximum."}],
 
  [{n:"Refinery",t:"order",g:["construction"],x:"Construct a Refinery at no Resource cost."},
   {n:"Signal Jam",t:"contract",g:["cards"],x:"Choose one corporation. For 2 rounds, they cannot play Ability Cards."},
@@ -3099,14 +3108,14 @@ const DISCOVERIES = [
   f:"Half-starved and half-mad, but alive&hellip; and willing to fight for whoever found him first."},
  {n:"Ancient Bulwark",x:"Fortify 4.",
   f:"Whoever built these understood siege warfare long before humanity arrived."},
- {n:"Orbital Relay",x:"Deal 2 Siege Damage to one enemy Control Point of your choice. If this destroys the Control Point, it is rendered uninhabitable.",
+ {n:"Orbital Relay",x:"Deal 2 Siege Damage to one enemy Outpost or Headquarters of your choice. If this destroys it, it is rendered uninhabitable.",
   f:"Still transmitting targeting data to a war that ended decades ago."},
  {n:"Something Stirs",x:"Deploy 1 Creature on the Volcano tile if a Creature slot is free.",
   f:"The ground shifts. Then it opens."},
  {n:"Corrosive Bloom",cost:1,x:"Lose 1 Resource of your choice.",
   f:"The spores eat through containment faster than anyone accounted for."},
- {n:"Fault Line",cost:1,x:"Reduce the Sector Strength of one of your Control Dice by 2. If this destroys the Control Point, it is rendered uninhabitable.",
-  f:"The ground beneath your Control Point was never as stable as it looked."},
+ {n:"Fault Line",cost:1,x:"Reduce the strength of one of your Outposts or your Headquarters by 2. If this destroys the Outpost, it is rendered uninhabitable.",
+  f:"The ground beneath your Outpost was never as stable as it looked."},
  {n:"Tremor",cost:1,x:"Move each deployed Creature up to 2 tiles in any direction of your choice.",
   f:"The ground doesn't ask permission before it moves. Neither does anything standing on it."},
  {n:"Fleeting Passage",x:"You may move one of your Operatives to any Tunnel tile on Arcworld.",
@@ -3215,7 +3224,7 @@ const PTAGS = [
   {k:"support",    n:"Support",    c:"operatives",   d:"Buffs, healing and moving your own side"},
   {k:"defense",    n:"Defense",    c:"construction", d:"Soaking damage and surviving it"},
   {k:"mobility",   n:"Mobility",   c:"mobility",     d:"Movement, teleports and repositioning"},
-  {k:"territory",  n:"Territory",  c:"territory",    d:"Control Points, Siege and Workers"},
+  {k:"territory",  n:"Territory",  c:"territory",    d:"Settlements, Outposts, Siege and Workers"},
   {k:"economy",    n:"Economy",    c:"economy",      d:"Arc Cubes, Resources and theft"},
   {k:"creatures",  n:"Creatures",  c:"creatures",    d:"Hunting and subjugating the wildlife"}
 ];
@@ -3238,7 +3247,7 @@ const OPS = [
    ["a","All Bio Damage dealt restores an equal amount of Energy to an Operative within Range 3."],
    ["a","Spend 2 Energy to Fortify 2."]]},
  {n:"Demolitionists",e:4,m:3,r:2,a:3,d:2,g:["combat","territory"],ab:[
-   ["a","A Control Point within Range 1 takes 1 Siege Damage."],
+   ["a","A Settlement, Outpost or Headquarters within Range 1 takes 1 Siege Damage."],
    ["p","On a successful Attack, all enemies within Range 1 of the target take 2 Bio Damage."]]},
  {n:"Specters",e:4,m:0,r:2,a:3,d:3,g:["mobility"],ab:[
    ["a","Teleport to a passable tile within Range 3."],
@@ -3283,11 +3292,11 @@ const OPS = [
    ["a","Move a friendly Operative within Range 2 up to 2 tiles across passable terrain."],
    ["p","Friendly Operatives within Range 2 gain 1 Combat Die while attacking."]]},
  {n:"Reclaimers",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
-   ["a","While adjacent to an enemy Control Point, steal 1 Resource."],
+   ["a","While adjacent to an enemy Outpost or Headquarters, steal 1 Resource."],
    ["p","On a successful Bio Attack, if your target is eliminated, steal its Operative or Encounter Card."]]},
  {n:"Saboteurs",e:4,m:3,r:2,a:3,d:2,g:["territory"],ab:[
-   ["a","When within Range 1 of an enemy Control Point, that corporation cannot use its Structure ability."],
-   ["p","Enemy Control Points cannot be saved by a Shield Generator."]]},
+   ["a","When within Range 1 of an enemy Outpost or Headquarters, that corporation cannot use its Structure ability."],
+   ["p","Enemy Outposts and Headquarters cannot be saved by a Shield Generator."]]},
  {n:"Entropists",e:4,m:3,r:2,a:3,d:2,g:["combat"],ab:[
    ["a","At the end of your turn, enemies within Range 2 take 2 Bio Damage."],
    ["p","When eliminated, enemies within Range 2 take 5 Bio Damage."]]},
@@ -3295,11 +3304,11 @@ const OPS = [
    ["p","Any corporation may spend 9 Arc Cubes to assign this Operative to its Player Board."],
    ["p","When you eliminate an enemy, gain 2 Energy."]]},
  {n:"Infiltrators",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
-   ["a","While adjacent to an enemy Control Point, steal 2 Arc Cubes."],
+   ["a","While adjacent to an enemy Outpost or Headquarters, steal 2 Arc Cubes."],
    ["p","On a successful Bio Attack, the target discards 1 Ability Card at random from their hand."]]},
  {n:"Wardens",e:3,m:3,r:2,a:3,d:2,g:["defense","territory"],ab:[
    ["p","Friendly Operatives in your Sector or an adjacent Sector take 1 less Bio Damage."],
-   ["p","Friendly Control Points in your Sector or an adjacent Sector take 1 less Siege Damage."]]},
+   ["p","Friendly Outposts and Headquarters in your Sector or an adjacent Sector take 1 less Siege Damage."]]},
  {n:"Bounty Hunters",e:4,m:4,r:3,a:3,d:2,g:["economy","combat"],ab:[
    ["p","When you deploy this Operative, designate one enemy as your Bounty. When your corporation eliminates the Bounty, gain 5 Arc Cubes and immediately designate a new one. If you eliminated the Bounty, gain 10 instead."]]},
  {n:"Guardians",e:5,m:3,r:2,a:2,d:3,g:["defense"],ab:[
@@ -3316,7 +3325,7 @@ const OPS = [
    ["p","Your Operatives ignore the Sludge tile penalties."]]},
  {n:"Foremen",e:3,m:3,r:2,a:2,d:2,g:["territory","economy"],ab:[
    ["p","Structures cost you 1 less Resource of your choice."],
-   ["p","Structures you construct Fortify your Sectors by an extra 1."]]},
+   ["p","Structures you construct Fortify 1 extra."]]},
  {n:"Seers",e:4,m:3,r:2,a:3,d:2,g:["economy"],ab:[
    ["p","During your Income Phase, roll the Event Die one extra time."],
    ["p","Whenever the Event Die grants you a Resource, gain 1 Arc Cube."]]},
@@ -3461,7 +3470,7 @@ const ENC = [
    "You cannot perform a Siege Attack."]},
  {n:"Gorepods",h:3,m:2,r:2,a:3,d:2,g:["volatile"],ab:[
    "When eliminated, deal 4 Bio Damage to Operatives within Range 3.",
-   "When eliminated, deal 2 Siege Damage to Control Points within Range 3."]},
+   "When eliminated, deal 2 Siege Damage to every Settlement, Outpost and Headquarters within Range 3."]},
  {n:"Arcliths",h:4,m:2,r:2,a:2,d:2,g:["raider"],ab:[
    "On a successful Bio Attack, you steal up to 3 Arc Cubes.",
    "On a successful Siege Attack, you steal 1 Resource of the defender's choice."]},
@@ -3604,7 +3613,7 @@ document.getElementById("t-encounter").innerHTML = 'Encounters <u>' + ENC.length
 const OBJECTIVE = {
   n:"Incentives", boxes:5,
   rows:[
-    {t:"Claim Control Points", r:"Fortify 3"},
+    {t:"Claim Outposts", r:"Fortify 3"},
     {t:"Construct Structures", r:"3 Arc Cubes"},
     {t:"Eliminate Creatures",  r:"1 Xeno Egg"},
     {t:"Eliminate Operatives", r:"1 Worker"}
