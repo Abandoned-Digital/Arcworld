@@ -98,7 +98,12 @@
   .tile[data-key="hills"]{fill:var(--t-hills)}
   .tile.off{opacity:.11}
   .tile:hover{stroke:#fff;stroke-width:3}
-  .volc{fill:#2b1a12;stroke:#100d0c;stroke-width:2}
+  .volc{fill:#2b1a12;stroke:#fff;stroke-width:3;stroke-linejoin:round}
+  .vlab{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.14em;fill:#f4efe7;
+     text-anchor:middle;dominant-baseline:central;pointer-events:none}
+  .vnum{font-family:var(--display);font-weight:700;font-size:27px;fill:#fff;text-anchor:middle;
+     dominant-baseline:central;pointer-events:none}
+  .vbar{fill:#fff}
   .slot{fill:#171310;stroke:#3a312b;stroke-width:1.6}
   .tok circle:first-child{fill:#f4efe7;stroke:#141110;stroke-width:3}
   .tok path{fill:#141110;stroke:#141110;stroke-width:1.6;stroke-linejoin:round}
@@ -114,7 +119,7 @@
   #volcano{filter:drop-shadow(0 0 14px rgba(224,90,37,.45))}
   #secline line{stroke-width:2.4;stroke-linecap:round}
   #secline line.sl{stroke:#fdfb4a;opacity:.8}
-  #secline line.ls{stroke:#fff;stroke-width:3.4;opacity:1}
+  #secline line.ls{stroke:#b45cf0;stroke-width:3.4;opacity:1}
   #slotlabels text{font-family:var(--display);font-weight:700;font-size:30px;fill:#fdfb4a;
      opacity:.4;text-anchor:middle;dominant-baseline:central;pointer-events:none}
 
@@ -339,7 +344,9 @@
   #adeck .acard:hover{background:var(--face)}
   #adeck .acard, #adeck .acard *{font-family:var(--cardface)}
   #adeck .acard > *{flex-shrink:0}
-  #adeck .abil{padding:0;border-top:0;margin:0 0 7px}
+  #adeck .abil{padding:0;border-top:0;margin:0 0 4px}
+  #adeck .abil:not(.ctr) .an{margin-bottom:2px}
+  #adeck .abil + .abil::before{content:"";display:block;width:75%;height:1px;background:#aaaaa5;margin:0 auto 4px}
   #adeck .abil:last-child{margin-bottom:0}
   #adeck .an{font-weight:700;font-size:calc(10 * var(--pt));letter-spacing:.01em;
     text-transform:uppercase;color:var(--tier);margin:0 0 1px;line-height:1.15}
@@ -620,9 +627,9 @@
     <nav class="vnav" role="tablist" aria-label="Field manual sections">
       <button class="vtab" role="tab" id="t-manual" aria-controls="v-manual" aria-selected="true">Manual</button>
       <button class="vtab" role="tab" id="t-atlas" aria-controls="v-atlas" aria-selected="false">Sector Atlas</button>
-      <button class="vtab" role="tab" id="t-corp" aria-controls="v-corp" aria-selected="false">Corporations <u>58</u></button>
+      <button class="vtab" role="tab" id="t-corp" aria-controls="v-corp" aria-selected="false">Corporations <u>62</u></button>
       <button class="vtab" role="tab" id="t-ability" aria-controls="v-ability" aria-selected="false">Abilities <u>&mdash;</u></button>
-      <button class="vtab" role="tab" id="t-objective" aria-controls="v-objective" aria-selected="false">Objectives <u>&mdash;</u></button>
+      <button class="vtab" role="tab" id="t-objective" aria-controls="v-objective" aria-selected="false">Incentives <u>&mdash;</u></button>
       <button class="vtab" role="tab" id="t-encounter" aria-controls="v-encounter" aria-selected="false">Encounters</button>
       <button class="vtab" role="tab" id="t-operative" aria-controls="v-operative" aria-selected="false">Operatives</button>
       <button class="vtab" role="tab" id="t-changelog" aria-controls="v-changelog" aria-selected="false">Changelog</button>
@@ -710,7 +717,6 @@
             <tr><td class="k">Discovery</td><td class="n" id="dk-disc">&mdash;</td></tr>
             <tr><td class="k">Operative</td><td class="n" id="dk-op">&mdash;</td></tr>
             <tr><td class="k">Encounter</td><td class="n" id="dk-enc">&mdash;</td></tr>
-            <tr><td class="k">Objective</td><td class="n" id="ob-setup">&mdash;</td></tr>
           </tbody>
         </table></div>
       </section>
@@ -720,7 +726,7 @@
         <ol class="steps">
           <li><b>Build Arcworld</b>Place the game board. Shuffle the 20 Sector tiles and draw 16 of them blind; the other four go back in the box unseen. With three players, remove 4 of the 16 at random and replace them with 4 empty Sector tiles; with two players, remove 8 at random and replace them with 8. Shuffle the 16 into a face-down stack beside the board &mdash; they fill the 16 empty Sector slots as those are discovered.</li>
           <li><b>Hand out Player Boards</b>Each player takes a Player Board with their matching tokens and dice.</li>
-          <li><b>Prepare the decks</b>Shuffle the Corporation, Operative, Encounter and Ability decks separately and place them face-down on the board. The <em>Incentives</em> Objective is printed on the board.</li>
+          <li><b>Prepare the decks</b>Shuffle the Corporation, Operative, Encounter and Ability decks separately and place them face-down on the board. The <em>Incentives</em> panel is printed on the board.</li>
           <li><b>Roll for Initiative</b>Everyone rolls a die. Highest takes the Initiative Marker; tied players reroll until one wins.</li>
           <li><b>Choose your corporation</b>Starting with the Initiative player and going clockwise, draw 3 Corporation Cards blind, keep 1, discard the rest.</li>
           <li><b>Establish landing sites</b>In Initiative order, each player completes all four of these before the next player begins.
@@ -833,7 +839,7 @@
         <h4>Claiming</h4>
         <ol>
           <li>Place your die on the Settlement or Outpost.</li>
-          <li>Put a tracker token on the <em>Claim Territory</em> row of the <em>Incentives</em> Objective and take its reward: <strong>Fortify equal to the printed strength</strong> of the Settlement or Outpost you destroyed. An Outpost keeps the printed strength of the Settlement it once was, so claiming a strength-4 Settlement pays Fortify 4, and so does claiming it again later from whoever holds it. A Headquarters landing site counts as printed strength 10. Spread the Fortify across your Outposts and Headquarters as you like, the new Outpost included &mdash; whatever it receives is its starting strength.</li>
+          <li>Put a tracker token on the <em>Claim Territory</em> row of <em>Incentives</em> and take its reward: <strong>Fortify equal to the printed strength</strong> of the Settlement or Outpost you destroyed. An Outpost keeps the printed strength of the Settlement it once was, so claiming a strength-4 Settlement pays Fortify 4, and so does claiming it again later from whoever holds it. A Headquarters landing site counts as printed strength 10. Spread the Fortify across your Outposts and Headquarters as you like, the new Outpost included &mdash; whatever it receives is its starting strength.</li>
           <li>Advance your <em>HQ + Outposts</em> tracker and your Progression tracker by 1.</li>
         </ol>
         <p>Give the new Outpost none of that Fortify and it is <strong>rendered permanently uninhabitable</strong> instead: take your die back, and it can never be claimed again by anyone, including Creatures. The whole Fortify goes to your other Outposts and Headquarters, and your <em>HQ + Outposts</em> tracker does not advance &mdash; your Progression tracker still does.</p>
@@ -845,6 +851,7 @@
           <li>Destroy one of your Structures if you have one &mdash; your choice which. Its Worker is removed from the game.</li>
         </ol>
         <div class="tip"><b>Destroyed by a Creature</b><p>If a Creature reduces an Outpost to 0, the loss resolves normally and the Outpost is rendered permanently uninhabitable &mdash; no one can ever claim it again. A Headquarters is no exception: that corporation is eliminated exactly as if a rival had done it, except that nothing changes hands. Its Arc Cubes, Resources and Xeno Eggs are gone, and its Headquarters Sector leaves play with the others.</p></div>
+        <div class="tip"><b>Destroyed by anything else</b><p>If anything other than a Siege Attack reduces a Settlement or Outpost to 0 &mdash; an Ability Card, a Discovery, the Event Die &mdash; it is rendered permanently uninhabitable. A Headquarters reduced to 0 this way eliminates its corporation, exactly as if a Creature had destroyed it.</p></div>
         <h4>Suppression</h4>
         <p>An Outpost or Headquarters you hold is <strong>Suppressed</strong> for as long as an enemy Operative or Creature stands in its Sector. It makes no difference how many Settlements the Sector has or who holds the others &mdash; every Outpost you hold there is Suppressed. Holding it is not enough &mdash; while anything hostile is present:</p>
         <ul>
@@ -977,7 +984,7 @@
         <p>A Creature's targets are enemy Operatives within its Range, plus the enemy Outpost or Headquarters on an adjacent tile if that Creature can perform a Siege Attack. Since attacking one needs adjacency &mdash; the same rule players follow &mdash; a Creature can never reach two at once.</p>
         <h4>Killing and subjugating Creatures</h4>
         <p>Eliminating a Creature with an Operative advances your Progression tracker by 1 and puts a token on the <em>Eliminate Creatures</em> row of <em>Incentives</em>, which pays your <strong>1 Xeno Egg</strong>. The kill itself pays no other Xeno Egg.</p>
-        <div class="tip"><b>Subjugation</b><p>When one of your Operatives would eliminate a Creature, you may subjugate it instead. You forgo both the Progression advance and the Xeno Egg. Place the Encounter Card on your Subjugated Creature slot and restore its Health fully &mdash; it now counts as an Operative under your control. Its die leaves the board with the card: it arrives assigned but undeployed, like any Operative you assign. Effects that restore only Energy do not affect it; effects that restore Health, or Energy or Health, do.</p></div>
+        <div class="tip"><b>Subjugation</b><p>When one of your Operatives would eliminate a Creature, you may subjugate it instead. You forgo both the Progression advance and the Xeno Egg. Place the Encounter Card on your Subjugated Creature slot and restore its Health fully &mdash; it now counts as an Operative under your control. Its die leaves the board with the card: it arrives assigned but undeployed, like any Operative you assign. Only effects that restore Health heal it.</p></div>
       </section>
       <section id="s-tiers">
         <p class="kicker">13</p>
@@ -1001,8 +1008,8 @@
       </section>
       <section id="s-objectives">
         <p class="kicker">14</p>
-        <h3>Objectives</h3>
-        <p>One Objective card &mdash; <em>Incentives</em> &mdash; sits face-up in play from setup to the end of the game.</p>
+        <h3>Incentives</h3>
+        <p>The <em>Incentives</em> panel is printed on the board and stays in play from setup to the end of the game.</p>
         <p>It carries four targets, each on its own row with its own reward and its own five token boxes: <strong>claim Territory</strong> &mdash; a Settlement, an enemy Outpost or an eliminated rival's Headquarters &mdash; for Fortify equal to the printed strength (10 for a Headquarters; the same if you render it uninhabitable instead), <strong>construct Structures</strong> for 3 Arc Cubes, <strong>eliminate Creatures</strong> for 1 Xeno Egg, <strong>eliminate Operatives</strong> for 1 Ability Card. Whenever you do one of these things, put one of your tracker tokens in the next free box on that row and take the reward at once.</p>
         <p>The rows are independent &mdash; a token on one counts for nothing on the others. When the fifth token lands on a row, count that row's tokens per player. Whoever holds the most gains <strong>1 Progression</strong>, and every player level on the most takes first place together and each gains 1 Progression; there is no second place. Then take all five tokens off that row and it is open again, as often as the game lasts.</p>
       </section>
@@ -1040,8 +1047,8 @@
         <p><strong>Ability Cards</strong> hold three abilities each &mdash; one per Tier. You may play any single ability at or below your current Tier, paying 3, 6 or 9 Arc Cubes for Tier I, II or III. An ability is an <em>Order</em> (your turn), a <em>Counter</em> (someone else's turn, on a condition) or a <em>Contract</em> (stays in play two rounds).</p>
         <div class="tip"><b>Empty decks</b><p>When a deck runs out, shuffle its discard pile to form a new one.</p></div>
         <div class="tip"><b>One Contract at a time</b><p>Only one Contract may sit in front of you. Discard it whenever you like, and playing a new Contract replaces it. A Worker assigned to your Contract slot adds a round to every Contract you play.</p></div>
-        <p><strong>Discovery Cards</strong> are shuffled through the same deck and drawn the same way, but they are not abilities and never enter your hand. A Discovery resolves the moment you draw it, costs nothing, and is discarded. Most are a windfall; a few are not.</p>
-        <p><strong>The Objective card</strong> sits out all game and gives everyone four shared targets to race for, each paying out on its own &mdash; see <em>Objectives</em>.</p>
+        <p><strong>Discovery Cards</strong> are shuffled through the same deck and drawn the same way, but they are not abilities and never enter your hand. A Discovery resolves the moment you draw it, costs nothing, and is discarded. Most are a windfall; a few are not. Discoveries have their own back, so everyone can see when one sits on top of the deck.</p>
+        <p><strong>Incentives</strong>, printed on the board, gives everyone four shared targets to race for, each paying out on its own &mdash; see <em>Incentives</em>.</p>
         <div class="tip"><b>A card beats this manual</b><p>Where a card's text contradicts a rule written here, <strong>the card wins</strong>. Cards are written as deliberate exceptions: Sentinel Sieges from Range&nbsp;2 where the rule says Range&nbsp;1, Cinderworks walks onto Lava Fields where the rule says impassable. If the card says it, it happens.</p></div>
       </section>
 
@@ -1067,7 +1074,7 @@
 
   <section>
     <h2>The planet</h2>
-    <p class="sub">The printed board tile for tile &mdash; 166 hexes around the impassable volcano, six of them in orange-outlined four-tile landing-site Sectors on the rim. Yellow lines outline the 16 empty Sector slots. Hover any tile for its number; click a terrain below to isolate it.</p>
+    <p class="sub">The printed board tile for tile &mdash; 166 hexes around the impassable volcano, six of them in purple-outlined four-tile landing-site Sectors on the rim. Yellow lines outline the 16 empty Sector slots. Hover any tile for its number; click a terrain below to isolate it.</p>
     <div class="board">
       <div class="boardscroll">
 <svg id="planet" viewBox="0 0 1349 974" role="img" aria-label="Arcworld: 166 printed tiles around the volcano, with 16 empty Sector slots">
@@ -1186,7 +1193,7 @@
 <polygon class="slot" points="831.2,723.4 862.7,741.6 862.7,777.9 831.2,796.1 799.8,777.9 799.8,741.6" data-slot="16"/>
 </g>
 <g id="tiles">
-<polygon class="tile" points="422.6,14.0 454.0,32.2 454.0,68.6 422.6,86.8 391.2,68.6 391.2,32.2" data-key="hills" data-n="1" data-half="W"/>
+<polygon class="tile" points="422.6,14.0 454.0,32.2 454.0,68.6 422.6,86.8 391.2,68.6 391.2,32.2" data-key="mountain" data-n="1" data-half="W"/>
 <polygon class="tile" points="485.5,14.0 516.9,32.2 516.9,68.6 485.5,86.8 454.0,68.6 454.0,32.2" data-key="sludge" data-n="2" data-half="W"/>
 <polygon class="tile" points="548.4,14.0 579.8,32.2 579.8,68.6 548.4,86.8 516.9,68.6 516.9,32.2" data-key="lava" data-n="3" data-half="W"/>
 <polygon class="tile" points="611.2,14.0 642.7,32.2 642.7,68.6 611.2,86.8 579.8,68.6 579.8,32.2" data-key="sludge" data-n="4" data-half="W"/>
@@ -1200,7 +1207,7 @@
 <polygon class="tile" points="642.7,68.6 674.1,86.8 674.1,123.1 642.7,141.3 611.2,123.1 611.2,86.8" data-key="wasteland" data-n="12" data-half="W"/>
 <polygon class="tile" points="705.6,68.6 737.0,86.8 737.0,123.1 705.6,141.3 674.1,123.1 674.1,86.8" data-key="mountain" data-n="13" data-half="E"/>
 <polygon class="tile" points="768.4,68.6 799.9,86.8 799.9,123.1 768.4,141.3 737.0,123.1 737.0,86.8" data-key="sludge" data-n="14" data-half="E"/>
-<polygon class="tile" points="957.2,68.6 988.6,86.8 988.6,123.1 957.2,141.3 925.7,123.1 925.7,86.8" data-key="mountain" data-n="15" data-half="E"/>
+<polygon class="tile" points="957.2,68.6 988.6,86.8 988.6,123.1 957.2,141.3 925.7,123.1 925.7,86.8" data-key="spire" data-n="15" data-half="E"/>
 <polygon class="tile" points="233.9,123.1 265.3,141.3 265.3,177.7 233.9,195.9 202.4,177.7 202.4,141.3" data-key="sludge" data-n="16" data-half="W"/>
 <polygon class="tile" points="296.8,123.1 328.2,141.3 328.2,177.7 296.8,195.9 265.3,177.7 265.3,141.3" data-key="wasteland" data-n="17" data-half="W"/>
 <polygon class="tile" points="359.6,123.1 391.1,141.3 391.1,177.7 359.6,195.9 328.2,177.7 328.2,141.3" data-key="lava" data-n="18" data-half="W"/>
@@ -1253,22 +1260,22 @@
 <polygon class="tile" points="957.1,395.9 988.5,414.1 988.5,450.5 957.1,468.7 925.6,450.5 925.6,414.1" data-key="hills" data-n="65" data-half="E"/>
 <polygon class="tile" points="1145.7,395.9 1177.2,414.1 1177.2,450.5 1145.7,468.7 1114.3,450.5 1114.3,414.1" data-key="mountain" data-n="66" data-half="E"/>
 <polygon class="tile" points="1208.6,395.9 1240.0,414.1 1240.0,450.5 1208.6,468.7 1177.2,450.5 1177.2,414.1" data-key="sludge" data-n="67" data-half="E"/>
-<polygon class="tile" points="171.1,450.6 202.6,468.8 202.6,505.1 171.1,523.3 139.7,505.1 139.7,468.8" data-key="sludge" data-n="68" data-half="W"/>
+<polygon class="tile" points="171.1,450.6 202.6,468.8 202.6,505.1 171.1,523.3 139.7,505.1 139.7,468.8" data-key="lava" data-n="68" data-half="W"/>
 <polygon class="tile" points="422.6,450.6 454.1,468.8 454.1,505.1 422.6,523.3 391.2,505.1 391.2,468.8" data-key="sludge" data-n="69" data-half="W"/>
 <polygon class="tile" points="485.4,450.6 516.9,468.8 516.9,505.1 485.4,523.3 454.0,505.1 454.0,468.8" data-key="hills" data-n="70" data-half="W"/>
 <polygon class="tile" points="548.3,450.6 579.7,468.8 579.7,505.2 548.3,523.3 516.9,505.2 516.9,468.8" data-key="lava" data-n="71" data-half="W"/>
 <polygon class="tile" points="799.9,450.6 831.3,468.8 831.3,505.2 799.9,523.3 768.4,505.2 768.4,468.8" data-key="hills" data-n="72" data-half="E"/>
 <polygon class="tile" points="862.8,450.5 894.2,468.7 894.2,505.1 862.8,523.3 831.3,505.1 831.3,468.7" data-key="spire" data-n="73" data-half="E"/>
 <polygon class="tile" points="925.7,450.6 957.1,468.8 957.1,505.1 925.7,523.3 894.2,505.1 894.2,468.8" data-key="sludge" data-n="74" data-half="E"/>
-<polygon class="tile" points="1177.2,450.6 1208.6,468.8 1208.6,505.2 1177.2,523.3 1145.7,505.2 1145.7,468.8" data-key="wasteland" data-n="75" data-half="E"/>
-<polygon class="tile" points="139.6,505.2 171.0,523.3 171.0,559.7 139.6,577.9 108.2,559.7 108.2,523.3" data-key="hills" data-n="76" data-half="W"/>
+<polygon class="tile" points="1177.2,450.6 1208.6,468.8 1208.6,505.2 1177.2,523.3 1145.7,505.2 1145.7,468.8" data-key="lava" data-n="75" data-half="E"/>
+<polygon class="tile" points="139.6,505.2 171.0,523.3 171.0,559.7 139.6,577.9 108.2,559.7 108.2,523.3" data-key="sludge" data-n="76" data-half="W"/>
 <polygon class="tile" points="202.4,505.2 233.9,523.3 233.9,559.7 202.4,577.9 171.0,559.7 171.0,523.3" data-key="wasteland" data-n="77" data-half="W"/>
 <polygon class="tile" points="391.2,505.2 422.6,523.3 422.6,559.7 391.2,577.9 359.7,559.7 359.7,523.3" data-key="lava" data-n="78" data-half="W"/>
 <polygon class="tile" points="579.7,505.2 611.1,523.3 611.1,559.7 579.7,577.9 548.2,559.7 548.2,523.3" data-key="mountain" data-n="79" data-half="W"/>
 <polygon class="tile" points="768.4,505.1 799.9,523.3 799.9,559.7 768.4,577.9 737.0,559.7 737.0,523.3" data-key="lava" data-n="80" data-half="E"/>
 <polygon class="tile" points="956.9,505.2 988.4,523.4 988.4,559.7 956.9,577.9 925.5,559.7 925.5,523.4" data-key="lava" data-n="81" data-half="E"/>
 <polygon class="tile" points="1145.8,505.1 1177.2,523.3 1177.2,559.7 1145.8,577.8 1114.4,559.7 1114.4,523.3" data-key="spire" data-n="82" data-half="E"/>
-<polygon class="tile" points="1208.6,505.2 1240.0,523.3 1240.0,559.7 1208.6,577.9 1177.1,559.7 1177.1,523.3" data-key="hills" data-n="83" data-half="E"/>
+<polygon class="tile" points="1208.6,505.2 1240.0,523.3 1240.0,559.7 1208.6,577.9 1177.1,559.7 1177.1,523.3" data-key="sludge" data-n="83" data-half="E"/>
 <polygon class="tile" points="108.3,559.7 139.7,577.8 139.7,614.2 108.3,632.4 76.8,614.2 76.8,577.8" data-key="wasteland" data-n="84" data-half="W"/>
 <polygon class="tile" points="171.2,559.7 202.6,577.8 202.6,614.2 171.2,632.4 139.7,614.2 139.7,577.8" data-key="spire" data-n="85" data-half="W"/>
 <polygon class="tile" points="234.1,559.7 265.5,577.9 265.5,614.3 234.1,632.4 202.6,614.3 202.6,577.9" data-key="lava" data-n="86" data-half="W"/>
@@ -1305,13 +1312,13 @@
 <polygon class="tile" points="957.0,723.3 988.4,741.5 988.4,777.9 957.0,796.1 925.6,777.9 925.6,741.5" data-key="spire" data-n="117" data-half="E"/>
 <polygon class="tile" points="1145.7,723.3 1177.1,741.5 1177.1,777.9 1145.7,796.1 1114.3,777.9 1114.3,741.5" data-key="sludge" data-n="118" data-half="E"/>
 <polygon class="tile" points="234.0,778.0 265.4,796.1 265.4,832.5 234.0,850.7 202.6,832.5 202.6,796.1" data-key="sludge" data-n="119" data-half="W"/>
-<polygon class="tile" points="296.9,777.9 328.4,796.1 328.4,832.5 296.9,850.7 265.5,832.5 265.5,796.1" data-key="spire" data-n="120" data-half="W"/>
+<polygon class="tile" points="296.9,777.9 328.4,796.1 328.4,832.5 296.9,850.7 265.5,832.5 265.5,796.1" data-key="sludge" data-n="120" data-half="W"/>
 <polygon class="tile" points="359.8,778.0 391.2,796.1 391.2,832.5 359.8,850.7 328.3,832.5 328.3,796.1" data-key="lava" data-n="121" data-half="W"/>
 <polygon class="tile" points="611.2,778.0 642.7,796.2 642.7,832.5 611.2,850.7 579.8,832.5 579.8,796.2" data-key="sludge" data-n="122" data-half="W"/>
 <polygon class="tile" points="674.2,778.0 705.7,796.1 705.7,832.5 674.2,850.7 642.8,832.5 642.8,796.1" data-key="lava" data-n="123" data-half="A"/>
 <polygon class="tile" points="737.0,778.0 768.4,796.1 768.4,832.5 737.0,850.7 705.5,832.5 705.5,796.1" data-key="lava" data-n="124" data-half="E"/>
 <polygon class="tile" points="988.5,778.0 1019.9,796.1 1019.9,832.5 988.5,850.7 957.0,832.5 957.0,796.1" data-key="lava" data-n="125" data-half="E"/>
-<polygon class="tile" points="1051.4,778.0 1082.8,796.2 1082.8,832.5 1051.4,850.7 1020.0,832.5 1020.0,796.2" data-key="wasteland" data-n="126" data-half="E"/>
+<polygon class="tile" points="1051.4,778.0 1082.8,796.2 1082.8,832.5 1051.4,850.7 1020.0,832.5 1020.0,796.2" data-key="sludge" data-n="126" data-half="E"/>
 <polygon class="tile" points="1114.3,778.0 1145.7,796.2 1145.7,832.5 1114.3,850.7 1082.8,832.5 1082.8,796.2" data-key="mountain" data-n="127" data-half="E"/>
 <polygon class="tile" points="391.1,832.5 422.6,850.7 422.6,887.1 391.1,905.2 359.7,887.1 359.7,850.7" data-key="hills" data-n="128" data-half="W"/>
 <polygon class="tile" points="579.7,832.5 611.1,850.7 611.1,887.1 579.7,905.2 548.2,887.1 548.2,850.7" data-key="mountain" data-n="129" data-half="W"/>
@@ -1329,38 +1336,34 @@
 <polygon class="tile" points="862.7,887.1 894.2,905.3 894.2,941.6 862.7,959.8 831.3,941.6 831.3,905.3" data-key="sludge" data-n="141" data-half="E"/>
 <polygon class="tile" points="925.6,887.1 957.0,905.3 957.0,941.6 925.6,959.8 894.2,941.6 894.2,905.3" data-key="mountain" data-n="142" data-half="E"/>
 <polygon class="tile" points="328.4,68.6 359.8,86.8 359.8,123.1 328.4,141.3 296.9,123.1 296.9,86.8" data-key="lava" data-n="4" data-ls="1" data-half="W" data-icon="land"/>
-<polygon class="tile" points="265.5,68.6 296.9,86.8 296.9,123.1 265.5,141.3 234.0,123.1 234.0,86.8" data-key="lava" data-n="3" data-ls="1" data-half="W"/>
-<polygon class="tile" points="359.7,14.0 391.2,32.2 391.2,68.6 359.7,86.8 328.3,68.6 328.3,32.2" data-key="wasteland" data-n="2" data-ls="1" data-half="W"/>
+<polygon class="tile" points="265.5,68.6 296.9,86.8 296.9,123.1 265.5,141.3 234.0,123.1 234.0,86.8" data-key="hills" data-n="3" data-ls="1" data-half="W"/>
+<polygon class="tile" points="359.7,14.0 391.2,32.2 391.2,68.6 359.7,86.8 328.3,68.6 328.3,32.2" data-key="hills" data-n="2" data-ls="1" data-half="W"/>
 <polygon class="tile" points="296.8,14.0 328.3,32.2 328.3,68.6 296.8,86.8 265.4,68.6 265.4,32.2" data-key="sludge" data-n="1" data-ls="1" data-half="W"/>
-<polygon class="tile" points="76.8,505.2 108.2,523.4 108.2,559.7 76.8,577.9 45.3,559.7 45.3,523.4" data-key="spire" data-n="4" data-ls="2" data-half="W"/>
+<polygon class="tile" points="76.8,505.2 108.2,523.4 108.2,559.7 76.8,577.9 45.3,559.7 45.3,523.4" data-key="mountain" data-n="4" data-ls="2" data-half="W"/>
 <polygon class="tile" points="108.2,450.6 139.6,468.8 139.6,505.1 108.2,523.3 76.7,505.1 76.7,468.8" data-key="lava" data-n="3" data-ls="2" data-half="W" data-icon="land"/>
-<polygon class="tile" points="45.4,450.6 76.9,468.8 76.9,505.1 45.4,523.3 14.0,505.1 14.0,468.8" data-key="lava" data-n="2" data-ls="2" data-half="W"/>
+<polygon class="tile" points="45.4,450.6 76.9,468.8 76.9,505.1 45.4,523.3 14.0,505.1 14.0,468.8" data-key="hills" data-n="2" data-ls="2" data-half="W"/>
 <polygon class="tile" points="76.9,396.0 108.3,414.2 108.3,450.5 76.9,468.7 45.4,450.5 45.4,414.2" data-key="spire" data-n="1" data-ls="2" data-half="W"/>
 <polygon class="tile" points="359.7,887.1 391.1,905.3 391.1,941.6 359.7,959.8 328.2,941.6 328.2,905.3" data-key="wasteland" data-n="4" data-ls="3" data-half="W"/>
 <polygon class="tile" points="296.8,887.1 328.2,905.3 328.2,941.6 296.8,959.8 265.4,941.6 265.4,905.3" data-key="mountain" data-n="3" data-ls="3" data-half="W"/>
 <polygon class="tile" points="328.3,832.5 359.7,850.7 359.7,887.1 328.3,905.2 296.9,887.1 296.9,850.7" data-key="lava" data-n="2" data-ls="3" data-half="W" data-icon="land"/>
-<polygon class="tile" points="265.4,832.5 296.9,850.7 296.9,887.1 265.4,905.2 234.0,887.1 234.0,850.7" data-key="lava" data-n="1" data-ls="3" data-half="W"/>
-<polygon class="tile" points="1082.8,68.6 1114.3,86.8 1114.3,123.1 1082.8,141.3 1051.4,123.1 1051.4,86.8" data-key="mountain" data-n="4" data-ls="4" data-half="E"/>
+<polygon class="tile" points="265.4,832.5 296.9,850.7 296.9,887.1 265.4,905.2 234.0,887.1 234.0,850.7" data-key="spire" data-n="1" data-ls="3" data-half="W"/>
+<polygon class="tile" points="1082.8,68.6 1114.3,86.8 1114.3,123.1 1082.8,141.3 1051.4,123.1 1051.4,86.8" data-key="sludge" data-n="4" data-ls="4" data-half="E"/>
 <polygon class="tile" points="1019.9,68.6 1051.3,86.8 1051.3,123.1 1019.9,141.3 988.4,123.1 988.4,86.8" data-key="lava" data-n="3" data-ls="4" data-half="E" data-icon="land"/>
 <polygon class="tile" points="1051.4,14.0 1082.8,32.2 1082.8,68.6 1051.4,86.8 1020.0,68.6 1020.0,32.2" data-key="wasteland" data-n="2" data-ls="4" data-half="E"/>
-<polygon class="tile" points="988.6,14.0 1020.0,32.2 1020.0,68.6 988.6,86.8 957.2,68.6 957.2,32.2" data-key="lava" data-n="1" data-ls="4" data-half="E"/>
-<polygon class="tile" points="1271.4,505.2 1302.9,523.3 1302.9,559.7 1271.4,577.9 1240.0,559.7 1240.0,523.3" data-key="wasteland" data-n="4" data-ls="5" data-half="E"/>
+<polygon class="tile" points="988.6,14.0 1020.0,32.2 1020.0,68.6 988.6,86.8 957.2,68.6 957.2,32.2" data-key="mountain" data-n="1" data-ls="4" data-half="E"/>
+<polygon class="tile" points="1271.4,505.2 1302.9,523.3 1302.9,559.7 1271.4,577.9 1240.0,559.7 1240.0,523.3" data-key="spire" data-n="4" data-ls="5" data-half="E"/>
 <polygon class="tile" points="1303.0,450.6 1334.4,468.8 1334.4,505.1 1303.0,523.3 1271.5,505.1 1271.5,468.8" data-key="wasteland" data-n="3" data-ls="5" data-half="E"/>
 <polygon class="tile" points="1240.2,450.6 1271.6,468.8 1271.6,505.1 1240.2,523.3 1208.7,505.1 1208.7,468.8" data-key="lava" data-n="2" data-ls="5" data-half="E" data-icon="land"/>
-<polygon class="tile" points="1271.6,395.9 1303.0,414.1 1303.0,450.5 1271.6,468.7 1240.1,450.5 1240.1,414.1" data-key="lava" data-n="1" data-ls="5" data-half="E"/>
-<polygon class="tile" points="1051.3,887.1 1082.7,905.3 1082.7,941.6 1051.3,959.8 1019.8,941.6 1019.8,905.3" data-key="lava" data-n="4" data-ls="6" data-half="E"/>
+<polygon class="tile" points="1271.6,395.9 1303.0,414.1 1303.0,450.5 1271.6,468.7 1240.1,450.5 1240.1,414.1" data-key="hills" data-n="1" data-ls="5" data-half="E"/>
+<polygon class="tile" points="1051.3,887.1 1082.7,905.3 1082.7,941.6 1051.3,959.8 1019.8,941.6 1019.8,905.3" data-key="hills" data-n="4" data-ls="6" data-half="E"/>
 <polygon class="tile" points="988.5,887.1 1020.0,905.3 1020.0,941.7 988.5,959.8 957.1,941.7 957.1,905.3" data-key="spire" data-n="3" data-ls="6" data-half="E"/>
 <polygon class="tile" points="1082.8,832.5 1114.2,850.7 1114.2,887.1 1082.8,905.2 1051.4,887.1 1051.4,850.7" data-key="wasteland" data-n="2" data-ls="6" data-half="E"/>
 <polygon class="tile" points="1019.8,832.5 1051.3,850.7 1051.3,887.1 1019.8,905.2 988.4,887.1 988.4,850.7" data-key="lava" data-n="1" data-ls="6" data-half="E" data-icon="land"/>
 </g>
 <g id="volcano">
-<polygon class="volc" points="674.2,450.6 705.6,468.8 705.6,505.1 674.2,523.3 642.7,505.1 642.7,468.8"/>
-<polygon class="volc" points="611.3,450.6 642.7,468.8 642.7,505.1 611.3,523.3 579.8,505.1 579.8,468.8"/>
-<polygon class="volc" points="737.0,450.6 768.5,468.8 768.5,505.1 737.0,523.3 705.6,505.1 705.6,468.8"/>
-<polygon class="volc" points="642.7,396.0 674.2,414.2 674.2,450.6 642.7,468.8 611.3,450.6 611.3,414.2"/>
-<polygon class="volc" points="705.6,396.0 737.0,414.2 737.0,450.6 705.6,468.8 674.2,450.6 674.2,414.2"/>
-<polygon class="volc" points="642.7,505.2 674.2,523.3 674.2,559.7 642.7,577.9 611.3,559.7 611.3,523.3"/>
-<polygon class="volc" points="705.6,505.2 737.0,523.3 737.0,559.7 705.6,577.9 674.2,559.7 674.2,523.3"/>
+<polygon class="volc" points="611.3,523.3 579.8,505.1 579.8,468.8 611.3,450.6 611.3,414.2 642.7,396.0 674.2,414.2 705.6,396.0 737.0,414.2 737.0,450.6 768.5,468.8 768.5,505.1 737.0,523.3 737.0,559.7 705.6,577.9 674.2,559.7 642.7,577.9 611.3,559.7"/>
+<text class="vlab" x="674.2" y="487.0">VOLCANO</text>
+<g transform="translate(639.2 426.3) rotate(-210) scale(.65 1)"><text class="vnum">1</text></g><g transform="translate(709.2 426.3) rotate(-150) scale(.65 1)"><text class="vnum">2</text></g><g transform="translate(744.2 487.0) rotate(-90) scale(.65 1)"><text class="vnum">3</text></g><g transform="translate(709.2 547.6) rotate(-30) scale(.65 1)"><text class="vnum">4</text></g><g transform="translate(639.2 547.6) rotate(30) scale(.65 1)"><text class="vnum">5</text></g><g transform="translate(604.2 487.0) rotate(90) scale(.65 1)"><text class="vnum">6</text><rect class="vbar" x="-9" y="11.5" width="18" height="2"/></g>
 </g>
 <g id="secline">
 <line class="ls" x1="359.8" y1="86.8" x2="359.8" y2="123.1"/>
@@ -1904,9 +1907,9 @@
 
 <div class="view" id="v-objective" role="tabpanel" aria-labelledby="t-objective" hidden>
   <header>
-    <p class="eyebrow">Objective card &middot; one, out all game</p>
-    <h1>Objectives</h1>
-    <p class="lede">A single card sits on the table from setup to the last turn, carrying <strong>four targets that everyone races at once</strong>. Do one of the four and you take that row's reward on the spot. Fill a row and it pays Progression, clears, and opens again.</p>
+    <p class="eyebrow">Printed on the board &middot; in play all game</p>
+    <h1>Incentives</h1>
+    <p class="lede">A single panel printed on the board is in play from setup to the last turn, carrying <strong>four targets that everyone races at once</strong>. Do one of the four and you take that row's reward on the spot. Fill a row and it pays Progression, clears, and opens again.</p>
     <div class="stats">
       <div class="stat"><b id="ob-rows">&mdash;</b><span>Targets</span></div>
       <div class="stat"><b id="ob-boxes">&mdash;</b><span>Tokens to fill a target</span></div>
@@ -1926,7 +1929,7 @@
   </section>
 
   <section>
-    <h2>The card</h2>
+    <h2>The panel</h2>
     <p class="sub">The printed panel at 1:1, laid out here as a card for easy reference. Four targets, five boxes each.</p>
     <div class="odeck" id="odeck"></div>
   </section>
@@ -1944,25 +1947,7 @@
 
   <section>
     <h2>To print for the next test</h2>
-    <p class="sub">186 cards, 8 Sector tiles, the Player Board and the game board.</p>
-    <div class="tablewrap"><table class="printlist">
-      <thead><tr><th class="l">Sheet</th><th class="l">Cards</th></tr></thead>
-      <tbody>
-        <tr><td class="l sec">Helper Cards</td><td class="l">Siege Attack, Game Setup 1, Game Setup 2, Terrain Tiles 1, Terrain Tiles 2, Intermission 1, Intermission 2, Player Round 1, Player Round 2, Event Die, Bio Attack, Workers, Progression, Combat Dice, Claiming, Territory</td></tr>
-        <tr><td class="l sec">Encounters</td><td class="l">Gorepods, Arcliths, Overseer, Overlord, Snaprunners, Swarmers, Overmind, Shimmers, Brood Leeches, Ravagers, Spitters, Bloats, Glintmaws, Carapoids, Sylth Titan, Sylth Guards, Sylth Brutes, Sylth Grunts</td></tr>
-        <tr><td class="l sec">Operatives</td><td class="l">Foremen, Wardens, Infiltrators, Reclaimers, Saboteurs, Demolitionists, Scouts, Shock Troopers, Specters, Psychics, Tacticians, Deflectors, Juggernauts, Engineers, Spotters, Prospectors, Hunters, Berserkers, Reapers, Interlopers, Xenobiologists, Scientists, Survivors, Pyromancers, Assassins, Entropists, Mercenaries, Bounty Hunters, Guardians, Marksmen, Pathfinders, Seers, Archivists, Beastmasters, Arcwrights, Brawlers</td></tr>
-        <tr><td class="l sec">Ability Cards 1</td><td class="l">1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18</td></tr>
-        <tr><td class="l sec">Ability Cards 2</td><td class="l">19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36</td></tr>
-        <tr><td class="l sec">Ability Cards 3</td><td class="l">37, 38, 39, 40, 41, 42</td></tr>
-        <tr><td class="l sec">Discoveries</td><td class="l">1, 2, 3, 4, 6, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20</td></tr>
-        <tr><td class="l sec">Incentives</td><td class="l">Incentives</td></tr>
-        <tr><td class="l sec">Corporations 1</td><td class="l">Hyperion, The Ashborn, Blacksun, Frontier, Terralift, Nexus Dynamics, Thana, Mycomex, Stratos, Vector, Omnitek, Aurex Systems, Axiom, Atlas Inc., Phalanx, Chronos, Crucible, Aegis, Ironvale, Sentinel, Helios Global, Citadel Systems, Valkyrie, Catalyst Group, Genesys, Echelon, Apex, Ferrox, Core Industries, Paragon, Onyx, Hemlock, Phantasm, Vanguard, Resodyne, Panopticon</td></tr>
-        <tr><td class="l sec">Corporations 2</td><td class="l">Predation, Helix, Novacore, Paradox, Cinderworks, Tristar, Red Sector Inc., Monolith, Kestrel, Borealis, Covenant, Lumen, Xenarch, Halberd, Nightjar, Caldera, Prism, Quartex, Meridian, Obsidian, Razorline, Fairlight</td></tr>
-        <tr><td class="l sec">Sector tiles</td><td class="l">21&ndash;28 (empty)</td></tr>
-        <tr><td class="l sec">Game board</td><td class="l">Game board (six Encounter slots, Corporation slot moved up)</td></tr>
-        <tr><td class="l sec">Player Board</td><td class="l">Player Board (layout cleanup, Structures cost, Trooper cards, Subjugated Creature and Contract slots in the new card style, Headquarters gains 1 Worker)</td></tr>
-      </tbody>
-    </table></div>
+    <p class="sub">Nothing waiting to print.</p>
   </section>
 
   <section>
@@ -1986,9 +1971,9 @@
           <li><b>Structures</b> are all activated: each activation costs <b>3 Arc Cubes</b>, 1 per turn or 2 with a Worker on the new Structures slot. Your Headquarters can be activated to gain 1 Worker. New abilities for Barracks, Shield Generator, Radar Station, Refinery and Xeno Lab; Base Turret rolls 4 Combat Dice. <b>Overclock</b> now grants 1 extra Structure activation each turn at no Arc Cube cost, and <b>Saboteurs</b> lose their Shield Generator passive.</li>
           <li><b>Ten new Corporations</b>: Monolith, Kestrel, Borealis, Covenant, Lumen and Xenarch, plus four with an ability usable <b>4 times per game</b>, tracked in boxes on the card: Halberd, Nightjar, Caldera and Prism.</li>
           <li><b>Paxion</b> becomes <b>Crucible</b>: your Refinery exchanges 2 Resources for 1. The <b>Refinery</b> itself now exchanges 3 Resources for any 1.</li>
-          <li>Corporation balance: Thana sells Xeno Eggs for 2 Arc Cubes, Terralift turns 1 Resource into 3 Arc Cubes, Blacksun opens with 6 Arc Cubes and 2 Resources, Mycomex with 7, and Omnitek, Phalanx, Predation, Sentinel, Tristar and Novacore open with more. Omnitek's Resources from the Event Die can be of any type. Paradox pays the Order's own cost once per turn, Nexus Dynamics copies a passive ability for 3 Arc Cubes, and an Aegis Block returns the Operative's card to its slot.</li>
+          <li>Corporation balance: Thana sells Xeno Eggs for 2 Arc Cubes and gets its extra Xeno Egg only from eliminating Creatures, Ironvale's claims pay Fortify 6 instead of the printed strength, Novacore regains a destroyed Structure's full construction cost, Covenant draws 2 Ability Cards when a Contract ends, Xenarch also gains 1 Xeno Egg when it subjugates a Creature, Halberd saves an Outpost or Headquarters at strength 4, Caldera activates one of your own Structures an extra time, Terralift turns 1 Resource into 3 Arc Cubes, Blacksun opens with 6 Arc Cubes and 2 Resources, Mycomex with 7, and Omnitek, Phalanx, Predation, Sentinel, Tristar and Novacore open with more. Omnitek's Resources from the Event Die can be of any type. Paradox pays the Order's own cost once per turn, Nexus Dynamics copies a passive ability for 3 Arc Cubes, and an Aegis Block returns the Operative's card to its slot.</li>
           <li>The <b>Incentives</b> panel is wider. Its first row is now <b>Claim Territory</b> (Settlements, Outposts and Headquarters), and it pays <b>Fortify equal to the printed strength</b> of the Settlement or Outpost; give the new Outpost none of it and it is rendered uninhabitable. <b>Eliminate Operatives</b> now pays <b>1 Ability Card</b>.</li>
-          <li>Cards that construct a Structure for free &mdash; <b>Prefabrication</b>, <b>Expropriation</b>, <b>Abandoned Structure</b> and <b>Citadel Systems</b> &mdash; now waive only its Resources; you still assign a free Worker.</li>
+          <li><b>Abandoned Structure</b> and <b>Citadel Systems</b> construct at no Resource cost and still need a free Worker; <b>Prefabrication</b> (now up to 3 Structures) and <b>Expropriation</b> construct at no Resource or Worker cost.</li>
           <li><b>Rules pass before the test.</b> Initiative is rolled before choosing Corporations. Claiming, or rendering uninhabitable, advances Progression once; anything an Ability Card eliminates directly scores nothing. Eliminating a corporation renders its other Outposts uninhabitable. Creatures never attack Settlements, roll the D6 for direction, and every drawn Encounter Card fills a free Creature slot or is discarded. Empty decks reshuffle their discards. Components add the D6, four Creature Dice and the Initiative Marker, and Tracker Tokens rise to 40 per color.</li>
           <li>The Arc Cube track on the Player Board runs to <b>20</b>, so you can store 20 Arc Cubes. Available Workers has 10 spaces.</li>
           <li><b>Card fixes.</b> Refinery exchanges 2 Resources for any 1, Foundry also redistributes strength, and Crucible's Refinery also gains a Resource. Charging Bay restores 1 Energy to each Operative; Barracks gives 1 Reroll per attack this turn. Prospectors pay 3 Arc Cubes, Hardened Core caps at 2, Lumen's Counters cost 3 less, Quartex pays 2, Mutual Interest pays you, and Extinction Event no longer stops future Creatures. Psychics' move is Active; Deflectors, Juggernauts, Engineers and Saboteurs are Passive where they were mislabeled. Suppression (the Contract) is now Embargo.</li>
@@ -1997,8 +1982,15 @@
           <li><b>Helper Cards</b>: each player now has 16 &mdash; new ones cover the <b>Combat Dice</b>, <b>Bio Attack</b>, <b>Siege Attack</b>, <b>Claiming</b>, <b>Territory</b>, <b>Workers</b> and <b>Progression</b> &amp; victory.</li>
           <li>The <b>Event Die</b> loses Movement Detected: a 1 is now a <b>Volcanic Eruption</b> (3 Bio Damage to your Operatives) and a 2 an <b>Earthquake</b> (3 Siege Damage to your Outposts and Headquarters). A 3 or 4 is a <b>Resource Cache</b> (2 Metal or Biofuel; 2 Silica or Cryofluid), a 5 a <b>Supply Drop</b> (3 Arc Cubes) and a 6 an <b>Intercepted Signal</b> (1 Ability Card). A Worker on a Resource adds 1 of that type, and <b>Seers</b> gain 2 Arc Cubes when the Event Die grants a Resource. <b>Genesys</b> now gains 1 Metal on a 1 or 2, and <b>The Ashborn</b> is immune to both.</li>
           <li>A new <b>Deployment Phase</b> sits between the Income and Action Phases: recruiting and deploying happen there and nowhere else. <b>Valkyrie</b> draws its Operative Card in that phase, and <b>Legion</b> and <b>Menagerie</b> put the next card in place undeployed. Menagerie draws 3 Encounter Cards.</li>
+          <li>Anything other than a Siege Attack that reduces a Settlement or Outpost to 0 renders it <b>permanently uninhabitable</b>; a Headquarters destroyed that way eliminates its corporation. <b>Ion Strike</b>, <b>Terminal Run</b>, <b>Scorched Earth</b> and <b>Seismic Charge</b> say so on the card.</li>
+          <li><b>Four new Ability Cards</b> (43&ndash;46) reach the systems the deck barely touched: Incentives (<b>Claim Jumper</b>, <b>Bounty Board</b>, <b>Hostile Audit</b>), recruiting and Workers (<b>Rapid Deployment</b>, <b>Mobilization</b>, <b>Labor Pool</b>), exploration (<b>Survey Drone</b>, <b>Prospecting</b>), the Event Die and Creatures (<b>Tremor Sensors</b>, <b>Creature Beacon</b>), plus <b>Seismic Charge</b> and <b>Deep Core</b>.</li>
+          <li>The Sector Atlas matches the current board: 18 printed tiles carry new terrain, ten of them in the landing sites. The volcano is drawn as one shape with its six direction numbers, and landing sites are outlined in purple.</li>
+          <li>Ability Cards carry a thin grey rule between their three tiers. Ability titles sit a little apart from their text. Same-tier swaps between cards: <b>Armageddon</b> and <b>Stasis Field</b> (5, 40), <b>Mirror Ward</b> and <b>Conglomerate</b> (1, 4), <b>Menagerie</b> and <b>Expropriation</b> (27, 39), <b>Second Wind</b> and <b>Order Seizure</b> (17, 26), <b>Refine</b> and <b>Contract Breach</b> (28, 33), <b>Counter Seizure</b> and <b>Cryofluid Heist</b> (30, 40).</li>
+          <li>Discovery Cards have their own <b>Discovery</b> back, so the whole table sees when one is on top of the Ability deck.</li>
           <li>Discoveries rise to 15: two more copies of <b>Something Stirs</b>, so there are three. <b>Lone Survivors</b> draws 2 Operative Cards, <b>Ancient Bulwark</b> gives Fortify 6, <b>Something Stirs</b> states its condition first, and on every Discovery the flavor text ends on the same line, just above the footer.</li>
           <li>Up to <b>six Creatures</b> can be on the board, up from four: the board has six Encounter slots, three in each bottom corner, and six Creature Dice.</li>
+          <li><b>Four new Corporations</b>: <b>Echo Labs</b> resolves every Discovery twice, <b>Lodestar</b> steers one Creature each Intermission Phase, <b>Garrison</b> recruits for 2 Arc Cubes, and <b>Talus</b> crosses and holds Mountains.</li>
+          <li>The shared targets are called <b>Incentives</b> throughout, printed on the board; <b>Quartex</b> pays 2 Arc Cubes whenever you place a tracker token on Incentives.</li>
           <li>New <b>Income Phase</b> order: roll the Event Die, draw 1 Ability Card, gain your Arc Cubes, then reduce your Contract&rsquo;s round tracker.</li>
         </ul>
 
@@ -2481,7 +2473,7 @@ const staticKey = (name, ct, fx, sw) => {
   el.innerHTML = sw + '<span><span class="nm">' + name + ' <span class="ct">' + ct + '</span></span><span class="fx">' + fx + '</span></span>';
   legend.appendChild(el);
 };
-staticKey("Volcano", 7, "The crater at the center — impassable, and not part of any Sector", ico("#2b1a12", "", " volcico"));
+staticKey("Volcano", 1, "The crater at the center, with the six numbered directions Creatures move in — impassable, and not part of any Sector", ico("#2b1a12", "", " volcico"));
 staticKey("Landing site", LAND, "A four-tile Sector on the rim with a landing site; each corporation's Headquarters starts on one", ico("var(--t-lava)", tok.land(0, 0)));
 staticKey("Settlement", ALLCP.length, "On Sector tiles, always on a Lava Field; the die shows the strength it starts at", ico("var(--t-lava)", tok.cp(0, 0, 3)));
 staticKey("Tunnel", PTUN + " + " + TUNS, "Printed on the board, plus those on Sector tiles", ico("var(--t-spire)", tok.tun(0, 0)));
@@ -2668,7 +2660,7 @@ const CORPS = [
   {n:"Nexus Dynamics",cubes:8,res:null,rt:"—",tags:["economy"],
    p:["During each Intermission Phase, you may spend 3 Arc Cubes to copy the passive ability of another Corporation in play until the next Intermission Phase."]},
   {n:"Thana",cubes:8,res:null,rt:"—",tags:["economy"],
-   p:["Whenever you gain Xeno Eggs, gain 1 extra.","During your Income Phase, you may sell Xeno Eggs for 2 Arc Cubes each."]},
+   p:["Eliminating a Creature gives you 1 extra Xeno Egg.","During your Income Phase, you may sell Xeno Eggs for 2 Arc Cubes each."]},
   {n:"Hemlock",cubes:5,res:"2 Xeno Eggs",rt:"2 Xeno Eggs",tags:["combat","economy"],
    p:["Gain 5 Arc Cubes whenever you eliminate an enemy Operative or Creature."]},
   {n:"Mycomex",cubes:7,res:"1 Resource of your choice",rt:"Choice",tags:["territory"],
@@ -2711,7 +2703,7 @@ const CORPS = [
   {n:"Aegis",cubes:5,res:"1 Xeno Egg",rt:"Xeno Egg",tags:["operatives"],
    p:["When one of your Operatives is eliminated, roll a Combat Die. On a Block, return its card to its slot instead of discarding it."]},
   {n:"Ironvale",cubes:9,res:null,rt:"—",tags:["territory"],
-   p:["When you claim a Settlement or an enemy Outpost, set its strength to 6."]},
+   p:["When you claim a Settlement or an enemy Outpost, its reward is Fortify 6."]},
   {n:"Sentinel",cubes:7,res:"1 Metal",rt:"Metal",tags:["combat"],
    p:["Your Operatives gain 1 extra Range while performing a Siege Attack."]},
   {n:"Helios Global",cubes:5,res:"1 Xeno Egg",rt:"Xeno Egg",tags:["territory"],
@@ -2727,7 +2719,7 @@ const CORPS = [
   {n:"Helix",cubes:8,res:null,rt:"—",tags:["cards"],
    p:["Ability Card draw rewards on the Progression tracker yield 1 extra Ability Card."]},
   {n:"Novacore",cubes:8,res:null,rt:"—",tags:["construction","economy"],
-   p:["Whenever a Structure under your control is destroyed, gain 1 Resource of a type spent in its construction cost."]},
+   p:["Whenever a Structure under your control is destroyed, gain the Resources in its construction cost."]},
   {n:"Fairlight",cubes:6,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives"],
    p:["Once during your Action Phase, you may move any amount of Energy between two of your deployed Operatives."]},
   {n:"Paradox",cubes:9,res:null,rt:"—",tags:["cards"],
@@ -2735,7 +2727,7 @@ const CORPS = [
   {n:"Cinderworks",cubes:8,res:null,rt:"—",tags:["mobility","combat"],
    p:["Your Operatives may move onto Lava Field tiles for 2 Movement per tile.","Your Operatives roll 1 extra Combat Die on Lava Fields."]},
   {n:"Quartex",cubes:6,res:"1 Resource of your choice",rt:"Choice",tags:["economy"],
-   p:["Whenever you place a tracker token on an Objective, gain 2 Arc Cubes."]},
+   p:["Whenever you place a tracker token on Incentives, gain 2 Arc Cubes."]},
   {n:"Tristar",cubes:8,res:"1 Silica",rt:"Silica",tags:["operatives"],
    p:["Operatives you deploy into a Suppressed Sector arrive at full Energy."]},
   {n:"Red Sector Inc.",cubes:8,res:null,rt:"—",tags:["economy","territory"],
@@ -2747,19 +2739,27 @@ const CORPS = [
   {n:"Borealis",cubes:6,res:"1 Resource of your choice",rt:"Choice",tags:["territory","economy"],
    p:["When you claim a Settlement, gain Arc Cubes equal to its printed strength."]},
   {n:"Covenant",cubes:7,res:"1 Cryofluid",rt:"Cryofluid",tags:["cards"],
-   p:["When one of your Contracts ends, draw 1 Ability Card."]},
+   p:["When one of your Contracts ends, draw 2 Ability Cards."]},
   {n:"Lumen",cubes:5,res:null,rt:"—",tags:["cards"],
    p:["Your Counter abilities cost 3 fewer Arc Cubes."]},
   {n:"Xenarch",cubes:6,res:"1 Xeno Egg",rt:"1 Xeno Egg",tags:["operatives"],
-   p:["When you subjugate a Creature, you still advance your Progression tracker by 1."]},
+   p:["When you subjugate a Creature, advance your Progression tracker by 1 and gain 1 Xeno Egg."]},
   {n:"Halberd",cubes:6,res:"1 Metal",rt:"Metal",tags:["territory"],
-   p:[],lim:"When one of your Outposts or your Headquarters would be reduced to 0, set it to 2 instead."},
+   p:[],lim:"When one of your Outposts or your Headquarters would be reduced to 0, set it to 4 instead."},
   {n:"Nightjar",cubes:7,res:"1 Silica",rt:"Silica",tags:["mobility"],
    p:[],lim:"During your Action Phase, move one of your Operatives to any tile in a Sector you control."},
   {n:"Caldera",cubes:6,res:"1 Biofuel",rt:"Biofuel",tags:["construction"],
-   p:[],lim:"During your Action Phase, activate any extra Structure at no Arc Cube cost."},
+   p:[],lim:"During your Action Phase, activate one of your Structures an extra time, at no Arc Cube cost."},
   {n:"Prism",cubes:5,res:"1 Xeno Egg",rt:"1 Xeno Egg",tags:["cards"],
-   p:[],lim:"Play an Ability Card one Tier above your own Tier, paying its cost."}
+   p:[],lim:"Play an Ability Card one Tier above your own Tier, paying its cost."},
+  {n:"Echo Labs",cubes:8,res:null,rt:"—",tags:["cards"],
+   p:["Whenever you draw a Discovery, resolve it twice."]},
+  {n:"Lodestar",cubes:7,res:"1 Xeno Egg",rt:"1 Xeno Egg",tags:["combat"],
+   p:["During each Intermission Phase, choose the direction of one Creature instead of rolling."]},
+  {n:"Garrison",cubes:7,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives"],
+   p:["Recruiting an Operative costs you 2 Arc Cubes."]},
+  {n:"Talus",cubes:7,res:"1 Metal",rt:"Metal",tags:["mobility","combat"],
+   p:["Mountain tiles cost your Operatives 1 Movement.","Your Operatives roll 1 extra Combat Die while defending on Mountain tiles."]}
 ];
 
 function startLine(c){
@@ -2898,7 +2898,7 @@ const TYPEN = {order:"Order", contract:"Contract", counter:"Counter"};
 const ACARDS = [
  [{n:"Blitz",t:"order",g:["mobility"],x:"Your Operatives may move up to 3 tiles ignoring the Hostile Movement Penalty."},
   {n:"Arc Pulse",t:"order",g:["combat"],x:"Each enemy Operative and Creature in your controlled Sectors takes 3 Bio Damage."},
-  {n:"Conglomerate",t:"order",g:["cards"],x:"For the remainder of the game, you also gain the passive abilities of every other Corporation Card in play."}],
+  {n:"Mirror Ward",t:"counter",g:["cards"],x:"When an enemy plays an Ability Card, cancel that card's effect. Arc Cubes spent on it are not refunded. You gain the Ability Card instead of it being discarded."}],
 
  [{n:"Starport",t:"order",g:["construction"],x:"Construct a Starport at no Resource cost."},
   {n:"Embargo",t:"contract",g:["economy"],x:"For 2 rounds, enemy corporations cannot gain Resources during their Income Phase."},
@@ -2910,11 +2910,11 @@ const ACARDS = [
 
  [{n:"Stonewall",t:"counter",g:["territory","combat"],x:"When a Siege Attack would deal Siege Damage to one of your Outposts or Headquarters, prevent that damage."},
   {n:"Preservation",t:"counter",g:["operatives"],x:"When one of your Operatives would be eliminated, set it to its maximum Energy instead."},
-  {n:"Mirror Ward",t:"counter",g:["cards"],x:"When an enemy plays an Ability Card, cancel that card's effect. Arc Cubes spent on it are not refunded. You gain the Ability Card instead of it being discarded."}],
+  {n:"Conglomerate",t:"order",g:["cards"],x:"For the remainder of the game, you also gain the passive abilities of every other Corporation Card."}],
 
  [{n:"Slipstream",t:"counter",g:["territory"],x:"When an enemy advances its Progression tracker, advance yours 1 square."},
   {n:"Shockwave",t:"contract",g:["combat"],x:"For 2 rounds, enemies in your controlled Sectors take 2 Bio Damage at the end of your turn."},
-  {n:"Armageddon",t:"order",g:["territory"],x:"Choose one corporation. They remove one of their Outposts from the game. That corporation may then repeat this effect. Continue until someone declines."}],
+  {n:"Stasis Field",t:"order",g:["mobility"],x:"Choose one corporation. They skip their next turn entirely."}],
 
  [{n:"Write-Off",t:"order",g:["economy","cards"],x:"Discard Ability Cards from your hand. Gain 5 Arc Cubes for each discarded card."},
   {n:"Annex",t:"order",g:["territory"],x:"Claim one Settlement or enemy Outpost adjacent to a Sector you control if its strength is 4 or lower. It becomes yours at strength 4."},
@@ -2930,7 +2930,7 @@ const ACARDS = [
 
  [{n:"Red Tape",t:"counter",g:["construction"],x:"When another corporation constructs a Structure, cancel its construction. Resources spent are lost."},
   {n:"Resurgence",t:"order",g:["creatures"],x:"Move all Creatures on the board to the Volcano tile. Restore each to its maximum Health."},
-  {n:"Ion Strike",t:"order",g:["combat","territory"],x:"Target a Sector. Deal 4 Siege Damage to all its Outposts and 6 Bio Damage to all Operatives and Creatures within that Sector."}],
+  {n:"Ion Strike",t:"order",g:["combat","territory"],x:"Target a Sector. Deal 4 Siege Damage to all its Outposts and 6 Bio Damage to all Operatives and Creatures within that Sector. Any Outpost this destroys is rendered uninhabitable."}],
 
  [{n:"Survey",t:"order",g:["events","cards"],x:"Either roll the Event Die and resolve the result or draw 2 Ability Cards."},
   {n:"Silica Tariff",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains 1 Silica, you also gain 1 Silica."},
@@ -2961,7 +2961,7 @@ const ACARDS = [
   {n:"Bankrupt",t:"order",g:["economy"],x:"Choose one corporation. Steal all Arc Cubes and Resources from their storage."}],
 
  [{n:"Data Breach",t:"order",g:["cards"],x:"Choose one corporation. Look at their hand and steal 1 Ability Card."},
-  {n:"Order Seizure",t:"counter",g:["cards"],x:"When another corporation plays an Order, cancel its effect. You gain the Ability Card instead of it being discarded."},
+  {n:"Second Wind",t:"order",g:["combat"],x:"On a successful Bio Attack, your Operatives may perform another Bio Attack against a target within their Range. Repeat this turn until an attack misses."},
   {n:"Displacement",t:"order",g:["mobility"],x:"Move any of your Operatives from their current tile to any other tile."}],
 
  [{n:"Windfall",t:"order",g:["events"],x:"Roll the Event Die twice and resolve all results. Other corporations may roll the Event Die once and resolve its result."},
@@ -2976,7 +2976,7 @@ const ACARDS = [
   {n:"Cease Fire",t:"contract",g:["combat"],x:"Choose one corporation. For 2 rounds, neither of you may target the other with Attacks or Ability Cards."},
   {n:"Subjugate",t:"order",g:["creatures"],x:"Choose a Creature not on the Volcano tile, claim its Encounter Card and restore it to its maximum Health."}],
 
- [{n:"Terminal Run",t:"order",g:["combat","operatives"],x:"Choose one of your Operatives. Deal 4 Bio Damage or 2 Siege Damage to one target within its Range."},
+ [{n:"Terminal Run",t:"order",g:["combat","operatives"],x:"Choose one of your Operatives. Deal 4 Bio Damage or 2 Siege Damage to one target within its Range. Any Settlement or Outpost this destroys is rendered uninhabitable."},
   {n:"Breakthrough",t:"order",g:["territory"],x:"Advance your Progression tracker 1 square. If you have the lowest Progression tracker value, or are tied for lowest, advance 2 squares instead."},
   {n:"Power Drain",t:"order",g:["operatives"],x:"Set all enemy Operatives' Energy to 1."}],
 
@@ -2986,25 +2986,25 @@ const ACARDS = [
 
  [{n:"Blacklist",t:"counter",g:["operatives","cards"],x:"When an enemy corporation draws an Operative Card, they are forced to discard it."},
   {n:"Biofuel Tariff",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains 1 Biofuel, you also gain 1 Biofuel."},
-  {n:"Prefabrication",t:"order",g:["construction"],x:"Construct up to 2 Structures of your choice at no Resource cost."}],
+  {n:"Prefabrication",t:"order",g:["construction"],x:"Construct up to 3 Structures of your choice at no Resource or Worker cost."}],
 
  [{n:"Reposition",t:"order",g:["mobility"],x:"Move one of your Operatives up to 3 tiles. Either retain this card and move only that Operative, or discard it and apply this to all your Operatives."},
   {n:"Xeno Lure",t:"order",g:["creatures"],x:"Move a Creature on the board up to 4 tiles in any direction."},
-  {n:"Extinction Event",t:"order",g:["creatures"],x:"Eliminate all Creatures on Arcworld without gaining Progression."}],
+  {n:"Extinction Event",t:"order",g:["creatures"],x:"Eliminate all Creatures on Arcworld without gaining Progression or other benefits."}],
 
  [{n:"Barracks",t:"order",g:["construction"],x:"Construct a Barracks at no Resource cost."},
   {n:"Silica Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Silica from their storage."},
   {n:"Global Tariffs",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains a Resource, you gain 3 Arc Cubes and 1 of the same Resource type."}],
 
  [{n:"Inflation",t:"contract",g:["economy","cards"],x:"For 2 rounds, all Ability Cards cost 2 extra Arc Cubes for each other corporation."},
-  {n:"Second Wind",t:"order",g:["combat"],x:"On a successful Bio Attack, your Operatives may perform another Bio Attack against a target within their Range. Repeat this turn until an attack misses."},
-  {n:"Scorched Earth",t:"order",g:["territory"],x:"Reduce all enemy Outposts and Headquarters by 2."}],
+  {n:"Labor Pool",t:"order",g:["economy"],x:"Gain 2 Workers."},
+  {n:"Scorched Earth",t:"order",g:["territory"],x:"Reduce the strength of all enemy Outposts and Headquarters by 2. Any Outpost this destroys is rendered uninhabitable."}],
 
  [{n:"Redact",t:"counter",g:["events"],x:"When another corporation rolls the Event Die, cancel that roll."},
   {n:"New Management",t:"order",g:["cards"],x:"If you have a Corporation Card, discard it. Draw 2 Corporation Cards, choose 1, and discard the other. Your new Corporation Card's passive abilities take effect immediately."},
-  {n:"Menagerie",t:"order",g:["creatures"],x:"Draw 3 Encounter Cards and add them to your Subjugated Creature slot in any order. When your Creature is eliminated, the next one takes its place, undeployed."}],
+  {n:"Expropriation",t:"order",g:["construction","combat"],x:"Destroy 1 enemy Structure other than a Headquarters. Construct the same Structure at no Resource or Worker cost."}],
 
- [{n:"Refine",t:"order",g:["economy"],x:"Remove 2 Resources from your storage. Gain 1 Resource of any Resource type. This effect may be repeated any number of times."},
+ [{n:"Contract Breach",t:"counter",g:["cards"],x:"When another corporation plays a Contract, cancel its effect. It is discarded and the Arc Cubes spent are lost."},
   {n:"Sentinel Grid",t:"contract",g:["combat"],x:"For 2 rounds, your Operatives within Range 3 of your Outposts or Headquarters gain 2 extra Combat Dice while defending."},
   {n:"Strategic Shift",t:"order",g:["cards"],x:"Draw 5 Ability Cards."}],
 
@@ -3013,7 +3013,7 @@ const ACARDS = [
   {n:"Legion",t:"order",g:["operatives"],x:"Draw 5 Operative Cards and add them to the same Operative slot in any order. When your Operative is eliminated, the next one takes its place, undeployed."}],
 
  [{n:"Assembly Line",t:"contract",g:["construction","territory"],x:"For 2 rounds, when you construct a Structure, Fortify 4 extra."},
-  {n:"Counter Seizure",t:"counter",g:["cards"],x:"When another corporation plays a Counter, cancel its effect. You gain the Ability Card instead of it being discarded."},
+  {n:"Cryofluid Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Cryofluid from their storage."},
   {n:"Maximum Yield",t:"order",g:["economy"],x:"Replenish your Arc Cubes, Resources, and Xeno Eggs to their respective limits."}],
 
  [{n:"Undermine",t:"contract",g:["construction","territory"],x:"For 2 rounds, enemy corporations cannot Fortify. Draw 1 Ability Card."},
@@ -3024,7 +3024,7 @@ const ACARDS = [
   {n:"Lockdown",t:"contract",g:["mobility"],x:"For 2 rounds, enemy Operatives and Creatures cannot move within or into your controlled Sectors."},
   {n:"Siege Protocol",t:"order",g:["combat"],x:"Until the end of your turn, on a successful Attack, your Operatives add 3 to their Siege Roll."}],
 
- [{n:"Contract Breach",t:"counter",g:["cards"],x:"When another corporation plays a Contract, cancel its effect. It is discarded and the Arc Cubes spent are lost."},
+ [{n:"Refine",t:"order",g:["economy"],x:"Remove 2 Resources from your storage. Gain 1 Resource of any Resource type. This effect may be repeated any number of times."},
   {n:"Barrage",t:"order",g:["combat"],x:"Perform a Bio Attack with 2 of your Operatives against an enemy within their Range."},
   {n:"Terminal Decline",t:"order",g:["combat","territory"],x:"Target an enemy Headquarters. During your Income Phase, it takes 1 Siege Damage for the remainder of the game."}],
 
@@ -3042,7 +3042,7 @@ const ACARDS = [
 
  [{n:"Foundry",t:"order",g:["construction"],x:"Construct a Foundry at no Resource cost."},
   {n:"Iron Defense",t:"contract",g:["territory"],x:"For 2 rounds, your Outposts and Headquarters cannot receive more than 1 Siege Damage from any single source."},
-  {n:"Bastion",t:"order",g:["territory"],x:"Set every one of your Outposts and your Headquarters to maximum."}],
+  {n:"Bastion",t:"order",g:["territory"],x:"Set every one of your Outposts and your Headquarters to their maximum strength."}],
 
  [{n:"Refinery",t:"order",g:["construction"],x:"Construct a Refinery at no Resource cost."},
   {n:"Signal Jam",t:"contract",g:["cards"],x:"Choose one corporation. For 2 rounds, they cannot play Ability Cards."},
@@ -3050,19 +3050,35 @@ const ACARDS = [
 
  [{n:"Science Academy",t:"order",g:["construction"],x:"Construct a Science Academy at no Resource cost."},
   {n:"Dissolution",t:"order",g:["cards"],x:"Choose one corporation. They discard their Corporation Card and lose all of its abilities for the remainder of the game."},
-  {n:"Expropriation",t:"order",g:["construction","combat"],x:"Destroy 1 enemy Structure other than a Headquarters. Construct the same Structure at no Resource cost."}],
+  {n:"Menagerie",t:"order",g:["creatures"],x:"Draw 3 Encounter Cards and add them to your Subjugated Creature slot in any order. When your Creature is eliminated, the next one takes its place, undeployed."}],
 
  [{n:"Xeno Lab",t:"order",g:["construction"],x:"Construct a Xeno Lab at no Resource cost."},
-  {n:"Cryofluid Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Cryofluid from their storage."},
-  {n:"Stasis Field",t:"order",g:["mobility"],x:"Choose one corporation. They skip their next turn entirely."}],
+  {n:"Counter Seizure",t:"counter",g:["cards"],x:"When another corporation plays a Counter, cancel its effect. You gain the Ability Card instead of it being discarded."},
+  {n:"Armageddon",t:"order",g:["territory"],x:"Choose one corporation. They remove one of their Outposts from the game. That corporation may then repeat this effect. Continue until someone declines."}],
 
  [{n:"Base Turret",t:"order",g:["construction"],x:"Construct a Base Turret at no Resource cost."},
   {n:"Overdrive",t:"contract",g:["combat"],x:"For 2 rounds, your Operatives roll 1 extra Combat Die while performing a Bio Attack and gain 1 Range."},
   {n:"Warpath",t:"order",g:["combat"],x:"This turn, each of your Operatives may attack up to 3 times."}],
 
- [{n:"Shield Generator",t:"order",g:["construction"],x:"Construct a Shield Generator at no Resource cost."},
+ [{n:"Claim Jumper",t:"counter",g:["territory"],x:"When another corporation places a tracker token on Incentives, place one of yours on the same row. You take no reward."},
   {n:"Pillage",t:"order",g:["economy","cards"],x:"Discard Ability Cards from your hand. Choose one corporation. They lose 3 Arc Cubes for each card discarded. Draw 1 Ability Card."},
-  {n:"Hardened Core",t:"order",g:["territory"],x:"For the remainder of the game, your Headquarters cannot take more than 2 Siege Damage from any single source."}]
+  {n:"Hardened Core",t:"order",g:["territory"],x:"For the remainder of the game, your Headquarters cannot take more than 2 Siege Damage from any single source."}],
+
+ [{n:"Shield Generator",t:"order",g:["construction"],x:"Construct a Shield Generator at no Resource cost."},
+  {n:"Seismic Charge",t:"order",g:["combat"],x:"Choose one corporation. Deal 4 Siege Damage divided as you choose among its Outposts. Any Outpost this destroys is rendered uninhabitable."},
+  {n:"Mobilization",t:"contract",g:["operatives","economy"],x:"For 2 rounds, recruiting an Operative costs you 1 Arc Cube."}],
+
+ [{n:"Rapid Deployment",t:"order",g:["operatives","mobility"],x:"Deploy one of your assigned Operatives next to one of your Outposts or your Headquarters."},
+  {n:"Prospecting",t:"order",g:["cards"],x:"Look at the top 5 Ability Cards. Resolve any Discoveries among them, then return the rest in any order."},
+  {n:"Hostile Audit",t:"order",g:["territory"],x:"Choose one corporation. Remove all of its tracker tokens from Incentives."}],
+
+ [{n:"Tremor Sensors",t:"counter",g:["events","economy"],x:"When you roll a 1 or 2 on the Event Die, cancel its effect and gain 2 Arc Cubes."},
+  {n:"Order Seizure",t:"counter",g:["cards"],x:"When another corporation plays an Order, cancel its effect. You gain the Ability Card instead of it being discarded."},
+  {n:"Creature Beacon",t:"contract",g:["creatures"],x:"For 2 rounds, choose the direction of every Creature instead of rolling."}],
+
+ [{n:"Survey Drone",t:"order",g:["territory"],x:"Look at the top 3 Sector tiles. Return them to the stack in any order."},
+  {n:"Bounty Board",t:"contract",g:["economy"],x:"For 2 rounds, whenever you place a tracker token on Incentives, gain 3 Arc Cubes."},
+  {n:"Deep Core",t:"order",g:["economy"],x:"For the remainder of the game, gain 1 Resource of your choice during your Income Phase."}]
 ];
 
 /* flatten once — the index, the audit and the card tags all read from this */
