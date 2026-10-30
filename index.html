@@ -108,6 +108,9 @@
   .tok circle:first-child{fill:#f4efe7;stroke:#141110;stroke-width:3}
   .tok path{fill:#141110;stroke:#141110;stroke-width:1.6;stroke-linejoin:round}
   .tok .eye{fill:#f4efe7}
+  .tok.res circle:first-child{fill:#fff;stroke:var(--rc);stroke-width:4}
+  .balance.four{grid-template-columns:repeat(4,1fr)}
+  @media (max-width:760px){.balance.four{grid-template-columns:1fr 1fr}}
   .cpn{font-family:var(--display);font-weight:700;font-size:15px;fill:#141110;text-anchor:middle;
      dominant-baseline:central;pointer-events:none}
   body.nocp #marks{display:none}
@@ -648,7 +651,7 @@
     <div class="stats">
       <div class="stat"><b>2&ndash;4</b><span>Players</span></div>
       <div class="stat"><b>60&ndash;180</b><span>Minutes</span></div>
-      <div class="stat"><b>20</b><span>Sector tiles</span></div>
+      <div class="stat"><b>16</b><span>Sector tiles</span></div>
       <div class="stat"><b>3</b><span>Tiers</span></div>
       <div class="stat"><b>5</b><span>Hand limit</span></div>
     </div>
@@ -671,7 +674,7 @@
         <h4>When a corporation is eliminated</h4>
         <p>A corporation is eliminated the moment its Headquarters is destroyed. Resolve it in this order:</p>
         <ol>
-          <li>The attacking corporation takes all of the eliminated player's Arc Cubes, Resources and Xeno Eggs, up to its storage limits.</li>
+          <li>The attacking corporation takes all of the eliminated player's Arc Cubes, Resources and Xeno Eggs, up to its storage limits &mdash; including any Resources waiting in their Orbital Trade boxes.</li>
           <li>The attacker claims the Headquarters' landing site as a normal claim: it becomes their Outpost and they take the Incentives row's reward, <strong>Fortify 10</strong> &mdash; or they give it none of that Fortify and render it uninhabitable.</li>
           <li>Every other Outpost they held is <em>rendered permanently uninhabitable</em> &mdash; nobody may claim it again.</li>
           <li>All of their Operatives, Structures and dice return to the box.</li>
@@ -686,12 +689,12 @@
           <thead><tr><th>Component</th><th>Total</th><th>Per color</th></tr></thead>
           <tbody>
             <tr><td class="k">Game Board</td><td class="n">1</td><td class="n">&mdash;</td></tr>
-            <tr><td class="k">Sector Tiles</td><td class="n">20</td><td class="n">&mdash;</td></tr>
-            <tr><td class="k">Empty Sector Tiles</td><td class="n">8</td><td class="n">&mdash;</td></tr>
+            <tr><td class="k">Sector Tiles</td><td class="n">16</td><td class="n">&mdash;</td></tr>
+            <tr><td class="k">Empty Sector Tiles</td><td class="n">4</td><td class="n">&mdash;</td></tr>
             <tr><td class="k">Player Boards</td><td class="n">4</td><td class="n">1</td></tr>
             <tr><td class="k">Tracker Tokens</td><td class="n">160</td><td class="n">40</td></tr>
             <tr><td class="k">Initiative Marker</td><td class="n">1</td><td class="n">&mdash;</td></tr>
-            <tr><td class="k">Helper Cards</td><td class="n">64</td><td class="n">16</td></tr>
+            <tr><td class="k">Helper Cards (double-sided)</td><td class="n">36</td><td class="n">9</td></tr>
           </tbody>
         </table></div>
         <h4>Dice</h4>
@@ -724,15 +727,15 @@
         <p class="kicker">03</p>
         <h3>Setup</h3>
         <ol class="steps">
-          <li><b>Build Arcworld</b>Place the game board. Shuffle the 20 Sector tiles and draw 16 of them blind; the other four go back in the box unseen. With three players, remove 4 of the 16 at random and replace them with 4 empty Sector tiles; with two players, remove 8 at random and replace them with 8. Shuffle the 16 into a face-down stack beside the board &mdash; they fill the 16 empty Sector slots as those are discovered.</li>
+          <li><b>Build Arcworld</b>Place the game board. Shuffle the 16 Sector tiles and the 4 empty Sector tiles separately, face down, and build the Sector stack by player count: with four players draw <strong>6 Sector tiles</strong>; with three, <strong>5 Sector tiles and 1 empty tile</strong>; with two, <strong>4 Sector tiles and 2 empty tiles</strong>. Shuffle those 6 into a face-down stack beside the board and return the rest to the box unseen &mdash; the stack fills the 6 empty Sector slots around the volcano as they are discovered.</li>
           <li><b>Hand out Player Boards</b>Each player takes a Player Board with their matching tokens and dice.</li>
           <li><b>Prepare the decks</b>Shuffle the Corporation, Operative, Encounter and Ability decks separately and place them face-down on the board. The <em>Incentives</em> panel is printed on the board.</li>
           <li><b>Roll for Initiative</b>Everyone rolls a die. Highest takes the Initiative Marker; tied players reroll until one wins.</li>
           <li><b>Choose your corporation</b>Starting with the Initiative player and going clockwise, draw 3 Corporation Cards blind, keep 1, discard the rest.</li>
           <li><b>Establish landing sites</b>In Initiative order, each player completes all four of these before the next player begins.
             <ol class="inner">
-              <li>Choose any landing site no one has taken &mdash; one of the six four-tile Sectors on the rim of the board &mdash; and place your Headquarters die on its landing site, set to <strong>10</strong>.</li>
-              <li>Deploy your Troopers on passable tiles adjacent to your Headquarters.</li>
+              <li>Choose any landing site no one has taken &mdash; one of the six six-tile Sectors on the corners of the planet &mdash; and place your Headquarters die on its landing site, set to <strong>10</strong>.</li>
+              <li>Deploy your Troopers on passable tiles of your landing-site Sector adjacent to your Headquarters.</li>
               <li>Apply the <em>Start of the Game</em> effect on your Corporation Card.</li>
               <li>Draw 2 Ability Cards as your starting hand.</li>
             </ol>
@@ -745,16 +748,22 @@
         <h3>The round</h3>
         <p>Play runs clockwise around the table, one full turn each. The Initiative Marker never changes hands &mdash; it stays with whoever won it at setup and marks where a round ends: once play comes back around to that player, the Intermission Phase resolves before their next turn begins. Your own turn runs through four phases in a fixed order.</p>
         <ol class="steps">
-          <li><b>Income Phase</b>Roll your Event Die and resolve it, draw 1 Ability Card, gain your Arc Cubes, then reduce the duration tracker on any Contract you have in play by 1 &mdash; in that order.</li>
+          <li><b>Income Phase</b>Roll your Event Die and resolve it, draw 1 Ability Card, gain your Arc Cubes &mdash; including your Orbital Trade payout &mdash; and your Resources, then reduce the duration tracker on any Contract you have in play by 1 &mdash; in that order.</li>
           <li><b>Deployment Phase</b>Recruit Operatives for 3 Arc Cubes each, then deploy any assigned Operatives &mdash; see <em>Operatives</em>.</li>
           <li><b>Action Phase</b>The bulk of your turn. See <em>Your Action Phase</em> below.</li>
-          <li><b>Cleanup Phase</b>Reassign your available Workers, then discard down to your maximum hand size of 5. Moving into Cleanup is what ends your turn. A Worker in a Structure is never available, and one in your Contract slot is unavailable while a Contract is in play.</li>
+          <li><b>Cleanup Phase</b>Reassign your available Workers, load up to 4 Resources into your Orbital Trade boxes, then discard down to your maximum hand size of 5. Moving into Cleanup is what ends your turn. A Worker in a Structure is never available.</li>
         </ol>
-        <div class="tip"><b>Phases are sealed</b><p>You may do nothing in the Cleanup Phase except reassign Workers and discard. Likewise the Income Phase allows nothing but its listed steps, and the Deployment Phase nothing but recruiting and deploying.</p></div>
+        <div class="tip"><b>Phases are sealed</b><p>You may do nothing in the Cleanup Phase except reassign Workers, load Orbital Trade and discard. Likewise the Income Phase allows nothing but its listed steps, and the Deployment Phase nothing but recruiting and deploying.</p></div>
         <h4>Arc Cube income</h4>
-        <p>You gain <strong>1 Arc Cube per Outpost you hold</strong>, or <strong>2</strong> for your Headquarters, plus 1 more if you have a Worker assigned to Arc Cubes. An Outpost or Headquarters in a Sector holding an enemy Operative or Creature is Suppressed and pays nothing.</p>
+        <p>You gain <strong>1 Arc Cube per Outpost you hold</strong>, or <strong>3</strong> for your Headquarters. The <em>HQ + Outposts</em> tracker on your Player Board shows exactly that income: it starts at 3 for your Headquarters, gains 1 for each Outpost and runs to 10. An Outpost or Headquarters in a Sector holding an enemy Operative or Creature is Suppressed and pays nothing.</p>
+        <h4>Resource income</h4>
+        <p>Resources are printed on the Sector tiles around the volcano, each on its own terrain: <strong>Metal</strong> on Mountains, <strong>Biofuel</strong> on Sludge, <strong>Silica</strong> on Hills and <strong>Cryofluid</strong> on Wasteland. The landing sites carry no Resources: the safe rim is barren, and the riches lie toward the volcano.</p>
+        <p>Each Resource has a row of <strong>3 Worker slots</strong> on your Player Board. For each type, gain <strong>1 of that Resource for every Worker on its row, up to the number of its icons in Sectors you control</strong>. One Metal icon with two Workers on Metal pays 1 Metal; two Metal icons need two Workers to pay 2. A Sector holding an enemy Operative or Creature pays nothing. You can store at most 3 of each Resource; anything past that is lost.</p>
+        <h4>Orbital Trade</h4>
+        <p>In your Cleanup Phase you may load up to <strong>4 Resources</strong> of any types from your storage into the Orbital Trade boxes on your Player Board, filling them from the top &mdash; but only while your Headquarters is not Suppressed. In your next Income Phase, when you gain your Arc Cubes, empty the boxes and gain the Arc Cubes printed on each filled one: <strong>3, 2, 2 and 1</strong>. The first Resource you ship is worth the most, so sending more each round pays less per Resource.</p>
+        <p>Resources in the Orbital Trade boxes are still on the planet, waiting for the shuttle: they do not count toward your storage limit, and if your Headquarters is destroyed before they launch, the attacker takes them with the rest of your storage.</p>
         <h4>The Event Die</h4>
-        <p>Rolled once during your Income Phase. Two of its six faces are your main source of Resources, 2 at a time; two more pay Arc Cubes or an Ability Card.</p>
+        <p>Rolled once during your Income Phase. Two of its six faces pay Resources, 2 at a time &mdash; your only Resources until you control a Sector that carries them; two more pay Arc Cubes or an Ability Card.</p>
         <div class="tw"><table>
           <thead><tr><th>Roll</th><th>Result</th><th>Effect</th></tr></thead>
           <tbody>
@@ -810,7 +819,7 @@
           <li>The defender rolls Combat Dice equal to its Defense value. Blocks &mdash; including the shared Critical face &mdash; total up as the <strong>Defense Roll</strong>.</li>
           <li>Bio Roll minus Defense Roll is the <strong>Bio Damage</strong> dealt.</li>
         </ol>
-        <p>If the defender is eliminated, the attacker advances their Progression tracker by 1.</p>
+        <p>If the defender is an enemy Operative and it is eliminated, the attacker advances their Progression tracker by 1. Creatures are worth no Progression.</p>
         <h4>Attacking Settlements, Outposts and Headquarters</h4>
         <p>An Operative must be <strong>adjacent &mdash; within Range 1 &mdash;</strong> of a Settlement, Outpost or Headquarters to attack it. The attacker's Hits and Criticals make the <strong>Siege Roll</strong>. A <strong>Settlement</strong> defends with exactly <strong>1 Combat Die</strong> and an <strong>enemy-held</strong> Outpost or Headquarters with exactly <strong>2 Combat Dice</strong>.</p>
         <p>When a die reaches 0 the Settlement or Outpost is destroyed, and the attacker chooses to <strong>claim it</strong> or <strong>render it permanently uninhabitable</strong>.</p>
@@ -833,9 +842,9 @@
       <section id="s-control">
         <p class="kicker">07</p>
         <h3>Settlements, Outposts &amp; Sectors</h3>
-        <p>Every Sector tile carries one or two <strong>Settlements</strong> &mdash; the empty Sector tiles used at two and three players carry none. A Settlement is unclaimed ground: a Lava Field marked with a die showing the strength it starts at. A corporation that claims one makes it an <strong>Outpost</strong> of its own. Each of the six four-tile landing-site Sectors on the rim carries a landing site instead, where a corporation places its <strong>Headquarters</strong>. Settlements and Outposts are D6s and can be raised as far as <strong>6</strong>; a Headquarters is a D12, starts at <strong>10</strong> and can be raised as far as <strong>12</strong>. What you count, and what pays, is your Outposts and Headquarters; the Sector is what many effects target. You <strong>control a Sector</strong> only while you hold <em>every</em> Settlement in it as an Outpost &mdash; holding one of two is not control.</p>
+        <p>Every Sector tile carries one or two <strong>Settlements</strong>, and most carry one or two <strong>Resources</strong> &mdash; the empty Sector tiles used at two and three players carry neither. A Settlement is unclaimed ground: a Lava Field marked with a die showing the strength it starts at. A corporation that claims one makes it an <strong>Outpost</strong> of its own. Each of the six six-tile landing-site Sectors on the corners of the planet carries a landing site instead, where a corporation places its <strong>Headquarters</strong>. Settlements and Outposts are D6s and can be raised as far as <strong>6</strong>; a Headquarters is a D12, starts at <strong>10</strong> and can be raised as far as <strong>12</strong>. What you count, and what pays, is your Outposts and Headquarters; the Sector is what many effects target. You <strong>control a Sector</strong> only while you hold <em>every</em> Settlement in it as an Outpost &mdash; holding one of two is not control.</p>
         <h4>Discovering Sectors</h4>
-        <p>The board starts with 16 empty Sector slots, and the 20 Sector tiles wait in a face-down stack beside it. The moment an Operative moves onto a tile adjacent to an empty slot, that Sector is discovered: that Operative's owner draws the top tile blind and places it in the slot, rotated however they like. Then put a die on each Settlement on the tile, set to the strength printed there, and deploy a Creature on each Encounter icon if a Creature slot is free. An Operative can never move into an empty slot.</p>
+        <p>The board starts with 6 empty Sector slots around the volcano, and the Sector stack built at setup waits face down beside it. The moment an Operative moves onto a tile adjacent to an empty slot, that Sector is discovered: that Operative's owner draws the top tile blind and places it in the slot, rotated however they like. Then put a die on each Settlement on the tile, set to the strength printed there, and deploy a Creature on each Encounter icon if a Creature slot is free. An Operative can never move into an empty slot.</p>
         <h4>Claiming</h4>
         <ol>
           <li>Place your die on the Settlement or Outpost.</li>
@@ -855,7 +864,7 @@
         <h4>Suppression</h4>
         <p>An Outpost or Headquarters you hold is <strong>Suppressed</strong> for as long as an enemy Operative or Creature stands in its Sector. It makes no difference how many Settlements the Sector has or who holds the others &mdash; every Outpost you hold there is Suppressed. Holding it is not enough &mdash; while anything hostile is present:</p>
         <ul>
-          <li>It generates <strong>no Arc Cubes</strong> during your Income Phase.</li>
+          <li>It generates <strong>no Arc Cubes</strong> during your Income Phase, and the Sector pays <strong>no Resources</strong>.</li>
           <li>It <strong>cannot be Fortified</strong>, from any source.</li>
           <li>Operatives you deploy next to it arrive at <strong>half their maximum Energy, rounded down</strong>.</li>
         </ul>
@@ -889,8 +898,9 @@
         <div class="tw"><table>
           <thead><tr><th>Icon</th><th>Effect</th></tr></thead>
           <tbody>
-            <tr><td class="k">Landing site</td><td>One of the six four-tile Sectors on the rim of the board, each with a landing site. At setup each corporation puts its Headquarters die on the landing site of one of them.</td></tr>
+            <tr><td class="k">Landing site</td><td>One of the six six-tile Sectors on the corners of the planet, each with a landing site. At setup each corporation puts its Headquarters die on the landing site of one of them.</td></tr>
             <tr><td class="k">Settlement</td><td>A numbered die, 1 to 6, on a Lava Field. The number is the strength its die starts at.</td></tr>
+            <tr><td class="k">Resource</td><td>A Metal, Biofuel, Silica or Cryofluid icon in a white circle, on Sector tiles only and always on its own terrain. In your Income Phase each icon in a Sector you control pays 1 of that Resource, as long as you have a Worker on that Resource's row for it.</td></tr>
             <tr><td class="k">Tunnel</td><td>Any Operative may move from this tile to any other Tunnel tile, no matter who controls either Sector. The trip costs whatever the tile you arrive on costs, <strong>plus 1</strong> for the Tunnel itself. Creatures cannot use Tunnels.</td></tr>
             <tr><td class="k">Encounter</td><td>Marks where a Creature starts. When its Sector tile is placed, deploy 1 Creature on this tile if a Creature slot is free.</td></tr>
           </tbody>
@@ -900,21 +910,16 @@
       <section id="s-workers">
         <p class="kicker">09</p>
         <h3>Workers</h3>
-        <p>Workers are your labor pool, tracked on your Player Board. You begin the game with <strong>1 available Worker</strong>. Each one sits in an assignment, and each assignment pays differently:</p>
+        <p>Workers are your labor pool, tracked on your Player Board. You begin the game with <strong>1 available Worker</strong>. Your Workers track holds at most <strong>5 available Workers</strong>: while all 5 spaces are full, you cannot gain any more. Each Worker sits in an assignment, and each assignment pays differently:</p>
         <div class="tw"><table>
           <thead><tr><th>Assignment</th><th>Effect</th></tr></thead>
           <tbody>
-                        <tr><td class="k">A Structure</td><td>Required to construct it. The Worker is locked there for as long as the Structure stands.</td></tr>
+            <tr><td class="k">A Structure</td><td>Required to construct it. The Worker is locked there for as long as the Structure stands.</td></tr>
             <tr><td class="k">Structures slot</td><td>Activate 2 Structures each turn instead of 1.</td></tr>
-            <tr><td class="k">Arc Cubes</td><td>Gain 1 extra Arc Cube each Income Phase.</td></tr>
-            <tr><td class="k">Operatives</td><td>When you draw an Operative Card, draw 2 instead and assign or discard either or both.</td></tr>
-            <tr><td class="k">A Resource</td><td>Whenever you gain that Resource type, gain 1 extra.</td></tr>
-            <tr><td class="k">Xeno Eggs</td><td>Whenever you gain Xeno Eggs, gain 1 extra.</td></tr>
-            <tr><td class="k">Contracts</td><td>Every Contract you play lasts 1 round longer.</td></tr>
+            <tr><td class="k">A Resource row</td><td>Up to 3 per Resource. Each Worker collects 1 of that Resource each Income Phase from an icon of that type in a Sector you control &mdash; see <em>Resource income</em>.</td></tr>
           </tbody>
         </table></div>
         <p>You may move Workers freely between assignments during your Cleanup Phase &mdash; <em>except</em> to or from a Structure. A Worker only enters a Structure when you construct it during your Action Phase, and never leaves it: if that Structure is destroyed, its Worker is removed from the game. If a Structure is <em>replaced</em> rather than destroyed, its Worker moves across to the replacement.</p>
-        <p>A Worker on your Contract slot is stuck in the same way, but only while a Contract is running: you cannot take it back until the slot is empty.</p>
       </section>
       <section id="s-structures">
         <p class="kicker">10</p>
@@ -923,22 +928,23 @@
         <p><strong>Activating a Structure costs 3 Arc Cubes.</strong> During your Action Phase you may activate <strong>1 Structure</strong>, or <strong>2</strong> if you have a Worker on the Structures slot beside the Structures title &mdash; the same Structure twice if you like. Your Headquarters counts as a Structure you can activate.</p>
         <div class="tip"><b>Fortify</b><p><em>Fortify X</em> means add X strength in total, divided between your Outposts and Headquarters however you like &mdash; all of it on one die, or spread around. No Outpost may pass its maximum of 6, or a Headquarters its 12; anything over that is lost.</p><p>A <strong>Suppressed</strong> Outpost or Headquarters cannot be Fortified at all. While an enemy stands in its Sector you cannot shore it up &mdash; you have to remove them first.</p></div>
         <div class="tw"><table>
-          <thead><tr><th>Structure</th><th>Cost</th><th>Fortify</th><th>Effect</th></tr></thead>
+          <thead><tr><th>Structure</th><th>Cost</th><th>Fortify</th><th>Effect</th><th>Upgrade</th></tr></thead>
           <tbody>
-            <tr><td class="k">Headquarters</td><td class="n">&mdash;</td><td class="n">10</td><td>Gain 1 Worker. Never constructed &mdash; you begin the game with it built, which is where its starting strength of 10 comes from. Your corporation is eliminated when it is destroyed.</td></tr>
-            <tr><td class="k">Barracks</td><td>1 Metal &middot; 2 Cryofluid</td><td class="n">2</td><td>Gain 1 Reroll on each Bio Attack this turn.</td></tr>
-            <tr><td class="k">Base Turret</td><td>2 Metal &middot; 1 Biofuel</td><td class="n">3</td><td>Perform a Bio Attack with 4 Combat Dice on an enemy in a Sector you control.</td></tr>
-            <tr><td class="k">Charging Bay</td><td>1 Metal &middot; 1 Silica &middot; 1 Cryofluid</td><td class="n">2</td><td>Restore 1 Energy to each of your Operatives.</td></tr>
-            <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td>Fortify 2. Redistribute Strength.</td></tr>
-            <tr><td class="k">Radar Station</td><td>1 Biofuel &middot; 2 Silica</td><td class="n">2</td><td>Move your Operatives 1 tile.</td></tr>
-            <tr><td class="k">Refinery</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Silica</td><td class="n">1</td><td>Exchange 2 Resources for 1 Resource.</td></tr>
-            <tr><td class="k">Science Academy</td><td>2 Silica &middot; 1 Cryofluid</td><td class="n">1</td><td>Gain 1 Ability Card.</td></tr>
-            <tr><td class="k">Shield Generator</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Cryofluid</td><td class="n">3</td><td>Until your next turn, you roll 1 extra Combat Die while defending.</td></tr>
-            <tr><td class="k">Starport</td><td>1 Metal &middot; 2 Silica</td><td class="n">2</td><td>Move an Operative adjacent to a friendly Outpost or Headquarters.</td></tr>
-            <tr><td class="k">Xeno Lab</td><td>1 Biofuel &middot; 2 Cryofluid</td><td class="n">1</td><td>Gain 1 Xeno Egg.</td></tr>
+            <tr><td class="k">Headquarters</td><td class="n">&mdash;</td><td class="n">10</td><td>Gain 1 Worker. Never constructed &mdash; you begin the game with it built, which is where its starting strength of 10 comes from. Your corporation is eliminated when it is destroyed.</td><td><strong>Silo:</strong> your Arc Cube storage rises from 12 to 24.</td></tr>
+            <tr><td class="k">Barracks</td><td>1 Metal &middot; 2 Cryofluid</td><td class="n">2</td><td>1 Reroll on each Bio Attack this turn.</td><td>The Rerolls also apply to Siege Attacks.</td></tr>
+            <tr><td class="k">Base Turret</td><td>2 Metal &middot; 1 Biofuel</td><td class="n">3</td><td>Perform a Bio Attack with 4 Combat Dice on an enemy in a Sector you control.</td><td>It may also target an enemy in a Sector adjacent to one you control.</td></tr>
+            <tr><td class="k">Foundry</td><td>1 Metal &middot; 2 Biofuel</td><td class="n">1</td><td>Fortify 3.</td><td>Also Redistribute Strength.</td></tr>
+            <tr><td class="k">Radar Station</td><td>1 Biofuel &middot; 2 Silica</td><td class="n">2</td><td>Move your Operatives 1 tile.</td><td>Move them up to 2 tiles.</td></tr>
+            <tr><td class="k">Refinery</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Silica</td><td class="n">1</td><td>Exchange 2 Resources for 1 Resource.</td><td>Exchange 1 Resource for 1 Resource.</td></tr>
+            <tr><td class="k">Science Academy</td><td>2 Silica &middot; 1 Cryofluid</td><td class="n">1</td><td>Gain 2 Ability Cards.</td><td>Gain 3 Ability Cards.</td></tr>
+            <tr><td class="k">Shield Generator</td><td>1 Metal &middot; 1 Biofuel &middot; 1 Cryofluid</td><td class="n">3</td><td>Until your next turn, your Operatives gain 1 extra Combat Die while defending.</td><td>Your Outposts and Headquarters also roll 1 extra Combat Die while defending against a Siege Attack.</td></tr>
+            <tr><td class="k">Starport</td><td>1 Metal &middot; 2 Silica</td><td class="n">2</td><td>Move an Operative adjacent to a friendly Outpost or Headquarters.</td><td>Move all your Operatives, each adjacent to a friendly Outpost or Headquarters.</td></tr>
+            <tr><td class="k">Xeno Lab</td><td>1 Biofuel &middot; 2 Cryofluid</td><td class="n">1</td><td>Gain 1 Xeno Egg.</td><td>Also restore 1 Energy to each of your Operatives.</td></tr>
           </tbody>
         </table></div>
-        <p><strong>Redistribute Strength</strong> (Foundry): move strength freely between your own Outposts and Headquarters. No die may go above its maximum or below 1.</p>
+        <h4>Upgrades</h4>
+        <p>Every Structure, your Headquarters included, has an <strong>upgrade box</strong> with an arrow at the end of its row. During your Action Phase you may pay <strong>any 3 Resources</strong>, in any mix, to upgrade a Structure you have built: put a tracker in its upgrade box. An upgrade is permanent, adds to the Structure's effect as listed above, and needs no Worker and no activation. If the Structure is destroyed, its upgrade is lost with it; rebuild it and you must upgrade it again.</p>
+        <p><strong>Redistribute Strength</strong> (upgraded Foundry): move strength freely between your own Outposts and Headquarters. No die may go above its maximum or below 1.</p>
         <p>A tile move from a Structure, such as the Radar Station's, ignores Movement Points: the tile costs the same whatever its terrain.</p>
       </section>
       <section id="s-operatives">
@@ -950,7 +956,7 @@
         <p>You may assign to any slot, empty or not. Assigning over an existing Operative discards that card, and if it was deployed its die comes off the board first. The new Operative always arrives assigned but undeployed.</p>
         <div class="tip"><b>Assigning is permanent</b><p>A replaced Operative Card is discarded, not returned to the deck or your hand. Choose carefully before assigning over an Operative you want to keep.</p></div>
         <h4>Deploying</h4>
-        <p>Operatives enter the board only in your <strong>Deployment Phase</strong>. There you may deploy each assigned Operative to a tile <strong>adjacent to any Outpost you hold</strong>, or to your Headquarters.</p>
+        <p>Operatives enter the board only in your <strong>Deployment Phase</strong>. There you may deploy each assigned Operative to a tile <strong>adjacent to any Outpost you hold or to your Headquarters, and in the same Sector</strong> &mdash; a tile next to it but across a Sector border does not count.</p>
         <p>No two Operatives may share a tile, and if there is no free space you simply cannot deploy until there is. Deploying is always optional. An Operative assigned later in your turn &mdash; by a card, a replacement or a returning Trooper &mdash; waits, undeployed, for your next Deployment Phase.</p>
         <p>Deploying next to a <em>Suppressed</em> Outpost or Headquarters &mdash; one whose Sector holds an enemy Operative or Creature &mdash; is allowed, but the Operative arrives at <strong>half its maximum Energy, rounded down</strong>.</p>
         <h4>The Trooper</h4>
@@ -983,15 +989,15 @@
         </ul>
         <p>A Creature's targets are enemy Operatives within its Range, plus the enemy Outpost or Headquarters on an adjacent tile if that Creature can perform a Siege Attack. Since attacking one needs adjacency &mdash; the same rule players follow &mdash; a Creature can never reach two at once.</p>
         <h4>Killing and subjugating Creatures</h4>
-        <p>Eliminating a Creature with an Operative advances your Progression tracker by 1 and puts a token on the <em>Eliminate Creatures</em> row of <em>Incentives</em>, which pays your <strong>1 Xeno Egg</strong>. The kill itself pays no other Xeno Egg.</p>
-        <div class="tip"><b>Subjugation</b><p>When one of your Operatives would eliminate a Creature, you may subjugate it instead. You forgo both the Progression advance and the Xeno Egg. Place the Encounter Card on your Subjugated Creature slot and restore its Health fully &mdash; it now counts as an Operative under your control. Its die leaves the board with the card: it arrives assigned but undeployed, like any Operative you assign. Only effects that restore Health heal it.</p></div>
+        <p>Eliminating a Creature with an Operative puts a token on the <em>Eliminate or Subjugate a Creature</em> row of <em>Incentives</em>, which pays you <strong>1 Xeno Egg</strong>. Creatures are worth no Progression: you hunt them to clear them off your land and for the Xeno Eggs you spend against rivals.</p>
+        <div class="tip"><b>Subjugation</b><p>When one of your Operatives would eliminate a Creature, you may subjugate it instead, which also places your token on <em>Eliminate or Subjugate a Creature</em> and pays its Xeno Egg. Place the Encounter Card on your Subjugated Creature slot and restore its Health fully &mdash; it now counts as an Operative under your control. Its die leaves the board with the card: it arrives assigned but undeployed, like any Operative you assign. Only effects that restore Health heal it.</p></div>
       </section>
       <section id="s-tiers">
         <p class="kicker">13</p>
         <h3>Tiers &amp; Progression</h3>
         <p>Every corporation starts at Tier 1 and climbs to 3 along the Progression tracker on its Player Board. Tier 1 is blue, Tier 2 purple, Tier 3 red &mdash; the same colors used on Ability Cards.</p>
         <h4>Advancing the tracker</h4>
-        <p>Move forward 1 square each time you claim a Settlement, an enemy Outpost or a Headquarters, or render one uninhabitable; eliminate an enemy Operative or a Creature; or gain Progression from any other effect. Destroying something is not a separate step: the claim, or rendering it uninhabitable, advances you once.</p>
+        <p>Move forward 1 square each time you claim a Settlement, an enemy Outpost or a Headquarters, or render one uninhabitable; eliminate an enemy Operative; or gain Progression from any other effect. Destroying something is not a separate step: the claim, or rendering it uninhabitable, advances you once.</p>
         <div class="tip"><b>Ability Cards do not score</b><p>Anything an Ability Card eliminates or destroys directly gives no Progression and no Incentives token, unless the card says so.</p></div>
         <p>Landing on a reward square immediately grants either <strong>1 Ability Card</strong> or <strong>3 Arc Cubes</strong>, depending on the icon. Landing on the Tier 2 or Tier 3 square advances you immediately &mdash; there is no cost, no action, and no way to delay it. Reaching the final black square ends the game and wins it.</p>
         <h4>What advancing changes</h4>
@@ -1019,10 +1025,10 @@
         <div class="tw"><table>
           <thead><tr><th>Currency</th><th>Gained from</th><th>Spent on</th></tr></thead>
           <tbody>
-            <tr><td class="k">Arc Cubes</td><td>1 per Outpost you hold each Income Phase (2 for your Headquarters), +1 with a Worker assigned; the Progression tracker; card effects.</td><td>Playing Ability Cards, recruiting Operatives, trading.</td></tr>
-            <tr><td class="k">Resources</td><td>The Event Die, and various card effects. Metal, Biofuel, Silica and Cryofluid.</td><td>Constructing Structures, trading.</td></tr>
+            <tr><td class="k">Arc Cubes</td><td>1 per Outpost you hold each Income Phase (3 for your Headquarters); Orbital Trade; the Progression tracker; card effects.</td><td>Playing Ability Cards, recruiting Operatives, trading.</td></tr>
+            <tr><td class="k">Resources</td><td>Workers on your Resource rows collecting from Sectors you control, the Event Die, and various card effects. Metal, Biofuel, Silica and Cryofluid; at most 3 of each.</td><td>Constructing Structures, Orbital Trade, trading.</td></tr>
             <tr><td class="k">Ability Cards</td><td>1 per turn in your Income Phase; the Progression tracker; card effects.</td><td>Playing them. Hand limit 5, enforced at Cleanup.</td></tr>
-            <tr><td class="k">Xeno Eggs</td><td>Eliminating Creatures, and various card effects &mdash; +1 each time with a Worker assigned.</td><td>+2 Combat Dice before a Bio Roll, or restore an Operative to its maximum Energy.</td></tr>
+            <tr><td class="k">Xeno Eggs</td><td>Eliminating Creatures, and various card effects.</td><td>+2 Combat Dice before a Bio Roll, or restore an Operative to its maximum Energy.</td></tr>
           </tbody>
         </table></div>
         <p>You may exceed your hand limit freely during your own turn &mdash; chaining draws is fine. You only discard back down to 5 in your Cleanup Phase.</p>
@@ -1031,9 +1037,11 @@
         <div class="tw"><table>
           <thead><tr><th>Currency</th><th>Limit</th></tr></thead>
           <tbody>
-            <tr><td class="k">Arc Cubes</td><td class="n">20</td></tr>
+            <tr><td class="k">Arc Cubes</td><td class="n">12 (24 with an upgraded Headquarters)</td></tr>
             <tr><td class="k">Each Resource</td><td class="n">3</td></tr>
             <tr><td class="k">Xeno Eggs</td><td class="n">4</td></tr>
+            <tr><td class="k">Available Workers</td><td class="n">5</td></tr>
+            <tr><td class="k">Orbital Trade</td><td class="n">4 Resources</td></tr>
             <tr><td class="k">Ability Cards</td><td class="n">5 at Cleanup</td></tr>
           </tbody>
         </table></div>
@@ -1046,7 +1054,7 @@
         <p><strong>Encounter Cards</strong> are the planet's Creatures: Movement, Health, Defense, Range and Attack values, plus their passive abilities.</p>
         <p><strong>Ability Cards</strong> hold three abilities each &mdash; one per Tier. You may play any single ability at or below your current Tier, paying 3, 6 or 9 Arc Cubes for Tier I, II or III. An ability is an <em>Order</em> (your turn), a <em>Counter</em> (someone else's turn, on a condition) or a <em>Contract</em> (stays in play two rounds).</p>
         <div class="tip"><b>Empty decks</b><p>When a deck runs out, shuffle its discard pile to form a new one.</p></div>
-        <div class="tip"><b>One Contract at a time</b><p>Only one Contract may sit in front of you. Discard it whenever you like, and playing a new Contract replaces it. A Worker assigned to your Contract slot adds a round to every Contract you play.</p></div>
+        <div class="tip"><b>One Contract at a time</b><p>Only one Contract may sit in front of you. Discard it whenever you like, and playing a new Contract replaces it.</p></div>
         <p><strong>Discovery Cards</strong> are shuffled through the same deck and drawn the same way, but they are not abilities and never enter your hand. A Discovery resolves the moment you draw it, costs nothing, and is discarded. Most are a windfall; a few are not. Discoveries have their own back, so everyone can see when one sits on top of the deck.</p>
         <p><strong>Incentives</strong>, printed on the board, gives everyone four shared targets to race for, each paying out on its own &mdash; see <em>Incentives</em>.</p>
         <div class="tip"><b>A card beats this manual</b><p>Where a card's text contradicts a rule written here, <strong>the card wins</strong>. Cards are written as deliberate exceptions: Sentinel Sieges from Range&nbsp;2 where the rule says Range&nbsp;1, Cinderworks walks onto Lava Fields where the rule says impassable. If the card says it, it happens.</p></div>
@@ -1059,9 +1067,9 @@
 <!-- ============ ATLAS ============ -->
 <div class="view" id="v-atlas" role="tabpanel" aria-labelledby="t-atlas" hidden>
   <header>
-    <p class="eyebrow">Orbital survey &middot; 166 printed tiles &middot; 16 Sector slots &middot; 20 Sector tiles &middot; 8 empty tiles</p>
+    <p class="eyebrow">Orbital survey &middot; 114 printed tiles &middot; 6 Sector slots &middot; 16 Sector tiles &middot; 4 empty tiles</p>
     <h1>Arcworld Sector Atlas</h1>
-    <p class="lede">The built board, read back tile by tile. Printed tiles ring the central volcano, <strong>six landing-site Sectors</strong> sit on the rim, and <strong>16 empty Sector slots</strong> wait to be filled; they fill during play from a stack of <strong>20 Sector tiles</strong>, drawn blind, with <strong>8 empty tiles</strong> swapped in at two and three players. Terrain, Settlements, Tunnels and Encounters are all read straight off the tiles below.</p>
+    <p class="lede">The built board, read back tile by tile. Printed tiles ring the central volcano, <strong>six landing-site Sectors</strong> sit on the corners of the planet, and <strong>6 empty Sector slots</strong> around the volcano wait to be filled. They fill during play from a stack built at setup out of the <strong>16 Sector tiles</strong> and, at two and three players, the <strong>4 empty tiles</strong>. Terrain, Settlements, Resources, Tunnels and Encounters are all read straight off the tiles below.</p>
     <div class="stats">
       <div class="stat"><b id="at-tiles">&mdash;</b><span>Printed tiles</span></div>
       <div class="stat"><b id="at-slots">&mdash;</b><span>Sector slots</span></div>
@@ -1074,689 +1082,402 @@
 
   <section>
     <h2>The planet</h2>
-    <p class="sub">The printed board tile for tile &mdash; 166 hexes around the impassable volcano, six of them in purple-outlined four-tile landing-site Sectors on the rim. Yellow lines outline the 16 empty Sector slots. Hover any tile for its number; click a terrain below to isolate it.</p>
+    <p class="sub">The printed board tile for tile &mdash; 114 hexes around the impassable volcano, 36 of them in the six purple-outlined landing-site Sectors on the corners. Yellow lines outline the 6 empty Sector slots. Hover any tile for its number; click a terrain below to isolate it.</p>
     <div class="board">
       <div class="boardscroll">
-<svg id="planet" viewBox="0 0 1349 974" role="img" aria-label="Arcworld: 166 printed tiles around the volcano, with 16 empty Sector slots">
+<svg id="planet" viewBox="0 0 909 865" role="img" aria-label="Arcworld: 114 printed tiles around the volcano, with 6 empty Sector slots">
 <g id="slots">
-<polygon class="slot" points="516.9,177.7 548.4,195.9 548.4,232.2 516.9,250.4 485.5,232.2 485.5,195.9" data-slot="1"/>
-<polygon class="slot" points="454.0,177.7 485.5,195.9 485.5,232.2 454.0,250.4 422.6,232.2 422.6,195.9" data-slot="1"/>
-<polygon class="slot" points="548.3,123.1 579.7,141.3 579.7,177.7 548.3,195.9 516.8,177.7 516.8,141.3" data-slot="1"/>
-<polygon class="slot" points="485.4,123.1 516.8,141.3 516.8,177.7 485.4,195.9 454.0,177.7 454.0,141.3" data-slot="1"/>
-<polygon class="slot" points="422.5,123.1 454.0,141.3 454.0,177.7 422.5,195.9 391.1,177.7 391.1,141.3" data-slot="1"/>
-<polygon class="slot" points="516.9,68.6 548.4,86.8 548.4,123.1 516.9,141.3 485.5,123.1 485.5,86.8" data-slot="1"/>
-<polygon class="slot" points="454.0,68.6 485.5,86.8 485.5,123.1 454.0,141.3 422.6,123.1 422.6,86.8" data-slot="1"/>
-<polygon class="slot" points="894.2,177.7 925.6,195.9 925.6,232.2 894.2,250.4 862.8,232.2 862.8,195.9" data-slot="2"/>
-<polygon class="slot" points="831.3,177.7 862.8,195.9 862.8,232.2 831.3,250.4 799.9,232.2 799.9,195.9" data-slot="2"/>
-<polygon class="slot" points="925.5,123.2 957.0,141.4 957.0,177.7 925.5,195.9 894.1,177.7 894.1,141.4" data-slot="2"/>
-<polygon class="slot" points="862.7,123.1 894.1,141.3 894.1,177.7 862.7,195.9 831.2,177.7 831.2,141.3" data-slot="2"/>
-<polygon class="slot" points="799.7,123.1 831.2,141.3 831.2,177.7 799.7,195.9 768.3,177.7 768.3,141.3" data-slot="2"/>
-<polygon class="slot" points="894.2,68.6 925.6,86.8 925.6,123.1 894.2,141.3 862.8,123.1 862.8,86.8" data-slot="2"/>
-<polygon class="slot" points="831.3,68.6 862.8,86.8 862.8,123.1 831.3,141.3 799.9,123.1 799.9,86.8" data-slot="2"/>
-<polygon class="slot" points="328.4,286.8 359.8,305.0 359.8,341.4 328.4,359.6 296.9,341.4 296.9,305.0" data-slot="3"/>
-<polygon class="slot" points="265.3,286.8 296.8,305.0 296.8,341.4 265.3,359.6 233.9,341.4 233.9,305.0" data-slot="3"/>
-<polygon class="slot" points="359.6,232.3 391.1,250.4 391.1,286.8 359.6,305.0 328.2,286.8 328.2,250.4" data-slot="3"/>
-<polygon class="slot" points="296.8,232.3 328.2,250.5 328.2,286.8 296.8,305.0 265.3,286.8 265.3,250.5" data-slot="3"/>
-<polygon class="slot" points="233.9,232.3 265.3,250.4 265.3,286.8 233.9,305.0 202.4,286.8 202.4,250.4" data-slot="3"/>
-<polygon class="slot" points="328.3,177.7 359.7,195.9 359.7,232.2 328.3,250.4 296.8,232.2 296.8,195.9" data-slot="3"/>
-<polygon class="slot" points="265.4,177.7 296.8,195.9 296.8,232.2 265.4,250.4 234.0,232.2 234.0,195.9" data-slot="3"/>
-<polygon class="slot" points="705.6,286.8 737.1,305.0 737.1,341.4 705.6,359.6 674.2,341.4 674.2,305.0" data-slot="4"/>
-<polygon class="slot" points="642.7,286.8 674.1,305.0 674.1,341.4 642.7,359.6 611.2,341.4 611.2,305.0" data-slot="4"/>
-<polygon class="slot" points="737.0,232.3 768.4,250.4 768.4,286.8 737.0,305.0 705.6,286.8 705.6,250.4" data-slot="4"/>
-<polygon class="slot" points="674.0,232.3 705.5,250.5 705.5,286.8 674.0,305.0 642.6,286.8 642.6,250.5" data-slot="4"/>
-<polygon class="slot" points="611.2,232.3 642.6,250.4 642.6,286.8 611.2,305.0 579.7,286.8 579.7,250.4" data-slot="4"/>
-<polygon class="slot" points="705.6,177.7 737.0,195.9 737.0,232.2 705.6,250.4 674.1,232.2 674.1,195.9" data-slot="4"/>
-<polygon class="slot" points="642.7,177.7 674.1,195.9 674.1,232.2 642.7,250.4 611.2,232.2 611.2,195.9" data-slot="4"/>
-<polygon class="slot" points="1082.7,286.8 1114.1,305.0 1114.1,341.4 1082.7,359.6 1051.2,341.4 1051.2,305.0" data-slot="5"/>
-<polygon class="slot" points="1020.0,286.8 1051.4,305.0 1051.4,341.4 1020.0,359.6 988.5,341.4 988.5,305.0" data-slot="5"/>
-<polygon class="slot" points="1114.3,232.3 1145.7,250.4 1145.7,286.8 1114.3,305.0 1082.8,286.8 1082.8,250.4" data-slot="5"/>
-<polygon class="slot" points="1051.3,232.3 1082.8,250.5 1082.8,286.8 1051.3,305.0 1019.9,286.8 1019.9,250.5" data-slot="5"/>
-<polygon class="slot" points="988.5,232.3 1020.0,250.4 1020.0,286.8 988.5,305.0 957.1,286.8 957.1,250.4" data-slot="5"/>
-<polygon class="slot" points="1082.9,177.7 1114.4,195.9 1114.4,232.2 1082.9,250.4 1051.5,232.2 1051.5,195.9" data-slot="5"/>
-<polygon class="slot" points="1020.2,177.7 1051.6,195.9 1051.6,232.2 1020.2,250.4 988.7,232.2 988.7,195.9" data-slot="5"/>
-<polygon class="slot" points="516.9,395.9 548.4,414.1 548.4,450.5 516.9,468.7 485.5,450.5 485.5,414.1" data-slot="6"/>
-<polygon class="slot" points="454.1,396.0 485.5,414.2 485.5,450.5 454.1,468.7 422.6,450.5 422.6,414.2" data-slot="6"/>
-<polygon class="slot" points="548.4,341.4 579.8,359.6 579.8,395.9 548.4,414.1 516.9,395.9 516.9,359.6" data-slot="6"/>
-<polygon class="slot" points="485.4,341.4 516.8,359.6 516.8,395.9 485.4,414.1 454.0,395.9 454.0,359.6" data-slot="6"/>
-<polygon class="slot" points="422.5,341.4 454.0,359.6 454.0,395.9 422.5,414.1 391.1,395.9 391.1,359.6" data-slot="6"/>
-<polygon class="slot" points="517.0,286.8 548.4,305.0 548.4,341.4 517.0,359.6 485.5,341.4 485.5,305.0" data-slot="6"/>
-<polygon class="slot" points="454.1,286.8 485.6,305.0 485.6,341.4 454.1,359.6 422.7,341.4 422.7,305.0" data-slot="6"/>
-<polygon class="slot" points="894.2,395.9 925.6,414.1 925.6,450.5 894.2,468.7 862.8,450.5 862.8,414.1" data-slot="7"/>
-<polygon class="slot" points="831.3,395.9 862.8,414.1 862.8,450.5 831.3,468.7 799.9,450.5 799.9,414.1" data-slot="7"/>
-<polygon class="slot" points="925.6,341.4 957.0,359.6 957.0,395.9 925.6,414.1 894.1,395.9 894.1,359.6" data-slot="7"/>
-<polygon class="slot" points="862.8,341.4 894.2,359.6 894.2,395.9 862.8,414.1 831.3,395.9 831.3,359.6" data-slot="7"/>
-<polygon class="slot" points="799.7,341.4 831.2,359.6 831.2,395.9 799.7,414.1 768.3,395.9 768.3,359.6" data-slot="7"/>
-<polygon class="slot" points="894.3,286.8 925.7,305.0 925.7,341.4 894.3,359.6 862.8,341.4 862.8,305.0" data-slot="7"/>
-<polygon class="slot" points="831.3,286.8 862.8,305.0 862.8,341.4 831.3,359.6 799.9,341.4 799.9,305.0" data-slot="7"/>
-<polygon class="slot" points="328.1,505.2 359.6,523.4 359.6,559.7 328.1,577.9 296.7,559.7 296.7,523.4" data-slot="8"/>
-<polygon class="slot" points="265.4,505.2 296.8,523.3 296.8,559.7 265.4,577.9 233.9,559.7 233.9,523.3" data-slot="8"/>
-<polygon class="slot" points="359.8,450.6 391.2,468.8 391.2,505.1 359.8,523.3 328.3,505.1 328.3,468.8" data-slot="8"/>
-<polygon class="slot" points="296.9,450.6 328.3,468.8 328.3,505.1 296.9,523.3 265.4,505.1 265.4,468.8" data-slot="8"/>
-<polygon class="slot" points="234.0,450.6 265.4,468.8 265.4,505.1 234.0,523.3 202.6,505.1 202.6,468.8" data-slot="8"/>
-<polygon class="slot" points="328.4,395.9 359.8,414.1 359.8,450.5 328.4,468.7 296.9,450.5 296.9,414.1" data-slot="8"/>
-<polygon class="slot" points="265.4,395.9 296.8,414.1 296.8,450.5 265.4,468.7 234.0,450.5 234.0,414.1" data-slot="8"/>
-<polygon class="slot" points="1082.8,505.2 1114.2,523.3 1114.2,559.7 1082.8,577.9 1051.4,559.7 1051.4,523.3" data-slot="9"/>
-<polygon class="slot" points="1019.9,505.2 1051.4,523.3 1051.4,559.7 1019.9,577.9 988.5,559.7 988.5,523.3" data-slot="9"/>
-<polygon class="slot" points="1114.4,450.6 1145.8,468.8 1145.8,505.1 1114.4,523.3 1083.0,505.1 1083.0,468.8" data-slot="9"/>
-<polygon class="slot" points="1051.6,450.5 1083.0,468.7 1083.0,505.1 1051.6,523.3 1020.1,505.1 1020.1,468.7" data-slot="9"/>
-<polygon class="slot" points="988.6,450.6 1020.1,468.8 1020.1,505.1 988.6,523.3 957.2,505.1 957.2,468.8" data-slot="9"/>
-<polygon class="slot" points="1082.8,395.9 1114.3,414.1 1114.3,450.5 1082.8,468.7 1051.4,450.5 1051.4,414.1" data-slot="9"/>
-<polygon class="slot" points="1020.0,395.9 1051.4,414.1 1051.4,450.5 1020.0,468.7 988.5,450.5 988.5,414.1" data-slot="9"/>
-<polygon class="slot" points="516.9,614.3 548.3,632.5 548.3,668.8 516.9,687.0 485.4,668.8 485.4,632.5" data-slot="10"/>
-<polygon class="slot" points="454.0,614.3 485.4,632.5 485.4,668.8 454.0,687.0 422.6,668.8 422.6,632.5" data-slot="10"/>
-<polygon class="slot" points="548.5,559.7 579.9,577.9 579.9,614.3 548.5,632.4 517.0,614.3 517.0,577.9" data-slot="10"/>
-<polygon class="slot" points="485.5,559.7 517.0,577.9 517.0,614.3 485.5,632.4 454.1,614.3 454.1,577.9" data-slot="10"/>
-<polygon class="slot" points="422.6,559.7 454.1,577.9 454.1,614.3 422.6,632.4 391.2,614.3 391.2,577.9" data-slot="10"/>
-<polygon class="slot" points="516.9,505.2 548.4,523.3 548.4,559.7 516.9,577.9 485.5,559.7 485.5,523.3" data-slot="10"/>
-<polygon class="slot" points="454.0,505.2 485.5,523.3 485.5,559.7 454.0,577.9 422.6,559.7 422.6,523.3" data-slot="10"/>
-<polygon class="slot" points="894.2,614.3 925.6,632.5 925.6,668.8 894.2,687.0 862.7,668.8 862.7,632.5" data-slot="11"/>
-<polygon class="slot" points="831.3,614.3 862.7,632.5 862.7,668.8 831.3,687.0 799.8,668.8 799.8,632.5" data-slot="11"/>
-<polygon class="slot" points="925.6,559.7 957.0,577.9 957.0,614.3 925.6,632.5 894.1,614.3 894.1,577.9" data-slot="11"/>
-<polygon class="slot" points="862.8,559.7 894.2,577.9 894.2,614.3 862.8,632.4 831.4,614.3 831.4,577.9" data-slot="11"/>
-<polygon class="slot" points="800.0,559.7 831.4,577.9 831.4,614.3 800.0,632.5 768.5,614.3 768.5,577.9" data-slot="11"/>
-<polygon class="slot" points="894.2,505.2 925.7,523.3 925.7,559.7 894.2,577.9 862.8,559.7 862.8,523.3" data-slot="11"/>
-<polygon class="slot" points="831.3,505.2 862.7,523.3 862.7,559.7 831.3,577.9 799.8,559.7 799.8,523.3" data-slot="11"/>
-<polygon class="slot" points="328.3,723.4 359.7,741.6 359.7,777.9 328.3,796.1 296.9,777.9 296.9,741.6" data-slot="12"/>
-<polygon class="slot" points="265.4,723.4 296.8,741.6 296.8,777.9 265.4,796.1 233.9,777.9 233.9,741.6" data-slot="12"/>
-<polygon class="slot" points="359.7,668.8 391.2,687.0 391.2,723.4 359.7,741.6 328.3,723.4 328.3,687.0" data-slot="12"/>
-<polygon class="slot" points="296.9,668.8 328.3,687.0 328.3,723.4 296.9,741.6 265.4,723.4 265.4,687.0" data-slot="12"/>
-<polygon class="slot" points="234.1,668.8 265.5,687.0 265.5,723.4 234.1,741.6 202.6,723.4 202.6,687.0" data-slot="12"/>
-<polygon class="slot" points="328.2,614.3 359.6,632.5 359.6,668.8 328.2,687.0 296.7,668.8 296.7,632.5" data-slot="12"/>
-<polygon class="slot" points="265.3,614.3 296.7,632.5 296.7,668.8 265.3,687.0 233.8,668.8 233.8,632.5" data-slot="12"/>
-<polygon class="slot" points="705.5,723.4 737.0,741.6 737.0,777.9 705.5,796.1 674.1,777.9 674.1,741.6" data-slot="13"/>
-<polygon class="slot" points="642.6,723.4 674.0,741.6 674.0,777.9 642.6,796.1 611.2,777.9 611.2,741.6" data-slot="13"/>
-<polygon class="slot" points="737.0,668.8 768.4,687.0 768.4,723.4 737.0,741.6 705.5,723.4 705.5,687.0" data-slot="13"/>
-<polygon class="slot" points="674.2,668.8 705.6,687.0 705.6,723.4 674.2,741.6 642.7,723.4 642.7,687.0" data-slot="13"/>
-<polygon class="slot" points="611.3,668.8 642.8,687.0 642.8,723.3 611.3,741.5 579.9,723.3 579.9,687.0" data-slot="13"/>
-<polygon class="slot" points="705.4,614.3 736.9,632.5 736.9,668.8 705.4,687.0 674.0,668.8 674.0,632.5" data-slot="13"/>
-<polygon class="slot" points="642.7,614.3 674.1,632.5 674.1,668.8 642.7,687.0 611.2,668.8 611.2,632.5" data-slot="13"/>
-<polygon class="slot" points="1082.8,723.4 1114.2,741.6 1114.2,777.9 1082.8,796.1 1051.3,777.9 1051.3,741.6" data-slot="14"/>
-<polygon class="slot" points="1019.9,723.3 1051.3,741.5 1051.3,777.9 1019.9,796.1 988.4,777.9 988.4,741.5" data-slot="14"/>
-<polygon class="slot" points="1114.2,668.8 1145.7,687.0 1145.7,723.4 1114.2,741.6 1082.8,723.4 1082.8,687.0" data-slot="14"/>
-<polygon class="slot" points="1051.4,668.8 1082.9,687.0 1082.9,723.4 1051.4,741.6 1020.0,723.4 1020.0,687.0" data-slot="14"/>
-<polygon class="slot" points="988.5,668.8 1019.9,687.0 1019.9,723.4 988.5,741.6 957.0,723.4 957.0,687.0" data-slot="14"/>
-<polygon class="slot" points="1082.8,614.2 1114.3,632.4 1114.3,668.8 1082.8,687.0 1051.4,668.8 1051.4,632.4" data-slot="14"/>
-<polygon class="slot" points="1019.9,614.3 1051.4,632.5 1051.4,668.8 1019.9,687.0 988.5,668.8 988.5,632.5" data-slot="14"/>
-<polygon class="slot" points="516.9,832.5 548.3,850.7 548.3,887.1 516.9,905.2 485.4,887.1 485.4,850.7" data-slot="15"/>
-<polygon class="slot" points="454.0,832.5 485.4,850.7 485.4,887.1 454.0,905.3 422.5,887.1 422.5,850.7" data-slot="15"/>
-<polygon class="slot" points="548.5,778.0 579.9,796.1 579.9,832.5 548.5,850.7 517.0,832.5 517.0,796.1" data-slot="15"/>
-<polygon class="slot" points="485.6,777.9 517.0,796.1 517.0,832.5 485.6,850.6 454.1,832.5 454.1,796.1" data-slot="15"/>
-<polygon class="slot" points="422.7,778.0 454.1,796.1 454.1,832.5 422.7,850.7 391.3,832.5 391.3,796.1" data-slot="15"/>
-<polygon class="slot" points="516.8,723.4 548.2,741.6 548.2,777.9 516.8,796.1 485.4,777.9 485.4,741.6" data-slot="15"/>
-<polygon class="slot" points="453.9,723.4 485.4,741.6 485.4,777.9 453.9,796.1 422.5,777.9 422.5,741.6" data-slot="15"/>
-<polygon class="slot" points="894.2,832.5 925.6,850.7 925.6,887.1 894.2,905.2 862.7,887.1 862.7,850.7" data-slot="16"/>
-<polygon class="slot" points="831.3,832.5 862.7,850.7 862.7,887.1 831.3,905.2 799.8,887.1 799.8,850.7" data-slot="16"/>
-<polygon class="slot" points="925.6,778.0 957.1,796.1 957.1,832.5 925.6,850.7 894.2,832.5 894.2,796.1" data-slot="16"/>
-<polygon class="slot" points="862.8,777.9 894.3,796.1 894.3,832.5 862.8,850.6 831.4,832.5 831.4,796.1" data-slot="16"/>
-<polygon class="slot" points="799.8,778.0 831.3,796.1 831.3,832.5 799.8,850.7 768.4,832.5 768.4,796.1" data-slot="16"/>
-<polygon class="slot" points="894.2,723.3 925.6,741.5 925.6,777.9 894.2,796.1 862.8,777.9 862.8,741.5" data-slot="16"/>
-<polygon class="slot" points="831.2,723.4 862.7,741.6 862.7,777.9 831.2,796.1 799.8,777.9 799.8,741.6" data-slot="16"/>
+<polygon class="slot" points="485.7,232.3 517.1,250.5 517.1,286.8 485.7,305.0 454.2,286.8 454.2,250.5" data-slot="1"/>
+<polygon class="slot" points="422.8,232.3 454.2,250.5 454.2,286.8 422.8,305.0 391.4,286.8 391.4,250.5" data-slot="1"/>
+<polygon class="slot" points="517.1,177.7 548.6,195.9 548.6,232.3 517.1,250.4 485.7,232.3 485.7,195.9" data-slot="1"/>
+<polygon class="slot" points="454.2,177.7 485.7,195.9 485.7,232.3 454.2,250.4 422.8,232.3 422.8,195.9" data-slot="1"/>
+<polygon class="slot" points="391.4,177.7 422.8,195.9 422.8,232.3 391.4,250.4 359.9,232.3 359.9,195.9" data-slot="1"/>
+<polygon class="slot" points="485.7,123.2 517.1,141.3 517.1,177.7 485.7,195.9 454.2,177.7 454.2,141.3" data-slot="1"/>
+<polygon class="slot" points="422.8,123.2 454.2,141.3 454.2,177.7 422.8,195.9 391.4,177.7 391.4,141.3" data-slot="1"/>
+<polygon class="slot" points="297.0,341.4 328.5,359.6 328.5,395.9 297.0,414.1 265.6,395.9 265.6,359.6" data-slot="2"/>
+<polygon class="slot" points="234.2,341.4 265.6,359.6 265.6,395.9 234.2,414.1 202.7,395.9 202.7,359.6" data-slot="2"/>
+<polygon class="slot" points="328.5,286.8 359.9,305.0 359.9,341.4 328.5,359.6 297.0,341.4 297.0,305.0" data-slot="2"/>
+<polygon class="slot" points="265.6,286.8 297.0,305.0 297.0,341.4 265.6,359.6 234.2,341.4 234.2,305.0" data-slot="2"/>
+<polygon class="slot" points="202.7,286.8 234.2,305.0 234.2,341.4 202.7,359.6 171.3,341.4 171.3,305.0" data-slot="2"/>
+<polygon class="slot" points="297.0,232.3 328.5,250.5 328.5,286.8 297.0,305.0 265.6,286.8 265.6,250.5" data-slot="2"/>
+<polygon class="slot" points="234.2,232.3 265.6,250.5 265.6,286.8 234.2,305.0 202.7,286.8 202.7,250.5" data-slot="2"/>
+<polygon class="slot" points="674.3,341.4 705.8,359.6 705.8,395.9 674.3,414.1 642.9,395.9 642.9,359.6" data-slot="3"/>
+<polygon class="slot" points="611.4,341.4 642.9,359.6 642.9,395.9 611.4,414.1 580.0,395.9 580.0,359.6" data-slot="3"/>
+<polygon class="slot" points="705.8,286.8 737.2,305.0 737.2,341.4 705.8,359.6 674.3,341.4 674.3,305.0" data-slot="3"/>
+<polygon class="slot" points="642.9,286.8 674.3,305.0 674.3,341.4 642.9,359.6 611.4,341.4 611.4,305.0" data-slot="3"/>
+<polygon class="slot" points="580.0,286.8 611.4,305.0 611.4,341.4 580.0,359.6 548.6,341.4 548.6,305.0" data-slot="3"/>
+<polygon class="slot" points="674.3,232.3 705.8,250.5 705.8,286.8 674.3,305.0 642.9,286.8 642.9,250.5" data-slot="3"/>
+<polygon class="slot" points="611.4,232.3 642.9,250.5 642.9,286.8 611.4,305.0 580.0,286.8 580.0,250.5" data-slot="3"/>
+<polygon class="slot" points="297.0,559.6 328.5,577.8 328.5,614.2 297.0,632.4 265.6,614.2 265.6,577.8" data-slot="4"/>
+<polygon class="slot" points="234.2,559.6 265.6,577.8 265.6,614.2 234.2,632.4 202.7,614.2 202.7,577.8" data-slot="4"/>
+<polygon class="slot" points="328.5,505.1 359.9,523.3 359.9,559.6 328.5,577.8 297.0,559.6 297.0,523.3" data-slot="4"/>
+<polygon class="slot" points="265.6,505.1 297.0,523.3 297.0,559.6 265.6,577.8 234.2,559.6 234.2,523.3" data-slot="4"/>
+<polygon class="slot" points="202.7,505.1 234.2,523.3 234.2,559.6 202.7,577.8 171.3,559.6 171.3,523.3" data-slot="4"/>
+<polygon class="slot" points="297.0,450.5 328.5,468.7 328.5,505.1 297.0,523.2 265.6,505.1 265.6,468.7" data-slot="4"/>
+<polygon class="slot" points="234.2,450.5 265.6,468.7 265.6,505.1 234.2,523.2 202.7,505.1 202.7,468.7" data-slot="4"/>
+<polygon class="slot" points="674.3,559.6 705.8,577.8 705.8,614.2 674.3,632.4 642.9,614.2 642.9,577.8" data-slot="5"/>
+<polygon class="slot" points="611.4,559.6 642.9,577.8 642.9,614.2 611.4,632.4 580.0,614.2 580.0,577.8" data-slot="5"/>
+<polygon class="slot" points="705.8,505.1 737.2,523.3 737.2,559.6 705.8,577.8 674.3,559.6 674.3,523.3" data-slot="5"/>
+<polygon class="slot" points="642.9,505.1 674.3,523.3 674.3,559.6 642.9,577.8 611.4,559.6 611.4,523.3" data-slot="5"/>
+<polygon class="slot" points="580.0,505.1 611.4,523.3 611.4,559.6 580.0,577.8 548.6,559.6 548.6,523.3" data-slot="5"/>
+<polygon class="slot" points="674.3,450.5 705.8,468.7 705.8,505.1 674.3,523.2 642.9,505.1 642.9,468.7" data-slot="5"/>
+<polygon class="slot" points="611.4,450.5 642.9,468.7 642.9,505.1 611.4,523.2 580.0,505.1 580.0,468.7" data-slot="5"/>
+<polygon class="slot" points="485.7,668.8 517.1,686.9 517.1,723.3 485.7,741.5 454.2,723.3 454.2,686.9" data-slot="6"/>
+<polygon class="slot" points="422.8,668.8 454.2,686.9 454.2,723.3 422.8,741.5 391.4,723.3 391.4,686.9" data-slot="6"/>
+<polygon class="slot" points="517.1,614.2 548.6,632.4 548.6,668.7 517.1,686.9 485.7,668.7 485.7,632.4" data-slot="6"/>
+<polygon class="slot" points="454.2,614.2 485.7,632.4 485.7,668.7 454.2,686.9 422.8,668.7 422.8,632.4" data-slot="6"/>
+<polygon class="slot" points="391.4,614.2 422.8,632.4 422.8,668.7 391.4,686.9 359.9,668.7 359.9,632.4" data-slot="6"/>
+<polygon class="slot" points="485.7,559.6 517.1,577.8 517.1,614.2 485.7,632.4 454.2,614.2 454.2,577.8" data-slot="6"/>
+<polygon class="slot" points="422.8,559.6 454.2,577.8 454.2,614.2 422.8,632.4 391.4,614.2 391.4,577.8" data-slot="6"/>
 </g>
 <g id="tiles">
-<polygon class="tile" points="422.6,14.0 454.0,32.2 454.0,68.6 422.6,86.8 391.2,68.6 391.2,32.2" data-key="mountain" data-n="1" data-half="W"/>
-<polygon class="tile" points="485.5,14.0 516.9,32.2 516.9,68.6 485.5,86.8 454.0,68.6 454.0,32.2" data-key="sludge" data-n="2" data-half="W"/>
-<polygon class="tile" points="548.4,14.0 579.8,32.2 579.8,68.6 548.4,86.8 516.9,68.6 516.9,32.2" data-key="lava" data-n="3" data-half="W"/>
-<polygon class="tile" points="611.2,14.0 642.7,32.2 642.7,68.6 611.2,86.8 579.8,68.6 579.8,32.2" data-key="sludge" data-n="4" data-half="W"/>
-<polygon class="tile" points="674.2,14.0 705.6,32.2 705.6,68.6 674.2,86.8 642.8,68.6 642.8,32.2" data-key="lava" data-n="5" data-half="A"/>
-<polygon class="tile" points="737.0,14.0 768.4,32.2 768.4,68.6 737.0,86.8 705.6,68.6 705.6,32.2" data-key="wasteland" data-n="6" data-half="E"/>
-<polygon class="tile" points="799.9,14.0 831.4,32.2 831.4,68.6 799.9,86.8 768.5,68.6 768.5,32.2" data-key="spire" data-n="7" data-half="E"/>
-<polygon class="tile" points="862.9,14.0 894.4,32.2 894.4,68.6 862.9,86.8 831.5,68.6 831.5,32.2" data-key="lava" data-n="8" data-half="E"/>
-<polygon class="tile" points="925.7,14.0 957.2,32.2 957.2,68.6 925.7,86.8 894.3,68.6 894.3,32.2" data-key="sludge" data-n="9" data-half="E"/>
-<polygon class="tile" points="391.2,68.6 422.6,86.8 422.6,123.1 391.2,141.3 359.7,123.1 359.7,86.8" data-key="sludge" data-n="10" data-half="W"/>
-<polygon class="tile" points="579.7,68.6 611.2,86.8 611.2,123.1 579.7,141.3 548.3,123.1 548.3,86.8" data-key="hills" data-n="11" data-half="W"/>
-<polygon class="tile" points="642.7,68.6 674.1,86.8 674.1,123.1 642.7,141.3 611.2,123.1 611.2,86.8" data-key="wasteland" data-n="12" data-half="W"/>
-<polygon class="tile" points="705.6,68.6 737.0,86.8 737.0,123.1 705.6,141.3 674.1,123.1 674.1,86.8" data-key="mountain" data-n="13" data-half="E"/>
-<polygon class="tile" points="768.4,68.6 799.9,86.8 799.9,123.1 768.4,141.3 737.0,123.1 737.0,86.8" data-key="sludge" data-n="14" data-half="E"/>
-<polygon class="tile" points="957.2,68.6 988.6,86.8 988.6,123.1 957.2,141.3 925.7,123.1 925.7,86.8" data-key="spire" data-n="15" data-half="E"/>
-<polygon class="tile" points="233.9,123.1 265.3,141.3 265.3,177.7 233.9,195.9 202.4,177.7 202.4,141.3" data-key="sludge" data-n="16" data-half="W"/>
-<polygon class="tile" points="296.8,123.1 328.2,141.3 328.2,177.7 296.8,195.9 265.3,177.7 265.3,141.3" data-key="wasteland" data-n="17" data-half="W"/>
-<polygon class="tile" points="359.6,123.1 391.1,141.3 391.1,177.7 359.6,195.9 328.2,177.7 328.2,141.3" data-key="lava" data-n="18" data-half="W"/>
-<polygon class="tile" points="611.4,123.2 642.8,141.3 642.8,177.7 611.4,195.9 579.9,177.7 579.9,141.3" data-key="mountain" data-n="19" data-half="W"/>
-<polygon class="tile" points="674.0,123.1 705.5,141.3 705.5,177.7 674.0,195.9 642.6,177.7 642.6,141.3" data-key="lava" data-n="20" data-half="A"/>
-<polygon class="tile" points="736.9,123.1 768.4,141.3 768.4,177.7 736.9,195.9 705.5,177.7 705.5,141.3" data-key="hills" data-n="21" data-half="E"/>
-<polygon class="tile" points="988.4,123.1 1019.8,141.3 1019.8,177.7 988.4,195.9 956.9,177.7 956.9,141.3" data-key="lava" data-n="22" data-half="E"/>
-<polygon class="tile" points="1051.3,123.2 1082.7,141.4 1082.7,177.7 1051.3,195.9 1019.8,177.7 1019.8,141.4" data-key="spire" data-n="23" data-half="E"/>
-<polygon class="tile" points="1114.2,123.1 1145.6,141.3 1145.6,177.7 1114.2,195.9 1082.8,177.7 1082.8,141.3" data-key="sludge" data-n="24" data-half="E"/>
-<polygon class="tile" points="202.5,177.7 234.0,195.9 234.0,232.2 202.5,250.4 171.1,232.2 171.1,195.9" data-key="mountain" data-n="25" data-half="W"/>
-<polygon class="tile" points="391.2,177.7 422.6,195.9 422.6,232.2 391.2,250.4 359.7,232.2 359.7,195.9" data-key="hills" data-n="26" data-half="W"/>
-<polygon class="tile" points="579.8,177.7 611.2,195.9 611.2,232.2 579.8,250.4 548.4,232.2 548.4,195.9" data-key="sludge" data-n="27" data-half="W"/>
-<polygon class="tile" points="768.4,177.7 799.8,195.9 799.8,232.3 768.4,250.5 737.0,232.3 737.0,195.9" data-key="spire" data-n="28" data-half="E"/>
-<polygon class="tile" points="957.1,177.7 988.5,195.9 988.5,232.2 957.1,250.4 925.6,232.2 925.6,195.9" data-key="mountain" data-n="29" data-half="E"/>
-<polygon class="tile" points="1145.8,177.7 1177.2,195.9 1177.2,232.2 1145.8,250.4 1114.4,232.2 1114.4,195.9" data-key="hills" data-n="30" data-half="E"/>
-<polygon class="tile" points="171.0,232.3 202.4,250.4 202.4,286.8 171.0,305.0 139.6,286.8 139.6,250.4" data-key="hills" data-n="31" data-half="W"/>
-<polygon class="tile" points="422.6,232.3 454.0,250.4 454.0,286.8 422.6,305.0 391.2,286.8 391.2,250.4" data-key="lava" data-n="32" data-half="W"/>
-<polygon class="tile" points="485.4,232.3 516.8,250.4 516.8,286.8 485.4,305.0 454.0,286.8 454.0,250.4" data-key="mountain" data-n="33" data-half="W"/>
-<polygon class="tile" points="548.3,232.3 579.7,250.4 579.7,286.8 548.3,305.0 516.8,286.8 516.8,250.4" data-key="wasteland" data-n="34" data-half="W"/>
-<polygon class="tile" points="799.9,232.3 831.3,250.4 831.3,286.8 799.9,305.0 768.4,286.8 768.4,250.4" data-key="wasteland" data-n="35" data-half="E"/>
-<polygon class="tile" points="862.8,232.3 894.2,250.4 894.2,286.8 862.8,305.0 831.3,286.8 831.3,250.4" data-key="sludge" data-n="36" data-half="E"/>
-<polygon class="tile" points="925.6,232.3 957.1,250.4 957.1,286.8 925.6,305.0 894.2,286.8 894.2,250.4" data-key="lava" data-n="37" data-half="E"/>
-<polygon class="tile" points="1177.2,232.3 1208.6,250.4 1208.6,286.8 1177.2,305.0 1145.7,286.8 1145.7,250.4" data-key="sludge" data-n="38" data-half="E"/>
-<polygon class="tile" points="139.6,286.8 171.1,305.0 171.1,341.4 139.6,359.6 108.2,341.4 108.2,305.0" data-key="wasteland" data-n="39" data-half="W"/>
-<polygon class="tile" points="202.5,286.8 234.0,305.0 234.0,341.4 202.5,359.6 171.1,341.4 171.1,305.0" data-key="sludge" data-n="40" data-half="W"/>
-<polygon class="tile" points="391.2,286.8 422.6,305.0 422.6,341.4 391.2,359.6 359.7,341.4 359.7,305.0" data-key="sludge" data-n="41" data-half="W"/>
-<polygon class="tile" points="579.7,286.8 611.2,305.0 611.2,341.4 579.7,359.6 548.3,341.4 548.3,305.0" data-key="wasteland" data-n="42" data-half="W"/>
-<polygon class="tile" points="768.4,286.8 799.9,305.0 799.9,341.4 768.4,359.6 737.0,341.4 737.0,305.0" data-key="lava" data-n="43" data-half="E"/>
-<polygon class="tile" points="957.1,286.8 988.5,305.0 988.5,341.4 957.1,359.6 925.6,341.4 925.6,305.0" data-key="mountain" data-n="44" data-half="E"/>
-<polygon class="tile" points="1145.7,286.8 1177.2,305.0 1177.2,341.4 1145.7,359.6 1114.3,341.4 1114.3,305.0" data-key="mountain" data-n="45" data-half="E"/>
-<polygon class="tile" points="1208.7,286.8 1240.1,305.0 1240.1,341.4 1208.7,359.6 1177.2,341.4 1177.2,305.0" data-key="lava" data-n="46" data-half="E"/>
-<polygon class="tile" points="108.0,341.4 139.5,359.6 139.5,395.9 108.0,414.1 76.6,395.9 76.6,359.6" data-key="sludge" data-n="47" data-half="W"/>
-<polygon class="tile" points="170.9,341.4 202.4,359.6 202.4,395.9 170.9,414.1 139.5,395.9 139.5,359.6" data-key="mountain" data-n="48" data-half="W"/>
-<polygon class="tile" points="234.0,341.4 265.4,359.6 265.4,395.9 234.0,414.1 202.5,395.9 202.5,359.6" data-key="lava" data-n="49" data-half="W"/>
-<polygon class="tile" points="296.8,341.4 328.2,359.6 328.2,395.9 296.8,414.1 265.3,395.9 265.3,359.6" data-key="mountain" data-n="50" data-half="W"/>
-<polygon class="tile" points="359.7,341.4 391.1,359.6 391.1,396.0 359.7,414.1 328.2,396.0 328.2,359.6" data-key="spire" data-n="51" data-half="W"/>
-<polygon class="tile" points="611.4,341.4 642.8,359.6 642.8,395.9 611.4,414.1 579.9,395.9 579.9,359.6" data-key="lava" data-n="52" data-half="W"/>
-<polygon class="tile" points="674.0,341.4 705.4,359.5 705.4,395.9 674.0,414.1 642.5,395.9 642.5,359.5" data-key="spire" data-n="53" data-half="A" data-icon="tun"/>
-<polygon class="tile" points="736.9,341.4 768.4,359.6 768.4,395.9 736.9,414.1 705.5,395.9 705.5,359.6" data-key="mountain" data-n="54" data-half="E"/>
-<polygon class="tile" points="988.5,341.4 1020.0,359.6 1020.0,395.9 988.5,414.1 957.1,395.9 957.1,359.6" data-key="hills" data-n="55" data-half="E"/>
-<polygon class="tile" points="1051.3,341.4 1082.7,359.6 1082.7,395.9 1051.3,414.1 1019.9,395.9 1019.9,359.6" data-key="sludge" data-n="56" data-half="E"/>
-<polygon class="tile" points="1114.2,341.4 1145.6,359.6 1145.6,395.9 1114.2,414.1 1082.8,395.9 1082.8,359.6" data-key="lava" data-n="57" data-half="E"/>
-<polygon class="tile" points="1177.1,341.4 1208.5,359.6 1208.5,395.9 1177.1,414.1 1145.6,395.9 1145.6,359.6" data-key="wasteland" data-n="58" data-half="E"/>
-<polygon class="tile" points="1240.0,341.4 1271.4,359.6 1271.4,395.9 1240.0,414.1 1208.5,395.9 1208.5,359.6" data-key="hills" data-n="59" data-half="E"/>
-<polygon class="tile" points="139.7,395.9 171.2,414.1 171.2,450.5 139.7,468.7 108.3,450.5 108.3,414.1" data-key="wasteland" data-n="60" data-half="W"/>
-<polygon class="tile" points="202.4,396.0 233.8,414.2 233.8,450.5 202.4,468.7 171.0,450.5 171.0,414.2" data-key="spire" data-n="61" data-half="W"/>
-<polygon class="tile" points="391.2,395.9 422.6,414.1 422.6,450.5 391.2,468.7 359.7,450.5 359.7,414.1" data-key="sludge" data-n="62" data-half="W"/>
-<polygon class="tile" points="579.7,396.0 611.2,414.1 611.2,450.5 579.7,468.7 548.3,450.5 548.3,414.1" data-key="mountain" data-n="63" data-half="W"/>
-<polygon class="tile" points="768.5,396.0 799.9,414.1 799.9,450.5 768.5,468.7 737.1,450.5 737.1,414.1" data-key="lava" data-n="64" data-half="E"/>
-<polygon class="tile" points="957.1,395.9 988.5,414.1 988.5,450.5 957.1,468.7 925.6,450.5 925.6,414.1" data-key="hills" data-n="65" data-half="E"/>
-<polygon class="tile" points="1145.7,395.9 1177.2,414.1 1177.2,450.5 1145.7,468.7 1114.3,450.5 1114.3,414.1" data-key="mountain" data-n="66" data-half="E"/>
-<polygon class="tile" points="1208.6,395.9 1240.0,414.1 1240.0,450.5 1208.6,468.7 1177.2,450.5 1177.2,414.1" data-key="sludge" data-n="67" data-half="E"/>
-<polygon class="tile" points="171.1,450.6 202.6,468.8 202.6,505.1 171.1,523.3 139.7,505.1 139.7,468.8" data-key="lava" data-n="68" data-half="W"/>
-<polygon class="tile" points="422.6,450.6 454.1,468.8 454.1,505.1 422.6,523.3 391.2,505.1 391.2,468.8" data-key="sludge" data-n="69" data-half="W"/>
-<polygon class="tile" points="485.4,450.6 516.9,468.8 516.9,505.1 485.4,523.3 454.0,505.1 454.0,468.8" data-key="hills" data-n="70" data-half="W"/>
-<polygon class="tile" points="548.3,450.6 579.7,468.8 579.7,505.2 548.3,523.3 516.9,505.2 516.9,468.8" data-key="lava" data-n="71" data-half="W"/>
-<polygon class="tile" points="799.9,450.6 831.3,468.8 831.3,505.2 799.9,523.3 768.4,505.2 768.4,468.8" data-key="hills" data-n="72" data-half="E"/>
-<polygon class="tile" points="862.8,450.5 894.2,468.7 894.2,505.1 862.8,523.3 831.3,505.1 831.3,468.7" data-key="spire" data-n="73" data-half="E"/>
-<polygon class="tile" points="925.7,450.6 957.1,468.8 957.1,505.1 925.7,523.3 894.2,505.1 894.2,468.8" data-key="sludge" data-n="74" data-half="E"/>
-<polygon class="tile" points="1177.2,450.6 1208.6,468.8 1208.6,505.2 1177.2,523.3 1145.7,505.2 1145.7,468.8" data-key="lava" data-n="75" data-half="E"/>
-<polygon class="tile" points="139.6,505.2 171.0,523.3 171.0,559.7 139.6,577.9 108.2,559.7 108.2,523.3" data-key="sludge" data-n="76" data-half="W"/>
-<polygon class="tile" points="202.4,505.2 233.9,523.3 233.9,559.7 202.4,577.9 171.0,559.7 171.0,523.3" data-key="wasteland" data-n="77" data-half="W"/>
-<polygon class="tile" points="391.2,505.2 422.6,523.3 422.6,559.7 391.2,577.9 359.7,559.7 359.7,523.3" data-key="lava" data-n="78" data-half="W"/>
-<polygon class="tile" points="579.7,505.2 611.1,523.3 611.1,559.7 579.7,577.9 548.2,559.7 548.2,523.3" data-key="mountain" data-n="79" data-half="W"/>
-<polygon class="tile" points="768.4,505.1 799.9,523.3 799.9,559.7 768.4,577.9 737.0,559.7 737.0,523.3" data-key="lava" data-n="80" data-half="E"/>
-<polygon class="tile" points="956.9,505.2 988.4,523.4 988.4,559.7 956.9,577.9 925.5,559.7 925.5,523.4" data-key="lava" data-n="81" data-half="E"/>
-<polygon class="tile" points="1145.8,505.1 1177.2,523.3 1177.2,559.7 1145.8,577.8 1114.4,559.7 1114.4,523.3" data-key="spire" data-n="82" data-half="E"/>
-<polygon class="tile" points="1208.6,505.2 1240.0,523.3 1240.0,559.7 1208.6,577.9 1177.1,559.7 1177.1,523.3" data-key="sludge" data-n="83" data-half="E"/>
-<polygon class="tile" points="108.3,559.7 139.7,577.8 139.7,614.2 108.3,632.4 76.8,614.2 76.8,577.8" data-key="wasteland" data-n="84" data-half="W"/>
-<polygon class="tile" points="171.2,559.7 202.6,577.8 202.6,614.2 171.2,632.4 139.7,614.2 139.7,577.8" data-key="spire" data-n="85" data-half="W"/>
-<polygon class="tile" points="234.1,559.7 265.5,577.9 265.5,614.3 234.1,632.4 202.6,614.3 202.6,577.9" data-key="lava" data-n="86" data-half="W"/>
-<polygon class="tile" points="296.9,559.7 328.3,577.9 328.3,614.3 296.9,632.4 265.4,614.3 265.4,577.9" data-key="wasteland" data-n="87" data-half="W"/>
-<polygon class="tile" points="359.7,559.7 391.1,577.9 391.1,614.3 359.7,632.4 328.2,614.3 328.2,577.9" data-key="mountain" data-n="88" data-half="W"/>
-<polygon class="tile" points="611.2,559.7 642.6,577.9 642.6,614.3 611.2,632.4 579.8,614.3 579.8,577.9" data-key="sludge" data-n="89" data-half="W"/>
-<polygon class="tile" points="674.2,559.7 705.6,577.9 705.6,614.2 674.2,632.4 642.7,614.2 642.7,577.9" data-key="spire" data-n="90" data-half="A" data-icon="tun"/>
-<polygon class="tile" points="737.0,559.7 768.5,577.9 768.5,614.3 737.0,632.4 705.6,614.3 705.6,577.9" data-key="sludge" data-n="91" data-half="E"/>
-<polygon class="tile" points="988.6,559.7 1020.1,577.9 1020.1,614.3 988.6,632.4 957.2,614.3 957.2,577.9" data-key="mountain" data-n="92" data-half="E"/>
-<polygon class="tile" points="1051.4,559.7 1082.9,577.9 1082.9,614.3 1051.4,632.4 1020.0,614.3 1020.0,577.9" data-key="sludge" data-n="93" data-half="E"/>
-<polygon class="tile" points="1114.2,559.7 1145.7,577.9 1145.7,614.3 1114.2,632.4 1082.8,614.3 1082.8,577.9" data-key="lava" data-n="94" data-half="E"/>
-<polygon class="tile" points="1177.2,559.7 1208.7,577.9 1208.7,614.3 1177.2,632.5 1145.8,614.3 1145.8,577.9" data-key="lava" data-n="95" data-half="E"/>
-<polygon class="tile" points="1240.2,559.8 1271.6,577.9 1271.6,614.3 1240.2,632.5 1208.7,614.3 1208.7,577.9" data-key="spire" data-n="96" data-half="E"/>
-<polygon class="tile" points="139.6,614.3 171.0,632.5 171.0,668.8 139.6,687.0 108.2,668.8 108.2,632.5" data-key="sludge" data-n="97" data-half="W"/>
-<polygon class="tile" points="202.5,614.3 233.9,632.5 233.9,668.8 202.5,687.0 171.0,668.8 171.0,632.5" data-key="mountain" data-n="98" data-half="W"/>
-<polygon class="tile" points="391.1,614.3 422.6,632.5 422.6,668.8 391.1,687.0 359.7,668.8 359.7,632.5" data-key="sludge" data-n="99" data-half="W"/>
-<polygon class="tile" points="579.8,614.3 611.2,632.4 611.2,668.8 579.8,687.0 548.3,668.8 548.3,632.4" data-key="spire" data-n="100" data-half="W"/>
-<polygon class="tile" points="768.4,614.3 799.8,632.5 799.8,668.8 768.4,687.0 737.0,668.8 737.0,632.5" data-key="wasteland" data-n="101" data-half="E"/>
-<polygon class="tile" points="957.1,614.3 988.5,632.5 988.5,668.8 957.1,687.0 925.7,668.8 925.7,632.5" data-key="wasteland" data-n="102" data-half="E"/>
-<polygon class="tile" points="1145.7,614.3 1177.2,632.5 1177.2,668.8 1145.7,687.0 1114.3,668.8 1114.3,632.5" data-key="wasteland" data-n="103" data-half="E"/>
-<polygon class="tile" points="1208.6,614.3 1240.0,632.5 1240.0,668.8 1208.6,687.0 1177.1,668.8 1177.1,632.5" data-key="mountain" data-n="104" data-half="E"/>
-<polygon class="tile" points="171.2,668.9 202.6,687.0 202.6,723.4 171.2,741.6 139.7,723.4 139.7,687.0" data-key="spire" data-n="105" data-half="W"/>
-<polygon class="tile" points="422.6,668.8 454.1,687.0 454.1,723.4 422.6,741.6 391.2,723.4 391.2,687.0" data-key="lava" data-n="106" data-half="W"/>
-<polygon class="tile" points="485.4,668.8 516.9,687.0 516.9,723.4 485.4,741.6 454.0,723.4 454.0,687.0" data-key="wasteland" data-n="107" data-half="W"/>
-<polygon class="tile" points="548.4,668.8 579.8,687.0 579.8,723.3 548.4,741.5 516.9,723.3 516.9,687.0" data-key="spire" data-n="108" data-half="W"/>
-<polygon class="tile" points="799.9,668.8 831.3,687.0 831.3,723.4 799.9,741.6 768.4,723.4 768.4,687.0" data-key="mountain" data-n="109" data-half="E"/>
-<polygon class="tile" points="862.8,668.8 894.2,687.0 894.2,723.3 862.8,741.5 831.3,723.3 831.3,687.0" data-key="spire" data-n="110" data-half="E"/>
-<polygon class="tile" points="925.6,668.8 957.0,687.0 957.0,723.4 925.6,741.6 894.2,723.4 894.2,687.0" data-key="lava" data-n="111" data-half="E"/>
-<polygon class="tile" points="1177.2,668.8 1208.6,687.0 1208.6,723.3 1177.2,741.5 1145.7,723.3 1145.7,687.0" data-key="hills" data-n="112" data-half="E"/>
-<polygon class="tile" points="202.5,723.4 233.9,741.6 233.9,777.9 202.5,796.1 171.0,777.9 171.0,741.6" data-key="hills" data-n="113" data-half="W"/>
-<polygon class="tile" points="391.1,723.4 422.5,741.6 422.5,777.9 391.1,796.1 359.6,777.9 359.6,741.6" data-key="sludge" data-n="114" data-half="W"/>
-<polygon class="tile" points="579.7,723.4 611.1,741.6 611.1,777.9 579.7,796.1 548.2,777.9 548.2,741.6" data-key="mountain" data-n="115" data-half="W"/>
-<polygon class="tile" points="768.4,723.4 799.8,741.6 799.8,777.9 768.4,796.1 737.0,777.9 737.0,741.6" data-key="wasteland" data-n="116" data-half="E"/>
-<polygon class="tile" points="957.0,723.3 988.4,741.5 988.4,777.9 957.0,796.1 925.6,777.9 925.6,741.5" data-key="spire" data-n="117" data-half="E"/>
-<polygon class="tile" points="1145.7,723.3 1177.1,741.5 1177.1,777.9 1145.7,796.1 1114.3,777.9 1114.3,741.5" data-key="sludge" data-n="118" data-half="E"/>
-<polygon class="tile" points="234.0,778.0 265.4,796.1 265.4,832.5 234.0,850.7 202.6,832.5 202.6,796.1" data-key="sludge" data-n="119" data-half="W"/>
-<polygon class="tile" points="296.9,777.9 328.4,796.1 328.4,832.5 296.9,850.7 265.5,832.5 265.5,796.1" data-key="sludge" data-n="120" data-half="W"/>
-<polygon class="tile" points="359.8,778.0 391.2,796.1 391.2,832.5 359.8,850.7 328.3,832.5 328.3,796.1" data-key="lava" data-n="121" data-half="W"/>
-<polygon class="tile" points="611.2,778.0 642.7,796.2 642.7,832.5 611.2,850.7 579.8,832.5 579.8,796.2" data-key="sludge" data-n="122" data-half="W"/>
-<polygon class="tile" points="674.2,778.0 705.7,796.1 705.7,832.5 674.2,850.7 642.8,832.5 642.8,796.1" data-key="lava" data-n="123" data-half="A"/>
-<polygon class="tile" points="737.0,778.0 768.4,796.1 768.4,832.5 737.0,850.7 705.5,832.5 705.5,796.1" data-key="lava" data-n="124" data-half="E"/>
-<polygon class="tile" points="988.5,778.0 1019.9,796.1 1019.9,832.5 988.5,850.7 957.0,832.5 957.0,796.1" data-key="lava" data-n="125" data-half="E"/>
-<polygon class="tile" points="1051.4,778.0 1082.8,796.2 1082.8,832.5 1051.4,850.7 1020.0,832.5 1020.0,796.2" data-key="sludge" data-n="126" data-half="E"/>
-<polygon class="tile" points="1114.3,778.0 1145.7,796.2 1145.7,832.5 1114.3,850.7 1082.8,832.5 1082.8,796.2" data-key="mountain" data-n="127" data-half="E"/>
-<polygon class="tile" points="391.1,832.5 422.6,850.7 422.6,887.1 391.1,905.2 359.7,887.1 359.7,850.7" data-key="hills" data-n="128" data-half="W"/>
-<polygon class="tile" points="579.7,832.5 611.1,850.7 611.1,887.1 579.7,905.2 548.2,887.1 548.2,850.7" data-key="mountain" data-n="129" data-half="W"/>
-<polygon class="tile" points="642.6,832.5 674.1,850.7 674.1,887.1 642.6,905.2 611.2,887.1 611.2,850.7" data-key="wasteland" data-n="130" data-half="W"/>
-<polygon class="tile" points="705.5,832.5 737.0,850.7 737.0,887.1 705.5,905.2 674.1,887.1 674.1,850.7" data-key="mountain" data-n="131" data-half="E"/>
-<polygon class="tile" points="768.4,832.5 799.8,850.7 799.8,887.1 768.4,905.2 737.0,887.1 737.0,850.7" data-key="sludge" data-n="132" data-half="E"/>
-<polygon class="tile" points="957.0,832.5 988.5,850.7 988.5,887.1 957.0,905.2 925.6,887.1 925.6,850.7" data-key="sludge" data-n="133" data-half="E"/>
-<polygon class="tile" points="422.6,887.1 454.0,905.3 454.0,941.7 422.6,959.9 391.1,941.7 391.1,905.3" data-key="spire" data-n="134" data-half="W"/>
-<polygon class="tile" points="485.5,887.1 517.0,905.3 517.0,941.6 485.5,959.8 454.1,941.6 454.1,905.3" data-key="lava" data-n="135" data-half="W"/>
-<polygon class="tile" points="548.2,887.1 579.7,905.3 579.7,941.6 548.2,959.8 516.8,941.6 516.8,905.3" data-key="sludge" data-n="136" data-half="W"/>
-<polygon class="tile" points="611.3,887.1 642.7,905.3 642.7,941.6 611.3,959.8 579.8,941.6 579.8,905.3" data-key="lava" data-n="137" data-half="W"/>
-<polygon class="tile" points="674.1,887.1 705.5,905.3 705.5,941.6 674.1,959.8 642.6,941.6 642.6,905.3" data-key="sludge" data-n="138" data-half="A"/>
-<polygon class="tile" points="737.0,887.1 768.5,905.3 768.5,941.6 737.0,959.8 705.6,941.6 705.6,905.3" data-key="lava" data-n="139" data-half="E"/>
-<polygon class="tile" points="799.9,887.1 831.3,905.3 831.3,941.7 799.9,959.8 768.4,941.7 768.4,905.3" data-key="spire" data-n="140" data-half="E"/>
-<polygon class="tile" points="862.7,887.1 894.2,905.3 894.2,941.6 862.7,959.8 831.3,941.6 831.3,905.3" data-key="sludge" data-n="141" data-half="E"/>
-<polygon class="tile" points="925.6,887.1 957.0,905.3 957.0,941.6 925.6,959.8 894.2,941.6 894.2,905.3" data-key="mountain" data-n="142" data-half="E"/>
-<polygon class="tile" points="328.4,68.6 359.8,86.8 359.8,123.1 328.4,141.3 296.9,123.1 296.9,86.8" data-key="lava" data-n="4" data-ls="1" data-half="W" data-icon="land"/>
-<polygon class="tile" points="265.5,68.6 296.9,86.8 296.9,123.1 265.5,141.3 234.0,123.1 234.0,86.8" data-key="hills" data-n="3" data-ls="1" data-half="W"/>
-<polygon class="tile" points="359.7,14.0 391.2,32.2 391.2,68.6 359.7,86.8 328.3,68.6 328.3,32.2" data-key="hills" data-n="2" data-ls="1" data-half="W"/>
-<polygon class="tile" points="296.8,14.0 328.3,32.2 328.3,68.6 296.8,86.8 265.4,68.6 265.4,32.2" data-key="sludge" data-n="1" data-ls="1" data-half="W"/>
-<polygon class="tile" points="76.8,505.2 108.2,523.4 108.2,559.7 76.8,577.9 45.3,559.7 45.3,523.4" data-key="mountain" data-n="4" data-ls="2" data-half="W"/>
-<polygon class="tile" points="108.2,450.6 139.6,468.8 139.6,505.1 108.2,523.3 76.7,505.1 76.7,468.8" data-key="lava" data-n="3" data-ls="2" data-half="W" data-icon="land"/>
-<polygon class="tile" points="45.4,450.6 76.9,468.8 76.9,505.1 45.4,523.3 14.0,505.1 14.0,468.8" data-key="hills" data-n="2" data-ls="2" data-half="W"/>
-<polygon class="tile" points="76.9,396.0 108.3,414.2 108.3,450.5 76.9,468.7 45.4,450.5 45.4,414.2" data-key="spire" data-n="1" data-ls="2" data-half="W"/>
-<polygon class="tile" points="359.7,887.1 391.1,905.3 391.1,941.6 359.7,959.8 328.2,941.6 328.2,905.3" data-key="wasteland" data-n="4" data-ls="3" data-half="W"/>
-<polygon class="tile" points="296.8,887.1 328.2,905.3 328.2,941.6 296.8,959.8 265.4,941.6 265.4,905.3" data-key="mountain" data-n="3" data-ls="3" data-half="W"/>
-<polygon class="tile" points="328.3,832.5 359.7,850.7 359.7,887.1 328.3,905.2 296.9,887.1 296.9,850.7" data-key="lava" data-n="2" data-ls="3" data-half="W" data-icon="land"/>
-<polygon class="tile" points="265.4,832.5 296.9,850.7 296.9,887.1 265.4,905.2 234.0,887.1 234.0,850.7" data-key="spire" data-n="1" data-ls="3" data-half="W"/>
-<polygon class="tile" points="1082.8,68.6 1114.3,86.8 1114.3,123.1 1082.8,141.3 1051.4,123.1 1051.4,86.8" data-key="sludge" data-n="4" data-ls="4" data-half="E"/>
-<polygon class="tile" points="1019.9,68.6 1051.3,86.8 1051.3,123.1 1019.9,141.3 988.4,123.1 988.4,86.8" data-key="lava" data-n="3" data-ls="4" data-half="E" data-icon="land"/>
-<polygon class="tile" points="1051.4,14.0 1082.8,32.2 1082.8,68.6 1051.4,86.8 1020.0,68.6 1020.0,32.2" data-key="wasteland" data-n="2" data-ls="4" data-half="E"/>
-<polygon class="tile" points="988.6,14.0 1020.0,32.2 1020.0,68.6 988.6,86.8 957.2,68.6 957.2,32.2" data-key="mountain" data-n="1" data-ls="4" data-half="E"/>
-<polygon class="tile" points="1271.4,505.2 1302.9,523.3 1302.9,559.7 1271.4,577.9 1240.0,559.7 1240.0,523.3" data-key="spire" data-n="4" data-ls="5" data-half="E"/>
-<polygon class="tile" points="1303.0,450.6 1334.4,468.8 1334.4,505.1 1303.0,523.3 1271.5,505.1 1271.5,468.8" data-key="wasteland" data-n="3" data-ls="5" data-half="E"/>
-<polygon class="tile" points="1240.2,450.6 1271.6,468.8 1271.6,505.1 1240.2,523.3 1208.7,505.1 1208.7,468.8" data-key="lava" data-n="2" data-ls="5" data-half="E" data-icon="land"/>
-<polygon class="tile" points="1271.6,395.9 1303.0,414.1 1303.0,450.5 1271.6,468.7 1240.1,450.5 1240.1,414.1" data-key="hills" data-n="1" data-ls="5" data-half="E"/>
-<polygon class="tile" points="1051.3,887.1 1082.7,905.3 1082.7,941.6 1051.3,959.8 1019.8,941.6 1019.8,905.3" data-key="hills" data-n="4" data-ls="6" data-half="E"/>
-<polygon class="tile" points="988.5,887.1 1020.0,905.3 1020.0,941.7 988.5,959.8 957.1,941.7 957.1,905.3" data-key="spire" data-n="3" data-ls="6" data-half="E"/>
-<polygon class="tile" points="1082.8,832.5 1114.2,850.7 1114.2,887.1 1082.8,905.2 1051.4,887.1 1051.4,850.7" data-key="wasteland" data-n="2" data-ls="6" data-half="E"/>
-<polygon class="tile" points="1019.8,832.5 1051.3,850.7 1051.3,887.1 1019.8,905.2 988.4,887.1 988.4,850.7" data-key="lava" data-n="1" data-ls="6" data-half="E" data-icon="land"/>
+<polygon class="tile" points="359.9,14.0 391.4,32.2 391.4,68.6 359.9,86.8 328.5,68.6 328.5,32.2" data-key="hills" data-n="1" data-half="W"/>
+<polygon class="tile" points="422.8,14.0 454.2,32.2 454.2,68.6 422.8,86.8 391.4,68.6 391.4,32.2" data-key="sludge" data-n="2" data-half="W"/>
+<polygon class="tile" points="485.7,14.0 517.1,32.2 517.1,68.6 485.7,86.8 454.2,68.6 454.2,32.2" data-key="hills" data-n="3" data-half="E"/>
+<polygon class="tile" points="548.6,14.0 580.0,32.2 580.0,68.6 548.6,86.8 517.1,68.6 517.1,32.2" data-key="sludge" data-n="4" data-half="E"/>
+<polygon class="tile" points="391.4,68.6 422.8,86.8 422.8,123.1 391.4,141.3 359.9,123.1 359.9,86.8" data-key="sludge" data-n="5" data-half="W"/>
+<polygon class="tile" points="454.2,68.6 485.7,86.8 485.7,123.1 454.2,141.3 422.8,123.1 422.8,86.8" data-key="lava" data-n="6" data-half="A"/>
+<polygon class="tile" points="517.1,68.6 548.6,86.8 548.6,123.1 517.1,141.3 485.7,123.1 485.7,86.8" data-key="mountain" data-n="7" data-half="E"/>
+<polygon class="tile" points="171.3,123.2 202.7,141.3 202.7,177.7 171.3,195.9 139.8,177.7 139.8,141.3" data-key="hills" data-n="8" data-half="W"/>
+<polygon class="tile" points="359.9,123.2 391.4,141.3 391.4,177.7 359.9,195.9 328.5,177.7 328.5,141.3" data-key="sludge" data-n="9" data-half="W"/>
+<polygon class="tile" points="548.6,123.2 580.0,141.3 580.0,177.7 548.6,195.9 517.1,177.7 517.1,141.3" data-key="wasteland" data-n="10" data-half="E"/>
+<polygon class="tile" points="737.2,123.2 768.6,141.3 768.6,177.7 737.2,195.9 705.8,177.7 705.8,141.3" data-key="hills" data-n="11" data-half="E"/>
+<polygon class="tile" points="139.8,177.7 171.3,195.9 171.3,232.3 139.8,250.4 108.4,232.3 108.4,195.9" data-key="mountain" data-n="12" data-half="W"/>
+<polygon class="tile" points="202.7,177.7 234.2,195.9 234.2,232.3 202.7,250.4 171.3,232.3 171.3,195.9" data-key="lava" data-n="13" data-half="W"/>
+<polygon class="tile" points="265.6,177.7 297.0,195.9 297.0,232.3 265.6,250.4 234.2,232.3 234.2,195.9" data-key="wasteland" data-n="14" data-half="W"/>
+<polygon class="tile" points="328.5,177.7 359.9,195.9 359.9,232.3 328.5,250.4 297.0,232.3 297.0,195.9" data-key="mountain" data-n="15" data-half="W"/>
+<polygon class="tile" points="580.0,177.7 611.4,195.9 611.4,232.3 580.0,250.4 548.6,232.3 548.6,195.9" data-key="lava" data-n="16" data-half="E"/>
+<polygon class="tile" points="642.9,177.7 674.3,195.9 674.3,232.3 642.9,250.4 611.4,232.3 611.4,195.9" data-key="sludge" data-n="17" data-half="E"/>
+<polygon class="tile" points="705.8,177.7 737.2,195.9 737.2,232.3 705.8,250.4 674.3,232.3 674.3,195.9" data-key="lava" data-n="18" data-half="E"/>
+<polygon class="tile" points="768.6,177.7 800.1,195.9 800.1,232.3 768.6,250.4 737.2,232.3 737.2,195.9" data-key="wasteland" data-n="19" data-half="E"/>
+<polygon class="tile" points="108.4,232.3 139.8,250.5 139.8,286.8 108.4,305.0 77.0,286.8 77.0,250.5" data-key="wasteland" data-n="20" data-half="W"/>
+<polygon class="tile" points="171.3,232.3 202.7,250.5 202.7,286.8 171.3,305.0 139.8,286.8 139.8,250.5" data-key="hills" data-n="21" data-half="W"/>
+<polygon class="tile" points="359.9,232.3 391.4,250.5 391.4,286.8 359.9,305.0 328.5,286.8 328.5,250.5" data-key="wasteland" data-n="22" data-half="W"/>
+<polygon class="tile" points="548.6,232.3 580.0,250.5 580.0,286.8 548.6,305.0 517.1,286.8 517.1,250.5" data-key="mountain" data-n="23" data-half="E"/>
+<polygon class="tile" points="737.2,232.3 768.6,250.5 768.6,286.8 737.2,305.0 705.8,286.8 705.8,250.5" data-key="mountain" data-n="24" data-half="E"/>
+<polygon class="tile" points="800.1,232.3 831.5,250.5 831.5,286.8 800.1,305.0 768.6,286.8 768.6,250.5" data-key="sludge" data-n="25" data-half="E"/>
+<polygon class="tile" points="77.0,286.8 108.4,305.0 108.4,341.4 77.0,359.6 45.5,341.4 45.5,305.0" data-key="mountain" data-n="26" data-half="W"/>
+<polygon class="tile" points="139.8,286.8 171.3,305.0 171.3,341.4 139.8,359.6 108.4,341.4 108.4,305.0" data-key="wasteland" data-n="27" data-half="W"/>
+<polygon class="tile" points="391.4,286.8 422.8,305.0 422.8,341.4 391.4,359.6 359.9,341.4 359.9,305.0" data-key="lava" data-n="28" data-half="W"/>
+<polygon class="tile" points="454.2,286.8 485.7,305.0 485.7,341.4 454.2,359.6 422.8,341.4 422.8,305.0" data-key="spire" data-n="29" data-half="A" data-icon="tun"/>
+<polygon class="tile" points="517.1,286.8 548.6,305.0 548.6,341.4 517.1,359.6 485.7,341.4 485.7,305.0" data-key="mountain" data-n="30" data-half="E"/>
+<polygon class="tile" points="768.6,286.8 800.1,305.0 800.1,341.4 768.6,359.6 737.2,341.4 737.2,305.0" data-key="mountain" data-n="31" data-half="E"/>
+<polygon class="tile" points="831.5,286.8 863.0,305.0 863.0,341.4 831.5,359.6 800.1,341.4 800.1,305.0" data-key="hills" data-n="32" data-half="E"/>
+<polygon class="tile" points="171.3,341.4 202.7,359.6 202.7,395.9 171.3,414.1 139.8,395.9 139.8,359.6" data-key="sludge" data-n="33" data-half="W"/>
+<polygon class="tile" points="359.9,341.4 391.4,359.6 391.4,395.9 359.9,414.1 328.5,395.9 328.5,359.6" data-key="hills" data-n="34" data-half="W"/>
+<polygon class="tile" points="548.6,341.4 580.0,359.6 580.0,395.9 548.6,414.1 517.1,395.9 517.1,359.6" data-key="lava" data-n="35" data-half="E"/>
+<polygon class="tile" points="737.2,341.4 768.6,359.6 768.6,395.9 737.2,414.1 705.8,395.9 705.8,359.6" data-key="wasteland" data-n="36" data-half="E"/>
+<polygon class="tile" points="202.7,396.0 234.2,414.1 234.2,450.5 202.7,468.7 171.3,450.5 171.3,414.1" data-key="lava" data-n="37" data-half="W"/>
+<polygon class="tile" points="265.6,396.0 297.0,414.1 297.0,450.5 265.6,468.7 234.2,450.5 234.2,414.1" data-key="hills" data-n="38" data-half="W"/>
+<polygon class="tile" points="328.5,396.0 359.9,414.1 359.9,450.5 328.5,468.7 297.0,450.5 297.0,414.1" data-key="lava" data-n="39" data-half="W"/>
+<polygon class="tile" points="580.0,396.0 611.4,414.1 611.4,450.5 580.0,468.7 548.6,450.5 548.6,414.1" data-key="hills" data-n="40" data-half="E"/>
+<polygon class="tile" points="642.9,396.0 674.3,414.1 674.3,450.5 642.9,468.7 611.4,450.5 611.4,414.1" data-key="spire" data-n="41" data-half="E"/>
+<polygon class="tile" points="705.8,396.0 737.2,414.1 737.2,450.5 705.8,468.7 674.3,450.5 674.3,414.1" data-key="mountain" data-n="42" data-half="E"/>
+<polygon class="tile" points="171.3,450.5 202.7,468.7 202.7,505.1 171.3,523.2 139.8,505.1 139.8,468.7" data-key="sludge" data-n="43" data-half="W"/>
+<polygon class="tile" points="359.9,450.5 391.4,468.7 391.4,505.1 359.9,523.2 328.5,505.1 328.5,468.7" data-key="spire" data-n="44" data-half="W"/>
+<polygon class="tile" points="548.6,450.5 580.0,468.7 580.0,505.1 548.6,523.2 517.1,505.1 517.1,468.7" data-key="lava" data-n="45" data-half="E"/>
+<polygon class="tile" points="737.2,450.5 768.6,468.7 768.6,505.1 737.2,523.2 705.8,505.1 705.8,468.7" data-key="lava" data-n="46" data-half="E"/>
+<polygon class="tile" points="77.0,505.1 108.4,523.3 108.4,559.6 77.0,577.8 45.5,559.6 45.5,523.3" data-key="spire" data-n="47" data-half="W"/>
+<polygon class="tile" points="139.8,505.1 171.3,523.3 171.3,559.6 139.8,577.8 108.4,559.6 108.4,523.3" data-key="mountain" data-n="48" data-half="W"/>
+<polygon class="tile" points="391.4,505.1 422.8,523.3 422.8,559.6 391.4,577.8 359.9,559.6 359.9,523.3" data-key="sludge" data-n="49" data-half="W"/>
+<polygon class="tile" points="454.2,505.1 485.7,523.3 485.7,559.6 454.2,577.8 422.8,559.6 422.8,523.3" data-key="spire" data-n="50" data-half="A" data-icon="tun"/>
+<polygon class="tile" points="517.1,505.1 548.6,523.3 548.6,559.6 517.1,577.8 485.7,559.6 485.7,523.3" data-key="mountain" data-n="51" data-half="E"/>
+<polygon class="tile" points="768.6,505.1 800.1,523.3 800.1,559.6 768.6,577.8 737.2,559.6 737.2,523.3" data-key="sludge" data-n="52" data-half="E"/>
+<polygon class="tile" points="831.5,505.1 863.0,523.3 863.0,559.6 831.5,577.8 800.1,559.6 800.1,523.3" data-key="mountain" data-n="53" data-half="E"/>
+<polygon class="tile" points="108.4,559.6 139.8,577.8 139.8,614.2 108.4,632.4 77.0,614.2 77.0,577.8" data-key="sludge" data-n="54" data-half="W"/>
+<polygon class="tile" points="171.3,559.6 202.7,577.8 202.7,614.2 171.3,632.4 139.8,614.2 139.8,577.8" data-key="sludge" data-n="55" data-half="W"/>
+<polygon class="tile" points="359.9,559.6 391.4,577.8 391.4,614.2 359.9,632.4 328.5,614.2 328.5,577.8" data-key="wasteland" data-n="56" data-half="W"/>
+<polygon class="tile" points="548.6,559.6 580.0,577.8 580.0,614.2 548.6,632.4 517.1,614.2 517.1,577.8" data-key="wasteland" data-n="57" data-half="E"/>
+<polygon class="tile" points="737.2,559.6 768.6,577.8 768.6,614.2 737.2,632.4 705.8,614.2 705.8,577.8" data-key="mountain" data-n="58" data-half="E"/>
+<polygon class="tile" points="800.1,559.6 831.5,577.8 831.5,614.2 800.1,632.4 768.6,614.2 768.6,577.8" data-key="wasteland" data-n="59" data-half="E"/>
+<polygon class="tile" points="139.8,614.2 171.3,632.4 171.3,668.7 139.8,686.9 108.4,668.7 108.4,632.4" data-key="spire" data-n="60" data-half="W"/>
+<polygon class="tile" points="202.7,614.2 234.2,632.4 234.2,668.7 202.7,686.9 171.3,668.7 171.3,632.4" data-key="lava" data-n="61" data-half="W"/>
+<polygon class="tile" points="265.6,614.2 297.0,632.4 297.0,668.7 265.6,686.9 234.2,668.7 234.2,632.4" data-key="sludge" data-n="62" data-half="W"/>
+<polygon class="tile" points="328.5,614.2 359.9,632.4 359.9,668.7 328.5,686.9 297.0,668.7 297.0,632.4" data-key="mountain" data-n="63" data-half="W"/>
+<polygon class="tile" points="580.0,614.2 611.4,632.4 611.4,668.7 580.0,686.9 548.6,668.7 548.6,632.4" data-key="mountain" data-n="64" data-half="E"/>
+<polygon class="tile" points="642.9,614.2 674.3,632.4 674.3,668.7 642.9,686.9 611.4,668.7 611.4,632.4" data-key="spire" data-n="65" data-half="E"/>
+<polygon class="tile" points="705.8,614.2 737.2,632.4 737.2,668.7 705.8,686.9 674.3,668.7 674.3,632.4" data-key="lava" data-n="66" data-half="E"/>
+<polygon class="tile" points="768.6,614.2 800.1,632.4 800.1,668.7 768.6,686.9 737.2,668.7 737.2,632.4" data-key="sludge" data-n="67" data-half="E"/>
+<polygon class="tile" points="171.3,668.8 202.7,686.9 202.7,723.3 171.3,741.5 139.8,723.3 139.8,686.9" data-key="sludge" data-n="68" data-half="W"/>
+<polygon class="tile" points="359.9,668.8 391.4,686.9 391.4,723.3 359.9,741.5 328.5,723.3 328.5,686.9" data-key="mountain" data-n="69" data-half="W"/>
+<polygon class="tile" points="548.6,668.8 580.0,686.9 580.0,723.3 548.6,741.5 517.1,723.3 517.1,686.9" data-key="hills" data-n="70" data-half="E"/>
+<polygon class="tile" points="737.2,668.8 768.6,686.9 768.6,723.3 737.2,741.5 705.8,723.3 705.8,686.9" data-key="spire" data-n="71" data-half="E"/>
+<polygon class="tile" points="391.4,723.3 422.8,741.5 422.8,777.9 391.4,796.0 359.9,777.9 359.9,741.5" data-key="sludge" data-n="72" data-half="W"/>
+<polygon class="tile" points="454.2,723.3 485.7,741.5 485.7,777.9 454.2,796.0 422.8,777.9 422.8,741.5" data-key="lava" data-n="73" data-half="A"/>
+<polygon class="tile" points="517.1,723.3 548.6,741.5 548.6,777.9 517.1,796.0 485.7,777.9 485.7,741.5" data-key="lava" data-n="74" data-half="E"/>
+<polygon class="tile" points="359.9,777.9 391.4,796.1 391.4,832.4 359.9,850.6 328.5,832.4 328.5,796.1" data-key="spire" data-n="75" data-half="W"/>
+<polygon class="tile" points="422.8,777.9 454.2,796.1 454.2,832.4 422.8,850.6 391.4,832.4 391.4,796.1" data-key="wasteland" data-n="76" data-half="W"/>
+<polygon class="tile" points="485.7,777.9 517.1,796.1 517.1,832.4 485.7,850.6 454.2,832.4 454.2,796.1" data-key="mountain" data-n="77" data-half="E"/>
+<polygon class="tile" points="548.6,777.9 580.0,796.1 580.0,832.4 548.6,850.6 517.1,832.4 517.1,796.1" data-key="sludge" data-n="78" data-half="E"/>
+<polygon class="tile" points="297.0,14.0 328.5,32.2 328.5,68.6 297.0,86.8 265.6,68.6 265.6,32.2" data-key="wasteland" data-n="1" data-ls="1" data-half="W"/>
+<polygon class="tile" points="202.7,68.6 234.2,86.8 234.2,123.1 202.7,141.3 171.3,123.1 171.3,86.8" data-key="hills" data-n="2" data-ls="1" data-half="W"/>
+<polygon class="tile" points="265.6,68.6 297.0,86.8 297.0,123.1 265.6,141.3 234.2,123.1 234.2,86.8" data-key="lava" data-n="3" data-ls="1" data-half="W" data-icon="land"/>
+<polygon class="tile" points="328.5,68.6 359.9,86.8 359.9,123.1 328.5,141.3 297.0,123.1 297.0,86.8" data-key="spire" data-n="4" data-ls="1" data-half="W"/>
+<polygon class="tile" points="234.2,123.2 265.6,141.3 265.6,177.7 234.2,195.9 202.7,177.7 202.7,141.3" data-key="mountain" data-n="5" data-ls="1" data-half="W"/>
+<polygon class="tile" points="297.0,123.2 328.5,141.3 328.5,177.7 297.0,195.9 265.6,177.7 265.6,141.3" data-key="sludge" data-n="6" data-ls="1" data-half="W"/>
+<polygon class="tile" points="611.4,14.0 642.9,32.2 642.9,68.6 611.4,86.8 580.0,68.6 580.0,32.2" data-key="sludge" data-n="1" data-ls="2" data-half="E"/>
+<polygon class="tile" points="580.0,68.6 611.4,86.8 611.4,123.1 580.0,141.3 548.6,123.1 548.6,86.8" data-key="hills" data-n="2" data-ls="2" data-half="E"/>
+<polygon class="tile" points="642.9,68.6 674.3,86.8 674.3,123.1 642.9,141.3 611.4,123.1 611.4,86.8" data-key="lava" data-n="3" data-ls="2" data-half="E" data-icon="land"/>
+<polygon class="tile" points="705.8,68.6 737.2,86.8 737.2,123.1 705.8,141.3 674.3,123.1 674.3,86.8" data-key="mountain" data-n="4" data-ls="2" data-half="E"/>
+<polygon class="tile" points="611.4,123.2 642.9,141.3 642.9,177.7 611.4,195.9 580.0,177.7 580.0,141.3" data-key="wasteland" data-n="5" data-ls="2" data-half="E"/>
+<polygon class="tile" points="674.3,123.2 705.8,141.3 705.8,177.7 674.3,195.9 642.9,177.7 642.9,141.3" data-key="spire" data-n="6" data-ls="2" data-half="E"/>
+<polygon class="tile" points="45.5,341.4 77.0,359.6 77.0,395.9 45.5,414.1 14.1,395.9 14.1,359.6" data-key="sludge" data-n="1" data-ls="3" data-half="W"/>
+<polygon class="tile" points="108.4,341.4 139.8,359.6 139.8,395.9 108.4,414.1 77.0,395.9 77.0,359.6" data-key="hills" data-n="2" data-ls="3" data-half="W"/>
+<polygon class="tile" points="77.0,396.0 108.4,414.1 108.4,450.5 77.0,468.7 45.5,450.5 45.5,414.1" data-key="lava" data-n="3" data-ls="3" data-half="W" data-icon="land"/>
+<polygon class="tile" points="139.8,396.0 171.3,414.1 171.3,450.5 139.8,468.7 108.4,450.5 108.4,414.1" data-key="wasteland" data-n="4" data-ls="3" data-half="W"/>
+<polygon class="tile" points="45.5,450.5 77.0,468.7 77.0,505.1 45.5,523.2 14.1,505.1 14.1,468.7" data-key="wasteland" data-n="5" data-ls="3" data-half="W"/>
+<polygon class="tile" points="108.4,450.5 139.8,468.7 139.8,505.1 108.4,523.2 77.0,505.1 77.0,468.7" data-key="spire" data-n="6" data-ls="3" data-half="W"/>
+<polygon class="tile" points="800.1,341.4 831.5,359.6 831.5,395.9 800.1,414.1 768.6,395.9 768.6,359.6" data-key="mountain" data-n="1" data-ls="4" data-half="E"/>
+<polygon class="tile" points="863.0,341.4 894.4,359.6 894.4,395.9 863.0,414.1 831.5,395.9 831.5,359.6" data-key="wasteland" data-n="2" data-ls="4" data-half="E"/>
+<polygon class="tile" points="768.6,396.0 800.1,414.1 800.1,450.5 768.6,468.7 737.2,450.5 737.2,414.1" data-key="hills" data-n="3" data-ls="4" data-half="E"/>
+<polygon class="tile" points="831.5,396.0 863.0,414.1 863.0,450.5 831.5,468.7 800.1,450.5 800.1,414.1" data-key="lava" data-n="4" data-ls="4" data-half="E" data-icon="land"/>
+<polygon class="tile" points="800.1,450.5 831.5,468.7 831.5,505.1 800.1,523.2 768.6,505.1 768.6,468.7" data-key="spire" data-n="5" data-ls="4" data-half="E"/>
+<polygon class="tile" points="863.0,450.5 894.4,468.7 894.4,505.1 863.0,523.2 831.5,505.1 831.5,468.7" data-key="sludge" data-n="6" data-ls="4" data-half="E"/>
+<polygon class="tile" points="234.2,668.8 265.6,686.9 265.6,723.3 234.2,741.5 202.7,723.3 202.7,686.9" data-key="spire" data-n="1" data-ls="5" data-half="W"/>
+<polygon class="tile" points="297.0,668.8 328.5,686.9 328.5,723.3 297.0,741.5 265.6,723.3 265.6,686.9" data-key="wasteland" data-n="2" data-ls="5" data-half="W"/>
+<polygon class="tile" points="202.7,723.3 234.2,741.5 234.2,777.9 202.7,796.0 171.3,777.9 171.3,741.5" data-key="hills" data-n="3" data-ls="5" data-half="W"/>
+<polygon class="tile" points="265.6,723.3 297.0,741.5 297.0,777.9 265.6,796.0 234.2,777.9 234.2,741.5" data-key="lava" data-n="4" data-ls="5" data-half="W" data-icon="land"/>
+<polygon class="tile" points="328.5,723.3 359.9,741.5 359.9,777.9 328.5,796.0 297.0,777.9 297.0,741.5" data-key="sludge" data-n="5" data-ls="5" data-half="W"/>
+<polygon class="tile" points="297.0,777.9 328.5,796.1 328.5,832.4 297.0,850.6 265.6,832.4 265.6,796.1" data-key="sludge" data-n="6" data-ls="5" data-half="W"/>
+<polygon class="tile" points="611.4,668.8 642.9,686.9 642.9,723.3 611.4,741.5 580.0,723.3 580.0,686.9" data-key="sludge" data-n="1" data-ls="6" data-half="E"/>
+<polygon class="tile" points="674.3,668.8 705.8,686.9 705.8,723.3 674.3,741.5 642.9,723.3 642.9,686.9" data-key="hills" data-n="2" data-ls="6" data-half="E"/>
+<polygon class="tile" points="580.0,723.3 611.4,741.5 611.4,777.9 580.0,796.0 548.6,777.9 548.6,741.5" data-key="spire" data-n="3" data-ls="6" data-half="E"/>
+<polygon class="tile" points="642.9,723.3 674.3,741.5 674.3,777.9 642.9,796.0 611.4,777.9 611.4,741.5" data-key="lava" data-n="4" data-ls="6" data-half="E" data-icon="land"/>
+<polygon class="tile" points="705.8,723.3 737.2,741.5 737.2,777.9 705.8,796.0 674.3,777.9 674.3,741.5" data-key="wasteland" data-n="5" data-ls="6" data-half="E"/>
+<polygon class="tile" points="611.4,777.9 642.9,796.1 642.9,832.4 611.4,850.6 580.0,832.4 580.0,796.1" data-key="wasteland" data-n="6" data-ls="6" data-half="E"/>
 </g>
-<g id="volcano">
+<g id="volcano"><g transform="translate(-220.0 -54.7)">
 <polygon class="volc" points="611.3,523.3 579.8,505.1 579.8,468.8 611.3,450.6 611.3,414.2 642.7,396.0 674.2,414.2 705.6,396.0 737.0,414.2 737.0,450.6 768.5,468.8 768.5,505.1 737.0,523.3 737.0,559.7 705.6,577.9 674.2,559.7 642.7,577.9 611.3,559.7"/>
 <text class="vlab" x="674.2" y="487.0">VOLCANO</text>
 <g transform="translate(639.2 426.3) rotate(-210) scale(.65 1)"><text class="vnum">1</text></g><g transform="translate(709.2 426.3) rotate(-150) scale(.65 1)"><text class="vnum">2</text></g><g transform="translate(744.2 487.0) rotate(-90) scale(.65 1)"><text class="vnum">3</text></g><g transform="translate(709.2 547.6) rotate(-30) scale(.65 1)"><text class="vnum">4</text></g><g transform="translate(639.2 547.6) rotate(30) scale(.65 1)"><text class="vnum">5</text></g><g transform="translate(604.2 487.0) rotate(90) scale(.65 1)"><text class="vnum">6</text><rect class="vbar" x="-9" y="11.5" width="18" height="2"/></g>
 </g>
-<g id="secline">
-<line class="ls" x1="359.8" y1="86.8" x2="359.8" y2="123.1"/>
-<line class="ls" x1="359.8" y1="123.1" x2="328.4" y2="141.3"/>
-<line class="ls" x1="328.4" y1="141.3" x2="296.9" y2="123.1"/>
-<line class="ls" x1="296.9" y1="123.1" x2="265.5" y2="141.3"/>
-<line class="ls" x1="265.5" y1="141.3" x2="234.0" y2="123.1"/>
-<line class="ls" x1="234.0" y1="123.1" x2="234.0" y2="86.8"/>
-<line class="ls" x1="234.0" y1="86.8" x2="265.5" y2="68.6"/>
-<line class="ls" x1="359.7" y1="14.0" x2="391.2" y2="32.2"/>
-<line class="ls" x1="391.2" y1="32.2" x2="391.2" y2="68.6"/>
-<line class="ls" x1="391.2" y1="68.6" x2="359.7" y2="86.8"/>
-<line class="ls" x1="328.3" y1="32.2" x2="359.7" y2="14.0"/>
-<line class="ls" x1="296.8" y1="14.0" x2="328.3" y2="32.2"/>
-<line class="ls" x1="265.4" y1="68.6" x2="265.4" y2="32.2"/>
-<line class="ls" x1="265.4" y1="32.2" x2="296.8" y2="14.0"/>
-<line class="ls" x1="108.2" y1="523.4" x2="108.2" y2="559.7"/>
-<line class="ls" x1="108.2" y1="559.7" x2="76.8" y2="577.9"/>
-<line class="ls" x1="76.8" y1="577.9" x2="45.3" y2="559.7"/>
-<line class="ls" x1="45.3" y1="559.7" x2="45.3" y2="523.4"/>
-<line class="ls" x1="108.2" y1="450.6" x2="139.6" y2="468.8"/>
-<line class="ls" x1="139.6" y1="468.8" x2="139.6" y2="505.1"/>
-<line class="ls" x1="139.6" y1="505.1" x2="108.2" y2="523.3"/>
-<line class="ls" x1="45.4" y1="523.3" x2="14.0" y2="505.1"/>
-<line class="ls" x1="14.0" y1="505.1" x2="14.0" y2="468.8"/>
-<line class="ls" x1="14.0" y1="468.8" x2="45.4" y2="450.6"/>
-<line class="ls" x1="76.9" y1="396.0" x2="108.3" y2="414.2"/>
-<line class="ls" x1="108.3" y1="414.2" x2="108.3" y2="450.5"/>
-<line class="ls" x1="45.4" y1="450.5" x2="45.4" y2="414.2"/>
-<line class="ls" x1="45.4" y1="414.2" x2="76.9" y2="396.0"/>
-<line class="ls" x1="359.7" y1="887.1" x2="391.1" y2="905.3"/>
-<line class="ls" x1="391.1" y1="905.3" x2="391.1" y2="941.6"/>
-<line class="ls" x1="391.1" y1="941.6" x2="359.7" y2="959.8"/>
-<line class="ls" x1="359.7" y1="959.8" x2="328.2" y2="941.6"/>
-<line class="ls" x1="328.2" y1="941.6" x2="296.8" y2="959.8"/>
-<line class="ls" x1="296.8" y1="959.8" x2="265.4" y2="941.6"/>
-<line class="ls" x1="265.4" y1="941.6" x2="265.4" y2="905.3"/>
-<line class="ls" x1="328.3" y1="832.5" x2="359.7" y2="850.7"/>
-<line class="ls" x1="359.7" y1="850.7" x2="359.7" y2="887.1"/>
-<line class="ls" x1="296.9" y1="850.7" x2="328.3" y2="832.5"/>
-<line class="ls" x1="265.4" y1="832.5" x2="296.9" y2="850.7"/>
-<line class="ls" x1="265.4" y1="905.2" x2="234.0" y2="887.1"/>
-<line class="ls" x1="234.0" y1="887.1" x2="234.0" y2="850.7"/>
-<line class="ls" x1="234.0" y1="850.7" x2="265.4" y2="832.5"/>
-<line class="ls" x1="1082.8" y1="68.6" x2="1114.3" y2="86.8"/>
-<line class="ls" x1="1114.3" y1="86.8" x2="1114.3" y2="123.1"/>
-<line class="ls" x1="1114.3" y1="123.1" x2="1082.8" y2="141.3"/>
-<line class="ls" x1="1082.8" y1="141.3" x2="1051.4" y2="123.1"/>
-<line class="ls" x1="1051.3" y1="123.1" x2="1019.9" y2="141.3"/>
-<line class="ls" x1="1019.9" y1="141.3" x2="988.4" y2="123.1"/>
-<line class="ls" x1="988.4" y1="123.1" x2="988.4" y2="86.8"/>
-<line class="ls" x1="1051.4" y1="14.0" x2="1082.8" y2="32.2"/>
-<line class="ls" x1="1082.8" y1="32.2" x2="1082.8" y2="68.6"/>
-<line class="ls" x1="1020.0" y1="32.2" x2="1051.4" y2="14.0"/>
-<line class="ls" x1="988.6" y1="14.0" x2="1020.0" y2="32.2"/>
-<line class="ls" x1="988.6" y1="86.8" x2="957.2" y2="68.6"/>
-<line class="ls" x1="957.2" y1="68.6" x2="957.2" y2="32.2"/>
-<line class="ls" x1="957.2" y1="32.2" x2="988.6" y2="14.0"/>
-<line class="ls" x1="1302.9" y1="523.3" x2="1302.9" y2="559.7"/>
-<line class="ls" x1="1302.9" y1="559.7" x2="1271.4" y2="577.9"/>
-<line class="ls" x1="1271.4" y1="577.9" x2="1240.0" y2="559.7"/>
-<line class="ls" x1="1240.0" y1="559.7" x2="1240.0" y2="523.3"/>
-<line class="ls" x1="1303.0" y1="450.6" x2="1334.4" y2="468.8"/>
-<line class="ls" x1="1334.4" y1="468.8" x2="1334.4" y2="505.1"/>
-<line class="ls" x1="1334.4" y1="505.1" x2="1303.0" y2="523.3"/>
-<line class="ls" x1="1240.2" y1="523.3" x2="1208.7" y2="505.1"/>
-<line class="ls" x1="1208.7" y1="505.1" x2="1208.7" y2="468.8"/>
-<line class="ls" x1="1208.7" y1="468.8" x2="1240.2" y2="450.6"/>
-<line class="ls" x1="1271.6" y1="395.9" x2="1303.0" y2="414.1"/>
-<line class="ls" x1="1303.0" y1="414.1" x2="1303.0" y2="450.5"/>
-<line class="ls" x1="1240.1" y1="450.5" x2="1240.1" y2="414.1"/>
-<line class="ls" x1="1240.1" y1="414.1" x2="1271.6" y2="395.9"/>
-<line class="ls" x1="1082.7" y1="905.3" x2="1082.7" y2="941.6"/>
-<line class="ls" x1="1082.7" y1="941.6" x2="1051.3" y2="959.8"/>
-<line class="ls" x1="1051.3" y1="959.8" x2="1019.8" y2="941.6"/>
-<line class="ls" x1="1020.0" y1="941.7" x2="988.5" y2="959.8"/>
-<line class="ls" x1="988.5" y1="959.8" x2="957.1" y2="941.7"/>
-<line class="ls" x1="957.1" y1="941.7" x2="957.1" y2="905.3"/>
-<line class="ls" x1="957.1" y1="905.3" x2="988.5" y2="887.1"/>
-<line class="ls" x1="1082.8" y1="832.5" x2="1114.2" y2="850.7"/>
-<line class="ls" x1="1114.2" y1="850.7" x2="1114.2" y2="887.1"/>
-<line class="ls" x1="1114.2" y1="887.1" x2="1082.8" y2="905.2"/>
-<line class="ls" x1="1051.4" y1="850.7" x2="1082.8" y2="832.5"/>
-<line class="ls" x1="1019.8" y1="832.5" x2="1051.3" y2="850.7"/>
-<line class="ls" x1="988.4" y1="887.1" x2="988.4" y2="850.7"/>
-<line class="ls" x1="988.4" y1="850.7" x2="1019.8" y2="832.5"/>
-<line class="sl" x1="548.4" y1="195.9" x2="548.4" y2="232.2"/>
-<line class="sl" x1="548.4" y1="232.2" x2="516.9" y2="250.4"/>
-<line class="sl" x1="516.9" y1="250.4" x2="485.5" y2="232.2"/>
-<line class="sl" x1="485.5" y1="232.2" x2="454.0" y2="250.4"/>
-<line class="sl" x1="454.0" y1="250.4" x2="422.6" y2="232.2"/>
-<line class="sl" x1="422.6" y1="232.2" x2="422.6" y2="195.9"/>
-<line class="sl" x1="548.3" y1="123.1" x2="579.7" y2="141.3"/>
-<line class="sl" x1="579.7" y1="141.3" x2="579.7" y2="177.7"/>
-<line class="sl" x1="579.7" y1="177.7" x2="548.3" y2="195.9"/>
-<line class="sl" x1="422.5" y1="195.9" x2="391.1" y2="177.7"/>
-<line class="sl" x1="391.1" y1="177.7" x2="391.1" y2="141.3"/>
-<line class="sl" x1="391.1" y1="141.3" x2="422.5" y2="123.1"/>
-<line class="sl" x1="516.9" y1="68.6" x2="548.4" y2="86.8"/>
-<line class="sl" x1="548.4" y1="86.8" x2="548.4" y2="123.1"/>
-<line class="sl" x1="485.5" y1="86.8" x2="516.9" y2="68.6"/>
-<line class="sl" x1="454.0" y1="68.6" x2="485.5" y2="86.8"/>
-<line class="sl" x1="422.6" y1="123.1" x2="422.6" y2="86.8"/>
-<line class="sl" x1="422.6" y1="86.8" x2="454.0" y2="68.6"/>
-<line class="sl" x1="925.6" y1="195.9" x2="925.6" y2="232.2"/>
-<line class="sl" x1="925.6" y1="232.2" x2="894.2" y2="250.4"/>
-<line class="sl" x1="894.2" y1="250.4" x2="862.8" y2="232.2"/>
-<line class="sl" x1="862.8" y1="232.2" x2="831.3" y2="250.4"/>
-<line class="sl" x1="831.3" y1="250.4" x2="799.9" y2="232.2"/>
-<line class="sl" x1="799.9" y1="232.2" x2="799.9" y2="195.9"/>
-<line class="sl" x1="925.5" y1="123.2" x2="957.0" y2="141.4"/>
-<line class="sl" x1="957.0" y1="141.4" x2="957.0" y2="177.7"/>
-<line class="sl" x1="957.0" y1="177.7" x2="925.5" y2="195.9"/>
-<line class="sl" x1="799.7" y1="195.9" x2="768.3" y2="177.7"/>
-<line class="sl" x1="768.3" y1="177.7" x2="768.3" y2="141.3"/>
-<line class="sl" x1="768.3" y1="141.3" x2="799.7" y2="123.1"/>
-<line class="sl" x1="894.2" y1="68.6" x2="925.6" y2="86.8"/>
-<line class="sl" x1="925.6" y1="86.8" x2="925.6" y2="123.1"/>
-<line class="sl" x1="862.8" y1="86.8" x2="894.2" y2="68.6"/>
-<line class="sl" x1="831.3" y1="68.6" x2="862.8" y2="86.8"/>
-<line class="sl" x1="799.9" y1="123.1" x2="799.9" y2="86.8"/>
-<line class="sl" x1="799.9" y1="86.8" x2="831.3" y2="68.6"/>
-<line class="sl" x1="359.8" y1="305.0" x2="359.8" y2="341.4"/>
-<line class="sl" x1="359.8" y1="341.4" x2="328.4" y2="359.6"/>
-<line class="sl" x1="328.4" y1="359.6" x2="296.9" y2="341.4"/>
-<line class="sl" x1="296.8" y1="341.4" x2="265.3" y2="359.6"/>
-<line class="sl" x1="265.3" y1="359.6" x2="233.9" y2="341.4"/>
-<line class="sl" x1="233.9" y1="341.4" x2="233.9" y2="305.0"/>
-<line class="sl" x1="359.6" y1="232.3" x2="391.1" y2="250.4"/>
-<line class="sl" x1="391.1" y1="250.4" x2="391.1" y2="286.8"/>
-<line class="sl" x1="391.1" y1="286.8" x2="359.6" y2="305.0"/>
-<line class="sl" x1="233.9" y1="305.0" x2="202.4" y2="286.8"/>
-<line class="sl" x1="202.4" y1="286.8" x2="202.4" y2="250.4"/>
-<line class="sl" x1="202.4" y1="250.4" x2="233.9" y2="232.3"/>
-<line class="sl" x1="328.3" y1="177.7" x2="359.7" y2="195.9"/>
-<line class="sl" x1="359.7" y1="195.9" x2="359.7" y2="232.2"/>
-<line class="sl" x1="296.8" y1="195.9" x2="328.3" y2="177.7"/>
-<line class="sl" x1="265.4" y1="177.7" x2="296.8" y2="195.9"/>
-<line class="sl" x1="234.0" y1="232.2" x2="234.0" y2="195.9"/>
-<line class="sl" x1="234.0" y1="195.9" x2="265.4" y2="177.7"/>
-<line class="sl" x1="737.1" y1="305.0" x2="737.1" y2="341.4"/>
-<line class="sl" x1="737.1" y1="341.4" x2="705.6" y2="359.6"/>
-<line class="sl" x1="705.6" y1="359.6" x2="674.2" y2="341.4"/>
-<line class="sl" x1="674.1" y1="341.4" x2="642.7" y2="359.6"/>
-<line class="sl" x1="642.7" y1="359.6" x2="611.2" y2="341.4"/>
-<line class="sl" x1="611.2" y1="341.4" x2="611.2" y2="305.0"/>
-<line class="sl" x1="737.0" y1="232.3" x2="768.4" y2="250.4"/>
-<line class="sl" x1="768.4" y1="250.4" x2="768.4" y2="286.8"/>
-<line class="sl" x1="768.4" y1="286.8" x2="737.0" y2="305.0"/>
-<line class="sl" x1="611.2" y1="305.0" x2="579.7" y2="286.8"/>
-<line class="sl" x1="579.7" y1="286.8" x2="579.7" y2="250.4"/>
-<line class="sl" x1="579.7" y1="250.4" x2="611.2" y2="232.3"/>
-<line class="sl" x1="705.6" y1="177.7" x2="737.0" y2="195.9"/>
-<line class="sl" x1="737.0" y1="195.9" x2="737.0" y2="232.2"/>
-<line class="sl" x1="674.1" y1="195.9" x2="705.6" y2="177.7"/>
-<line class="sl" x1="642.7" y1="177.7" x2="674.1" y2="195.9"/>
-<line class="sl" x1="611.2" y1="232.2" x2="611.2" y2="195.9"/>
-<line class="sl" x1="611.2" y1="195.9" x2="642.7" y2="177.7"/>
-<line class="sl" x1="1114.1" y1="305.0" x2="1114.1" y2="341.4"/>
-<line class="sl" x1="1114.1" y1="341.4" x2="1082.7" y2="359.6"/>
-<line class="sl" x1="1082.7" y1="359.6" x2="1051.2" y2="341.4"/>
-<line class="sl" x1="1051.4" y1="341.4" x2="1020.0" y2="359.6"/>
-<line class="sl" x1="1020.0" y1="359.6" x2="988.5" y2="341.4"/>
-<line class="sl" x1="988.5" y1="341.4" x2="988.5" y2="305.0"/>
-<line class="sl" x1="1114.3" y1="232.3" x2="1145.7" y2="250.4"/>
-<line class="sl" x1="1145.7" y1="250.4" x2="1145.7" y2="286.8"/>
-<line class="sl" x1="1145.7" y1="286.8" x2="1114.3" y2="305.0"/>
-<line class="sl" x1="988.5" y1="305.0" x2="957.1" y2="286.8"/>
-<line class="sl" x1="957.1" y1="286.8" x2="957.1" y2="250.4"/>
-<line class="sl" x1="957.1" y1="250.4" x2="988.5" y2="232.3"/>
-<line class="sl" x1="1082.9" y1="177.7" x2="1114.4" y2="195.9"/>
-<line class="sl" x1="1114.4" y1="195.9" x2="1114.4" y2="232.2"/>
-<line class="sl" x1="1051.5" y1="195.9" x2="1082.9" y2="177.7"/>
-<line class="sl" x1="1020.2" y1="177.7" x2="1051.6" y2="195.9"/>
-<line class="sl" x1="988.7" y1="232.2" x2="988.7" y2="195.9"/>
-<line class="sl" x1="988.7" y1="195.9" x2="1020.2" y2="177.7"/>
-<line class="sl" x1="548.4" y1="414.1" x2="548.4" y2="450.5"/>
-<line class="sl" x1="548.4" y1="450.5" x2="516.9" y2="468.7"/>
-<line class="sl" x1="516.9" y1="468.7" x2="485.5" y2="450.5"/>
-<line class="sl" x1="485.5" y1="450.5" x2="454.1" y2="468.7"/>
-<line class="sl" x1="454.1" y1="468.7" x2="422.6" y2="450.5"/>
-<line class="sl" x1="422.6" y1="450.5" x2="422.6" y2="414.2"/>
-<line class="sl" x1="548.4" y1="341.4" x2="579.8" y2="359.6"/>
-<line class="sl" x1="579.8" y1="359.6" x2="579.8" y2="395.9"/>
-<line class="sl" x1="579.8" y1="395.9" x2="548.4" y2="414.1"/>
-<line class="sl" x1="422.5" y1="414.1" x2="391.1" y2="395.9"/>
-<line class="sl" x1="391.1" y1="395.9" x2="391.1" y2="359.6"/>
-<line class="sl" x1="391.1" y1="359.6" x2="422.5" y2="341.4"/>
-<line class="sl" x1="517.0" y1="286.8" x2="548.4" y2="305.0"/>
-<line class="sl" x1="548.4" y1="305.0" x2="548.4" y2="341.4"/>
-<line class="sl" x1="485.5" y1="305.0" x2="517.0" y2="286.8"/>
-<line class="sl" x1="454.1" y1="286.8" x2="485.6" y2="305.0"/>
-<line class="sl" x1="422.7" y1="341.4" x2="422.7" y2="305.0"/>
-<line class="sl" x1="422.7" y1="305.0" x2="454.1" y2="286.8"/>
-<line class="sl" x1="925.6" y1="414.1" x2="925.6" y2="450.5"/>
-<line class="sl" x1="925.6" y1="450.5" x2="894.2" y2="468.7"/>
-<line class="sl" x1="894.2" y1="468.7" x2="862.8" y2="450.5"/>
-<line class="sl" x1="862.8" y1="450.5" x2="831.3" y2="468.7"/>
-<line class="sl" x1="831.3" y1="468.7" x2="799.9" y2="450.5"/>
-<line class="sl" x1="799.9" y1="450.5" x2="799.9" y2="414.1"/>
-<line class="sl" x1="925.6" y1="341.4" x2="957.0" y2="359.6"/>
-<line class="sl" x1="957.0" y1="359.6" x2="957.0" y2="395.9"/>
-<line class="sl" x1="957.0" y1="395.9" x2="925.6" y2="414.1"/>
-<line class="sl" x1="799.7" y1="414.1" x2="768.3" y2="395.9"/>
-<line class="sl" x1="768.3" y1="395.9" x2="768.3" y2="359.6"/>
-<line class="sl" x1="768.3" y1="359.6" x2="799.7" y2="341.4"/>
-<line class="sl" x1="894.3" y1="286.8" x2="925.7" y2="305.0"/>
-<line class="sl" x1="925.7" y1="305.0" x2="925.7" y2="341.4"/>
-<line class="sl" x1="862.8" y1="305.0" x2="894.3" y2="286.8"/>
-<line class="sl" x1="831.3" y1="286.8" x2="862.8" y2="305.0"/>
-<line class="sl" x1="799.9" y1="341.4" x2="799.9" y2="305.0"/>
-<line class="sl" x1="799.9" y1="305.0" x2="831.3" y2="286.8"/>
-<line class="sl" x1="359.6" y1="523.4" x2="359.6" y2="559.7"/>
-<line class="sl" x1="359.6" y1="559.7" x2="328.1" y2="577.9"/>
-<line class="sl" x1="328.1" y1="577.9" x2="296.7" y2="559.7"/>
-<line class="sl" x1="296.8" y1="559.7" x2="265.4" y2="577.9"/>
-<line class="sl" x1="265.4" y1="577.9" x2="233.9" y2="559.7"/>
-<line class="sl" x1="233.9" y1="559.7" x2="233.9" y2="523.3"/>
-<line class="sl" x1="359.8" y1="450.6" x2="391.2" y2="468.8"/>
-<line class="sl" x1="391.2" y1="468.8" x2="391.2" y2="505.1"/>
-<line class="sl" x1="391.2" y1="505.1" x2="359.8" y2="523.3"/>
-<line class="sl" x1="234.0" y1="523.3" x2="202.6" y2="505.1"/>
-<line class="sl" x1="202.6" y1="505.1" x2="202.6" y2="468.8"/>
-<line class="sl" x1="202.6" y1="468.8" x2="234.0" y2="450.6"/>
-<line class="sl" x1="328.4" y1="395.9" x2="359.8" y2="414.1"/>
-<line class="sl" x1="359.8" y1="414.1" x2="359.8" y2="450.5"/>
-<line class="sl" x1="296.9" y1="414.1" x2="328.4" y2="395.9"/>
-<line class="sl" x1="265.4" y1="395.9" x2="296.8" y2="414.1"/>
-<line class="sl" x1="234.0" y1="450.5" x2="234.0" y2="414.1"/>
-<line class="sl" x1="234.0" y1="414.1" x2="265.4" y2="395.9"/>
-<line class="sl" x1="1114.2" y1="523.3" x2="1114.2" y2="559.7"/>
-<line class="sl" x1="1114.2" y1="559.7" x2="1082.8" y2="577.9"/>
-<line class="sl" x1="1082.8" y1="577.9" x2="1051.4" y2="559.7"/>
-<line class="sl" x1="1051.4" y1="559.7" x2="1019.9" y2="577.9"/>
-<line class="sl" x1="1019.9" y1="577.9" x2="988.5" y2="559.7"/>
-<line class="sl" x1="988.5" y1="559.7" x2="988.5" y2="523.3"/>
-<line class="sl" x1="1114.4" y1="450.6" x2="1145.8" y2="468.8"/>
-<line class="sl" x1="1145.8" y1="468.8" x2="1145.8" y2="505.1"/>
-<line class="sl" x1="1145.8" y1="505.1" x2="1114.4" y2="523.3"/>
-<line class="sl" x1="988.6" y1="523.3" x2="957.2" y2="505.1"/>
-<line class="sl" x1="957.2" y1="505.1" x2="957.2" y2="468.8"/>
-<line class="sl" x1="957.2" y1="468.8" x2="988.6" y2="450.6"/>
-<line class="sl" x1="1082.8" y1="395.9" x2="1114.3" y2="414.1"/>
-<line class="sl" x1="1114.3" y1="414.1" x2="1114.3" y2="450.5"/>
-<line class="sl" x1="1051.4" y1="414.1" x2="1082.8" y2="395.9"/>
-<line class="sl" x1="1020.0" y1="395.9" x2="1051.4" y2="414.1"/>
-<line class="sl" x1="988.5" y1="450.5" x2="988.5" y2="414.1"/>
-<line class="sl" x1="988.5" y1="414.1" x2="1020.0" y2="395.9"/>
-<line class="sl" x1="548.3" y1="632.5" x2="548.3" y2="668.8"/>
-<line class="sl" x1="548.3" y1="668.8" x2="516.9" y2="687.0"/>
-<line class="sl" x1="516.9" y1="687.0" x2="485.4" y2="668.8"/>
-<line class="sl" x1="485.4" y1="668.8" x2="454.0" y2="687.0"/>
-<line class="sl" x1="454.0" y1="687.0" x2="422.6" y2="668.8"/>
-<line class="sl" x1="422.6" y1="668.8" x2="422.6" y2="632.5"/>
-<line class="sl" x1="548.5" y1="559.7" x2="579.9" y2="577.9"/>
-<line class="sl" x1="579.9" y1="577.9" x2="579.9" y2="614.3"/>
-<line class="sl" x1="579.9" y1="614.3" x2="548.5" y2="632.4"/>
-<line class="sl" x1="422.6" y1="632.4" x2="391.2" y2="614.3"/>
-<line class="sl" x1="391.2" y1="614.3" x2="391.2" y2="577.9"/>
-<line class="sl" x1="391.2" y1="577.9" x2="422.6" y2="559.7"/>
-<line class="sl" x1="516.9" y1="505.2" x2="548.4" y2="523.3"/>
-<line class="sl" x1="548.4" y1="523.3" x2="548.4" y2="559.7"/>
-<line class="sl" x1="485.5" y1="523.3" x2="516.9" y2="505.2"/>
-<line class="sl" x1="454.0" y1="505.2" x2="485.5" y2="523.3"/>
-<line class="sl" x1="422.6" y1="559.7" x2="422.6" y2="523.3"/>
-<line class="sl" x1="422.6" y1="523.3" x2="454.0" y2="505.2"/>
-<line class="sl" x1="925.6" y1="632.5" x2="925.6" y2="668.8"/>
-<line class="sl" x1="925.6" y1="668.8" x2="894.2" y2="687.0"/>
-<line class="sl" x1="894.2" y1="687.0" x2="862.7" y2="668.8"/>
-<line class="sl" x1="862.7" y1="668.8" x2="831.3" y2="687.0"/>
-<line class="sl" x1="831.3" y1="687.0" x2="799.8" y2="668.8"/>
-<line class="sl" x1="799.8" y1="668.8" x2="799.8" y2="632.5"/>
-<line class="sl" x1="925.6" y1="559.7" x2="957.0" y2="577.9"/>
-<line class="sl" x1="957.0" y1="577.9" x2="957.0" y2="614.3"/>
-<line class="sl" x1="957.0" y1="614.3" x2="925.6" y2="632.5"/>
-<line class="sl" x1="800.0" y1="632.5" x2="768.5" y2="614.3"/>
-<line class="sl" x1="768.5" y1="614.3" x2="768.5" y2="577.9"/>
-<line class="sl" x1="768.5" y1="577.9" x2="800.0" y2="559.7"/>
-<line class="sl" x1="894.2" y1="505.2" x2="925.7" y2="523.3"/>
-<line class="sl" x1="925.7" y1="523.3" x2="925.7" y2="559.7"/>
-<line class="sl" x1="862.8" y1="523.3" x2="894.2" y2="505.2"/>
-<line class="sl" x1="831.3" y1="505.2" x2="862.7" y2="523.3"/>
-<line class="sl" x1="799.8" y1="559.7" x2="799.8" y2="523.3"/>
-<line class="sl" x1="799.8" y1="523.3" x2="831.3" y2="505.2"/>
-<line class="sl" x1="359.7" y1="741.6" x2="359.7" y2="777.9"/>
-<line class="sl" x1="359.7" y1="777.9" x2="328.3" y2="796.1"/>
-<line class="sl" x1="328.3" y1="796.1" x2="296.9" y2="777.9"/>
-<line class="sl" x1="296.8" y1="777.9" x2="265.4" y2="796.1"/>
-<line class="sl" x1="265.4" y1="796.1" x2="233.9" y2="777.9"/>
-<line class="sl" x1="233.9" y1="777.9" x2="233.9" y2="741.6"/>
-<line class="sl" x1="359.7" y1="668.8" x2="391.2" y2="687.0"/>
-<line class="sl" x1="391.2" y1="687.0" x2="391.2" y2="723.4"/>
-<line class="sl" x1="391.2" y1="723.4" x2="359.7" y2="741.6"/>
-<line class="sl" x1="234.1" y1="741.6" x2="202.6" y2="723.4"/>
-<line class="sl" x1="202.6" y1="723.4" x2="202.6" y2="687.0"/>
-<line class="sl" x1="202.6" y1="687.0" x2="234.1" y2="668.8"/>
-<line class="sl" x1="328.2" y1="614.3" x2="359.6" y2="632.5"/>
-<line class="sl" x1="359.6" y1="632.5" x2="359.6" y2="668.8"/>
-<line class="sl" x1="296.7" y1="632.5" x2="328.2" y2="614.3"/>
-<line class="sl" x1="265.3" y1="614.3" x2="296.7" y2="632.5"/>
-<line class="sl" x1="233.8" y1="668.8" x2="233.8" y2="632.5"/>
-<line class="sl" x1="233.8" y1="632.5" x2="265.3" y2="614.3"/>
-<line class="sl" x1="737.0" y1="741.6" x2="737.0" y2="777.9"/>
-<line class="sl" x1="737.0" y1="777.9" x2="705.5" y2="796.1"/>
-<line class="sl" x1="705.5" y1="796.1" x2="674.1" y2="777.9"/>
-<line class="sl" x1="674.0" y1="777.9" x2="642.6" y2="796.1"/>
-<line class="sl" x1="642.6" y1="796.1" x2="611.2" y2="777.9"/>
-<line class="sl" x1="611.2" y1="777.9" x2="611.2" y2="741.6"/>
-<line class="sl" x1="737.0" y1="668.8" x2="768.4" y2="687.0"/>
-<line class="sl" x1="768.4" y1="687.0" x2="768.4" y2="723.4"/>
-<line class="sl" x1="768.4" y1="723.4" x2="737.0" y2="741.6"/>
-<line class="sl" x1="611.3" y1="741.5" x2="579.9" y2="723.3"/>
-<line class="sl" x1="579.9" y1="723.3" x2="579.9" y2="687.0"/>
-<line class="sl" x1="579.9" y1="687.0" x2="611.3" y2="668.8"/>
-<line class="sl" x1="705.4" y1="614.3" x2="736.9" y2="632.5"/>
-<line class="sl" x1="736.9" y1="632.5" x2="736.9" y2="668.8"/>
-<line class="sl" x1="674.0" y1="632.5" x2="705.4" y2="614.3"/>
-<line class="sl" x1="642.7" y1="614.3" x2="674.1" y2="632.5"/>
-<line class="sl" x1="611.2" y1="668.8" x2="611.2" y2="632.5"/>
-<line class="sl" x1="611.2" y1="632.5" x2="642.7" y2="614.3"/>
-<line class="sl" x1="1114.2" y1="741.6" x2="1114.2" y2="777.9"/>
-<line class="sl" x1="1114.2" y1="777.9" x2="1082.8" y2="796.1"/>
-<line class="sl" x1="1082.8" y1="796.1" x2="1051.3" y2="777.9"/>
-<line class="sl" x1="1051.3" y1="777.9" x2="1019.9" y2="796.1"/>
-<line class="sl" x1="1019.9" y1="796.1" x2="988.4" y2="777.9"/>
-<line class="sl" x1="988.4" y1="777.9" x2="988.4" y2="741.5"/>
-<line class="sl" x1="1114.2" y1="668.8" x2="1145.7" y2="687.0"/>
-<line class="sl" x1="1145.7" y1="687.0" x2="1145.7" y2="723.4"/>
-<line class="sl" x1="1145.7" y1="723.4" x2="1114.2" y2="741.6"/>
-<line class="sl" x1="988.5" y1="741.6" x2="957.0" y2="723.4"/>
-<line class="sl" x1="957.0" y1="723.4" x2="957.0" y2="687.0"/>
-<line class="sl" x1="957.0" y1="687.0" x2="988.5" y2="668.8"/>
-<line class="sl" x1="1082.8" y1="614.2" x2="1114.3" y2="632.4"/>
-<line class="sl" x1="1114.3" y1="632.4" x2="1114.3" y2="668.8"/>
-<line class="sl" x1="1051.4" y1="632.4" x2="1082.8" y2="614.2"/>
-<line class="sl" x1="1019.9" y1="614.3" x2="1051.4" y2="632.5"/>
-<line class="sl" x1="988.5" y1="668.8" x2="988.5" y2="632.5"/>
-<line class="sl" x1="988.5" y1="632.5" x2="1019.9" y2="614.3"/>
-<line class="sl" x1="548.3" y1="850.7" x2="548.3" y2="887.1"/>
-<line class="sl" x1="548.3" y1="887.1" x2="516.9" y2="905.2"/>
-<line class="sl" x1="516.9" y1="905.2" x2="485.4" y2="887.1"/>
-<line class="sl" x1="485.4" y1="887.1" x2="454.0" y2="905.3"/>
-<line class="sl" x1="454.0" y1="905.3" x2="422.5" y2="887.1"/>
-<line class="sl" x1="422.5" y1="887.1" x2="422.5" y2="850.7"/>
-<line class="sl" x1="548.5" y1="778.0" x2="579.9" y2="796.1"/>
-<line class="sl" x1="579.9" y1="796.1" x2="579.9" y2="832.5"/>
-<line class="sl" x1="579.9" y1="832.5" x2="548.5" y2="850.7"/>
-<line class="sl" x1="422.7" y1="850.7" x2="391.3" y2="832.5"/>
-<line class="sl" x1="391.3" y1="832.5" x2="391.3" y2="796.1"/>
-<line class="sl" x1="391.3" y1="796.1" x2="422.7" y2="778.0"/>
-<line class="sl" x1="516.8" y1="723.4" x2="548.2" y2="741.6"/>
-<line class="sl" x1="548.2" y1="741.6" x2="548.2" y2="777.9"/>
-<line class="sl" x1="485.4" y1="741.6" x2="516.8" y2="723.4"/>
-<line class="sl" x1="453.9" y1="723.4" x2="485.4" y2="741.6"/>
-<line class="sl" x1="422.5" y1="777.9" x2="422.5" y2="741.6"/>
-<line class="sl" x1="422.5" y1="741.6" x2="453.9" y2="723.4"/>
-<line class="sl" x1="925.6" y1="850.7" x2="925.6" y2="887.1"/>
-<line class="sl" x1="925.6" y1="887.1" x2="894.2" y2="905.2"/>
-<line class="sl" x1="894.2" y1="905.2" x2="862.7" y2="887.1"/>
-<line class="sl" x1="862.7" y1="887.1" x2="831.3" y2="905.2"/>
-<line class="sl" x1="831.3" y1="905.2" x2="799.8" y2="887.1"/>
-<line class="sl" x1="799.8" y1="887.1" x2="799.8" y2="850.7"/>
-<line class="sl" x1="925.6" y1="778.0" x2="957.1" y2="796.1"/>
-<line class="sl" x1="957.1" y1="796.1" x2="957.1" y2="832.5"/>
-<line class="sl" x1="957.1" y1="832.5" x2="925.6" y2="850.7"/>
-<line class="sl" x1="799.8" y1="850.7" x2="768.4" y2="832.5"/>
-<line class="sl" x1="768.4" y1="832.5" x2="768.4" y2="796.1"/>
-<line class="sl" x1="768.4" y1="796.1" x2="799.8" y2="778.0"/>
-<line class="sl" x1="894.2" y1="723.3" x2="925.6" y2="741.5"/>
-<line class="sl" x1="925.6" y1="741.5" x2="925.6" y2="777.9"/>
-<line class="sl" x1="862.8" y1="741.5" x2="894.2" y2="723.3"/>
-<line class="sl" x1="831.2" y1="723.4" x2="862.7" y2="741.6"/>
-<line class="sl" x1="799.8" y1="777.9" x2="799.8" y2="741.6"/>
-<line class="sl" x1="799.8" y1="741.6" x2="831.2" y2="723.4"/>
 </g>
-<g id="marks"><g class="tok"><circle cx="674.0" cy="377.7" r="11.5"/><path d="M667.0 383.7V376.7A7 7 0 0 1 681.0 376.7V383.7Z"/></g><g class="tok"><circle cx="674.2" cy="596.1" r="11.5"/><path d="M667.2 602.1V595.1A7 7 0 0 1 681.2 595.1V602.1Z"/></g><g class="tok"><circle cx="328.4" cy="104.9" r="11.5"/><path d="M324.4 112.9V96.9L335.4 100.9L324.4 104.9"/></g><g class="tok"><circle cx="108.2" cy="487.0" r="11.5"/><path d="M104.2 495.0V479.0L115.2 483.0L104.2 487.0"/></g><g class="tok"><circle cx="328.3" cy="868.9" r="11.5"/><path d="M324.3 876.9V860.9L335.3 864.9L324.3 868.9"/></g><g class="tok"><circle cx="1019.9" cy="104.9" r="11.5"/><path d="M1015.9 112.9V96.9L1026.9 100.9L1015.9 104.9"/></g><g class="tok"><circle cx="1240.2" cy="487.0" r="11.5"/><path d="M1236.2 495.0V479.0L1247.2 483.0L1236.2 487.0"/></g><g class="tok"><circle cx="1019.8" cy="868.9" r="11.5"/><path d="M1015.8 876.9V860.9L1026.8 864.9L1015.8 868.9"/></g></g>
+<g id="secline">
+<line class="ls" x1="328.5" y1="141.3" x2="328.5" y2="177.7"/>
+<line class="ls" x1="328.5" y1="177.7" x2="297.0" y2="195.9"/>
+<line class="ls" x1="297.0" y1="195.9" x2="265.6" y2="177.7"/>
+<line class="ls" x1="265.6" y1="177.7" x2="234.2" y2="195.9"/>
+<line class="ls" x1="234.2" y1="195.9" x2="202.7" y2="177.7"/>
+<line class="ls" x1="202.7" y1="177.7" x2="202.7" y2="141.3"/>
+<line class="ls" x1="234.2" y1="86.8" x2="265.6" y2="68.6"/>
+<line class="ls" x1="202.7" y1="68.6" x2="234.2" y2="86.8"/>
+<line class="ls" x1="202.7" y1="141.3" x2="171.3" y2="123.1"/>
+<line class="ls" x1="171.3" y1="123.1" x2="171.3" y2="86.8"/>
+<line class="ls" x1="171.3" y1="86.8" x2="202.7" y2="68.6"/>
+<line class="ls" x1="297.0" y1="14.0" x2="328.5" y2="32.2"/>
+<line class="ls" x1="328.5" y1="32.2" x2="328.5" y2="68.6"/>
+<line class="ls" x1="265.6" y1="68.6" x2="265.6" y2="32.2"/>
+<line class="ls" x1="265.6" y1="32.2" x2="297.0" y2="14.0"/>
+<line class="ls" x1="328.5" y1="68.6" x2="359.9" y2="86.8"/>
+<line class="ls" x1="359.9" y1="86.8" x2="359.9" y2="123.1"/>
+<line class="ls" x1="359.9" y1="123.1" x2="328.5" y2="141.3"/>
+<line class="ls" x1="705.8" y1="141.3" x2="705.8" y2="177.7"/>
+<line class="ls" x1="705.8" y1="177.7" x2="674.3" y2="195.9"/>
+<line class="ls" x1="674.3" y1="195.9" x2="642.9" y2="177.7"/>
+<line class="ls" x1="642.9" y1="177.7" x2="611.4" y2="195.9"/>
+<line class="ls" x1="611.4" y1="195.9" x2="580.0" y2="177.7"/>
+<line class="ls" x1="580.0" y1="177.7" x2="580.0" y2="141.3"/>
+<line class="ls" x1="705.8" y1="68.6" x2="737.2" y2="86.8"/>
+<line class="ls" x1="737.2" y1="86.8" x2="737.2" y2="123.1"/>
+<line class="ls" x1="737.2" y1="123.1" x2="705.8" y2="141.3"/>
+<line class="ls" x1="674.3" y1="86.8" x2="705.8" y2="68.6"/>
+<line class="ls" x1="642.9" y1="68.6" x2="674.3" y2="86.8"/>
+<line class="ls" x1="580.0" y1="141.3" x2="548.6" y2="123.1"/>
+<line class="ls" x1="548.6" y1="123.1" x2="548.6" y2="86.8"/>
+<line class="ls" x1="548.6" y1="86.8" x2="580.0" y2="68.6"/>
+<line class="ls" x1="611.4" y1="14.0" x2="642.9" y2="32.2"/>
+<line class="ls" x1="642.9" y1="32.2" x2="642.9" y2="68.6"/>
+<line class="ls" x1="580.0" y1="68.6" x2="580.0" y2="32.2"/>
+<line class="ls" x1="580.0" y1="32.2" x2="611.4" y2="14.0"/>
+<line class="ls" x1="139.8" y1="468.7" x2="139.8" y2="505.1"/>
+<line class="ls" x1="139.8" y1="505.1" x2="108.4" y2="523.2"/>
+<line class="ls" x1="108.4" y1="523.2" x2="77.0" y2="505.1"/>
+<line class="ls" x1="77.0" y1="505.1" x2="45.5" y2="523.2"/>
+<line class="ls" x1="45.5" y1="523.2" x2="14.1" y2="505.1"/>
+<line class="ls" x1="14.1" y1="505.1" x2="14.1" y2="468.7"/>
+<line class="ls" x1="14.1" y1="468.7" x2="45.5" y2="450.5"/>
+<line class="ls" x1="139.8" y1="396.0" x2="171.3" y2="414.1"/>
+<line class="ls" x1="171.3" y1="414.1" x2="171.3" y2="450.5"/>
+<line class="ls" x1="171.3" y1="450.5" x2="139.8" y2="468.7"/>
+<line class="ls" x1="45.5" y1="450.5" x2="45.5" y2="414.1"/>
+<line class="ls" x1="108.4" y1="341.4" x2="139.8" y2="359.6"/>
+<line class="ls" x1="139.8" y1="359.6" x2="139.8" y2="395.9"/>
+<line class="ls" x1="77.0" y1="359.6" x2="108.4" y2="341.4"/>
+<line class="ls" x1="45.5" y1="341.4" x2="77.0" y2="359.6"/>
+<line class="ls" x1="45.5" y1="414.1" x2="14.1" y2="395.9"/>
+<line class="ls" x1="14.1" y1="395.9" x2="14.1" y2="359.6"/>
+<line class="ls" x1="14.1" y1="359.6" x2="45.5" y2="341.4"/>
+<line class="ls" x1="863.0" y1="450.5" x2="894.4" y2="468.7"/>
+<line class="ls" x1="894.4" y1="468.7" x2="894.4" y2="505.1"/>
+<line class="ls" x1="894.4" y1="505.1" x2="863.0" y2="523.2"/>
+<line class="ls" x1="863.0" y1="523.2" x2="831.5" y2="505.1"/>
+<line class="ls" x1="831.5" y1="505.1" x2="800.1" y2="523.2"/>
+<line class="ls" x1="800.1" y1="523.2" x2="768.6" y2="505.1"/>
+<line class="ls" x1="768.6" y1="505.1" x2="768.6" y2="468.7"/>
+<line class="ls" x1="863.0" y1="414.1" x2="863.0" y2="450.5"/>
+<line class="ls" x1="768.6" y1="468.7" x2="737.2" y2="450.5"/>
+<line class="ls" x1="737.2" y1="450.5" x2="737.2" y2="414.1"/>
+<line class="ls" x1="737.2" y1="414.1" x2="768.6" y2="396.0"/>
+<line class="ls" x1="863.0" y1="341.4" x2="894.4" y2="359.6"/>
+<line class="ls" x1="894.4" y1="359.6" x2="894.4" y2="395.9"/>
+<line class="ls" x1="894.4" y1="395.9" x2="863.0" y2="414.1"/>
+<line class="ls" x1="831.5" y1="359.6" x2="863.0" y2="341.4"/>
+<line class="ls" x1="800.1" y1="341.4" x2="831.5" y2="359.6"/>
+<line class="ls" x1="768.6" y1="395.9" x2="768.6" y2="359.6"/>
+<line class="ls" x1="768.6" y1="359.6" x2="800.1" y2="341.4"/>
+<line class="ls" x1="328.5" y1="796.1" x2="328.5" y2="832.4"/>
+<line class="ls" x1="328.5" y1="832.4" x2="297.0" y2="850.6"/>
+<line class="ls" x1="297.0" y1="850.6" x2="265.6" y2="832.4"/>
+<line class="ls" x1="265.6" y1="832.4" x2="265.6" y2="796.1"/>
+<line class="ls" x1="328.5" y1="723.3" x2="359.9" y2="741.5"/>
+<line class="ls" x1="359.9" y1="741.5" x2="359.9" y2="777.9"/>
+<line class="ls" x1="359.9" y1="777.9" x2="328.5" y2="796.0"/>
+<line class="ls" x1="265.6" y1="796.0" x2="234.2" y2="777.9"/>
+<line class="ls" x1="234.2" y1="777.9" x2="202.7" y2="796.0"/>
+<line class="ls" x1="202.7" y1="796.0" x2="171.3" y2="777.9"/>
+<line class="ls" x1="171.3" y1="777.9" x2="171.3" y2="741.5"/>
+<line class="ls" x1="171.3" y1="741.5" x2="202.7" y2="723.3"/>
+<line class="ls" x1="297.0" y1="668.8" x2="328.5" y2="686.9"/>
+<line class="ls" x1="328.5" y1="686.9" x2="328.5" y2="723.3"/>
+<line class="ls" x1="265.6" y1="686.9" x2="297.0" y2="668.8"/>
+<line class="ls" x1="234.2" y1="668.8" x2="265.6" y2="686.9"/>
+<line class="ls" x1="202.7" y1="723.3" x2="202.7" y2="686.9"/>
+<line class="ls" x1="202.7" y1="686.9" x2="234.2" y2="668.8"/>
+<line class="ls" x1="580.0" y1="796.0" x2="548.6" y2="777.9"/>
+<line class="ls" x1="548.6" y1="777.9" x2="548.6" y2="741.5"/>
+<line class="ls" x1="548.6" y1="741.5" x2="580.0" y2="723.3"/>
+<line class="ls" x1="642.9" y1="796.1" x2="642.9" y2="832.4"/>
+<line class="ls" x1="642.9" y1="832.4" x2="611.4" y2="850.6"/>
+<line class="ls" x1="611.4" y1="850.6" x2="580.0" y2="832.4"/>
+<line class="ls" x1="580.0" y1="832.4" x2="580.0" y2="796.1"/>
+<line class="ls" x1="705.8" y1="723.3" x2="737.2" y2="741.5"/>
+<line class="ls" x1="737.2" y1="741.5" x2="737.2" y2="777.9"/>
+<line class="ls" x1="737.2" y1="777.9" x2="705.8" y2="796.0"/>
+<line class="ls" x1="705.8" y1="796.0" x2="674.3" y2="777.9"/>
+<line class="ls" x1="674.3" y1="777.9" x2="642.9" y2="796.0"/>
+<line class="ls" x1="674.3" y1="668.8" x2="705.8" y2="686.9"/>
+<line class="ls" x1="705.8" y1="686.9" x2="705.8" y2="723.3"/>
+<line class="ls" x1="642.9" y1="686.9" x2="674.3" y2="668.8"/>
+<line class="ls" x1="611.4" y1="668.8" x2="642.9" y2="686.9"/>
+<line class="ls" x1="580.0" y1="723.3" x2="580.0" y2="686.9"/>
+<line class="ls" x1="580.0" y1="686.9" x2="611.4" y2="668.8"/>
+<line class="sl" x1="517.1" y1="250.5" x2="517.1" y2="286.8"/>
+<line class="sl" x1="517.1" y1="286.8" x2="485.7" y2="305.0"/>
+<line class="sl" x1="485.7" y1="305.0" x2="454.2" y2="286.8"/>
+<line class="sl" x1="454.2" y1="286.8" x2="422.8" y2="305.0"/>
+<line class="sl" x1="422.8" y1="305.0" x2="391.4" y2="286.8"/>
+<line class="sl" x1="391.4" y1="286.8" x2="391.4" y2="250.5"/>
+<line class="sl" x1="517.1" y1="177.7" x2="548.6" y2="195.9"/>
+<line class="sl" x1="548.6" y1="195.9" x2="548.6" y2="232.3"/>
+<line class="sl" x1="548.6" y1="232.3" x2="517.1" y2="250.4"/>
+<line class="sl" x1="391.4" y1="250.4" x2="359.9" y2="232.3"/>
+<line class="sl" x1="359.9" y1="232.3" x2="359.9" y2="195.9"/>
+<line class="sl" x1="359.9" y1="195.9" x2="391.4" y2="177.7"/>
+<line class="sl" x1="485.7" y1="123.2" x2="517.1" y2="141.3"/>
+<line class="sl" x1="517.1" y1="141.3" x2="517.1" y2="177.7"/>
+<line class="sl" x1="454.2" y1="141.3" x2="485.7" y2="123.2"/>
+<line class="sl" x1="422.8" y1="123.2" x2="454.2" y2="141.3"/>
+<line class="sl" x1="391.4" y1="177.7" x2="391.4" y2="141.3"/>
+<line class="sl" x1="391.4" y1="141.3" x2="422.8" y2="123.2"/>
+<line class="sl" x1="328.5" y1="359.6" x2="328.5" y2="395.9"/>
+<line class="sl" x1="328.5" y1="395.9" x2="297.0" y2="414.1"/>
+<line class="sl" x1="297.0" y1="414.1" x2="265.6" y2="395.9"/>
+<line class="sl" x1="265.6" y1="395.9" x2="234.2" y2="414.1"/>
+<line class="sl" x1="234.2" y1="414.1" x2="202.7" y2="395.9"/>
+<line class="sl" x1="202.7" y1="395.9" x2="202.7" y2="359.6"/>
+<line class="sl" x1="328.5" y1="286.8" x2="359.9" y2="305.0"/>
+<line class="sl" x1="359.9" y1="305.0" x2="359.9" y2="341.4"/>
+<line class="sl" x1="359.9" y1="341.4" x2="328.5" y2="359.6"/>
+<line class="sl" x1="202.7" y1="359.6" x2="171.3" y2="341.4"/>
+<line class="sl" x1="171.3" y1="341.4" x2="171.3" y2="305.0"/>
+<line class="sl" x1="171.3" y1="305.0" x2="202.7" y2="286.8"/>
+<line class="sl" x1="297.0" y1="232.3" x2="328.5" y2="250.5"/>
+<line class="sl" x1="328.5" y1="250.5" x2="328.5" y2="286.8"/>
+<line class="sl" x1="265.6" y1="250.5" x2="297.0" y2="232.3"/>
+<line class="sl" x1="234.2" y1="232.3" x2="265.6" y2="250.5"/>
+<line class="sl" x1="202.7" y1="286.8" x2="202.7" y2="250.5"/>
+<line class="sl" x1="202.7" y1="250.5" x2="234.2" y2="232.3"/>
+<line class="sl" x1="705.8" y1="359.6" x2="705.8" y2="395.9"/>
+<line class="sl" x1="705.8" y1="395.9" x2="674.3" y2="414.1"/>
+<line class="sl" x1="674.3" y1="414.1" x2="642.9" y2="395.9"/>
+<line class="sl" x1="642.9" y1="395.9" x2="611.4" y2="414.1"/>
+<line class="sl" x1="611.4" y1="414.1" x2="580.0" y2="395.9"/>
+<line class="sl" x1="580.0" y1="395.9" x2="580.0" y2="359.6"/>
+<line class="sl" x1="705.8" y1="286.8" x2="737.2" y2="305.0"/>
+<line class="sl" x1="737.2" y1="305.0" x2="737.2" y2="341.4"/>
+<line class="sl" x1="737.2" y1="341.4" x2="705.8" y2="359.6"/>
+<line class="sl" x1="580.0" y1="359.6" x2="548.6" y2="341.4"/>
+<line class="sl" x1="548.6" y1="341.4" x2="548.6" y2="305.0"/>
+<line class="sl" x1="548.6" y1="305.0" x2="580.0" y2="286.8"/>
+<line class="sl" x1="674.3" y1="232.3" x2="705.8" y2="250.5"/>
+<line class="sl" x1="705.8" y1="250.5" x2="705.8" y2="286.8"/>
+<line class="sl" x1="642.9" y1="250.5" x2="674.3" y2="232.3"/>
+<line class="sl" x1="611.4" y1="232.3" x2="642.9" y2="250.5"/>
+<line class="sl" x1="580.0" y1="286.8" x2="580.0" y2="250.5"/>
+<line class="sl" x1="580.0" y1="250.5" x2="611.4" y2="232.3"/>
+<line class="sl" x1="328.5" y1="577.8" x2="328.5" y2="614.2"/>
+<line class="sl" x1="328.5" y1="614.2" x2="297.0" y2="632.4"/>
+<line class="sl" x1="297.0" y1="632.4" x2="265.6" y2="614.2"/>
+<line class="sl" x1="265.6" y1="614.2" x2="234.2" y2="632.4"/>
+<line class="sl" x1="234.2" y1="632.4" x2="202.7" y2="614.2"/>
+<line class="sl" x1="202.7" y1="614.2" x2="202.7" y2="577.8"/>
+<line class="sl" x1="328.5" y1="505.1" x2="359.9" y2="523.3"/>
+<line class="sl" x1="359.9" y1="523.3" x2="359.9" y2="559.6"/>
+<line class="sl" x1="359.9" y1="559.6" x2="328.5" y2="577.8"/>
+<line class="sl" x1="202.7" y1="577.8" x2="171.3" y2="559.6"/>
+<line class="sl" x1="171.3" y1="559.6" x2="171.3" y2="523.3"/>
+<line class="sl" x1="171.3" y1="523.3" x2="202.7" y2="505.1"/>
+<line class="sl" x1="297.0" y1="450.5" x2="328.5" y2="468.7"/>
+<line class="sl" x1="328.5" y1="468.7" x2="328.5" y2="505.1"/>
+<line class="sl" x1="265.6" y1="468.7" x2="297.0" y2="450.5"/>
+<line class="sl" x1="234.2" y1="450.5" x2="265.6" y2="468.7"/>
+<line class="sl" x1="202.7" y1="505.1" x2="202.7" y2="468.7"/>
+<line class="sl" x1="202.7" y1="468.7" x2="234.2" y2="450.5"/>
+<line class="sl" x1="705.8" y1="577.8" x2="705.8" y2="614.2"/>
+<line class="sl" x1="705.8" y1="614.2" x2="674.3" y2="632.4"/>
+<line class="sl" x1="674.3" y1="632.4" x2="642.9" y2="614.2"/>
+<line class="sl" x1="642.9" y1="614.2" x2="611.4" y2="632.4"/>
+<line class="sl" x1="611.4" y1="632.4" x2="580.0" y2="614.2"/>
+<line class="sl" x1="580.0" y1="614.2" x2="580.0" y2="577.8"/>
+<line class="sl" x1="705.8" y1="505.1" x2="737.2" y2="523.3"/>
+<line class="sl" x1="737.2" y1="523.3" x2="737.2" y2="559.6"/>
+<line class="sl" x1="737.2" y1="559.6" x2="705.8" y2="577.8"/>
+<line class="sl" x1="580.0" y1="577.8" x2="548.6" y2="559.6"/>
+<line class="sl" x1="548.6" y1="559.6" x2="548.6" y2="523.3"/>
+<line class="sl" x1="548.6" y1="523.3" x2="580.0" y2="505.1"/>
+<line class="sl" x1="674.3" y1="450.5" x2="705.8" y2="468.7"/>
+<line class="sl" x1="705.8" y1="468.7" x2="705.8" y2="505.1"/>
+<line class="sl" x1="642.9" y1="468.7" x2="674.3" y2="450.5"/>
+<line class="sl" x1="611.4" y1="450.5" x2="642.9" y2="468.7"/>
+<line class="sl" x1="580.0" y1="505.1" x2="580.0" y2="468.7"/>
+<line class="sl" x1="580.0" y1="468.7" x2="611.4" y2="450.5"/>
+<line class="sl" x1="517.1" y1="686.9" x2="517.1" y2="723.3"/>
+<line class="sl" x1="517.1" y1="723.3" x2="485.7" y2="741.5"/>
+<line class="sl" x1="485.7" y1="741.5" x2="454.2" y2="723.3"/>
+<line class="sl" x1="454.2" y1="723.3" x2="422.8" y2="741.5"/>
+<line class="sl" x1="422.8" y1="741.5" x2="391.4" y2="723.3"/>
+<line class="sl" x1="391.4" y1="723.3" x2="391.4" y2="686.9"/>
+<line class="sl" x1="517.1" y1="614.2" x2="548.6" y2="632.4"/>
+<line class="sl" x1="548.6" y1="632.4" x2="548.6" y2="668.7"/>
+<line class="sl" x1="548.6" y1="668.7" x2="517.1" y2="686.9"/>
+<line class="sl" x1="391.4" y1="686.9" x2="359.9" y2="668.7"/>
+<line class="sl" x1="359.9" y1="668.7" x2="359.9" y2="632.4"/>
+<line class="sl" x1="359.9" y1="632.4" x2="391.4" y2="614.2"/>
+<line class="sl" x1="485.7" y1="559.6" x2="517.1" y2="577.8"/>
+<line class="sl" x1="517.1" y1="577.8" x2="517.1" y2="614.2"/>
+<line class="sl" x1="454.2" y1="577.8" x2="485.7" y2="559.6"/>
+<line class="sl" x1="422.8" y1="559.6" x2="454.2" y2="577.8"/>
+<line class="sl" x1="391.4" y1="614.2" x2="391.4" y2="577.8"/>
+<line class="sl" x1="391.4" y1="577.8" x2="422.8" y2="559.6"/>
+</g>
+<g id="marks"><g class="tok"><circle cx="454.2" cy="323.2" r="11.5"/><path d="M447.2 329.2V322.2A7 7 0 0 1 461.2 322.2V329.2Z"/></g><g class="tok"><circle cx="454.2" cy="541.4" r="11.5"/><path d="M447.2 547.4V540.4A7 7 0 0 1 461.2 540.4V547.4Z"/></g><g class="tok"><circle cx="265.6" cy="105.0" r="11.5"/><path d="M261.6 113.0V97.0L272.6 101.0L261.6 105.0"/></g><g class="tok"><circle cx="642.9" cy="105.0" r="11.5"/><path d="M638.9 113.0V97.0L649.9 101.0L638.9 105.0"/></g><g class="tok"><circle cx="77.0" cy="432.3" r="11.5"/><path d="M73.0 440.3V424.3L84.0 428.3L73.0 432.3"/></g><g class="tok"><circle cx="831.5" cy="432.3" r="11.5"/><path d="M827.5 440.3V424.3L838.5 428.3L827.5 432.3"/></g><g class="tok"><circle cx="265.6" cy="759.7" r="11.5"/><path d="M261.6 767.7V751.7L272.6 755.7L261.6 759.7"/></g><g class="tok"><circle cx="642.9" cy="759.7" r="11.5"/><path d="M638.9 767.7V751.7L649.9 755.7L638.9 759.7"/></g></g>
 <g id="slotlabels">
-<text x="485.4" y="159.5" data-n="1">?</text>
-<text x="862.7" y="159.5" data-n="2">?</text>
-<text x="296.8" y="268.7" data-n="3">?</text>
-<text x="674.0" y="268.6" data-n="4">?</text>
-<text x="1051.3" y="268.6" data-n="5">?</text>
-<text x="485.4" y="377.7" data-n="6">?</text>
-<text x="862.8" y="377.7" data-n="7">?</text>
-<text x="296.9" y="487.0" data-n="8">?</text>
-<text x="1051.6" y="486.9" data-n="9">?</text>
-<text x="485.5" y="596.1" data-n="10">?</text>
-<text x="862.8" y="596.1" data-n="11">?</text>
-<text x="296.9" y="705.2" data-n="12">?</text>
-<text x="674.2" y="705.2" data-n="13">?</text>
-<text x="1051.4" y="705.2" data-n="14">?</text>
-<text x="485.6" y="814.3" data-n="15">?</text>
-<text x="862.8" y="814.3" data-n="16">?</text>
+<text x="454.2" y="214.1" data-n="1">?</text>
+<text x="265.6" y="323.2" data-n="2">?</text>
+<text x="642.9" y="323.2" data-n="3">?</text>
+<text x="265.6" y="541.4" data-n="4">?</text>
+<text x="642.9" y="541.4" data-n="5">?</text>
+<text x="454.2" y="650.6" data-n="6">?</text>
 </g>
 <g id="mtnmark"></g>
 <g id="hillmark"></g></svg>
@@ -1774,26 +1495,26 @@
 
   <section>
     <h2>The Sector tiles</h2>
-    <p class="sub">The 20 tiles in the stack. A tile is drawn blind and placed in an empty slot in whichever rotation its player chooses; hexes are numbered top left to bottom right as shown. The dice show the strength a Settlement starts at.</p>
+    <p class="sub">The 16 Sector tiles. A tile is drawn blind and placed in an empty slot in whichever rotation its player chooses; hexes are numbered top left to bottom right as shown. The dice show the strength a Settlement starts at; the lettered rings are Resources (M Metal, B Biofuel, S Silica, C Cryofluid).</p>
     <div class="stiles" id="stiles"></div>
   </section>
 
   <section>
     <h2>The empty Sector tiles</h2>
-    <p class="sub">Eight tiles with no Settlement, used only in games of two or three players. With three players four of the 16 drawn tiles are swapped for empty ones, with two players eight. They keep the Encounters and Tunnels of the full set in proportion.</p>
+    <p class="sub">Four tiles with no Settlement and no Resource, used only in games of two or three players: one goes into the stack with three players, two with two players.</p>
     <div class="stiles" id="etiles"></div>
   </section>
 
   <section>
     <h2>Balance</h2>
     <p class="sub" id="balnote"></p>
-    <div class="balance three" id="balance"></div>
+    <div class="balance four" id="balance"></div>
   </section>
 
   <section>
     <h2>Tokens</h2>
     <p class="sub">What the board and the tiles carry besides terrain.</p>
-    <div class="balance three" id="tokens"></div>
+    <div class="balance four" id="tokens"></div>
   </section>
 
   <section>
@@ -1947,12 +1668,48 @@
 
   <section>
     <h2>To print for the next test</h2>
-    <p class="sub">Nothing waiting to print.</p>
+    <p class="sub">9 double-sided helper cards (two sets per sheet, Upgrades is new), all 54 Ability Cards, 5 Corporations, 1 Operative, the Player Board, the new smaller board and all 20 Sector tiles.</p>
+    <div class="tablewrap"><table class="printlist">
+      <thead><tr><th class="l">Sheet</th><th class="l">Cards</th></tr></thead>
+      <tbody>
+        <tr><td class="l sec">Helper Cards</td><td class="l">Upgrades (new, front and back), Game Setup, Player Round, Intermission, Terrain Tiles, Siege / Bio Attack, Combat Dice / Event Die, Claiming / Territory, Workers / Progression (two sets per sheet: Helper Cards + Helper Cards (Back); print the sheet twice for four players)</td></tr>
+        <tr><td class="l sec">Ability Cards 1</td><td class="l">All 18 (resized to 62 &times; 88 mm)</td></tr>
+        <tr><td class="l sec">Ability Cards 2</td><td class="l">All 18 (resized to 62 &times; 88 mm)</td></tr>
+        <tr><td class="l sec">Ability Cards 3</td><td class="l">All 18 (resized to 62 &times; 88 mm)</td></tr>
+        <tr><td class="l sec">Corporations 1</td><td class="l">Vector</td></tr>
+        <tr><td class="l sec">Corporations 2</td><td class="l">Covenant, Lumen, Xenarch, Lodestar, Razorline</td></tr>
+        <tr><td class="l sec">Operatives 2</td><td class="l">Marksmen</td></tr>
+        <tr><td class="l sec">Player Board</td><td class="l">The whole board (Structures with upgrade boxes, Workers track, Xeno Eggs, Resources rows, Subjugated Creature slot, Troopers)</td></tr>
+        <tr><td class="l sec">Board (World.af)</td><td class="l">The whole board: the smaller planet with its card slots (four A3 sheets)</td></tr>
+        <tr><td class="l sec">Sectors (Print)</td><td class="l">All four sheets: Sheet 1 (Sectors 1-6), Sheet 2 (7-12), Sheet 3 (13-16, Empty 1-2), Sheet 4 (Empty 3-4)</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
   <section>
     <h2>Releases</h2>
     <div class="log">
+      <article class="rel">
+        <div><p class="v">3.21</p><p class="vt">The small planet</p></div>
+        <ul>
+          <li>The board shrinks to <b>114 printed tiles</b> around the volcano plus <b>6 empty Sector slots</b>, so corporations run out of free land sooner and meet each other. It still prints on four A3 sheets at the same tile size.</li>
+          <li><b>Six landing sites</b> of six tiles each sit on the corners of the planet. A landing site never touches a Sector slot.</li>
+          <li>The Sector stack is built at setup: <b>6 Sector tiles</b> with four players, <b>5 + 1 empty</b> with three, <b>4 + 2 empty</b> with two. The set is now <b>16 Sector tiles</b> and <b>4 empty tiles</b>.</li>
+          <li><b>Resources are printed on the Sector tiles</b> &mdash; Metal on Mountains, Biofuel on Sludge, Silica on Hills, Cryofluid on Wasteland, 4 of each. A Sector you control pays 1 Resource per icon in your Income Phase unless something hostile stands in it. Twelve tiles carry one, two carry two and two carry none; the landing sites carry none.</li>
+          <li>You deploy only inside the Sector of the Outpost or Headquarters you deploy next to.</li>
+          <li><b>Resource rows</b>: each Resource has 3 Worker slots on the Player Board, and each Worker there collects 1 of that Resource per Income Phase from an icon of that type in a Sector you control. The Event Die no longer pays an extra Resource for a Worker.</li>
+          <li><b>Orbital Trade</b>: in Cleanup, load up to 4 Resources while your Headquarters is not Suppressed; next Income Phase they pay 3, 2, 2 and 1 Arc Cubes. If your Headquarters falls first, the attacker takes them.</li>
+          <li><b>Workers</b> are assigned to a Structure, the Structures slot or a Resource row; the Arc Cubes, Operatives, Xeno Eggs and Contract assignments are gone. Your <b>Headquarters pays 3 Arc Cubes</b>, and the <em>HQ + Outposts</em> tracker runs from 3 to 10 as your Arc Cube income. You hold at most 5 available Workers.</li>
+          <li><b>Structure upgrades</b>: every Structure, the Headquarters included, has an upgrade box. Pay any 3 Resources in your Action Phase to upgrade one you have built; the upgrade lasts until the Structure is destroyed. The Headquarters upgrade, the <b>Silo</b>, raises Arc Cube storage from 12 to 24. A new double-sided <b>Upgrades</b> helper card lists them all.</li>
+          <li><b>Ability Cards</b> are now 62 &times; 88 mm, the same size as Discoveries, Operatives and Encounters, so the shuffled Ability deck has one card size. The Contract slot on the Player Board matches.</li>
+          <li>The <b>Charging Bay</b> is removed; the Xeno Lab upgrade restores Energy instead. Ability Card 7&rsquo;s Order becomes <b>Overhaul</b>: upgrade one of your Structures at no cost.</li>
+          <li><b>Shield Generator</b> now reads: until your next turn, your Operatives gain 1 extra Combat Die while defending. <b>Barracks</b> drops the word &ldquo;Gain&rdquo;.</li>
+          <li>The Order <b>Orbital Trading</b> is renamed <b>Black Market</b>, and <b>Clearance</b> removes every Worker not in a Structure. <b>Work Complete</b> gains Workers until you have 5 available.</li>
+          <li><b>Xenarch</b> advances Progression when it subjugates a Creature; its extra Xeno Egg is gone, as the Progression row already pays one.</li>
+          <li>The printed terrain is rebalanced: Hills lean north, Spires south, Sludge west and Mountains east, and the tiles between neighboring Sector slots make it costly to explore two Sectors at once.</li>
+          <li>The card slots surround the planet: the six Encounter slots run down the right side; the Encounter, Operative, Ability, Incentive and Corporation decks sit on the left.</li>
+        </ul>
+      </article>
       <article class="rel">
         <div><p class="v">3.20</p><p class="vt">The board</p></div>
         <ul>
@@ -1979,17 +1736,22 @@
           <li><b>Card fixes.</b> Refinery exchanges 2 Resources for any 1, Foundry also redistributes strength, and Crucible's Refinery also gains a Resource. Charging Bay restores 1 Energy to each Operative; Barracks gives 1 Reroll per attack this turn. Prospectors pay 3 Arc Cubes, Hardened Core caps at 2, Lumen's Counters cost 3 less, Quartex pays 2, Mutual Interest pays you, and Extinction Event no longer stops future Creatures. Psychics' move is Active; Deflectors, Juggernauts, Engineers and Saboteurs are Passive where they were mislabeled. Suppression (the Contract) is now Embargo.</li>
           <li>Permafrost is removed from the terrain table. The Sector Atlas shows the printed board, all 20 Sector tiles and the tokens on them.</li>
           <li><b>Barracks</b> now gives 1 Reroll on each <b>Bio Attack</b> this turn; it no longer helps Siege Attacks.</li>
-          <li><b>Helper Cards</b>: each player now has 16 &mdash; new ones cover the <b>Combat Dice</b>, <b>Bio Attack</b>, <b>Siege Attack</b>, <b>Claiming</b>, <b>Territory</b>, <b>Workers</b> and <b>Progression</b> &amp; victory.</li>
+          <li><b>Helper Cards</b>: each player now has 8 double-sided cards (16 faces) &mdash; Game Setup, Player Round, Intermission and Terrain Tiles front and back, Siege Attack with Bio Attack, Combat Dice with Event Die, Claiming with Territory, Workers with Progression. New faces cover the <b>Combat Dice</b>, <b>Bio Attack</b>, <b>Siege Attack</b>, <b>Claiming</b>, <b>Territory</b>, <b>Workers</b> and <b>Progression</b> &amp; victory.</li>
           <li>The <b>Event Die</b> loses Movement Detected: a 1 is now a <b>Volcanic Eruption</b> (3 Bio Damage to your Operatives) and a 2 an <b>Earthquake</b> (3 Siege Damage to your Outposts and Headquarters). A 3 or 4 is a <b>Resource Cache</b> (2 Metal or Biofuel; 2 Silica or Cryofluid), a 5 a <b>Supply Drop</b> (3 Arc Cubes) and a 6 an <b>Intercepted Signal</b> (1 Ability Card). A Worker on a Resource adds 1 of that type, and <b>Seers</b> gain 2 Arc Cubes when the Event Die grants a Resource. <b>Genesys</b> now gains 1 Metal on a 1 or 2, and <b>The Ashborn</b> is immune to both.</li>
           <li>A new <b>Deployment Phase</b> sits between the Income and Action Phases: recruiting and deploying happen there and nowhere else. <b>Valkyrie</b> draws its Operative Card in that phase, and <b>Legion</b> and <b>Menagerie</b> put the next card in place undeployed. Menagerie draws 3 Encounter Cards.</li>
           <li>Anything other than a Siege Attack that reduces a Settlement or Outpost to 0 renders it <b>permanently uninhabitable</b>; a Headquarters destroyed that way eliminates its corporation. <b>Ion Strike</b>, <b>Terminal Run</b>, <b>Scorched Earth</b> and <b>Seismic Charge</b> say so on the card.</li>
           <li><b>Four new Ability Cards</b> (43&ndash;46) reach the systems the deck barely touched: Incentives (<b>Claim Jumper</b>, <b>Bounty Board</b>, <b>Hostile Audit</b>), recruiting and Workers (<b>Rapid Deployment</b>, <b>Mobilization</b>, <b>Labor Pool</b>), exploration (<b>Survey Drone</b>, <b>Prospecting</b>), the Event Die and Creatures (<b>Tremor Sensors</b>, <b>Creature Beacon</b>), plus <b>Seismic Charge</b> and <b>Deep Core</b>.</li>
           <li>The Sector Atlas matches the current board: 18 printed tiles carry new terrain, ten of them in the landing sites. The volcano is drawn as one shape with its six direction numbers, and landing sites are outlined in purple.</li>
-          <li>Ability Cards carry a thin grey rule between their three tiers. Ability titles sit a little apart from their text. Same-tier swaps between cards: <b>Armageddon</b> and <b>Stasis Field</b> (5, 40), <b>Mirror Ward</b> and <b>Conglomerate</b> (1, 4), <b>Menagerie</b> and <b>Expropriation</b> (27, 39), <b>Second Wind</b> and <b>Order Seizure</b> (17, 26), <b>Refine</b> and <b>Contract Breach</b> (28, 33), <b>Counter Seizure</b> and <b>Cryofluid Heist</b> (30, 40).</li>
+          <li>Ability Cards carry a thin grey rule between their three tiers. Ability titles sit a little apart from their text. Same-tier swaps between cards: <b>Armageddon</b> and <b>Stasis Field</b> (5, 40), <b>Mirror Ward</b> and <b>Conglomerate</b> (1, 4), <b>Menagerie</b> and <b>Expropriation</b> (27, 39), <b>Second Wind</b> and <b>Order Seizure</b> (17, 26), <b>Refine</b> and <b>Contract Breach</b> (28, 33), <b>Counter Seizure</b> and <b>Cryofluid Heist</b> (30, 40), <b>Order Seizure</b> and <b>Silica Heist</b> (25, 45).</li>
           <li>Discovery Cards have their own <b>Discovery</b> back, so the whole table sees when one is on top of the Ability deck.</li>
           <li>Discoveries rise to 15: two more copies of <b>Something Stirs</b>, so there are three. <b>Lone Survivors</b> draws 2 Operative Cards, <b>Ancient Bulwark</b> gives Fortify 6, <b>Something Stirs</b> states its condition first, and on every Discovery the flavor text ends on the same line, just above the footer.</li>
           <li>Up to <b>six Creatures</b> can be on the board, up from four: the board has six Encounter slots, three in each bottom corner, and six Creature Dice.</li>
-          <li><b>Four new Corporations</b>: <b>Echo Labs</b> resolves every Discovery twice, <b>Lodestar</b> steers one Creature each Intermission Phase, <b>Garrison</b> recruits for 2 Arc Cubes, and <b>Talus</b> crosses and holds Mountains.</li>
+          <li><b>Four new Corporations</b>: <b>Echo Labs</b> resolves every Discovery twice, <b>Lodestar</b> moves one Creature in a direction of its choice each Intermission Phase, <b>Garrison</b> recruits for 2 Arc Cubes, and <b>Talus</b> crosses and holds Mountains.</li>
+          <li><b>Covenant</b>&rsquo;s Contract abilities cost 3 fewer Arc Cubes, and <b>Lumen</b> draws 1 Ability Card whenever it plays a Counter.</li>
+          <li><b>Creatures are worth no Progression</b>, whether eliminated or subjugated. Subjugating one places your token on the Incentives row, now <b>Eliminate or Subjugate a Creature</b>, and pays its Xeno Egg. The other rows read <b>Construct a Structure</b> and <b>Eliminate an Operative</b>. The Bio Attack, Progression and Subjugated Creature texts and <b>Extinction Event</b> match.</li>
+          <li><b>Marksmen</b> deal 1 extra Bio Damage at Range 3 or more, and roll 1 fewer Combat Die while attacking at Range 1 or 2.</li>
+          <li>Every card that takes away a Combat Die says <b>1 fewer Combat Die</b>: Sabotage, Razorline, Vector and the Troopers on the Player Board.</li>
+          <li><b>Lodestar</b> and <b>Creature Beacon</b> may move a Creature its full Movement in a chosen direction instead of acting, even one that would attack where it stands; it then attacks if able.</li>
           <li>The shared targets are called <b>Incentives</b> throughout, printed on the board; <b>Quartex</b> pays 2 Arc Cubes whenever you place a tracker token on Incentives.</li>
           <li>New <b>Income Phase</b> order: roll the Event Die, draw 1 Ability Card, gain your Arc Cubes, then reduce your Contract&rsquo;s round tracker.</li>
         </ul>
@@ -2366,37 +2128,29 @@ const KEYS = TERRAIN.map(t => t.key);
 /* the 20 Sector tiles, hex 1 to 7 read top left to bottom right:
    t = terrain, cp = hex -> printed strength, enc = Encounter hexes, tun = Tunnel hexes */
 const SECT = [
- {n:1,t:["sludge","wasteland","mountain","hills","lava","hills","hills"],cp:{5:3},enc:[6],tun:[]},
- {n:2,t:["sludge","lava","lava","wasteland","spire","sludge","hills"],cp:{2:3,3:5},enc:[],tun:[5]},
- {n:3,t:["sludge","mountain","hills","spire","wasteland","sludge","lava"],cp:{7:5},enc:[],tun:[4]},
- {n:4,t:["sludge","sludge","mountain","sludge","sludge","wasteland","lava"],cp:{7:4},enc:[],tun:[]},
- {n:5,t:["lava","sludge","hills","mountain","hills","sludge","wasteland"],cp:{1:2},enc:[5],tun:[]},
- {n:6,t:["lava","spire","sludge","mountain","lava","spire","sludge"],cp:{1:2,5:3},enc:[],tun:[]},
- {n:7,t:["mountain","mountain","lava","mountain","mountain","sludge","wasteland"],cp:{3:2},enc:[2,5],tun:[]},
- {n:8,t:["sludge","lava","mountain","hills","mountain","sludge","lava"],cp:{2:4},enc:[3],tun:[]},
- {n:9,t:["sludge","wasteland","lava","spire","lava","wasteland","sludge"],cp:{3:3,5:5},enc:[],tun:[]},
- {n:10,t:["lava","lava","mountain","sludge","lava","wasteland","mountain"],cp:{1:2},enc:[],tun:[]},
- {n:11,t:["hills","sludge","lava","mountain","lava","hills","sludge"],cp:{5:3},enc:[],tun:[]},
- {n:12,t:["mountain","sludge","lava","hills","mountain","sludge","lava"],cp:{3:3,7:4},enc:[],tun:[]},
- {n:13,t:["wasteland","wasteland","spire","wasteland","lava","hills","sludge"],cp:{5:4},enc:[1,6],tun:[]},
- {n:14,t:["sludge","spire","lava","mountain","lava","spire","sludge"],cp:{3:4,5:2},enc:[],tun:[6]},
- {n:15,t:["sludge","mountain","lava","spire","lava","sludge","hills"],cp:{5:4},enc:[],tun:[4]},
- {n:16,t:["spire","spire","lava","spire","wasteland","sludge","mountain"],cp:{3:5},enc:[7],tun:[]},
- {n:17,t:["sludge","lava","spire","wasteland","sludge","sludge","spire"],cp:{2:6},enc:[],tun:[]},
- {n:18,t:["mountain","sludge","sludge","hills","lava","mountain","sludge"],cp:{5:1},enc:[],tun:[]},
- {n:19,t:["lava","mountain","mountain","sludge","hills","hills","lava"],cp:{1:5},enc:[],tun:[]},
- {n:20,t:["mountain","wasteland","spire","sludge","lava","lava","wasteland"],cp:{5:2,6:5},enc:[],tun:[]}
+ {n:1,t:["sludge","wasteland","mountain","hills","lava","hills","hills"],cp:{5:3},res:{4:"Silica"},enc:[6],tun:[]},
+ {n:2,t:["sludge","lava","lava","wasteland","spire","sludge","hills"],cp:{2:3,3:5},res:{},enc:[],tun:[5]},
+ {n:3,t:["sludge","mountain","hills","spire","wasteland","sludge","lava"],cp:{7:5},res:{2:"Metal"},enc:[],tun:[]},
+ {n:4,t:["sludge","sludge","mountain","sludge","sludge","wasteland","lava"],cp:{7:4},res:{4:"Biofuel"},enc:[],tun:[]},
+ {n:5,t:["lava","sludge","hills","mountain","hills","sludge","wasteland"],cp:{1:2},res:{3:"Silica"},enc:[5],tun:[]},
+ {n:6,t:["lava","spire","sludge","mountain","lava","spire","sludge"],cp:{5:2},res:{3:"Biofuel"},enc:[],tun:[]},
+ {n:7,t:["mountain","mountain","lava","mountain","mountain","sludge","wasteland"],cp:{3:2},res:{4:"Metal"},enc:[2,5],tun:[]},
+ {n:8,t:["sludge","lava","mountain","hills","mountain","sludge","lava"],cp:{2:4},res:{4:"Silica",5:"Metal"},enc:[3],tun:[]},
+ {n:9,t:["sludge","wasteland","lava","spire","lava","wasteland","sludge"],cp:{3:3,5:6},res:{2:"Cryofluid"},enc:[],tun:[]},
+ {n:10,t:["lava","lava","mountain","sludge","lava","wasteland","mountain"],cp:{1:1},res:{6:"Cryofluid"},enc:[],tun:[]},
+ {n:11,t:["hills","sludge","lava","mountain","lava","hills","sludge"],cp:{5:4},res:{1:"Silica"},enc:[6],tun:[]},
+ {n:12,t:["mountain","sludge","lava","hills","mountain","sludge","lava"],cp:{7:3},res:{5:"Metal"},enc:[2],tun:[]},
+ {n:13,t:["wasteland","wasteland","spire","wasteland","lava","hills","sludge"],cp:{5:1},res:{4:"Cryofluid",7:"Biofuel"},enc:[1,6],tun:[]},
+ {n:14,t:["sludge","spire","lava","mountain","lava","spire","sludge"],cp:{3:6},res:{},enc:[],tun:[6]},
+ {n:15,t:["sludge","mountain","lava","spire","lava","sludge","hills"],cp:{5:4},res:{1:"Biofuel"},enc:[],tun:[4]},
+ {n:16,t:["spire","spire","lava","spire","wasteland","sludge","mountain"],cp:{3:5},res:{5:"Cryofluid"},enc:[7],tun:[]}
 ];
 /* the eight empty tiles: no Settlement, used at two and three players */
 const EMPTY = [
- {n:21,t:["hills","mountain","mountain","sludge","lava","lava","hills"],cp:{},enc:[],tun:[]},
- {n:22,t:["sludge","mountain","lava","mountain","sludge","sludge","hills"],cp:{},enc:[],tun:[]},
- {n:23,t:["lava","sludge","sludge","mountain","hills","hills","sludge"],cp:{},enc:[],tun:[]},
- {n:24,t:["wasteland","mountain","lava","hills","lava","wasteland","sludge"],cp:{},enc:[],tun:[]},
- {n:25,t:["lava","mountain","wasteland","spire","sludge","mountain","lava"],cp:{},enc:[3],tun:[]},
- {n:26,t:["spire","sludge","sludge","mountain","spire","mountain","lava"],cp:{},enc:[3,6],tun:[]},
- {n:27,t:["wasteland","sludge","sludge","spire","wasteland","lava","sludge"],cp:{},enc:[1],tun:[4]},
- {n:28,t:["wasteland","spire","lava","sludge","lava","spire","wasteland"],cp:{},enc:[],tun:[2]}
+ {n:"E1",t:["hills","mountain","mountain","sludge","lava","lava","hills"],cp:{},res:{},enc:[],tun:[]},
+ {n:"E2",t:["lava","mountain","wasteland","spire","sludge","mountain","lava"],cp:{},res:{},enc:[3],tun:[]},
+ {n:"E3",t:["wasteland","sludge","sludge","spire","wasteland","lava","sludge"],cp:{},res:{},enc:[1],tun:[4]},
+ {n:"E4",t:["wasteland","spire","lava","sludge","lava","spire","wasteland"],cp:{},res:{},enc:[],tun:[2]}
 ];
 
 /* every count on this page is read off the tiles themselves, so retiling the board
@@ -2425,8 +2179,13 @@ const tok = {
   cp:  (x, y, n) => '<g class="tok"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="11.5"/><text class="cpn" x="' + x.toFixed(1) + '" y="' + (y + 1).toFixed(1) + '">' + n + '</text></g>',
   enc: (x, y) => '<g class="tok"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="11.5"/><path d="M' + (x - 8) + ' ' + (y - 8) + 'L' + (x - 3) + ' ' + (y - 3) + 'H' + (x + 3) + 'L' + (x + 8) + ' ' + (y - 8) + 'V' + (y + 1) + 'Q' + x + ' ' + (y + 10) + ' ' + (x - 8) + ' ' + (y + 1) + 'Z"/><circle class="eye" cx="' + (x - 3.2) + '" cy="' + (y + 1) + '" r="1.7"/><circle class="eye" cx="' + (x + 3.2) + '" cy="' + (y + 1) + '" r="1.7"/></g>',
   tun: (x, y) => '<g class="tok"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="11.5"/><path d="M' + (x - 7) + ' ' + (y + 6) + 'V' + (y - 1) + 'A7 7 0 0 1 ' + (x + 7) + ' ' + (y - 1) + 'V' + (y + 6) + 'Z"/></g>',
-  land: (x, y) => '<g class="tok"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="11.5"/><path d="M' + (x - 4) + ' ' + (y + 8) + 'V' + (y - 8) + 'L' + (x + 7) + ' ' + (y - 4) + 'L' + (x - 4) + ' ' + y + '"/></g>'
+  land: (x, y) => '<g class="tok"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="11.5"/><path d="M' + (x - 4) + ' ' + (y + 8) + 'V' + (y - 8) + 'L' + (x + 7) + ' ' + (y - 4) + 'L' + (x - 4) + ' ' + y + '"/></g>',
+  res: (x, y, r) => '<g class="tok res" style="--rc:' + RES[r].c + '"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="11.5"/><text class="cpn" x="' + x.toFixed(1) + '" y="' + (y + 1).toFixed(1) + '">' + r[0] + '</text></g>'
 };
+/* each Resource sits on its own terrain */
+const RES = {Metal:{c:"#e2643a", on:"mountain"}, Biofuel:{c:"#5aa83c", on:"sludge"}, Silica:{c:"#d9b62c", on:"hills"}, Cryofluid:{c:"#3f8fd6", on:"wasteland"}};
+const resOf = s => Object.values(s.res);
+const ALLRES = SECT.flatMap(resOf);
 const tileCard = (s, empty) => {
   let polys = "", rel = "", toks = "";
   s.t.forEach((k, i) => {
@@ -2437,9 +2196,11 @@ const tileCard = (s, empty) => {
     if (s.cp[i + 1]) toks += tok.cp(x, y, s.cp[i + 1]);
     if (s.enc.includes(i + 1)) toks += tok.enc(x, y);
     if (s.tun.includes(i + 1)) toks += tok.tun(x, y);
+    if (s.res[i + 1]) toks += tok.res(x, y, s.res[i + 1]);
   });
   const bits = [];
   const cps = cpsOf(s); if (cps.length) bits.push(cps.length + " Settlement" + (cps.length === 1 ? "" : "s"));
+  if (resOf(s).length) bits.push(resOf(s).join(" + "));
   if (s.enc.length) bits.push(s.enc.length + " Encounter" + (s.enc.length === 1 ? "" : "s"));
   if (s.tun.length) bits.push("Tunnel");
   if (!bits.length) bits.push("No tokens");
@@ -2474,8 +2235,9 @@ const staticKey = (name, ct, fx, sw) => {
   legend.appendChild(el);
 };
 staticKey("Volcano", 1, "The crater at the center, with the six numbered directions Creatures move in — impassable, and not part of any Sector", ico("#2b1a12", "", " volcico"));
-staticKey("Landing site", LAND, "A four-tile Sector on the rim with a landing site; each corporation's Headquarters starts on one", ico("var(--t-lava)", tok.land(0, 0)));
+staticKey("Landing site", LAND, "A six-tile Sector at a corner of the planet; each corporation's Headquarters starts on one. Landing sites carry no Resources", ico("var(--t-lava)", tok.land(0, 0)));
 staticKey("Settlement", ALLCP.length, "On Sector tiles, always on a Lava Field; the die shows the strength it starts at", ico("var(--t-lava)", tok.cp(0, 0, 3)));
+staticKey("Resource", ALLRES.length, "On Sector tiles, always on its own terrain: Metal on Mountain, Biofuel on Sludge, Silica on Hills, Cryofluid on Wasteland", ico("var(--t-mountain)", tok.res(0, 0, "Metal")));
 staticKey("Tunnel", PTUN + " + " + TUNS, "Printed on the board, plus those on Sector tiles", ico("var(--t-spire)", tok.tun(0, 0)));
 staticKey("Encounter", ENCS, "On Sector tiles; a Creature starts on the tile", ico("var(--t-wasteland)", tok.enc(0, 0)));
 document.getElementById("legendnote").innerHTML = '<i></i>Terrain counts read <b>printed tiles + Sector-tile hexes</b>.';
@@ -2487,32 +2249,32 @@ const HALF = {W: byTerrain(side("W")), E: byTerrain(side("E")), A: byTerrain(sid
 const col = (title, who, counts) => '<div class="bcol"><h3>' + title + '</h3><p class="who">' + who + '</p>' +
   TERRAIN.map((t, i) => '<div class="brow ' + t.key + '" style="--sw:var(--t-' + t.key + ')"><i></i><span>' +
     t.name + '</span><b>' + counts[i] + '</b></div>').join("") + '</div>';
+const centre = el => {
+  const p = el.getAttribute("points").trim().split(/\s+/).map(q => q.split(",").map(Number));
+  const xs = p.map(q => q[0]), ys = p.map(q => q[1]);
+  return [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...ys) + Math.max(...ys)) / 2];
+};
+/* the printed board read by side of the volcano: north and south, then west and east */
+const printed = [...document.querySelectorAll("#planet .tile")].map(el => ({key: el.dataset.key, c: centre(el)}));
+/* the planet is laid out around the volcano, so the middle of the printed tiles is the volcano */
+const VC = [0, 1].map(i => (Math.min(...printed.map(t => t.c[i])) + Math.max(...printed.map(t => t.c[i]))) / 2);
+const SIDES = {N: printed.filter(t => t.c[1] < VC[1] - 1), S: printed.filter(t => t.c[1] > VC[1] + 1),
+               W: printed.filter(t => t.c[0] < VC[0] - 1), E: printed.filter(t => t.c[0] > VC[0] + 1)};
+const SC = {}; for (const k in SIDES) SC[k] = byTerrain(SIDES[k]);
 document.getElementById("balance").innerHTML =
-  col("West half", sumOf(HALF.W) + " printed tiles", HALF.W) +
-  col("East half", sumOf(HALF.E) + " printed tiles", HALF.E) +
-  col("Sector tiles", SECT.length + " tiles — " + sumOf(POOL) + " hexes", POOL);
+  col("North", SIDES.N.length + " printed tiles", SC.N) + col("South", SIDES.S.length + " printed tiles", SC.S) +
+  col("West", SIDES.W.length + " printed tiles", SC.W) + col("East", SIDES.E.length + " printed tiles", SC.E);
 
 (function(){
-  const spread = Math.max(...KEYS.map((k, i) => Math.abs(HALF.W[i] - HALF.E[i])));
-  const bi = [KEYS.indexOf("hills"), KEYS.indexOf("spire")];
-  const bonus = ["W", "E"].map(h => HALF[h][bi[0]] + HALF[h][bi[1]]);
-  const centre = el => {
-    const p = el.getAttribute("points").trim().split(/\s+/).map(q => q.split(",").map(Number));
-    const xs = p.map(q => q[0]), ys = p.map(q => q[1]);
-    return [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...ys) + Math.max(...ys)) / 2];
-  };
-  const vy = centre(document.querySelector("#volcano .volc"))[1];
-  const pct = (key, north) => {
-    const all = [...document.querySelectorAll('#planet .tile[data-key="' + key + '"]')];
-    const hit = all.filter(el => (centre(el)[1] < vy) === north).length;
-    return Math.round(hit / all.length * 100);
-  };
+  const at = (side, key) => SC[side][KEYS.indexOf(key)];
+  const pen = side => at(side, "mountain") + at(side, "sludge"), bon = side => at(side, "hills") + at(side, "spire");
   document.getElementById("balnote").innerHTML =
-    'The printed board splits into a west half and an east half of <b>' + sumOf(HALF.W) + '</b> and <b>' + sumOf(HALF.E) +
-    '</b> tiles, with the <b>' + sumOf(HALF.A) + '</b> tiles on the north&ndash;south axis in neither. The widest gap between halves is <b>' + spread +
-    '</b> tiles, and Hills and Spires together land on <b>' + (bonus[0] === bonus[1] ? bonus[0] : bonus.join(" / ")) +
-    '</b> tiles per half. <b>' + pct("hills", true) + '%</b> of the printed Hills sit north of the volcano and <b>' + pct("spire", false) +
-    '%</b> of the printed Spires south of it. The Sector tiles are shown for comparison; only 16 of the 20 are used in a game.';
+    'Each side of the planet has its own character without being harder to play. The north has the Hills (<b>' + at("N", "hills") +
+    '</b> to <b>' + at("S", "hills") + '</b>) and the south the Spires (<b>' + at("S", "spire") + '</b> to <b>' + at("N", "spire") +
+    '</b>); the west is Sludge country (<b>' + at("W", "sludge") + '</b> to <b>' + at("E", "sludge") + '</b>) and the east Mountain country (<b>' +
+    at("E", "mountain") + '</b> to <b>' + at("W", "mountain") + '</b>). Penalty tiles &mdash; Mountains and Sludge together &mdash; come to <b>' +
+    pen("N") + '</b> north, <b>' + pen("S") + '</b> south, <b>' + pen("W") + '</b> west and <b>' + pen("E") + '</b> east; bonus tiles to <b>' +
+    bon("N") + '</b>, <b>' + bon("S") + '</b>, <b>' + bon("W") + '</b> and <b>' + bon("E") + '</b>.';
   relief("mtnmark", "mountain", true);
   relief("hillmark", "hills", false);
   function relief(id, key, pair) {
@@ -2530,6 +2292,9 @@ const plain = (title, who, rows) => '<div class="bcol"><h3>' + title + '</h3><p 
   rows.map(r => '<div class="brow" style="--sw:#f4efe7"><i></i><span>' + r[0] + '</span><b>' + r[1] + '</b></div>').join("") + '</div>';
 document.getElementById("tokens").innerHTML =
   plain("Settlements", ALLCP.length + " on " + SECT.length + " Sector tiles", strengths.map((n, i) => ["Strength " + (i + 1), n])) +
+  plain("Resources", ALLRES.length + " on " + SECT.length + " Sector tiles",
+    Object.keys(RES).map(r => [r, ALLRES.filter(x => x === r).length]).concat(
+    [["Tiles with one", SECT.filter(s => resOf(s).length === 1).length], ["Tiles with two", SECT.filter(s => resOf(s).length === 2).length], ["Tiles with none", SECT.filter(s => !resOf(s).length).length]])) +
   plain("On the Sector tiles", "Tiles carrying each token",
     [["One Settlement", SECT.filter(s => cpsOf(s).length === 1).length], ["Two Settlements", SECT.filter(s => cpsOf(s).length === 2).length],
      ["Encounters", ENCS], ["Tunnels", TUNS], ["Tiles with an Encounter", SECT.filter(s => s.enc.length).length], ["Tiles with a Tunnel", SECT.filter(s => s.tun.length).length]]) +
@@ -2538,32 +2303,32 @@ document.getElementById("tokens").innerHTML =
 /* ---- distribution ---- */
 let rows = '<thead><tr><th class="l">Tile</th><th>Hexes</th>' +
   TERRAIN.map(t => '<th style="--sw:var(--t-' + t.key + ')"><span></span>' + t.name.split(" ")[0] + '</th>').join("") +
-  '<th class="l">Settlements</th><th>Encounters</th><th>Tunnels</th></tr></thead><tbody>';
+  '<th class="l">Settlements</th><th class="l">Resources</th><th>Encounters</th><th>Tunnels</th></tr></thead><tbody>';
 SECT.forEach(s => {
   const row = tally(s.t);
   rows += '<tr><td class="l sec">' + s.n + '</td><td>' + s.t.length + '</td>' +
     row.map(v => '<td class="' + (v === 0 ? "zero" : "") + '">' + v + '</td>').join("") +
-    '<td class="l">' + cpsOf(s).join(" &middot; ") + '</td><td class="' + (s.enc.length ? "" : "zero") + '">' + s.enc.length +
+    '<td class="l">' + cpsOf(s).join(" &middot; ") + '</td><td class="l' + (resOf(s).length ? "" : " zero") + '">' + (resOf(s).join(" &middot; ") || "&mdash;") + '</td><td class="' + (s.enc.length ? "" : "zero") + '">' + s.enc.length +
     '</td><td class="' + (s.tun.length ? "" : "zero") + '">' + s.tun.length + '</td></tr>';
 });
 /* the empty tiles, counted apart from the full set */
 const EPOOL = tally(EMPTY.flatMap(s => s.t));
-rows += '<tr><td class="l pairnote" colspan="' + (TERRAIN.length + 5) + '">Empty Sector tiles &mdash; no Settlement</td></tr>';
+rows += '<tr><td class="l pairnote" colspan="' + (TERRAIN.length + 6) + '">Empty Sector tiles &mdash; no Settlement, no Resource</td></tr>';
 EMPTY.forEach(s => {
   const row = tally(s.t);
   rows += '<tr><td class="l sec">' + s.n + '</td><td>' + s.t.length + '</td>' +
     row.map(v => '<td class="' + (v === 0 ? "zero" : "") + '">' + v + '</td>').join("") +
-    '<td class="l zero">&mdash;</td><td class="' + (s.enc.length ? "" : "zero") + '">' + s.enc.length +
+    '<td class="l zero">&mdash;</td><td class="l zero">&mdash;</td><td class="' + (s.enc.length ? "" : "zero") + '">' + s.enc.length +
     '</td><td class="' + (s.tun.length ? "" : "zero") + '">' + s.tun.length + '</td></tr>';
 });
-rows += '</tbody><tfoot><tr><td class="l">Tiles 1&ndash;20</td><td>' + sumOf(POOL) + '</td>' + POOL.map(v => '<td>' + v + '</td>').join("") +
-  '<td class="l">' + ALLCP.length + '</td><td>' + ENCS + '</td><td>' + TUNS + '</td></tr>' +
+rows += '</tbody><tfoot><tr><td class="l">Tiles 1&ndash;' + SECT.length + '</td><td>' + sumOf(POOL) + '</td>' + POOL.map(v => '<td>' + v + '</td>').join("") +
+  '<td class="l">' + ALLCP.length + '</td><td class="l">' + ALLRES.length + '</td><td>' + ENCS + '</td><td>' + TUNS + '</td></tr>' +
   '<tr><td class="l">Empty</td><td>' + sumOf(EPOOL) + '</td>' + EPOOL.map(v => '<td>' + v + '</td>').join("") +
-  '<td class="l">&mdash;</td><td>' + sumOf(EMPTY.map(s => s.enc.length)) + '</td><td>' + sumOf(EMPTY.map(s => s.tun.length)) + '</td></tr></tfoot>';
+  '<td class="l">&mdash;</td><td class="l">&mdash;</td><td>' + sumOf(EMPTY.map(s => s.enc.length)) + '</td><td>' + sumOf(EMPTY.map(s => s.tun.length)) + '</td></tr></tfoot>';
 document.getElementById("tbl").innerHTML = rows;
-const sigOf = s => cpsOf(s).sort().join("") + "|" + s.enc.length + "|" + s.tun.length;
+const sigOf = s => cpsOf(s).sort().join("") + "|" + resOf(s).sort().join("") + "|" + s.enc.length + "|" + s.tun.length;
 document.getElementById("distnote").textContent = "Every row sums to its tile's seven hexes." +
-  (new Set(SECT.map(sigOf)).size === SECT.length ? " No two tiles carry the same Settlements, Encounters and Tunnels." : "");
+  (new Set(SECT.map(sigOf)).size === SECT.length ? " No two tiles carry the same Settlements, Resources, Encounters and Tunnels." : "");
 
 /* ---- headline figures ---- */
 document.getElementById("at-tiles").textContent = TILES.length;
@@ -2572,7 +2337,7 @@ document.getElementById("at-sect").textContent  = SECT.length;
 document.getElementById("at-empty").textContent = EMPTY.length;
 document.getElementById("at-land").textContent  = LAND;
 document.getElementById("at-cps").textContent   = ALLCP.length;
-/* neutral Control Dice needed if the 16 richest tiles were all drawn */
+/* neutral Settlement Dice needed if the richest tiles filled every slot */
 document.getElementById("dk-neutral").textContent =
   sumOf(SECT.map(s => cpsOf(s).length).sort((a, b) => b - a).slice(0, SLOTS));
 
@@ -2670,7 +2435,7 @@ const CORPS = [
   {n:"Stratos",cubes:7,res:"1 Xeno Egg",rt:"Xeno Egg",tags:["combat"],
    p:["Your Operatives roll 1 extra Combat Die while defending on Hill tiles and 1 extra Combat Die while attacking on Spire tiles."]},
   {n:"Vector",cubes:8,res:"1 Cryofluid",rt:"Cryofluid",tags:["mobility","combat"],w:true,
-   p:["Your Operatives may move 1 extra tile.","Your Operatives roll 1 less Combat Die while defending."]},
+   p:["Your Operatives may move 1 extra tile.","Your Operatives roll 1 fewer Combat Die while defending."]},
   {n:"Omnitek",cubes:8,res:null,rt:"—",tags:["economy","events"],
    p:["Resources you gain from the Event Die can be of any type."]},
   {n:"Vanguard",cubes:7,res:"1 Resource of your choice",rt:"Choice",tags:["construction"],
@@ -2715,7 +2480,7 @@ const CORPS = [
   {n:"Predation",cubes:8,res:"1 Xeno Egg",rt:"Xeno Egg",tags:["combat"],
    p:["Your Operatives roll 1 extra Combat Die while attacking Creatures."]},
   {n:"Razorline",cubes:5,res:"1 Cryofluid",rt:"Cryofluid",tags:["combat"],w:true,
-   p:["Your Operatives roll 1 extra Combat Die while attacking.","Your Operatives roll 1 less Combat Die while defending."]},
+   p:["Your Operatives roll 1 extra Combat Die while attacking.","Your Operatives roll 1 fewer Combat Die while defending."]},
   {n:"Helix",cubes:8,res:null,rt:"—",tags:["cards"],
    p:["Ability Card draw rewards on the Progression tracker yield 1 extra Ability Card."]},
   {n:"Novacore",cubes:8,res:null,rt:"—",tags:["construction","economy"],
@@ -2739,11 +2504,11 @@ const CORPS = [
   {n:"Borealis",cubes:6,res:"1 Resource of your choice",rt:"Choice",tags:["territory","economy"],
    p:["When you claim a Settlement, gain Arc Cubes equal to its printed strength."]},
   {n:"Covenant",cubes:7,res:"1 Cryofluid",rt:"Cryofluid",tags:["cards"],
-   p:["When one of your Contracts ends, draw 2 Ability Cards."]},
+   p:["When one of your Contracts ends, draw 2 Ability Cards.","Your Contract abilities cost 3 fewer Arc Cubes."]},
   {n:"Lumen",cubes:5,res:null,rt:"—",tags:["cards"],
-   p:["Your Counter abilities cost 3 fewer Arc Cubes."]},
+   p:["When you play a Counter, draw 1 Ability Card.","Your Counter abilities cost 3 fewer Arc Cubes."]},
   {n:"Xenarch",cubes:6,res:"1 Xeno Egg",rt:"1 Xeno Egg",tags:["operatives"],
-   p:["When you subjugate a Creature, advance your Progression tracker by 1 and gain 1 Xeno Egg."]},
+   p:["When you subjugate a Creature, advance your Progression tracker by 1."]},
   {n:"Halberd",cubes:6,res:"1 Metal",rt:"Metal",tags:["territory"],
    p:[],lim:"When one of your Outposts or your Headquarters would be reduced to 0, set it to 4 instead."},
   {n:"Nightjar",cubes:7,res:"1 Silica",rt:"Silica",tags:["mobility"],
@@ -2755,7 +2520,7 @@ const CORPS = [
   {n:"Echo Labs",cubes:8,res:null,rt:"—",tags:["cards"],
    p:["Whenever you draw a Discovery, resolve it twice."]},
   {n:"Lodestar",cubes:7,res:"1 Xeno Egg",rt:"1 Xeno Egg",tags:["combat"],
-   p:["During each Intermission Phase, choose the direction of one Creature instead of rolling."]},
+   p:["Once each Intermission Phase, you may have one Creature move its full Movement in a direction you choose instead of acting. It then attacks if able."]},
   {n:"Garrison",cubes:7,res:"1 Cryofluid",rt:"Cryofluid",tags:["operatives"],
    p:["Recruiting an Operative costs you 2 Arc Cubes."]},
   {n:"Talus",cubes:7,res:"1 Metal",rt:"Metal",tags:["mobility","combat"],
@@ -2920,7 +2685,7 @@ const ACARDS = [
   {n:"Annex",t:"order",g:["territory"],x:"Claim one Settlement or enemy Outpost adjacent to a Sector you control if its strength is 4 or lower. It becomes yours at strength 4."},
   {n:"Regression",t:"order",g:["territory"],x:"Choose one corporation. Decrease their Progression tracker by 3. It cannot go below 0."}],
 
- [{n:"Charging Bay",t:"order",g:["construction"],x:"Construct a Charging Bay at no Resource cost."},
+ [{n:"Overhaul",t:"order",g:["construction"],x:"Upgrade one of your Structures at no cost."},
   {n:"Overtime",t:"order",g:["mobility","combat"],x:"At the end of your turn, your Operatives may perform an additional Move or Attack."},
   {n:"Ghost Protocol",t:"contract",g:["operatives"],x:"For 2 rounds, your Operatives cannot be targeted by any enemy effect or ability."}],
 
@@ -2937,12 +2702,12 @@ const ACARDS = [
   {n:"Execute",t:"order",g:["combat"],x:"Choose one Operative or Creature anywhere on the board. Eliminate it."}],
 
  [{n:"Double Yolk",t:"order",g:["economy"],x:"Until the end of your turn, when you spend a Xeno Egg, you gain both of its effects."},
-  {n:"Orbital Trading",t:"order",g:["economy"],x:"Exchange any number of your Resources for an equal number of other Resources of your choice."},
+  {n:"Black Market",t:"order",g:["economy"],x:"Exchange any number of your Resources for an equal number of other Resources of your choice."},
   {n:"Defector",t:"order",g:["operatives"],x:"Choose an enemy Operative within Range of one of your Operatives. Remove it from the board, gaining no Progression. Take its Operative Card and assign it as normal."}],
 
  [{n:"Martial Law",t:"contract",g:["operatives"],x:"For 2 rounds, abilities on enemy Operative Cards have no effect."},
   {n:"Biofuel Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Biofuel from their storage."},
-  {n:"Clearance",t:"order",g:["economy"],x:"All other corporations remove their Workers not assigned to a Structure or Contract from the game."}],
+  {n:"Clearance",t:"order",g:["economy"],x:"All other corporations remove from the game every Worker they have not assigned to a Structure."}],
 
  [{n:"Stockpile",t:"order",g:["economy"],x:"Gain 3 Resources of the same type. All other corporations gain 1 Resource of the same type."},
   {n:"Targeted Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal 1 Resource of your choice from their storage."},
@@ -2956,7 +2721,7 @@ const ACARDS = [
   {n:"Requisition",t:"order",g:["construction"],x:"Construct a Structure of your choice at no Resource cost."},
   {n:"Conquest",t:"order",g:["territory"],x:"Claim one Settlement or enemy Outpost adjacent to a Sector you control if its strength is 6 or lower. It becomes yours at strength 6."}],
 
- [{n:"Sabotage",t:"contract",g:["combat"],x:"For 2 rounds, enemy Operatives and Creatures in your controlled Sectors roll 1 less Combat Die while attacking."},
+ [{n:"Sabotage",t:"contract",g:["combat"],x:"For 2 rounds, enemy Operatives and Creatures in your controlled Sectors roll 1 fewer Combat Die while attacking."},
   {n:"Metal Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Metal from their storage."},
   {n:"Bankrupt",t:"order",g:["economy"],x:"Choose one corporation. Steal all Arc Cubes and Resources from their storage."}],
 
@@ -2990,10 +2755,10 @@ const ACARDS = [
 
  [{n:"Reposition",t:"order",g:["mobility"],x:"Move one of your Operatives up to 3 tiles. Either retain this card and move only that Operative, or discard it and apply this to all your Operatives."},
   {n:"Xeno Lure",t:"order",g:["creatures"],x:"Move a Creature on the board up to 4 tiles in any direction."},
-  {n:"Extinction Event",t:"order",g:["creatures"],x:"Eliminate all Creatures on Arcworld without gaining Progression or other benefits."}],
+  {n:"Extinction Event",t:"order",g:["creatures"],x:"Eliminate all Creatures on Arcworld without gaining Incentives or other benefits."}],
 
  [{n:"Barracks",t:"order",g:["construction"],x:"Construct a Barracks at no Resource cost."},
-  {n:"Silica Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Silica from their storage."},
+  {n:"Order Seizure",t:"counter",g:["cards"],x:"When another corporation plays an Order, cancel its effect. You gain the Ability Card instead of it being discarded."},
   {n:"Global Tariffs",t:"contract",g:["economy"],x:"For 2 rounds, when another corporation gains a Resource, you gain 3 Arc Cubes and 1 of the same Resource type."}],
 
  [{n:"Inflation",t:"contract",g:["economy","cards"],x:"For 2 rounds, all Ability Cards cost 2 extra Arc Cubes for each other corporation."},
@@ -3030,7 +2795,7 @@ const ACARDS = [
 
  [{n:"Dampening Field",t:"contract",g:["operatives","combat"],x:"For 2 rounds, your Operatives cannot receive more than 1 Bio Damage from any single source."},
   {n:"Sever Bond",t:"order",g:["creatures"],x:"Choose an enemy's subjugated Creature within Range of one of your Operatives. Remove it from their control and move its Creature Die to the Volcano tile."},
-  {n:"Work Complete",t:"order",g:["economy"],x:"Gain 5 Workers."}],
+  {n:"Work Complete",t:"order",g:["economy"],x:"Gain Workers until you have 5 available."}],
 
  [{n:"Critical Strike",t:"order",g:["combat"],x:"Change all Hits from one of your Operative's Bio Roll into Critical Hits."},
   {n:"Arc Infusion",t:"order",g:["combat"],x:"Until the end of your turn, on a successful Attack, your Operatives add 4 to their Bio Roll."},
@@ -3073,8 +2838,8 @@ const ACARDS = [
   {n:"Hostile Audit",t:"order",g:["territory"],x:"Choose one corporation. Remove all of its tracker tokens from Incentives."}],
 
  [{n:"Tremor Sensors",t:"counter",g:["events","economy"],x:"When you roll a 1 or 2 on the Event Die, cancel its effect and gain 2 Arc Cubes."},
-  {n:"Order Seizure",t:"counter",g:["cards"],x:"When another corporation plays an Order, cancel its effect. You gain the Ability Card instead of it being discarded."},
-  {n:"Creature Beacon",t:"contract",g:["creatures"],x:"For 2 rounds, choose the direction of every Creature instead of rolling."}],
+  {n:"Silica Heist",t:"order",g:["economy"],x:"Choose one corporation. Steal up to 2 Silica from their storage."},
+  {n:"Creature Beacon",t:"contract",g:["creatures"],x:"For 2 rounds, you may have any Creature move its full Movement in a direction you choose instead of acting. It then attacks if able."}],
 
  [{n:"Survey Drone",t:"order",g:["territory"],x:"Look at the top 3 Sector tiles. Return them to the stack in any order."},
   {n:"Bounty Board",t:"contract",g:["economy"],x:"For 2 rounds, whenever you place a tracker token on Incentives, gain 3 Arc Cubes."},
@@ -3389,8 +3154,8 @@ const OPS = [
    ["a","Enemies within Range 3 may only target this Operative."],
    ["p","Gain 1 Reroll while defending."]]},
  {n:"Marksmen",e:4,m:3,r:4,a:3,d:2,g:["combat"],ab:[
-   ["p","On a successful Bio Attack at Range 4 or more, deal 1 extra Bio Damage."],
-   ["p","You cannot attack a target within Range 2."]]},
+   ["p","On a successful Bio Attack at Range 3 or more, deal 1 extra Bio Damage."],
+   ["p","Roll 1 fewer Combat Die while attacking at Range 1 or 2."]]},
  {n:"Interlopers",e:4,m:3,r:2,a:3,d:2,g:["territory","economy"],ab:[
    ["p","During your Income Phase, gain 2 Arc Cubes if you Suppress a Sector."],
    ["p","Enemy Operatives cannot deploy into a Sector you Suppress."]]},
@@ -3688,9 +3453,9 @@ const OBJECTIVE = {
   n:"Incentives", boxes:5,
   rows:[
     {t:"Claim Territory", r:"Fortify its printed strength"},
-    {t:"Construct Structures", r:"3 Arc Cubes"},
-    {t:"Eliminate Creatures",  r:"1 Xeno Egg"},
-    {t:"Eliminate Operatives", r:"1 Ability Card"}
+    {t:"Construct a Structure", r:"3 Arc Cubes"},
+    {t:"Eliminate or Subjugate a Creature", r:"1 Xeno Egg"},
+    {t:"Eliminate an Operative", r:"1 Ability Card"}
   ]
 };
 
